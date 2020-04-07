@@ -12,7 +12,7 @@ def index(request):
         args = {'user': user}
     else:
         args = {}
-    return render(request, 'registration/profile.html', args)
+    return render(request, 'registration/index.html', args)
 
 
 @login_required
