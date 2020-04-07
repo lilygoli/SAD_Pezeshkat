@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request, 'registration/index.html')
+    user = request.user
+    if user:
+        args = {'user': user}
+    else:
+        args = {}
+    return render(request, 'registration/profile.html', args)
 
 
 @login_required
