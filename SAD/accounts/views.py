@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from authentication.forms import UserForm, UserProfileInfoForm
+from accounts.forms import UserForm, UserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
