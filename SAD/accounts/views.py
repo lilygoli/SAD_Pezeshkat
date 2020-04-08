@@ -84,6 +84,6 @@ def edit_profile(request):
             return redirect(reverse('index'))
     else:
         edituser_form = EditProfileForm(instance=request.user)
-        editprofileinfo_form = EditProfileInfo(instance=request.user)
+        editprofileinfo_form = EditProfileInfo(instance=request.user.userprofileinfo)
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)
