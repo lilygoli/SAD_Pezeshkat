@@ -30,6 +30,9 @@
 <!--                <img src= "{{ user.UserProfileInfo.profile_pic.url }}" width="240" alt="Smiley face">-->
 <!--            {% endif %}-->
         </div>
+        <div class="button">
+            <a href="{% url 'edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
+        </div>
     {% else %}
         <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
     {% endif %}

@@ -24,6 +24,7 @@ urlpatterns = [
     # url(r'^login/$', auth_views.auth_login, name='login'),
     # url(r'^logout/$', auth_views.auth_logout, name='logout'),
     # path('', my_view, name='login')
+    url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^register/$', views.register, name='register'),
     url(r'^user_login/$', views.user_login, name='user_login'),
     url(r'^logout/$', views.user_logout, name='logout'),

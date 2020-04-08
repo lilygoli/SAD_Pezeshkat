@@ -3,13 +3,14 @@ from accounts.models import User, UserProfileInfo
 
 
 # from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
 
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     password.label = "رمزعبور"
 
-    class Meta():
+    class Meta:
         model = User
         fields = ('name', 'password', 'email')
         labels = {
@@ -20,7 +21,7 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileInfoForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = UserProfileInfo
         fields = ('portfolio_site', 'profile_pic', 'height', 'weight')
         labels = {
@@ -28,4 +29,22 @@ class UserProfileInfoForm(forms.ModelForm):
             "profile_pic": "عکس",
             "height": "قد",
             "weight": "وزن"
+        }
+
+
+class EditProfileForm(UserChangeForm):
+    #username = forms.CharField(required=True)
+    email = forms.EmailField(required=True)
+    name = forms.CharField(required=False)
+
+    class Meta:
+        model = User
+        fields = ('name', 'email')
+        labels = {
+            "name": "نام",
+            "email": "ایمیل",
+            # "portfolio_site": "وبسایت شخصی",
+            # "profile_pic": "عکس",
+            # "height": "قد",
+            # "weight": "وزن"
         }
