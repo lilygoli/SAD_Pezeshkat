@@ -33,9 +33,6 @@ class UserProfileInfoForm(forms.ModelForm):
 
 
 class EditProfileForm(UserChangeForm):
-    #username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    name = forms.CharField(required=False)
 
     class Meta:
         model = User
@@ -43,8 +40,17 @@ class EditProfileForm(UserChangeForm):
         labels = {
             "name": "نام",
             "email": "ایمیل",
-            # "portfolio_site": "وبسایت شخصی",
-            # "profile_pic": "عکس",
-            # "height": "قد",
-            # "weight": "وزن"
+        }
+
+
+class EditProfileInfo(UserChangeForm):
+
+    class Meta:
+        model = UserProfileInfo
+        fields = ('portfolio_site', 'profile_pic', 'height', 'weight')
+        labels = {
+            "portfolio_site": "وبسایت شخصی",
+            "profile_pic": "عکس",
+            "height": "قد",
+            "weight": "وزن"
         }

@@ -2,11 +2,14 @@
 {% block body_block %}
 
 <div class="container">
-    <form method="post">
+    <div class="jumbotron">
+        <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ edituser_form.as_p }}
+        {{ editprofileinfo_form.as_p}}
         <button type="submit">ثبت</button>
     </form>
+    </div>
     <br>
 </div>
 

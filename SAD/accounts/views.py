@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from accounts.forms import EditProfileForm
+from accounts.forms import EditProfileForm, EditProfileInfo
 
 
 def index(request):
@@ -76,12 +76,14 @@ def user_login(request):
 
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
+        edituser_form = EditProfileForm(request.POST, instance=request.user)
+        editprofileinfo_form = EditProfileInfo(request.POST, instance=request.user.userprofileinfo)
+        if edituser_form.is_valid() and editprofileinfo_form.is_valid():
+            edituser_form.save()
+            editprofileinfo_form.save()
             return redirect(reverse('index'))
     else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
+        edituser_form = EditProfileForm(instance=request.user)
+        editprofileinfo_form = EditProfileInfo(instance=request.user)
+        args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)
