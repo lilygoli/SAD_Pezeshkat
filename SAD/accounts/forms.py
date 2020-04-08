@@ -33,6 +33,7 @@ class UserProfileInfoForm(forms.ModelForm):
 
 
 class EditProfileForm(UserChangeForm):
+    password = None
 
     class Meta:
         model = User
@@ -44,6 +45,7 @@ class EditProfileForm(UserChangeForm):
 
 
 class EditProfileInfo(UserChangeForm):
+    password = None
 
     class Meta:
         model = UserProfileInfo

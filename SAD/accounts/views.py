@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, redirect
 from accounts.forms import UserForm, UserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
@@ -40,7 +42,7 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             if 'profile_pic' in request.FILES:
-                print('found it')
+                #print('found it')
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
             registered = True
