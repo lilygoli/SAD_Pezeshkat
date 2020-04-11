@@ -1,7 +1,8 @@
 import os
 
+from django import forms
 from django.shortcuts import render, redirect
-from accounts.forms import UserForm, UserProfileInfoForm
+from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -34,7 +35,11 @@ def register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileInfoForm(data=request.POST)
+        id = request.GET.get('id')
+        if id == '1':
+            profile_form = DoctorProfileInfoForm(data=request.POST)
+        else:
+            profile_form = PatientProfileInfoFrom(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -42,15 +47,21 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             if 'profile_pic' in request.FILES:
-                #print('found it')
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
             registered = True
         else:
             print(user_form.errors, profile_form.errors)
     else:
-        user_form = UserForm()
-        profile_form = UserProfileInfoForm()
+        id = request.GET.get('id')
+        print(id)
+        if id == '1':
+            user_form = UserForm(initial={'is_doctor': True})
+            profile_form = DoctorProfileInfoForm()
+        else:
+            user_form = UserForm(initial={'is_doctor': False})
+            profile_form = PatientProfileInfoFrom()
+        user_form.fields['is_doctor'].widget = forms.HiddenInput()
     return render(request, 'registration/registration.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
@@ -67,11 +78,11 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
-                return HttpResponse("Your account was inactive.")
+                return HttpResponse("Your account was inactive.")  # TODO improve
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(email, password))
-            return HttpResponse("Invalid login details given")
+            return HttpResponse("Invalid login details given")  # TODO improve
     else:
         return render(request, 'registration/login.html', {})
 
@@ -79,13 +90,13 @@ def user_login(request):
 def edit_profile(request):
     if request.method == 'POST':
         edituser_form = EditProfileForm(request.POST, instance=request.user)
-        editprofileinfo_form = EditProfileInfo(request.POST, instance=request.user.userprofileinfo)
+        editprofileinfo_form = EditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
         if edituser_form.is_valid() and editprofileinfo_form.is_valid():
             edituser_form.save()
             editprofileinfo_form.save()
             return redirect(reverse('index'))
     else:
         edituser_form = EditProfileForm(instance=request.user)
-        editprofileinfo_form = EditProfileInfo(instance=request.user.userprofileinfo)
+        editprofileinfo_form = EditProfileInfo(instance=request.user.patientprofileinfo)  # bug report
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)

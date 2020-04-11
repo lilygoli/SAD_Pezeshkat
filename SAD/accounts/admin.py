@@ -1,5 +1,5 @@
 from django.contrib import admin
-from accounts.models import User, UserProfileInfo
+from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 # Register your models here.
@@ -35,4 +35,6 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-admin.site.register(UserProfileInfo)
+admin.site.register(DoctorProfileInfo)
+admin.site.register(PatientProfileInfo)
+

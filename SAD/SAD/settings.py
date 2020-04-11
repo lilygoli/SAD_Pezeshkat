@@ -85,7 +85,7 @@ DATABASES = {
     }
     # 'default': {
     #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'SAD_db',
+    #         'NAME': 'SAD_db2',
     #         'USER': 'postgres',
     #         'PASSWORD': '',
     #         'HOST': '127.0.0.1',
