@@ -8,7 +8,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from accounts.forms import EditProfileForm, EditProfileInfo
+from accounts.forms import EditProfileForm, PatientEditProfileInfo
+
 
 
 def index(request):
@@ -90,13 +91,20 @@ def user_login(request):
 def edit_profile(request):
     if request.method == 'POST':
         edituser_form = EditProfileForm(request.POST, instance=request.user)
-        editprofileinfo_form = EditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
+        print("hooooooo", request.user.is_doctor)
+        if not request.user.is_doctor:
+            editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
+        else:
+            editprofileinfo_form = DoctorProfileInfoForm(request.POST, instance=request.user.doctorprofileinfo)
         if edituser_form.is_valid() and editprofileinfo_form.is_valid():
             edituser_form.save()
             editprofileinfo_form.save()
             return redirect(reverse('index'))
     else:
         edituser_form = EditProfileForm(instance=request.user)
-        editprofileinfo_form = EditProfileInfo(instance=request.user.patientprofileinfo)  # bug report
+        if not request.user.is_doctor:
+            editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
+        else:
+            editprofileinfo_form = DoctorProfileInfoForm(request.POST, instance=request.user.doctorprofileinfo)
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)

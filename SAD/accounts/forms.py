@@ -70,7 +70,7 @@ class EditProfileForm(UserChangeForm):
         }
 
 
-class EditProfileInfo(UserChangeForm):
+class PatientEditProfileInfo(UserChangeForm):
     password = None
 
     class Meta:
@@ -89,5 +89,26 @@ class EditProfileInfo(UserChangeForm):
             'allergies': 'حساسیت ها',
             "height": "قد",
             "weight": "وزن"
+        }
+
+
+class DoctorEditProfileInfo(UserChangeForm):
+    password = None
+
+    class Meta:
+        model = DoctorProfileInfo
+        fields = (
+            'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
+            'address', 'score')
+        labels = {
+            "portfolio_site": "وبسایت شخصی",
+            "profile_pic": "عکس",
+            'specialty': "تخصص",
+            'degree': 'درجه پزشکی',
+            'educational_background': "پیشینه تحصیلی",
+            'fee': "حق ویزیت",
+            'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
+            'address': "آدرس",
+            'score': "امتیاز"
         }
 
