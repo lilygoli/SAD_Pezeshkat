@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.forms import EditProfileForm, PatientEditProfileInfo
 
+from accounts.models import DoctorProfileInfo, PatientProfileInfo
+
 
 def index(request):
     user = request.user
@@ -97,7 +99,7 @@ def edit_profile(request):
         if not request.user.is_doctor:
             editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
         else:
-            editprofileinfo_form = DoctorProfileInfoForm(request.POST, instance=request.user.doctorprofileinfo)
+            editprofileinfo_form = DoctorProfileInfo(request.POST, instance=request.user.doctorprofileinfo)
         if edituser_form.is_valid() and editprofileinfo_form.is_valid():
             edituser_form.save()
             editprofileinfo_form.save()

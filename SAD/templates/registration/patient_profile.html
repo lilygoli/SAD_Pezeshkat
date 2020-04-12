@@ -23,16 +23,11 @@
 
         {% if user.patientprofileinfo.blood_type is None %}
             <p>گروه خونی : وارد نشده‌است.</p>
-        {% elif if user.patientprofileinfo.blood_type is not None and user.patientprofileinfo.blood_plus_minus is None%}
+        {% endif%}
+        {% if user.patientprofileinfo.blood_type is not None and user.patientprofileinfo.blood_plus_minus is None%}
             <p>گروه خونی : {{user.patientprofileinfo.blood_type}} </p>
         {% else %}
             <p>گروه خونی :{{user.patientprofileinfo.blood_plus_minus}} {{user.patientprofileinfo.blood_type}}</p>
-        {% endif %}
-
-        {% if user.doctorprofileinfo.on_site_fee is False %}
-            <p>قابلیت پرداخت حق ویزیت در مطب وجود ندارد.</p>
-        {% else %}
-            <p>قابلیت پرداخت حق ویزیت در مطب وجود دارد.</p>
         {% endif %}
 
         {% if user.patientprofileinfo.allergies is None %}
