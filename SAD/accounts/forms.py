@@ -28,13 +28,13 @@ class DoctorProfileInfoForm(forms.ModelForm):
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
-            'specialty': "تخصص",
-            'degree': 'درجه پزشکی',
-            'educational_background': "پیشینه تحصیلی",
-            'fee': "حق ویزیت",
-            'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
-            'address': "آدرس",
-            'score': "امتیاز"
+            "specialty": "تخصص",
+            "degree": 'درجه پزشکی',
+            "educational_background": "پیشینه تحصیلی",
+            "fee": "حق ویزیت",
+            "on_site_fee": "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
+            "address": "آدرس",
+            "score": "امتیاز"
         }
 
 
@@ -46,9 +46,9 @@ class PatientProfileInfoFrom(forms.ModelForm):
         'blood_type', 'blood_plus_minus', 'allergies', 'height', 'weight')
         labels = {
             "profile_pic": "عکس",
-            'birthday': "تاریخ تولد",
-            'medical_condition': "بیماری ها",
-            'medical_emergency_contact': "شماره تلفن موارد پزشکی اضطراری",
+            "birthday": "تاریخ تولد",
+            "medical_condition": "بیماری ها",
+            "medical_emergency_contact": "شماره تلفن موارد پزشکی اضطراری",
             'credit':'اعتبار' ,
             'blood_type':'گروه خونی' ,
             'blood_plus_minus':'گروه خونی مثبت/منفی' ,
@@ -72,7 +72,6 @@ class EditProfileForm(UserChangeForm):
 
 class PatientEditProfileInfo(UserChangeForm):
     password = None
-
     class Meta:
         model = PatientProfileInfo
         fields = (

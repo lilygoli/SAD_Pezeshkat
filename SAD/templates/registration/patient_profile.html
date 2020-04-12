@@ -1,0 +1,56 @@
+{% extends "registration/index.html" %}
+{% block body_index_block %}
+<div class="jumbotron">
+    <h3>اطلاعات شخصی</h3>
+        <p>نام: {{ user.name }} {% if user.patientprofileinfo.profile_pic%}
+                <img src= "{{ user.patientprofileinfo.profile_pic.url }}" width="240" align="left">
+                {% endif %}</p>
+        <p>ایمیل : {{user.email}}</p>
+        <p>تاریخ تولد : {{user.patientprofileinfo.birthday}}</p>
+        {% if user.patientprofileinfo.medical_condition is None %}
+                <p>بیماری‌ها : وارد نشده‌است.</p>
+        {% else %}
+            <p>بیماری‌ها : {{user.patientprofileinfo.medical_condition}}</p>
+        {% endif %}
+
+        <p>شماره تلفن موارد پزشکی اضطراری : {{user.patientprofileinfo.medical_emergency_contact}}</p>
+
+        {% if user.patientprofileinfo.credit is None %}
+            <p>اعتبار : وارد نشده‌است.</p>
+        {% else %}
+            <p>اعتبار : {{user.patientprofileinfo.credit}}</p>
+        {% endif %}
+
+        {% if user.patientprofileinfo.blood_type is None %}
+            <p>گروه خونی : وارد نشده‌است.</p>
+        {% elif if user.patientprofileinfo.blood_type is not None and user.patientprofileinfo.blood_plus_minus is None%}
+            <p>گروه خونی : {{user.patientprofileinfo.blood_type}} </p>
+        {% else %}
+            <p>گروه خونی :{{user.patientprofileinfo.blood_plus_minus}} {{user.patientprofileinfo.blood_type}}</p>
+        {% endif %}
+
+        {% if user.doctorprofileinfo.on_site_fee is False %}
+            <p>قابلیت پرداخت حق ویزیت در مطب وجود ندارد.</p>
+        {% else %}
+            <p>قابلیت پرداخت حق ویزیت در مطب وجود دارد.</p>
+        {% endif %}
+
+        {% if user.patientprofileinfo.allergies is None %}
+            <p>حساسیت‌ها : وارد نشده‌است.</p>
+        {% else %}
+            <p>حساسیت‌ها : {{user.patientprofileinfo.allergies}}</p>
+        {% endif %}
+
+        {% if user.patientprofileinfo.height is None %}
+            <p>قد : وارد نشده‌است.</p>
+        {% else %}
+            <p>قد : {{user.patientprofileinfo.height}}</p>
+        {% endif %}
+
+        {% if user.patientprofileinfo.weight is None %}
+            <p>وزن : وارد نشده‌است.</p>
+        {% else %}
+            <p>وزن : {{user.patientprofileinfo.weight}}</p>
+        {% endif %}
+</div>
+{% endblock %}

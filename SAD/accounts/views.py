@@ -11,14 +11,17 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import EditProfileForm, PatientEditProfileInfo
 
 
-
 def index(request):
     user = request.user
-    if user:
-        args = {'user': user}
-    else:
+    if not user.is_active:
         args = {}
-    return render(request, 'registration/index.html', args)
+        return render(request, 'registration/index.html', args)
+    else:
+        args = {'user': user}
+        if user.is_doctor:
+            return render(request, 'registration/doctor_profile.html', args)
+        else:
+            return render(request, 'registration/patient_profile.html', args)
 
 
 @login_required
@@ -91,7 +94,6 @@ def user_login(request):
 def edit_profile(request):
     if request.method == 'POST':
         edituser_form = EditProfileForm(request.POST, instance=request.user)
-        print("hooooooo", request.user.is_doctor)
         if not request.user.is_doctor:
             editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
         else:
