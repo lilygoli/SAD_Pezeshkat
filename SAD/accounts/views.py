@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from accounts.forms import EditProfileForm, PatientEditProfileInfo
+from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo
 
 from accounts.models import DoctorProfileInfo, PatientProfileInfo
 
@@ -99,16 +99,16 @@ def edit_profile(request):
         if not request.user.is_doctor:
             editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
         else:
-            editprofileinfo_form = DoctorProfileInfo(request.POST, instance=request.user.doctorprofileinfo)
+            editprofileinfo_form = DoctorEditProfileInfo(request.POST, instance=request.user.doctorprofileinfo)
         if edituser_form.is_valid() and editprofileinfo_form.is_valid():
             edituser_form.save()
-            editprofileinfo_form.save()
+            editprofileinfo_form.save(commit=True)
             return redirect(reverse('index'))
     else:
         edituser_form = EditProfileForm(instance=request.user)
         if not request.user.is_doctor:
-            editprofileinfo_form = PatientEditProfileInfo(request.POST, instance=request.user.patientprofileinfo)
+            editprofileinfo_form = PatientEditProfileInfo(instance=request.user.patientprofileinfo)
         else:
-            editprofileinfo_form = DoctorProfileInfoForm(request.POST, instance=request.user.doctorprofileinfo)
+            editprofileinfo_form = DoctorEditProfileInfo(instance=request.user.doctorprofileinfo)
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)
