@@ -101,9 +101,17 @@ def edit_profile(request):
         else:
             editprofileinfo_form = DoctorEditProfileInfo(request.POST, instance=request.user.doctorprofileinfo)
         if edituser_form.is_valid() and editprofileinfo_form.is_valid():
-            edituser_form.save()
-            editprofileinfo_form.save(commit=True)
+            user = edituser_form.save()
+            profile = editprofileinfo_form.save(commit=False)
+            profile.user = user
+
+            if 'profile_pic' in request.FILES:
+                profile.profile_pic = request.FILES['profile_pic']
+
+            profile.save()
             return redirect(reverse('index'))
+        else:
+            print(edituser_form.errors, editprofileinfo_form.errors)
     else:
         edituser_form = EditProfileForm(instance=request.user)
         if not request.user.is_doctor:
