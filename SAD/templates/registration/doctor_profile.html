@@ -15,7 +15,7 @@
         {% if user.doctorprofileinfo.specialty is None %}
                 <p>تخصص : وارد نشده‌است.</p>
         {% else %}
-            <p>تخصص : {{user.doctorprofileinfo.specialty}}</p>
+            <p>تخصص : {{user.doctorprofileinfo.specialty.split.pop}}</p>
         {% endif %}
 
 
@@ -26,7 +26,7 @@
         {% else %}
             <p>پیشینه تحصیلی : {{user.doctorprofileinfo.educational_background}}</p>
         {% endif %}
-
+        <p>اعتبار : {{user.doctorprofileinfo.credit}}</p>
         {% if user.doctorprofileinfo.fee is None %}
             <p>حق ویزیت : وارد نشده‌است.</p>
         {% else %}

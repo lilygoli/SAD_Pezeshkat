@@ -1,7 +1,7 @@
 # Create your models here.
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 from django.utils import timezone
 
@@ -56,18 +56,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class DoctorProfileInfo(models.Model):
-    PHD = 'PHD'
-    BACHELOR = 'BC'
-    MASTER = 'MS'
-    SPECIALIST = 'SPC'
-    SUPER_SPECIALIS = 'SSPC'
-    NORMAL = 'N'
+    PHD = 'دکتری'
+    BACHELOR = 'کارشناسی'
+    MASTER = 'کارشناسی‌ارشد'
+    SPECIALIST = 'تخصص'
+    SUPER_SPECIALIST = 'فوق‌تخصص'
+    NORMAL = '-'
     DOCTOR_CHOICES = (
         (PHD, 'دکتری'),
         (BACHELOR, 'کارشناسی'),
         (MASTER, 'کارشناسی ارشد'),
         (SPECIALIST, 'تخصص'),
-        (SUPER_SPECIALIS, 'فوق تخصص'),
+        (SUPER_SPECIALIST, 'فوق تخصص'),
         (NORMAL, '-')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -77,9 +77,10 @@ class DoctorProfileInfo(models.Model):
     degree = models.CharField(max_length=254, null=False, choices=DOCTOR_CHOICES, default=NORMAL)
     educational_background = models.CharField(max_length=254, null=True, blank=True)
     score = models.FloatField(blank=True, null=True, default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-    fee = models.FloatField(blank=True, null=True, default= 0, validators=[MinValueValidator(0)])
+    fee = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])
     on_site_fee = models.BooleanField(blank=True, default=False)
     address = models.CharField(max_length=500, null=False)
+    credit = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name
@@ -106,13 +107,16 @@ class PatientProfileInfo(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
     birthday = models.DateField(null=False)
     medical_condition = models.CharField(max_length=254, null=True, blank=True)
-    credit = models.FloatField(blank=True, null=True, default=0, validators=[ MinValueValidator(0)])
+    credit = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])
     height = models.FloatField(blank=True, null=True)
     weight = models.FloatField(blank=True, null=True)
     blood_type = models.CharField(max_length=4, null=True, choices=BLOOD_TYPE, blank=True)
-    blood_plus_minus = models.CharField(max_length=2, null=True, choices=BLOOD_PLUS_MINUS, blank= True)
+    blood_plus_minus = models.CharField(max_length=2, null=True, choices=BLOOD_PLUS_MINUS, blank=True)
     allergies = models.CharField(max_length=254, null=True, blank=True)
-    medical_emergency_contact = models.CharField(max_length=13, null=False)
+    medical_emergency_contact = models.CharField(max_length=13, null=False,
+                                                 error_messages={'شماره وارد شده معتبر نیست.': 'incomplete'},
+                                                 validators=[RegexValidator(r'^[0]?9[0-9]{9}$',
+                                                                            'شماره موبایل معتبر وارد کنید')])
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name

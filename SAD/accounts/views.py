@@ -15,7 +15,7 @@ from accounts.models import DoctorProfileInfo, PatientProfileInfo
 
 def index(request):
     user = request.user
-    if not user.is_active:
+    if not user.is_authenticated:
         args = {}
         return render(request, 'registration/index.html', args)
     else:
@@ -38,7 +38,7 @@ def user_logout(request):
 
 
 def register(request):
-    registered = False
+    errors = ''
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         id = request.GET.get('id')
@@ -46,6 +46,7 @@ def register(request):
             profile_form = DoctorProfileInfoForm(data=request.POST)
         else:
             profile_form = PatientProfileInfoFrom(data=request.POST)
+
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -55,9 +56,25 @@ def register(request):
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            registered = True
+            return render(request, 'registration/login.html', {})
         else:
-            print(user_form.errors, profile_form.errors)
+
+            for i in user_form.errors.values():
+                    print(i.as_ul)
+                    errors += i+'\n'
+            for j in profile_form.errors.values():
+                errors += j+'\n'
+            errors.pop()
+            if id == '1':
+                user_form = UserForm(initial={'is_doctor': True})
+                profile_form = DoctorProfileInfoForm()
+            else:
+                user_form = UserForm(initial={'is_doctor': False})
+                profile_form = PatientProfileInfoFrom()
+            user_form.fields['is_doctor'].widget = forms.HiddenInput()
+            return render(request, 'registration/registration.html',
+                          {'errors': errors, 'user_form': user_form, 'profile_form': profile_form})
+
     else:
         id = request.GET.get('id')
         print(id)
@@ -70,11 +87,12 @@ def register(request):
         user_form.fields['is_doctor'].widget = forms.HiddenInput()
     return render(request, 'registration/registration.html',
                   {'user_form': user_form,
-                   'profile_form': profile_form,
-                   'registered': registered})
+                   'profile_form': profile_form
+                   })
 
 
 def user_login(request):
+    error = None
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -84,13 +102,15 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
-                return HttpResponse("Your account was inactive.")  # TODO improve
+                error = "اکانت شما فعال نیست."
+                return render(request, 'registration/login.html', {"error": error})
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(email, password))
-            return HttpResponse("Invalid login details given")  # TODO improve
+            error = "ایمیل یا رمز عبور اشتباه میباشد."
+            return render(request, 'registration/login.html', {"error": error})
     else:
-        return render(request, 'registration/login.html', {})
+        return render(request, 'registration/login.html', {"error": error})
 
 
 def edit_profile(request):

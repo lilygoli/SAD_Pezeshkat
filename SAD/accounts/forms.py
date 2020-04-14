@@ -1,8 +1,15 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
+from accounts.email_domians import DOMAINS
 from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
 
 # from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class UserForm(forms.ModelForm):
@@ -11,20 +18,54 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('name', 'email', 'password','is_doctor')
+        fields = ('name', 'family_name', 'email', 'password', 'is_doctor')
         labels = {
             "name": "نام",
+            "family_name": "نام خانوادگی",
             "password": "رمزعبور",
             "email": "ایمیل",
         }
+
+    def is_valid(self):
+        valid = super(UserForm, self).is_valid()
+        email = self.data['email']
+        password = self.data['password']
+        valid2 = True
+        if '@' not in email:
+            valid2 = False
+        else:
+            x = email.split('@')
+            if len(x) != 2:
+                valid2 = False
+            else:
+                dom = x[1]
+                if '.' not in dom:
+                    print(dom)
+                    valid2 = False
+                else:
+
+                    if dom not in DOMAINS:
+                        valid2 = False
+        if not valid2:
+            self.add_error('email', 'ایمیل نامعتبر')
+        if len(password) < 6:
+            valid2 = False
+            self.add_error('password', 'رمز عبور باید بیشتر از 5 کاراکتر باشد.')
+        if password.isnumeric() or password.isalpha():
+            valid2 = False
+            self.add_error('password', 'رمز عبور باید دارای حداقل یک عدد و یک کاراکتر الفبا باشد.')
+        if "٫×÷\"!@#$%^&*)(_+-=|{}\[],؛،ـ«»:<>؟/~`;'.?" in password:
+            valid2 = False
+            self.add_error('password', 'رمز عبور باید فقط از عدد یا الفبا تشکیل شده باشد.')
+        return valid and valid2
 
 
 class DoctorProfileInfoForm(forms.ModelForm):
     class Meta:
         model = DoctorProfileInfo
         fields = (
-        'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
-        'address', 'score')
+            'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
+            'address', 'score')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -42,16 +83,19 @@ class PatientProfileInfoFrom(forms.ModelForm):
     class Meta:
         model = PatientProfileInfo
         fields = (
-         'profile_pic', 'birthday', 'medical_condition', 'medical_emergency_contact', 'credit',
-        'blood_type', 'blood_plus_minus', 'allergies', 'height', 'weight')
+            'profile_pic', 'birthday', 'medical_condition', 'medical_emergency_contact',
+            'blood_type', 'blood_plus_minus', 'allergies', 'height', 'weight')
+        widgets = {
+            'birthday': DateInput()
+        }
         labels = {
             "profile_pic": "عکس",
             "birthday": "تاریخ تولد",
             "medical_condition": "بیماری ها",
             "medical_emergency_contact": "شماره تلفن موارد پزشکی اضطراری",
-            'credit':'اعتبار' ,
-            'blood_type':'گروه خونی' ,
-            'blood_plus_minus':'گروه خونی مثبت/منفی' ,
+            'credit': 'اعتبار',
+            'blood_type': 'گروه خونی',
+            'blood_plus_minus': 'گروه خونی مثبت/منفی',
             'allergies': 'حساسیت ها',
             "height": "قد",
             "weight": "وزن"
@@ -72,6 +116,7 @@ class EditProfileForm(UserChangeForm):
 
 class PatientEditProfileInfo(UserChangeForm):
     password = None
+
     class Meta:
         model = PatientProfileInfo
         fields = (
@@ -128,4 +173,3 @@ class DoctorEditProfileInfo(UserChangeForm):
                     setattr(self.instance, field_name, self.cleaned_data[field_name])
                     self.instance.save()
         return self.instance
-
