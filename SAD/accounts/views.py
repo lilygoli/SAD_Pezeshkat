@@ -67,7 +67,8 @@ def register(request):
             errors.pop()
             if id == '1':
                 user_form = UserForm(initial={'is_doctor': True})
-                profile_form = DoctorProfileInfoForm()
+                profile_form = DoctorProfileInfoForm(initial={'score': 0})
+                profile_form.fields['score'].widget = forms.HiddenInput()
             else:
                 user_form = UserForm(initial={'is_doctor': False})
                 profile_form = PatientProfileInfoFrom()
@@ -80,7 +81,8 @@ def register(request):
         print(id)
         if id == '1':
             user_form = UserForm(initial={'is_doctor': True})
-            profile_form = DoctorProfileInfoForm()
+            profile_form = DoctorProfileInfoForm(initial={'score': 0})
+            profile_form.fields['score'].widget = forms.HiddenInput()
         else:
             user_form = UserForm(initial={'is_doctor': False})
             profile_form = PatientProfileInfoFrom()

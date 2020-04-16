@@ -43,11 +43,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
-    is_doctor = models.BooleanField(null=True)
+    is_doctor = models.BooleanField(null=False)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['is_doctor']
 
     objects = UserManager()
 
@@ -70,10 +70,58 @@ class DoctorProfileInfo(models.Model):
         (SUPER_SPECIALIST, 'فوق تخصص'),
         (NORMAL, '-')
     )
+    EYE =  'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
+    RADIO = 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'
+    SKIN = 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'
+    NUCLEAR = "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"
+    PEDI = "ﺍﺭﺗﻮﭘﺪﯼ"
+    CARDIO = 'ﻗﻠﺐﻭﻋﺮﻭﻕ'
+    PHYIS = 'ﻃﺐ ﻓﯿﺰﯾﮑﯽ'
+    NEURO = 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
+    EAR = 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ'
+    MELENDEZ_HON = 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
+    PATH = 'ﭘﺎﺗﻮﻟﻮﮊﯼ'
+    URO = 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'
+    RAY = 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'
+    BUZARI = 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'
+    WOMEN = 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'
+    PSYCH = 'ﺭﻭﺍﻧﭙﺰﺷﮑﯽ'
+    INTERNAL = 'ﺩﺍﺧﻠﯽ'
+    WORK = 'ﻃﺐﮐﺎﺭ'
+    KIDS = 'ﮐﻮﺩﮐﺎﻥ'
+    ANSTH = 'ﺑﯿﻬﻮﺷﯽ'
+    INFECT = 'ﻋﻔﻮﻧﯽ'
+    NONE = '-'
+    SPCIALTY_CHOICES = (
+        (EYE, 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'),
+        (RADIO, 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'),
+        (SKIN, 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'),
+        (NUCLEAR, "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"),
+        (PEDI, "ﺍﺭﺗﻮﭘﺪﯼ"),
+        (CARDIO, 'ﻗﻠﺐﻭﻋﺮﻭﻕ'),
+        (PHYIS, 'ﻃﺐ ﻓﯿﺰﯾﮑﯽ'),
+        (NEURO, 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'),
+        (EAR, 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ'),
+        (MELENDEZ_HON, 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'),
+        (PATH, 'ﭘﺎﺗﻮﻟﻮﮊﯼ'),
+        (URO, 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'),
+        (RAY, 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'),
+        (BUZARI, 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'),
+        (WOMEN,  'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'),
+        (PSYCH, 'روانپزشکی'),
+        (INTERNAL, 'ﺩﺍﺧﻠﯽ'),
+        (WORK, 'ﻃﺐﮐﺎﺭ'),
+        (KIDS, 'ﮐﻮﺩﮐﺎﻥ'),
+        (ANSTH, 'ﺑﯿﻬﻮﺷﯽ'),
+        (INFECT, 'ﻋﻔﻮﻧﯽ'),
+        (NONE, '-')
+
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     portfolio_site = models.URLField(blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
-    specialty = models.CharField(max_length=254, null=False, blank=True)
+    specialty_bins = models.CharField(max_length=254, null=False, choices=SPCIALTY_CHOICES, default=NONE)
+    specialty = models.CharField(max_length=254, null=True, blank=True)
     degree = models.CharField(max_length=254, null=False, choices=DOCTOR_CHOICES, default=NORMAL)
     educational_background = models.CharField(max_length=254, null=True, blank=True)
     score = models.FloatField(blank=True, null=True, default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])

@@ -64,11 +64,12 @@ class DoctorProfileInfoForm(forms.ModelForm):
     class Meta:
         model = DoctorProfileInfo
         fields = (
-            'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
+            'portfolio_site', 'profile_pic', 'specialty_bins','specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
             'address', 'score')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
+            "specialty_bins": "دسته تخصص",
             "specialty": "تخصص",
             "degree": 'درجه پزشکی',
             "educational_background": "پیشینه تحصیلی",
