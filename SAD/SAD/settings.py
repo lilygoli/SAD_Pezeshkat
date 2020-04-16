@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AuthenticationConfig',
-
+    'doctor_search.apps.DoctorSearchConfig'
 ]
 
 MIDDLEWARE = [

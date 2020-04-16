@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="container">
+        {% for doctor in object_list %}
+            <ul>
+            <div class="jumbotron">
+                <li>
+                    {{ doctor.user.name }}, {{ doctor.user.family_name }}
+                    <br/>
+                    آدرس : {{ doctor.address }}
+                    <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
+                    <br/>
+                </li>
+            <div/>
+            </ul>
+        {% endfor %}
+        <div/>
+{% endblock %}

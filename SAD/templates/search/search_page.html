@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <div class="container">
+    <div class="jumbotron">
+    <form action="{% url 'search_results' %}" method="GET" value="{{ request.GET.q }}">
+        <input type="text" name="q1" value="{{ request.Get.q1 }}" placeholder="نام دکتر مورد نظر"/>
+        <br/>
+        <br/>
+        <input type="text" name="q2" value="{{ request.GET.q2 }}" placeholder="نام خانوادگی دکتر مورد نظر"/>
+        <br/>
+        <br/>
+        <input type="text" name="q3" value="{{ request.GET.q3 }}" placeholder="تخصص دکتر مورد نظر"/>
+        <br/>
+        <br/>
+        <input type="submit" name="submit" value="Search"/>
+    </form>
+    <div/>
+    <div/>
+{% endblock %}
+
+
