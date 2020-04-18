@@ -153,7 +153,7 @@ class DoctorEditProfileInfo(UserChangeForm):
         model = DoctorProfileInfo
         fields = (
             'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
-            'address', 'score')
+            'address')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -163,7 +163,6 @@ class DoctorEditProfileInfo(UserChangeForm):
             'fee': "حق ویزیت",
             'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
             'address': "آدرس",
-            'score': "امتیاز"
         }
 
     def save(self, commit=True):
