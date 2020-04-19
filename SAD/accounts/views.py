@@ -56,7 +56,7 @@ def register(request):
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            return render(request, 'registration/login.html', {})
+            return HttpResponseRedirect(reverse('user_login'))
         else:
 
             for i in user_form.errors.values():
