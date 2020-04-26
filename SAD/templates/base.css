@@ -1,0 +1,6 @@
+.jumbotron{
+    background: #149554;
+background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
+background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
+background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);
+}
