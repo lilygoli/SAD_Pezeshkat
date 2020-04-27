@@ -34,7 +34,7 @@ def special(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('accounts:index'))
 
 
 def register(request):
@@ -56,7 +56,7 @@ def register(request):
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            return HttpResponseRedirect(reverse('user_login'))
+            return HttpResponseRedirect(reverse('accounts:user_login'))
         else:
 
             for i in user_form.errors.values():
@@ -102,7 +102,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('accounts:index'))
             else:
                 error = "اکانت شما فعال نیست."
                 return render(request, 'registration/login.html', {"error": error})
@@ -131,7 +131,7 @@ def edit_profile(request):
                 profile.profile_pic = request.FILES['profile_pic']
 
             profile.save()
-            return redirect(reverse('index'))
+            return redirect(reverse('accounts:index'))
         else:
             print(edituser_form.errors, editprofileinfo_form.errors)
     else:

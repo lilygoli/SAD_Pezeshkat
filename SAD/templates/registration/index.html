@@ -11,7 +11,7 @@ background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);">
         {% block body_index_block %}
         {% endblock %}
         <div class="button">
-            <a href="{% url 'edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
+            <a href="{% url 'accounts:edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
         </div>
     {% else %}
         <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>

@@ -17,7 +17,7 @@
       <div class="container">
         <ul class="nav navbar-nav">
 
-          <li><a class="navbar-brand" href="{% url 'index' %}">پزشکات</a></li>
+          <li><a class="navbar-brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
           <li><a class="navbar-link" href="{% url 'admin:index' %}">ورود ادمین</a></li>
             <li class="dropdown show">
           {% if not user.is_authenticated %}
@@ -33,10 +33,10 @@
           {%  endif %}
           {# Some logic on what to display for last item#}
           {% if user.is_authenticated %}
-            <li><a class="navbar-link" href="{% url 'search_page' %}">جست‌وجوی پزشک</a></li>
-            <li><a href="{% url 'logout' %}">خروج</a></li>
+            <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی پزشک</a></li>
+            <li><a href="{% url 'accounts:logout' %}">خروج</a></li>
           {% else %}
-            <li><a class="navbar-link" href="{% url 'user_login' %}">ورود</a></li>
+            <li><a class="navbar-link" href="{% url 'accounts:user_login' %}">ورود</a></li>
           {% endif %}
 </ul>
       </div>

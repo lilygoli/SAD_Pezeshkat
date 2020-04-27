@@ -12,7 +12,7 @@
     </div>
     </div>
   {%  endif %}
-<form method="post" action="{% url 'user_login' %}">
+<form method="post" action="{% url 'accounts:user_login' %}">
           {% csrf_token %}
           <label for="email">ایمیل:</label>
           <input type="text" name="email" placeholder="Email">
