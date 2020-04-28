@@ -60,18 +60,13 @@ def register(request):
         else:
 
             for i in user_form.errors.values():
-                    print(i.as_ul)
                     errors += i+'\n'
             for j in profile_form.errors.values():
                 errors += j+'\n'
             errors.pop()
             if id == '1':
-                user_form = UserForm(initial={'is_doctor': True})
-                profile_form = DoctorProfileInfoForm(initial={'score': 0})
                 profile_form.fields['score'].widget = forms.HiddenInput()
-            else:
-                user_form = UserForm(initial={'is_doctor': False})
-                profile_form = PatientProfileInfoFrom()
+
             user_form.fields['is_doctor'].widget = forms.HiddenInput()
             return render(request, 'registration/registration.html',
                           {'errors': errors, 'user_form': user_form, 'profile_form': profile_form})

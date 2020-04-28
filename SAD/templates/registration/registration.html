@@ -1,30 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body_block %}
+    <style>
+        .errorlist {
+            font-weight: bold;
+        }
 
-  <div class="container">
-    <div class="jumbotron">
+        .error input, .error select {
+            border: 2px #ff9499 solid;
+        }
 
-        <h1>ثبت نام کنید:</h1>
-        <h3>لطفا فرم زیر را تکمیل کنید.</h3>
-                {% if errors is not None %}
-              <div class="container">
-                <div class="alert alert-danger">
-                <strong>خطا!</strong> {% for i in errors %}
-                    <ul>{{ i }}</ul>
-                    {% endfor%}
+        .required label:after {
+            content: " *";
+            color: #ff57aa;
+        }
+        .required label .id_degree:not:after {
+            content: " *";
+            color: #ff57aa;
+        }
+    </style>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>ثبت نام کنید:</h1>
+            <h3>لطفا فرم زیر را تکمیل کنید.</h3>
+            {% if errors is not None %}
+
+                <div class="container">
+                    <div class="alert alert-danger">
+                        <strong>خطا!</strong> {% for i in errors %}
+                        <ul>{{ i }}</ul>
+                    {% endfor %}
+                    </div>
                 </div>
-                </div>
-             {%  endif %}
-<form enctype="multipart/form-data" method="POST">
-          {% csrf_token %}
+            {% endif %}
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
 
-          {{ user_form.as_p }}
-          {{ profile_form.as_p }}
-          <input type="submit" name="" value="ثبت نام">
-        </form>
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" name="" value="ثبت نام">
+            </form>
 
 
+        </div>
     </div>
-  </div>
 {% endblock %}

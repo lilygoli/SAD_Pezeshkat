@@ -36,8 +36,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=254, unique=True)
-    name = models.CharField(max_length=254, null=False, blank=True)
-    family_name = models.CharField(max_length=254, null=False, blank=True)
+    name = models.CharField(max_length=254, null=False)
+    family_name = models.CharField(max_length=254, null=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -70,7 +70,7 @@ class DoctorProfileInfo(models.Model):
         (SUPER_SPECIALIST, 'فوق تخصص'),
         (NORMAL, '-')
     )
-    EYE =  'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
+    EYE = 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
     RADIO = 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'
     SKIN = 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'
     NUCLEAR = "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"
@@ -107,7 +107,7 @@ class DoctorProfileInfo(models.Model):
         (URO, 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'),
         (RAY, 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'),
         (BUZARI, 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'),
-        (WOMEN,  'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'),
+        (WOMEN, 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'),
         (PSYCH, 'روانپزشکی'),
         (INTERNAL, 'ﺩﺍﺧﻠﯽ'),
         (WORK, 'ﻃﺐﮐﺎﺭ'),
@@ -122,7 +122,7 @@ class DoctorProfileInfo(models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
     specialty_bins = models.CharField(max_length=254, null=False, choices=SPCIALTY_CHOICES, default=NONE)
     specialty = models.CharField(max_length=254, null=True, blank=True)
-    degree = models.CharField(max_length=254, null=False, choices=DOCTOR_CHOICES, default=NORMAL)
+    degree = models.CharField(max_length=254, null=True, choices=DOCTOR_CHOICES, default=NORMAL)
     educational_background = models.CharField(max_length=254, null=True, blank=True)
     score = models.FloatField(blank=True, null=True, default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
     fee = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])
@@ -164,7 +164,7 @@ class PatientProfileInfo(models.Model):
     medical_emergency_contact = models.CharField(max_length=13, null=False,
                                                  error_messages={'شماره وارد شده معتبر نیست.': 'incomplete'},
                                                  validators=[RegexValidator(r'^[0]?9[0-9]{9}$',
-                                                                            'شماره موبایل معتبر وارد کنید')])
+                                                                            'شماره موبایل معتبر وارد کنید.')])
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name

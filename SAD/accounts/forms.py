@@ -15,6 +15,8 @@ class DateInput(forms.DateInput):
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     password.label = "رمزعبور"
+    error_css_class = 'error'
+    required_css_class = 'required'
 
     class Meta:
         model = User
@@ -26,45 +28,42 @@ class UserForm(forms.ModelForm):
             "email": "ایمیل",
         }
 
-    def is_valid(self):
-        valid = super(UserForm, self).is_valid()
-        email = self.data['email']
-        password = self.data['password']
-        valid2 = True
-        if '@' not in email:
-            valid2 = False
+    def clean(self):
+        email = self.cleaned_data['email']  # adding some extra validation criteria to django's email validation!!
+        email_parts = email.split('@')
+        valid = True
+        if len(email_parts) != 2:
+            valid = False
         else:
-            x = email.split('@')
-            if len(x) != 2:
-                valid2 = False
+            dom = email_parts[1]
+            if '.' not in dom:
+                valid = False
             else:
-                dom = x[1]
-                if '.' not in dom:
-                    print(dom)
-                    valid2 = False
-                else:
-
-                    if dom not in DOMAINS:
-                        valid2 = False
-        if not valid2:
-            self.add_error('email', 'ایمیل نامعتبر')
+                if dom not in DOMAINS:
+                    valid = False
+        errors = {'email': [], 'password': []}
+        if not valid:
+            errors['email'] += ['ایمیل نامعتبر است.']
+        password = self.cleaned_data['password']
         if len(password) < 6:
-            valid2 = False
-            self.add_error('password', 'رمز عبور باید بیشتر از 5 کاراکتر باشد.')
+            errors['password'] += ['رمز عبور باید بیشتر از 5 کاراکتر باشد.']
         if password.isnumeric() or password.isalpha():
-            valid2 = False
-            self.add_error('password', 'رمز عبور باید دارای حداقل یک عدد و یک کاراکتر الفبا باشد.')
+            errors['password'] += ['رمز عبور باید دارای حداقل یک عدد و یک کاراکتر الفبا باشد.']
         if "٫×÷\"!@#$%^&*)(_+-=|{}\[],؛،ـ«»:<>؟/~`;'.?" in password:
-            valid2 = False
-            self.add_error('password', 'رمز عبور باید فقط از عدد یا الفبا تشکیل شده باشد.')
-        return valid and valid2
+            errors['password'] += ['رمز عبور باید فقط از عدد یا الفبا تشکیل شده باشد.']
+        if len(errors['email']) > 0 or len(errors['password']) > 0:
+            raise ValidationError(errors)
 
 
 class DoctorProfileInfoForm(forms.ModelForm):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
     class Meta:
         model = DoctorProfileInfo
         fields = (
-            'portfolio_site', 'profile_pic', 'specialty_bins','specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
+            'portfolio_site', 'profile_pic', 'specialty_bins', 'specialty', 'degree', 'educational_background', 'fee',
+            'on_site_fee',
             'address', 'score')
         labels = {
             "portfolio_site": "وبسایت شخصی",
@@ -74,13 +73,25 @@ class DoctorProfileInfoForm(forms.ModelForm):
             "degree": 'درجه پزشکی',
             "educational_background": "پیشینه تحصیلی",
             "fee": "حق ویزیت",
-            "on_site_fee": "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
+            "on_site_fee": "مشخص شدن حق ویزیت در مطب",
             "address": "آدرس",
             "score": "امتیاز"
         }
 
+    def clean(self):
+        errors = {'specialty_bins': [], 'fee': []}
+        if self.cleaned_data['specialty_bins'] == "-" and self.cleaned_data['specialty'] is None:
+            errors['specialty_bins'] += ['لطفا دسته‌ی تخصص خود را مشخص کنید یا نام آن را در بخش تخصص بنویسید.']
+        if not self.cleaned_data['fee'] and not self.cleaned_data['on_site_fee']:
+            errors['fee'] += ['لطفا حق ویزیت را مشخص کنید یا گزینه "مشخص شدن حق ویزیت در مطب" را انتخاب کنید.']
+        if len(errors['specialty_bins']) > 0 or len(errors['fee']) > 0:
+            raise ValidationError(errors)
+
 
 class PatientProfileInfoFrom(forms.ModelForm):
+    error_css_class = 'error'
+    required_css_class = 'required'
+
     class Meta:
         model = PatientProfileInfo
         fields = (
