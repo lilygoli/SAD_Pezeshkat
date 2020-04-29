@@ -3,8 +3,9 @@ from django.core.exceptions import ValidationError
 
 from accounts.email_domians import DOMAINS
 from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
-
-# from django.contrib.auth.models import User
+from django.contrib.auth import password_validation
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import UserChangeForm
 
 
@@ -45,12 +46,11 @@ class UserForm(forms.ModelForm):
         if not valid:
             errors['email'] += ['ایمیل نامعتبر است.']
         password = self.cleaned_data['password']
-        if len(password) < 6:
-            errors['password'] += ['رمز عبور باید بیشتر از 5 کاراکتر باشد.']
-        if password.isnumeric() or password.isalpha():
-            errors['password'] += ['رمز عبور باید دارای حداقل یک عدد و یک کاراکتر الفبا باشد.']
-        if "٫×÷\"!@#$%^&*)(_+-=|{}\[],؛،ـ«»:<>؟/~`;'.?" in password:
-            errors['password'] += ['رمز عبور باید فقط از عدد یا الفبا تشکیل شده باشد.']
+        try:
+            password_validation.validate_password(password)
+        except ValidationError as error:
+            print(error.error_list)
+            errors['password'] += error.error_list
         if len(errors['email']) > 0 or len(errors['password']) > 0:
             raise ValidationError(errors)
 
@@ -184,3 +184,51 @@ class DoctorEditProfileInfo(UserChangeForm):
                     setattr(self.instance, field_name, self.cleaned_data[field_name])
                     self.instance.save()
         return self.instance
+
+
+class UserSetPassword(SetPasswordForm):
+    class Meta:
+        model = User
+
+    error_messages = {
+        **SetPasswordForm.error_messages,
+        'password_mismatch': 'تکرار رمز با رمز جدید یکسان نیست.'
+    }
+    new_password1 = forms.CharField(
+        label="رمز عبور جدید",
+        widget=forms.PasswordInput(attrs={'autocomplete': 'off', 'class': 'form-control', 'autofocus': True}),
+        strip=False,
+
+    )
+    new_password2 = forms.CharField(
+        label="تکرار رمز عبور جدید",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'off', 'class': 'form-control'}),
+    )
+
+
+class UserPasswordChange(PasswordChangeForm):
+    class Meta:
+        model = User
+
+    error_messages = {
+        **SetPasswordForm.error_messages,
+        'password_incorrect': "رمز عبور قدیمی نادرست وارد شده است.",
+        'password_mismatch' : 'تکرار رمز با رمز جدید یکسان نیست.'
+    }
+    old_password = forms.CharField(
+        label="رمز عبور قدیمی",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
+    )
+    new_password1 = forms.CharField(
+        label="رمز عبور جدید",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
+    )
+    new_password2 = forms.CharField(
+        label="تکرار رمز عبور جدید",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
+        help_text=''
+    )

@@ -16,18 +16,15 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
-from django.conf.urls import url
+
+
 from django.conf.urls.static import static
 from accounts import urls as u1
 from doctor_search import urls as u2
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    # url(r'^login/$', auth_views.auth_login, name='login'),
-    # url(r'^logout/$', auth_views.auth_logout, name='logout'),
-    # path('', my_view, name='login')
 
-    path('', include(u1)),
-    path('', include(u2)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+                  path('admin/', admin.site.urls),
+                  path('', include(u1)),
+                  path('', include(u2)),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
