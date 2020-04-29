@@ -5,7 +5,7 @@
             <ul>
             <div class="jumbotron">
                 <li>
-                    {{ doctor.user.name }}, {{ doctor.user.family_name }}
+                    <a href="{% url 'accounts:mini_profile' doctor.user.pk%}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
                     <br/>
                     آدرس : {{ doctor.address }}
                     <img src="{{ doctor.profile_pic.url }}" width="120" height="120">

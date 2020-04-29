@@ -5,6 +5,7 @@
         <p>نام : {{ user.name }} {% if user.doctorprofileinfo.profile_pic%}
                 <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" width="240" align="left">
                 {% endif %}</p>
+        <p>نام خانوادگی : {{user.family_name}}</p>
         <p>ایمیل : {{user.email}}</p>
         {% if user.doctorprofileinfo.portfolio_site is None %}
                 <p>وب‌سایت : وارد نشده‌است.</p>
@@ -30,7 +31,7 @@
         {% if user.doctorprofileinfo.fee is None %}
             <p>حق ویزیت : وارد نشده‌است.</p>
         {% else %}
-            <p>حق ویزیت : {{user.doctorprofileinfo.fee}}</p>
+            <p>حق ویزیت : {{user.doctorprofileinfo.fee}} تومان</p>
         {% endif %}
 
         {% if user.doctorprofileinfo.on_site_fee is False %}

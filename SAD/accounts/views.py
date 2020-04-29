@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo
 
-from accounts.models import DoctorProfileInfo, PatientProfileInfo
+from accounts.models import DoctorProfileInfo, PatientProfileInfo, User
+
 
 
 def index(request):
@@ -137,3 +138,12 @@ def edit_profile(request):
             editprofileinfo_form = DoctorEditProfileInfo(instance=request.user.doctorprofileinfo)
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)
+
+
+def mini_profile(request, pk):
+    user_2 = User.objects.get(pk=pk)
+    args = {'user': user_2}
+    if user_2.is_doctor:
+        return render(request, 'registration/doctor_mini_profile.html', args)
+    else:
+        return render(request, 'registration/patient_mini_profile.html', args)

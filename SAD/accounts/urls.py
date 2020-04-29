@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^logout/$', v.user_logout, name='logout'),
     url(r'^special/', v.special, name='special'),
     url(r'^$', v.index, name='index'),
+    url(r'^mini_profile/(?P<pk>\d+)$', v.mini_profile, name='mini_profile')
 
 ]
