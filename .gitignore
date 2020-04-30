@@ -10,22 +10,23 @@ media
 *.bak
 
 # If you are using PyCharm #
-#SAD/.idea/**/workspace.xml
-#SAD/.idea/**/tasks.xml
-#SAD/.idea/dictionaries
-#SAD/.idea/**/dataSources/
-#SAD/.idea/**/dataSources.ids
-#SAD/.idea/**/dataSources.xml
-#SAD/.idea/**/dataSources.local.xml
-#SAD/.idea/**/sqlDataSources.xml
-#SAD/.idea/**/dynamic.xml
-#SAD/.idea/**/uiDesigner.xml
-#SAD/.idea/**/gradle.xml
-#SAD/.idea/**/libraries
-#SAD/*.iws /out/
+SAD/.idea/**/workspace.xml
+SAD/.idea/**/tasks.xml
+SAD/.idea/dictionaries
+SAD/.idea/**/dataSources/
+SAD/.idea/**/dataSources.ids
+SAD/.idea/**/dataSources.xml
+SAD/.idea/**/dataSources.local.xml
+SAD/.idea/**/sqlDataSources.xml
+SAD/.idea/**/dynamic.xml
+SAD/.idea/**/uiDesigner.xml
+SAD/.idea/**/gradle.xml
+SAD/.idea/**/libraries
+SAD/*.iws /out/
 
 .idea/
 SAD/.idea
+SAD/sent_emails
 
 # Python #
 *.py[cod]
@@ -117,3 +118,6 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+ #migrations
+ **/**/migrations/
+ **/**/settings_local.py
