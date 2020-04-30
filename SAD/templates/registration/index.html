@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block body_block %}
     <div class="container">
-        <div class="jumbotron" style="background: #149554;
-background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
-background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
-background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);">
+        <div class="jumbotron" >
+{#            style="background: #149554;#}
+{#background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);#}
+{#background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);#}
+{#background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);">#}
             <h1>به وبسایت پزشکات خوش آمدید!</h1>
             {% if user.is_authenticated %}
                 <h2>سلام {{ user.name }}</h2>
