@@ -30,6 +30,7 @@ class UserForm(forms.ModelForm):
         }
 
     def clean(self):
+        super(UserForm, self).clean()
         email = self.cleaned_data['email']  # adding some extra validation criteria to django's email validation!!
         email_parts = email.split('@')
         valid = True
