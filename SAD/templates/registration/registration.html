@@ -6,23 +6,16 @@
             font-weight: bold;
         }
 
-        .error input, .error select {
-            border: 2px #ff9499 solid;
-        }
-
         .required label:after {
             content: " *";
-            color: #ff57aa;
+            color: #ff4149;
         }
-        .required label .id_degree:not:after {
-            content: " *";
-            color: #ff57aa;
-        }
+
     </style>
 
     <div class="container">
         <div class="jumbotron">
-            <h1>ثبت نام کنید:</h1>
+            <h1>صفحه ثبت نام</h1>
             <h3>لطفا فرم زیر را تکمیل کنید.</h3>
             {% if errors is not None %}
 

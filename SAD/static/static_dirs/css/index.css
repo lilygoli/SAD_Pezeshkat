@@ -1,12 +1,64 @@
-{% load static %}
-.jumbotron{
-    background: #149554;
-background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
-background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);
-background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);
+{
+%
+load
+static
+%
 }
-/*.bimage {*/
 
-/*  background-image: url("{% static "admin/css/base.css" %}");*/
+body {
 
-/*}*/
+    background-image: url('../images/doc35.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron{
+        background: rgba(198, 211, 200, 0.76);
+    font-family: Calibri, serif;
+    /*background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
+    /*background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
+    /*background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
+
+}
+
+.jumbotron h1{
+    color: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    font-family: Calibri, sans-serif;
+}
+
+.jumbotron h2{
+    color: rgba(24, 66, 65, 0.79);
+    font-size: x-large;
+    font-family: "B Titr", serif;
+}
+
+.jumbotron h1{
+    color: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    font-family: "B Titr", sans-serif;
+}
+
+.jumbotron h3{
+    color: #f5f5f5;
+    font-size: large;
+    font-family: Calibri, sans-serif;
+}
+.error{
+    color: red;
+}
+.error label{
+    color: #9b2c32;
+}
+
+ul.errorlist{
+    color: #c32b8e;
+    background: none;
+    font-size: xx-small;
+
+}
+ul.errorlist.error:before{
+    content: ".";
+    color: #c32b8e;
+    font-size: x-large;
+}

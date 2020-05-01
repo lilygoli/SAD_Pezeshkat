@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body_block %}
-<div class="jumbotron">
+<div class="jumbotron"  style="background: rgba(182,195,184,0.76);">
     <h3>اطلاعات پزشک</h3>
         <p>نام : {{ user.name }} {% if user.doctorprofileinfo.profile_pic%}
                 <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" width="240" align="left">

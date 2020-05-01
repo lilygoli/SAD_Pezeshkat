@@ -1,6 +1,7 @@
 {% extends "registration/index.html" %}
 {% block body_index_block %}
-<div class="jumbotron">
+<div class="jumbotron" style="background: rgba(182,195,184,0.76);">
+
     <h3>اطلاعات شخصی</h3>
         <p>نام: {{ user.name }} {% if user.patientprofileinfo.profile_pic%}
                 <img src= "{{ user.patientprofileinfo.profile_pic.url }}" width="240" align="left">

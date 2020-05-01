@@ -2,6 +2,7 @@
 {% block body_block %}
     <div class="container">
     <div class="jumbotron">
+    <h1> جستوجوی پزشک </h1>
     <form action="{% url 'doctor_search:search_results' %}" method="GET" value="{{ request.GET.q }}">
         <input type="text" name="q1" value="{{ request.Get.q1 }}" placeholder="نام دکتر مورد نظر"/>
         <br/>
