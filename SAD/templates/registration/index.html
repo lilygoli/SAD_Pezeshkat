@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block body_block %}
+    <div class="row" style="margin-left: 0" >
     <div class="container">
-        <div class="jumbotron" >
+        <div class="jumbotron">
 
             <h1>به وبسایت پزشکات خوش آمدید!</h1>
             {% if user.is_authenticated %}
@@ -15,5 +16,29 @@
                 <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
             {% endif %}
         </div>
+    </div>
+    {% if not user.is_authenticated %}
+    <div class="container">
+        <div class="jumbotron col-sm-4 text-center" style="background-color: rgba(255,252,229,0.53)" >
+            <h2>دکترتو پیدا کن!</h2>
+                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
+
+        </div>
+        <div class="jumbotron col-sm-3 col-sm-offset-1" style="background-color: rgba(255,252,229,0.53)"">
+
+            <h2>وقت دکتر بگیر!</h2>
+
+
+                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
+
+        </div>
+        <div class="jumbotron col-sm-3 col-sm-offset-1 " style="background-color: rgba(198, 211, 200, 0.76)">
+
+            <h2>داروهاتو را یادت نره!</h2>
+
+                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
+        </div>
+    </div>
+    {% endif %}
     </div>
 {% endblock %}
