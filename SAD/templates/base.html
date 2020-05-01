@@ -32,7 +32,6 @@
         <ul class="nav navbar-nav">
 
             <li><a class="navbar-brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
-            <li><a class="navbar-link" href="{% url 'accounts:password_change' %}">تغییر رمز عبور</a></li>
             <li class="dropdown show">
                 {% if not user.is_authenticated %}
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"

@@ -11,6 +11,7 @@
                 {% endblock %}
 
                 <a href="{% url 'accounts:edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
+                <a href="{% url 'accounts:password_change' %}"><input type=button value='تغییر رمز عبور'></a>
 
             {% else %}
                 <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
