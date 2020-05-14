@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="stylesheet" href="{% static "admin/css/forms.css" %}" type="text/css">
     <link rel="stylesheet" href="{% static "admin/css/base.css" %}" type="text/css">
@@ -34,12 +35,22 @@
 
 </head>
 <body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+                <script>
+                 AOS.init({
+                     offset: 200, //default 120
+                     delay: 50, //default 0
+                     once: true //default false
+                });
+                 $('a[data-toggle="pill"]').on("shown.bs.tab", e => {
+                    AOS.refresh();
+                 })
+                </script>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        <ul class="nav navbar-nav">
-
-            <li><a class="navbar-brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
-            <li class="dropdown show">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-nav navbar-right"><a class="navbar-brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
+            <li class="dropdown show navbar-nav navbar-right">
                 {% if not user.is_authenticated %}
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
