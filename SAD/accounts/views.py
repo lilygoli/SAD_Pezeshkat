@@ -13,11 +13,10 @@ from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditPr
 from accounts.models import DoctorProfileInfo, PatientProfileInfo, User
 
 
-
 def index(request):
     user = request.user
     if not user.is_authenticated:
-        args = {}
+        args = {'posts': [{'title':'torokhoda', 'teaser':'kar kon'}]}
         return render(request, 'registration/index.html', args)
     else:
         args = {'user': user}
@@ -61,9 +60,9 @@ def register(request):
         else:
 
             for i in user_form.errors.values():
-                    errors += i+'\n'
+                errors += i + '\n'
             for j in profile_form.errors.values():
-                errors += j+'\n'
+                errors += j + '\n'
             errors.pop()
             if id == '1':
                 profile_form.fields['score'].widget = forms.HiddenInput()

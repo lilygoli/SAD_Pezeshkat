@@ -7,21 +7,27 @@ static
 
 body {
 
-    background-image: url('../images/doc35.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: none;
+    background-color: rgba(197, 237, 221, 0.54);
+
 }
 
 .jumbotron {
-
-    background: rgba(198, 211, 200, 0.76);
+    /*content: "";*/
+    /*position: absolute;*/
+    /*background: rgba(198, 211, 200, 0.57);*/
     font-family: Calibri, serif;
+    background: inherit;
+
+    /*box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);*/
+    /*filter: blur(5px);*/
 
     /*background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
     /*background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
     /*background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
 
 }
+
 
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
@@ -74,4 +80,107 @@ ul.errorlist.error:before {
 
 .navbar {
     border-bottom-color: rgba(101, 168, 197, 0.71);
+}
+
+.carousel {
+    margin-top: 25vh;
+    max-height: 70vh;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.09);
+
+}
+
+.carousel-indicators .active {
+    background: yellow;
+}
+
+.carousel-inner > .item > img {
+    width: 40vh;
+    height: 40vh;
+    float: left;
+    margin-left: 25vh;
+
+}
+
+.carousel-inner > .item {
+    max-height: 30vh;
+}
+
+.carousel-caption {
+    top: 0;
+    bottom: auto;
+    text-align: right;
+}
+
+
+.carousel-caption > p {
+    max-width: 30%;
+    font-size: larger;
+    font-palette: dark;
+    color: black;
+}
+
+.carousel-caption > h3 {
+    max-width: 30%;
+    font-size: larger;
+    font-palette: dark;
+    color: black;
+}
+
+#logo {
+
+    background-image: url('../images/medical.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: center;
+    min-height: 90vh;
+
+
+}
+
+#logo-img {
+    max-width: 30%;
+    max-height: 80%;
+    position: absolute;
+    margin: auto;
+    top: 20vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+#logo h2 {
+    margin: 70vh auto auto;
+    background-image: none;
+    color: rgba(24, 66, 65, 0.79);
+    text-align: center;
+    font-size: medium;
+    font-family: B Titr, serif;
+}
+
+#profile {
+    background-image: url('../images/doc35.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: center;
+    min-height: 90vh;
+}
+
+.jumbotron {
+    background-image: none;
+}
+
+#slide {
+
+    background-image: url('../images/medical4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: center;
+    min-height: 90vh;
+    /*margin-bottom: 6vh; !**********!*/
+
 }

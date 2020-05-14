@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-{#{% load staticfiles %}#}
+
 <html dir="rtl" lang="fa">
 <head>
     <meta charset="utf-8">
@@ -8,10 +8,13 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">#}
+
     <link rel="stylesheet" href="{% static "admin/css/forms.css" %}" type="text/css">
     <link rel="stylesheet" href="{% static "admin/css/base.css" %}" type="text/css">
-    <link rel="stylesheet" href="{% static "css/index.css" %}" type="text/css">
-    <link rel="stylesheet" href="{% static "admin/css/login.css" %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static "css/basics.css" %}" type="text/css">
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -23,6 +26,10 @@
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -45,7 +52,6 @@
 
                     </div>
                 {% endif %}
-                {# Some logic on what to display for last item#}
                 {% if user.is_authenticated %}
                     <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی پزشک</a></li>
                     <li><a href="{% url 'accounts:logout' %}">خروج</a></li>

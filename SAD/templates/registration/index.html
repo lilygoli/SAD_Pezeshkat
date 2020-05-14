@@ -1,45 +1,184 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block body_block %}
-    <div class="row" style="margin-left: 0" >
-    <div class="container">
-        <div class="jumbotron">
+    <link rel="stylesheet" href="{% static "css/index.css" %}" type="text/css">
 
-            <h1>به وبسایت پزشکات خوش آمدید!</h1>
+    <div class="row">
+        <div class="container">
+
             {% if user.is_authenticated %}
-                <h2>سلام {{ user.name }}</h2>
-                {% block body_index_block %}
-                {% endblock %}
+                <div class="container" id="profile">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <h2>سلام {{ user.name }}</h2>
+                            {% block body_index_block %}
+                            {% endblock %}
 
-                <a href="{% url 'accounts:edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
-                <a href="{% url 'accounts:password_change' %}"><input type=button value='تغییر رمز عبور'></a>
-
+                            <a href="{% url 'accounts:edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
+                            <a href="{% url 'accounts:password_change' %}"><input type=button
+                                                                                  value='تغییر رمز عبور'></a>
+                        </div>
+                    </div>
+                </div>
             {% else %}
-                <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
+                <div class="container" id="logo">
+                    <img src="{% static "images/logo.png" %}" alt="logo" id="logo-img">
+                    <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
+                </div>
+                <div class="container"><p></p></div>
+                <div class="container" id="slide">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                            <li data-target="#myCarousel" data-slide-to="4"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+
+                            <div class="item active">
+                                <img src="{% static "images/confused4.png" %}" alt="find">
+                                <div class="carousel-caption">
+                                    <h3>دکترتو پیدا کن!</h3>
+                                    <p>پزشکای خوب رو نمیشناسی؟ اطلاعات کافی درمورد یه پزشک نداری؟ دوستداری چندین تا پزشک
+                                        رو
+                                        قبل از انتخابت بررسی کنی؟ همه ی این کارا تو وبسایت پزشکات با چندتا کلیک ساده
+                                        انجام
+                                        میشه!</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <img src="{% static "images/bored-telephone0.png" %}" alt="reserve">
+                                <div class="carousel-caption">
+                                    <h3>وقت دکتر بگیر!</h3>
+                                    <p>دوست نداری چندین بار به مطب یه پزشک زنگ بزنی تا یه وقت بتونی بگیری؟ پزشکات برات
+                                        عالیه! میتونی خیلی راحت وقتتو آنلاین رزرو کنی!</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <img src="{% static "images/confused3.png" %}" alt="meds">
+                                <div class="carousel-caption">
+                                    <h3>داروهات یادت نره!</h3>
+                                    <p>حتی اگه تو یادت بره ما همه ی داروهات یادمون میمونه و سر موقع اش خبرت میکنیم!</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{% static "images/messy-doctor-1.png" %}" alt="messy doctor">
+                                <div class="carousel-caption">
+                                    <h3>پرونده ی بیمارات رو کامل و به روز نگه دار! </h3>
+                                    <p>با پزشکات میتونی تمام بیماراتو و تمام نسخه هایی که بهشون دادی رو، کامل و مرتب
+                                        اینجا
+                                        نگه داری!</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{% static "images/calendar.jpg" %}" alt="calendar">
+                                <div class="carousel-caption">
+                                    <h3>زمانبندی منظم! </h3>
+                                    <p>با پزشکات تقویم هفتگی همه ی پزشک ها، واضح و مرتب برای پزشک های عزیز و کسایی که
+                                        میخوان
+                                        وقت رزرو کنن، فراهم میشه!</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                {#   TEMPORARY CODE!!! FOR TEST & FUN!   #}
+                <div class="container"><p></p></div>
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                <div class="container" style="background-color: rgba(127,237,223,0.33)">
+                    <figure class="highcharts-figure" style="position: relative;margin: 3%">
+                        <div id="container"></div>
+                    </figure>
+                </div>
+                <script>
+
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'تعداد پزشکان فعال'
+                        },
+
+                        xAxis: {
+                            categories: [
+                                'ﭼﺸﻢ ﭘﺰﺷﮑ',
+                                'ﺭﺍﺩﯾﻮﻟﻮﮊست',
+                                'ﭘﻮﺳﺖ ﻭ ﻣﻮ',
+                                "متخصص ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ",
+                                "ﺍﺭﺗﻮﭘﺪ",
+                                'ﻗﻠﺐﻭﻋﺮﻭﻕ',
+                                'ﻃﺐ ﻓﯿﺰﯾﮑﯽ',
+                                'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
+                                'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ',
+                                'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
+                                'ﭘﺎﺗﻮﻟﻮﮊﯼ',
+                                'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ',
+                                'ﺭﺍﺩﯾﻮﺗﺮﺍپ',
+                                'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ',
+                                'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ',
+                                'ﺭﻭﺍﻧﭙﺰﺷﮑ',
+                                'ﺩﺍﺧﻠﯽ',
+                                'ﻃﺐﮐﺎﺭ',
+                                'ﮐﻮﺩﮐﺎﻥ',
+                                'متخصص ﺑﯿﻬﻮﺷﯽ',
+                                'متخصص ﻋﻔﻮﻧﯽ',
+                                'سایر'
+                            ],
+                            crosshair: true
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: 'تعداد'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} نفر/b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+                        plotOptions: {
+                            column: {
+                                pointPadding: 0.2,
+                                borderWidth: 0
+                            }
+                        },
+                        series: [{
+                            name: 'پزشک',
+                            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+                        }]
+                    });
+                </script>
+                {#   TEMPORARY CODE!!! FOR TEST & FUN!   #}
             {% endif %}
         </div>
     </div>
-    {% if not user.is_authenticated %}
-    <div class="container">
-        <div class="jumbotron col-sm-4 text-center" style="background-color: rgba(255,252,229,0.53)" >
-            <h2>دکترتو پیدا کن!</h2>
-                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
 
-        </div>
-        <div class="jumbotron col-sm-3 col-sm-offset-1" style="background-color: rgba(255,252,229,0.53)">
-
-            <h2>وقت دکتر بگیر!</h2>
-
-
-                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
-
-        </div>
-        <div class="jumbotron col-sm-3 col-sm-offset-1 " style="background-color: rgba(255,252,229,0.53)">
-
-            <h2>داروهاتو را یادت نره!</h2>
-
-                <p>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</p>
-        </div>
-    </div>
-    {% endif %}
-    </div>
 {% endblock %}
