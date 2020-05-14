@@ -2,9 +2,12 @@
 {% block body_block %}
 <div class="jumbotron"  style="background: rgba(182,195,184,0.76);">
     <h3>اطلاعات بیمار</h3>
-        <p>نام: {{ user.name }} {% if user.patientprofileinfo.profile_pic%}
+        <p>نام: {{ user.name }}
+            {% if user.patientprofileinfo.profile_pic %}
                 <img src= "{{ user.patientprofileinfo.profile_pic.url }}" width="240" align="left">
-                {% endif %}</p>
+            {% else %}
+                <img src= "static/default.jpg" width="240" align="left">
+            {% endif %}</p>
         <p>نام خانوادگی : {{user.family_name}}</p>
         <p>ایمیل : {{user.email}}</p>
         {% if user.patientprofileinfo.medical_condition is None %}
