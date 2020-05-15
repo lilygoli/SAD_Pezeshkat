@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath="$PWD/sad-project" SAD.wsgi --log-file -
+web: gunicorn SAD.SAD.wsgi --log-file -
