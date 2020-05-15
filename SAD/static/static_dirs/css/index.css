@@ -170,7 +170,8 @@ ul.errorlist.error:before {
 }
 
 .jumbotron {
-    background-image: none;
+    /*background-image: none;*/
+    background-color:rgba(182,195,184,0.76) ;
 }
 
 #slide {
