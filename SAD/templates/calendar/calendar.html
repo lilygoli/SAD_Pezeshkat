@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+    <div class="jumbotron">
+
+        <div class="clearfix">
+            <a class="btn btn-info left" href="{% url 'doctor_calendar:calendar' user.pk %} "> هفته قبل </a>
+            <a class="btn btn-info right" href="{% url 'doctor_calendar:calendar' user.pk %}"> هفته بعد </a>
+        </div>
+        {{ calendar }}
+    </div>
+
+{% endblock %}

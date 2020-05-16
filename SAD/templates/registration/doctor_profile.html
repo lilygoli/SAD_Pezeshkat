@@ -1,12 +1,13 @@
 {% extends "registration/index.html" %}
 {% block body_index_block %}
-<div class="jumbotron"  style="background: rgba(182,195,184,0.76);">
+{% load static %}
+<div class="jumbotron" style="background: rgba(182,195,184,0.76);">
     <h3>اطلاعات شخصی</h3>
         <p>نام : {{ user.name }}
             {% if user.doctorprofileinfo.profile_pic %}
-                <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" width="240" align="left">
+                <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" width="240" align="left" alt="prof-pic">
             {% else %}
-                <img src= "static/default.jpg" width="240" align="left">
+                <img src= "{% static "default.jpg" %}" width="240" align="left" alt="prof-pic">
             {% endif %}</p>
         <p>نام خانوادگی : {{user.family_name}}</p>
         <p>ایمیل : {{user.email}}</p>

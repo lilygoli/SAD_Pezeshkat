@@ -21,11 +21,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from accounts import urls as u1
 from doctor_search import urls as u2
+from doctor_calendar import urls as u3
 
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include(u1)),
                   path('', include(u2)),
+                  path('', include(u3)),
                   path('accounts/', include('django.contrib.auth.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

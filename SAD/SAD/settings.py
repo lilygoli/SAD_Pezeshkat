@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AuthenticationConfig',
-    'doctor_search.apps.DoctorSearchConfig'
+    'doctor_search.apps.DoctorSearchConfig',
+    'doctor_calendar.apps.DoctorCalendarConfig'
 ]
 
 MIDDLEWARE = [
