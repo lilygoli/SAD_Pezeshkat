@@ -17,5 +17,5 @@ class Event(models.Model):
 
     @property
     def get_html_url(self):
-        url = reverse('doctor_calendar:calendar', args=(self.id,))
+        url = reverse('doctor_calendar:calendar', args=(self.doctor_user.id,))
         return f'<p>{self.title}</p><a href="{url}">edit</a>'  # todo edit??
