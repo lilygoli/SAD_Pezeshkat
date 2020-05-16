@@ -8,7 +8,7 @@ class Calendar(HTMLCalendar):
         self.doctor = doctor
         self.year = year
         self.month = month
-        self.week = day // 4  # todo
+        self.week = day // 7 #todo
         self.day_abr = {5: 'شنبه', 6: 'یکشنبه', 0: 'دوشنبه', 1: 'سه شنبه', 2: 'چهارشنبه', 3: 'پنجشنبه', 4: 'جمعه'}
         self.month_name = {0: 'فروردین', 1: 'اردیبهشت', 2: 'خرداد', 3: 'تیر', 4: 'مرداد', 5: 'شهریور', 6: 'مهر',
                            7: 'آبان', 8: 'آذر', 9: 'دی', 10: 'بهمن', 11: 'اسفند'}
@@ -27,6 +27,7 @@ class Calendar(HTMLCalendar):
             cal = f'<th class="%s">%s</th>' % (
                 self.cssclasses_weekday_head[i], self.day_abr[i])
             for hour in self.iter_hours():
+                # print("events",events.all()[0].start_time)
                 event_of_hour = events.filter(start_time__hour=hour, start_time__day=date)
                 if event_of_hour:
                     print("hhh", event_of_hour[0].start_time.month, event_of_hour[0].start_time.year)
