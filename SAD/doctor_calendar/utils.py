@@ -8,7 +8,7 @@ class Calendar(HTMLCalendar):
         self.doctor = doctor
         self.year = year
         self.month = month
-        self.week = day // 4 #todo
+        self.week = day // 4  # todo
         self.day_abr = {5: 'شنبه', 6: 'یکشنبه', 0: 'دوشنبه', 1: 'سه شنبه', 2: 'چهارشنبه', 3: 'پنجشنبه', 4: 'جمعه'}
         self.month_name = {0: 'فروردین', 1: 'اردیبهشت', 2: 'خرداد', 3: 'تیر', 4: 'مرداد', 5: 'شهریور', 6: 'مهر',
                            7: 'آبان', 8: 'آذر', 9: 'دی', 10: 'بهمن', 11: 'اسفند'}
@@ -58,7 +58,7 @@ class Calendar(HTMLCalendar):
             self.cssclass_month_head, s)
 
     def formatmonth(self, withyear=True):
-        events = Event.objects.filter(start_time__year=self.year, start_time__month=self.month, user_id=self.doctor)
+        events = Event.objects.filter(start_time__year=self.year, start_time__month=self.month, doctor_user=self.doctor)
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'  # add date
         cal += f'{self.formatdayheader()}\n'
