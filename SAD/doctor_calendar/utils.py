@@ -1,72 +1,135 @@
 from calendar import HTMLCalendar
 
+import jdatetime
+
 from .models import Event
 
 
 class Calendar(HTMLCalendar):
-    def __init__(self, year=None, month=None, day=None, doctor=None):
+    def __init__(self, year, month, day, doctor, curr_user):
+        self.curr_user = curr_user
         self.doctor = doctor
         self.year = year
         self.month = month
-        self.week = day // 4  # todo
-        self.day_abr = {5: 'شنبه', 6: 'یکشنبه', 0: 'دوشنبه', 1: 'سه شنبه', 2: 'چهارشنبه', 3: 'پنجشنبه', 4: 'جمعه'}
+        self.day = day
+        self.jyear, self.jmonth, self.jday, self.week_day = self.find_jdate(self.year, self.month, self.day)
+        self.gmonth_range = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        self.jmonth_range = self.fix_kabise(self.jyear)
+        self.week = self.find_current_week()
+        self.day_abr = {0: 'شنبه', 1: 'یکشنبه', 2: 'دوشنبه', 3: 'سه شنبه', 4: 'چهارشنبه', 5: 'پنجشنبه', 6: 'جمعه'}
         self.month_name = {0: 'فروردین', 1: 'اردیبهشت', 2: 'خرداد', 3: 'تیر', 4: 'مرداد', 5: 'شهریور', 6: 'مهر',
                            7: 'آبان', 8: 'آذر', 9: 'دی', 10: 'بهمن', 11: 'اسفند'}
-        super(Calendar, self).__init__(firstweekday=5)
+        super(Calendar, self).__init__(firstweekday=0)
 
-    def iter_hours(self):
+    @staticmethod
+    def find_jdate(year, month, day):
+        jdate = jdatetime.GregorianToJalali(year, month, day)
+        jdate = jdatetime.date(jdate.jyear, jdate.jmonth, jdate.jday)
+        return jdate.year, jdate.month, jdate.day, jdate.weekday()
+
+    @staticmethod
+    def fix_kabise(year):
+        jmonth_range = [0, 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]
+        indicators = [1, 5, 9, 13, 17, 22, 26, 30]
+        if year < 1343:
+            indicators[-3] = 21
+        if year % 33 in indicators:
+            jmonth_range[-1] = 30
+        return jmonth_range
+
+    def find_current_week(self):
+        jweek = []
+        weekday = self.week_day
+        day = self.jday
+        if day - weekday < 1:
+            previous_month = (self.jmonth - 1) % 12
+            year = self.jyear - 1 if self.jmonth == 1 else self.jyear
+            jmonth_range = self.fix_kabise(year)
+            w_range = (jmonth_range[previous_month] - weekday + day, jmonth_range[previous_month] + 1)
+            count = 0
+            for i in range(w_range[0], w_range[1]):
+                date = jdatetime.date(year, previous_month, i)
+                jweek += [(date, count)]
+                count += 1
+        begin = (day - weekday, 0) if day - 1 >= weekday else (1, weekday - day + 1)
+        count = 0
+        for i in range(begin[0], day + 1):
+            date = jdatetime.date(self.jyear, self.jmonth, i)
+            jweek += [(date, begin[1] + count)]
+            count += 1
+        last_day = jweek[-1][1] + 1
+        next_month_days = 1
+        next_month = (self.jmonth + 1) % 12
+        year = self.jyear + 1 if self.jmonth == 12 else self.jyear
+        next = False
+        while last_day < 7:
+            if jweek[-1][0].day + 1 <= self.jmonth_range[self.month] and not next:
+                date = jdatetime.date(self.jyear, self.jmonth, jweek[-1][0].day + 1)
+                jweek += [(date, last_day)]
+            else:
+                date = jdatetime.date(year, next_month, next_month_days)
+                jweek += [(date, last_day)]
+                next_month_days += 1
+                next = True
+            last_day += 1
+        return jweek
+
+    @staticmethod
+    def iter_hours():
         for i in range(8, 21):
             yield i
 
-    def formatweekdays(self, week, events, month, year):
+    def format_weekdays(self, week, events):
         out = ''
-        cal = ''
-        print("week", week)
-        print("month", self.month, self.week)
         for date, i in week:
             cal = f'<th class="%s">%s</th>' % (
                 self.cssclasses_weekday_head[i], self.day_abr[i])
             for hour in self.iter_hours():
-                event_of_hour = events.filter(start_time__hour=hour, start_time__day=date)
+                event_of_hour = events.filter(start_hour=hour, start_time__day=date.day, start_time__month=date.month,
+                                              start_time__year=date.year)
                 if event_of_hour:
-                    print("hhh", event_of_hour[0].start_time.month, event_of_hour[0].start_time.year)
-                    cal += f'<td> {event_of_hour[0].get_html_url} </td>'
+                    if not self.curr_user.is_doctor:
+                        cal += f'<td> {event_of_hour[0].get_html_url} </td>'
+                    else:
+                        pass  # to Fereshteh!   something like: cal+= f'<p>{self.title}</p>'
                 else:
                     cal += f'<td>    </td>'
             out += f'<tr>{cal}<tr>'
         return out
 
-    def formathour(self, hour):
-        if hour > 12:
-            out = str(hour % 12) + ' عصر'
+    @staticmethod
+    def format_hour(hour):
+        str_hour = hour // 1
+        if str_hour != hour:
+            str_minute = str(30 if hour - str_hour == 0.5 else (15 if hour - str_hour == 0.25 else 45))
         else:
-            out = str(hour) + ' صبح'
+            str_minute = '00'
+        if hour > 12:
+            out = str(str_hour % 12) + ':' + str_minute + ' عصر'
+        else:
+            out = str(str_hour) + ':' + str_minute + ' صبح'
         return '<th>%s</th>' % out
 
-    def formatdayheader(self):
+    def format_day_header(self):
         s = f'<th>  </th>'
-        s += ''.join(self.formathour(i) for i in self.iter_hours())
-        print(s)
+        s += ''.join(self.format_hour(i) for i in self.iter_hours())
         return '<tr>%s</tr>' % s
 
-    def formatmonthname(self, theyear, themonth, withyear=True):
-        if withyear:
-            s = '%s %s' % (self.month_name[themonth], theyear - 621)  # todo better fix of year
-        else:
-            s = '%s' % self.month_name[themonth]
-        return '<tr><th colspan="14" class="%s">%s</th></tr>' % (
-            self.cssclass_month_head, s)
+    def format_month_name(self, theyear, themonth, date_range):
+        s = '%s %s' % (self.month_name[themonth], theyear)
+        out = '<tr><th colspan="14" class="%s">%s <pre> %s -> %s </pre></th></tr>' % (
+            'date-header', s, str(date_range[0]), str(date_range[1]))
+        return out
 
-    def formatmonth(self, withyear=True):
-        events = Event.objects.filter(start_time__year=self.year, start_time__month=self.month, doctor_user=self.doctor)
+    def format_month(self):
+        # temporary usage for making events!!!
+        # s = Event(doctor_user=User.objects.all()[2], patient_user=User.objects.all()[0], title='reserved', start_time=jdatetime.date(1399, 2, 28),
+        #               start_hour=12,
+        #               duration=1)
+        # s.save()
+        events = Event.objects.filter(doctor_user=self.doctor)
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
-        cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'  # add date
-        cal += f'{self.formatdayheader()}\n'
-        count = 0
-        for week in self.monthdays2calendar(self.year, self.month):
-            print(week)
-            if count == self.week:
-                cal += f'{self.formatweekdays(week, events, self.month, self.year)}\n'
-                break
-            count += 1
+        cal += f'{self.format_month_name(self.jyear, self.jmonth, (self.week[0][0], self.week[-1][0]))}\n'
+        cal += f'{self.format_day_header()}\n'
+        cal += f'{self.format_weekdays(self.week, events)}\n'
         return cal

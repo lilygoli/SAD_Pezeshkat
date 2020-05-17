@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import locale
 import os
 try:
     from .settings_local import *
@@ -102,9 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'fa'
+# LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -124,5 +124,7 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
 
+LANGUAGE_CODE = 'fa-ir'
 
+locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 

@@ -20,7 +20,11 @@
     padding: 20px 0 0 5px;
 }
 
-.month {
+.date-header {
+    font-size: 25px;
+}
+
+.date-range {
     font-size: 25px;
 }
 
