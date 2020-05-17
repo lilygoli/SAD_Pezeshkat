@@ -21,8 +21,12 @@ class Event(models.Model):
 
     @property
     def get_html_url(self):
-        url = reverse('doctor_calendar:calendar', args=(self.doctor_user.id,))
+        url = reverse('doctor_calendar:calendar', args=(self.doctor_user.id, 0,))
         return f'<p>{self.title}</p><a href="{url}">edit</a>'  # todo edit??
 
 
+class CalenderWeekClicks(models.Model):
+    doctor_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_created')
+    patient_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
+    number_clicks = models.IntegerField()
 

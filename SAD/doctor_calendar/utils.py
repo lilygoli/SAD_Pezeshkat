@@ -1,18 +1,21 @@
 from calendar import HTMLCalendar
-
+import datetime
 import jdatetime
 from accounts.models import User
 from .models import Event
 
 
 class Calendar(HTMLCalendar):
-    def __init__(self, year, month, day, doctor, curr_user):
+    def __init__(self, year, month, day, doctor, curr_user, offset):
         self.curr_user = curr_user
         self.doctor = doctor
         self.year = year
         self.month = month
         self.day = day
-        self.jyear, self.jmonth, self.jday, self.week_day = self.find_jdate(self.year, self.month, self.day)
+        self.date = datetime.date(year, month, day) + datetime.timedelta(days=abs(offset) * 7) if offset > 0 else\
+                    datetime.date(year, month, day) - datetime.timedelta(days=abs(offset) * 7)
+        self.jyear, self.jmonth, self.jday, self.week_day = self.find_jdate(self.date.year, self.date.month,
+                                                                            self.date.day)
         self.jmonth_range = self.fix_kabise(self.jyear)
         self.week = self.find_current_week()
         self.day_abr = {0: 'شنبه', 1: 'یکشنبه', 2: 'دوشنبه', 3: 'سه شنبه', 4: 'چهارشنبه', 5: 'پنجشنبه', 6: 'جمعه'}
@@ -85,11 +88,10 @@ class Calendar(HTMLCalendar):
             cal = f'<th class="%s">%s</th>' % (
                 self.cssclasses_weekday_head[i], self.day_abr[i])
             for hour in self.iter_hours():
-                print(events[0].start_time, events[0].start_hour, date.day, date.month, date.year)
-                print(hour)
+                # print(events[0].start_time, events[0].start_hour, date.day, date.month, date.year)
+                # print(hour)
                 event_of_hour = events.filter(start_hour=hour, start_time__day=gdate.gday, start_time__month=gdate.gmonth,
                                               start_time__year=gdate.gyear)
-                print(event_of_hour)
                 if event_of_hour:
                     if not self.curr_user.is_doctor:
                         cal += f'<td> {event_of_hour[0].get_html_url} </td>'
@@ -120,7 +122,7 @@ class Calendar(HTMLCalendar):
 
     def format_month_name(self, theyear, themonth, date_range):
         s = '%s %s' % (self.month_name[themonth-1], theyear)
-        out = '<tr><th colspan="14" class="%s">%s <pre> %s -> %s </pre></th></tr>' % (
+        out = '<tr><th colspan="14" class="%s">%s <pre> از تاریخ %s تا %s </pre></th></tr>' % (
             'date-header', s, str(date_range[0]), str(date_range[1]))
         return out
 
