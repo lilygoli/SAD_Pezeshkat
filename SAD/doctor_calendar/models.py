@@ -11,9 +11,9 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(default='reserved')
     start_time = jmodels.jDateField(null=True)
-    end_time = jmodels.jDateField(null=True)
+    # end_time = jmodels.jDateField(null=True)
     start_hour = models.FloatField(null=True)
-    duration = models.FloatField(default=1)
+    # duration = models.FloatField(default=1)
 
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Event(models.Model):
     @property
     def get_html_url(self):
         url = reverse('doctor_calendar:calendar', args=(self.doctor_user.id, 0,))
-        return f'<p>{self.title}</p><a href="{url}">edit</a>'  # todo edit??
+        return f'<p>{self.title}</p><a href="{url}">edit</a>'
 
 
 class CalenderWeekClicks(models.Model):

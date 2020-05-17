@@ -1,12 +1,22 @@
 from django import forms
+from django.contrib.auth import password_validation
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ValidationError
 
 from accounts.email_domians import DOMAINS
 from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
-from django.contrib.auth import password_validation
-from django.contrib.auth.forms import SetPasswordForm
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.forms import UserChangeForm
+
+DAY_CHOICES = (
+    ("0", "شنبه"),
+    ("1", "یکشنبه"),
+    ("2", "دوشنبه"),
+    ("3", "سه شنبه"),
+    ("4", "چهارشنبه"),
+    ("5", "پنجشنبه"),
+    ("6", "جمعه"),
+)
 
 
 class DateInput(forms.DateInput):
@@ -59,13 +69,15 @@ class UserForm(forms.ModelForm):
 class DoctorProfileInfoForm(forms.ModelForm):
     error_css_class = 'error'
     required_css_class = 'required'
+    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
 
     class Meta:
         model = DoctorProfileInfo
+
         fields = (
             'portfolio_site', 'profile_pic', 'specialty_bins', 'specialty', 'degree', 'educational_background', 'fee',
             'on_site_fee',
-            'address', 'score')
+            'address', 'picked', 'visit_duration', 'score', 'available_weekdays', 'start_hour', 'end_hour')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -76,8 +88,22 @@ class DoctorProfileInfoForm(forms.ModelForm):
             "fee": "حق ویزیت",
             "on_site_fee": "مشخص شدن حق ویزیت در مطب",
             "address": "آدرس",
-            "score": "امتیاز"
+            "score": "امتیاز",
+            'visit_duration': 'مدت زمان متوسط هر ویزیت',
+            'available_weekdays': 'روزهای کاری هفته',
+            'start_hour': 'ساعت سروع کار',
+            'end_hour': 'ساعت پایان کار'
         }
+
+    def clean_available_weekdays(self):
+        picked = self.cleaned_data['picked']
+        s = ''
+        for i in range(7):
+            if str(i) in picked:
+                s += '1'
+            else:
+                s += '0'
+        return s
 
     def clean(self):
         errors = {'specialty_bins': [], 'fee': []}
@@ -215,7 +241,7 @@ class UserPasswordChange(PasswordChangeForm):
     error_messages = {
         **SetPasswordForm.error_messages,
         'password_incorrect': "رمز عبور قدیمی نادرست وارد شده است.",
-        'password_mismatch' : 'تکرار رمز با رمز جدید یکسان نیست.'
+        'password_mismatch': 'تکرار رمز با رمز جدید یکسان نیست.'
     }
     old_password = forms.CharField(
         label="رمز عبور قدیمی",

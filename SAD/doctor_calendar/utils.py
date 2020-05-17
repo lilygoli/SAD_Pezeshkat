@@ -1,7 +1,7 @@
 from calendar import HTMLCalendar
 import datetime
 import jdatetime
-from accounts.models import User
+from accounts.models import User, DoctorProfileInfo
 from django.urls import reverse
 
 from .models import Event
@@ -79,33 +79,39 @@ class Calendar(HTMLCalendar):
         return jweek
 
     @staticmethod
-    def iter_hours():
-        for i in range(8, 21):
+    def iter_hours(duration):
+        h_range = [8 + i * duration for i in range(int((20-8)/duration) + 1)]
+        for i in h_range:
             yield i
 
-    def format_weekdays(self, week, events):
+    def format_weekdays(self, week, events, duration, start_hour, available_days, end_hour):
         out = ''
         for date, i in week:
             gdate = jdatetime.JalaliToGregorian(date.year,date.month, date.day)
             cal = f'<th class="%s">%s</th>' % (
                 self.cssclasses_weekday_head[i], self.day_abr[i])
-            for hour in self.iter_hours():
-                # print(events[0].start_time, events[0].start_hour, date.day, date.month, date.year)
-                # print(hour)
+            for hour in self.iter_hours(duration):
                 event_of_hour = events.filter(start_hour=hour, start_time__day=gdate.gday, start_time__month=gdate.gmonth,
                                               start_time__year=gdate.gyear)
                 if event_of_hour:
                     if not self.curr_user.is_doctor:
-                        cal += f'<td> {event_of_hour[0].get_html_url} </td>'
+                        url = reverse('doctor_calendar:calendar', args=(self.doctor, 0,))
+                        if self.curr_user.id == event_of_hour[0].patient_user.id:
+                            o = f'<p class="cal-title">{event_of_hour[0].title}</p><a href="{url}">edit</a>'
+                        else:
+                            o = f'<p class="cal-title">{event_of_hour[0].title}</p><a href="{url}">edit</a>'
+                        cal += f'<td class="reserved"> {o} </td>'
                     else:
                         patient = User.objects.filter(email=event_of_hour[0].patient_user)
                         title = patient[0].name + " " + patient[0].family_name
-                        print(event_of_hour[0].patient_user)
-                        print(event_of_hour[0].doctor_user)
                         url = reverse('accounts:mini_profile', args=(event_of_hour[0].patient_user.id,))
                         cal += f'<td><p>{title}</p><a href="{url}">mini_profile</a> </td>'
                 else:
-                    cal += f'<td>    </td>'
+                    if not(start_hour <= hour <= end_hour and available_days[i] == '1'):
+                        cal += f'<td class="Unavailable-slot">' '</td>'
+                    else:
+                        cal += f'<td>' '</td>'
+
             out += f'<tr>{cal}<tr>'
         return out
 
@@ -116,33 +122,38 @@ class Calendar(HTMLCalendar):
             str_minute = str(30 if hour - str_hour == 0.5 else (15 if hour - str_hour == 0.25 else 45))
         else:
             str_minute = '00'
-        if hour > 12:
-            out = str(str_hour % 12) + ':' + str_minute + ' عصر'
+        if hour >= 13:
+            out = str(int(str_hour % 12)) + ':' + str_minute + ' عصر'
         else:
-            out = str(str_hour) + ':' + str_minute + ' صبح'
+            out = str(int(str_hour)) + ':' + str_minute + ' صبح'
         return '<th>%s</th>' % out
 
-    def format_day_header(self):
+    def format_day_header(self, duration):
         s = f'<th>  </th>'
-        s += ''.join(self.format_hour(i) for i in self.iter_hours())
+        s += ''.join(self.format_hour(i) for i in self.iter_hours(duration))
         return '<tr>%s</tr>' % s
 
-    def format_month_name(self, theyear, themonth, date_range):
+    def format_month_name(self, theyear, themonth, date_range, duration):
         s = '%s %s' % (self.month_name[themonth-1], theyear)
-        out = '<tr><th colspan="14" class="%s">%s <pre> از تاریخ %s تا %s </pre></th></tr>' % (
+        out = '<tr><th colspan="30" class="%s">%s <pre> از تاریخ %s تا %s </pre></th></tr>' % (
             'date-header', s, str(date_range[0]), str(date_range[1]))
         return out
 
     def format_month(self):
         # temporary usage for making events!!!
-        s = Event(doctor_user=User.objects.all()[0], patient_user=User.objects.all()[1], title='reserved', start_time=jdatetime.date(1399, 2, 28),
-                      start_hour=12,
-                      duration=1)
-        s.save()
+        # print("doct",User.objects.all()[0].id )
+        # s = Event(doctor_user=User.objects.all()[0], patient_user=User.objects.all()[1], title='reserved', start_time=jdatetime.date(1399, 2, 28),
+        #               start_hour=12)
+        # s.save()
 
         events = Event.objects.filter(doctor_user=self.doctor)
+        doctor = DoctorProfileInfo.objects.get(user_id=self.doctor)
+        duration = doctor.visit_duration
+        start_hour = doctor.start_hour
+        end_hour = doctor.end_hour
+        available_days = doctor.available_weekdays
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
-        cal += f'{self.format_month_name(self.jyear, self.jmonth, (self.week[0][0], self.week[-1][0]))}\n'
-        cal += f'{self.format_day_header()}\n'
-        cal += f'{self.format_weekdays(self.week, events)}\n'
+        cal += f'{self.format_month_name(self.jyear, self.jmonth, (self.week[0][0], self.week[-1][0]), duration)}\n'
+        cal += f'{self.format_day_header(duration)}\n'
+        cal += f'{self.format_weekdays(self.week, events, duration, start_hour, available_days, end_hour)}\n'
         return cal

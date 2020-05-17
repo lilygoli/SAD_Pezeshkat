@@ -1,7 +1,7 @@
 .calendar {
-    width: 98%;
-    margin: auto;
-    font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.53);
+    font-size: small;
+
 }
 
 .calendar tr, .calendar td {
@@ -9,27 +9,26 @@
 }
 
 .calendar th {
-    padding: 10px;
     text-align: center;
-    font-size: 18px;
+    font-size: x-small;
+
 }
 
 .calendar td {
     width: 100px;
     height: 50px;
-    padding: 20px 0 0 5px;
 }
 
 .date-header {
-    font-size: 25px;
+    font-size: small;
 }
 
 .date-range {
-    font-size: 25px;
+    font-size: small;
 }
 
 .date {
-    font-size: 16px;
+    font-size: small;
 }
 
 ul {
@@ -58,4 +57,17 @@ a {
 
 .clearfix {
   margin: 15px;
+}
+
+.Unavailable-slot{
+    background-color: rgba(226, 0, 0, 0.52);
+}
+
+.reserved{
+    background-color: rgba(226, 202, 37, 0.52);
+}
+
+p.cal-title{
+    text-align: center;
+    font-size: x-small;
 }
