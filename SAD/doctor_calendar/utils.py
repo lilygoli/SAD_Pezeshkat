@@ -2,6 +2,8 @@ from calendar import HTMLCalendar
 import datetime
 import jdatetime
 from accounts.models import User
+from django.urls import reverse
+
 from .models import Event
 
 
@@ -96,7 +98,12 @@ class Calendar(HTMLCalendar):
                     if not self.curr_user.is_doctor:
                         cal += f'<td> {event_of_hour[0].get_html_url} </td>'
                     else:
-                        pass  # to Fereshteh!   something like: cal+= f'<p>{self.title}</p>'
+                        patient = User.objects.filter(email=event_of_hour[0].patient_user)
+                        title = patient[0].name + " " + patient[0].family_name
+                        print(event_of_hour[0].patient_user)
+                        print(event_of_hour[0].doctor_user)
+                        url = reverse('accounts:mini_profile', args=(event_of_hour[0].patient_user.id,))
+                        cal += f'<td><p>{title}</p><a href="{url}">mini_profile</a> </td>'
                 else:
                     cal += f'<td>    </td>'
             out += f'<tr>{cal}<tr>'
@@ -128,10 +135,10 @@ class Calendar(HTMLCalendar):
 
     def format_month(self):
         # temporary usage for making events!!!
-        # s = Event(doctor_user=User.objects.all()[2], patient_user=User.objects.all()[0], title='reserved', start_time=jdatetime.date(1399, 2, 28),
-        #               start_hour=12,
-        #               duration=1)
-        # s.save()
+        s = Event(doctor_user=User.objects.all()[0], patient_user=User.objects.all()[1], title='reserved', start_time=jdatetime.date(1399, 2, 28),
+                      start_hour=12,
+                      duration=1)
+        s.save()
 
         events = Event.objects.filter(doctor_user=self.doctor)
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
