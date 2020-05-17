@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import django_heroku
 
+import locale
 import os
 try:
     from .settings_local import *
@@ -104,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'fa'
+# LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -119,20 +120,17 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
-# STATICFILES_DIRS = [STATIC_DIR, os.path.join(BASE_DIR, 'static', 'static_dirs'),]
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
+STATICFILES_DIRS = [STATIC_DIR, os.path.join(BASE_DIR, 'static', 'static_dirs'),]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
 
+LANGUAGE_CODE = 'fa-ir'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 
 import dj_database_url
 prod_db = dj_database_url.config(conn_max_age=500)

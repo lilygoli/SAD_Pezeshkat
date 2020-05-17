@@ -15,7 +15,7 @@ def get_date(req_day):
     return dt.today().year, dt.today().month, dt.today().day
 
 
-class CalendarView(ListView):
+class PatientCalendarView(ListView):
     model = Event
     template_name = 'calendar/calendar.html'
 
@@ -26,13 +26,34 @@ class CalendarView(ListView):
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))  # todo shamsi
+        d = get_date(self.request.GET.get('day', None))
         doc = self.kwargs['pk']
         # Instantiate our calendar class with today's year and date
-        cal = Calendar(d[0], d[1], d[2], doc)
+
+        cal = Calendar(d[0], d[1], d[2], doc, curr_user=self.request.user)
 
         # Call the formatmonth method, which returns our calendar as a table
-        html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.format_month()
+        context['calendar'] = mark_safe(html_cal)
+        # print(context)
+        return context
+
+
+class DoctorCalenderView(ListView):
+    model = Event
+    template_name = 'calendar/doctor_calender.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # use today's date for the calendar
+        d = get_date(self.request.GET.get('day', None))
+        # Instantiate our calendar class with today's year and date
+
+        cal = Calendar(d[0], d[1], d[2], self.request.user.pk, curr_user=self.request.user)
+
+        # Call the formatmonth method, which returns our calendar as a table
+        html_cal = cal.format_month()
         context['calendar'] = mark_safe(html_cal)
         # print(context)
         return context

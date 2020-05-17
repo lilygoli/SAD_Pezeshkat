@@ -41,7 +41,6 @@
                  AOS.init({
                      offset: 200, //default 120
                      delay: 50, //default 0
-                     once: true //default false
                 });
                  $('a[data-toggle="pill"]').on("shown.bs.tab", e => {
                     AOS.refresh();
@@ -65,8 +64,8 @@
                     </div>
                 {% endif %}
                 {% if user.is_authenticated %}
+                    <li><a class="navbar-link navbar-right" href="{% url 'accounts:logout' %}">خروج</a></li>
                     <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی پزشک</a></li>
-                    <li><a href="{% url 'accounts:logout' %}">خروج</a></li>
                 {% else %}
                     <li><a class="navbar-link" href="{% url 'accounts:user_login' %}">ورود</a></li>
                 {% endif %}
