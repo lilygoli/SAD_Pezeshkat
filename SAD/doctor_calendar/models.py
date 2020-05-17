@@ -30,3 +30,8 @@ class CalenderWeekClicks(models.Model):
     patient_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
     number_clicks = models.IntegerField()
 
+
+class DoctorCalenderWeekClicks(models.Model):
+    doctor_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_created')
+    number_clicks = models.IntegerField()
+
