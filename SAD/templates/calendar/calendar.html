@@ -2,6 +2,23 @@
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+    <script type="text/javascript">
+        function tdclick(dateAndTime){
+            var form = $('<form></form>');
+            form.attr("method", "GET");
+            form.attr("action", "{% url 'doctor_calendar:verify' doctor %}");
+
+            var field = $('<input></input>');
+            field.attr("type", "hidden");
+            field.attr("name", "q1");
+            field.attr("value", dateAndTime);
+
+            form.append(field);
+            $(document.body).append(form);
+            form.submit();
+
+       }
+    </script>
     <div class="jumbotron">
 
         <div class="clearfix">

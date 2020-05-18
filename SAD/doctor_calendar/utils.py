@@ -109,8 +109,9 @@ class Calendar(HTMLCalendar):
                 else:
                     if not(start_hour <= hour <= end_hour and available_days[i] == '1'):
                         cal += f'<td class="Unavailable-slot">' '</td>'
+
                     else:
-                        cal += f'<td>' '</td>'
+                        cal += f'<td onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
 
             out += f'<tr>{cal}<tr>'
         return out

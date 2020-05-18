@@ -85,3 +85,21 @@ class DoctorCalenderView(ListView):
         context['calendar'] = mark_safe(html_cal)
         # print(context)
         return context
+
+
+class VerifyView(ListView):
+    # model = DoctorProfileInfo
+    template_name = 'calendar/verify.html'
+
+
+    def get_queryset(self):
+        query_name = self.request.GET.get('q1')
+        dateAndTime = query_name.split('#')
+        date = dateAndTime[0].split("-")
+        # print(self.kwargs['pk'])
+        s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user, title='reserved',
+                  start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
+                  start_hour=dateAndTime[1])
+        s.save()
+
+

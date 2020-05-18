@@ -3,12 +3,11 @@
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
     <div class="jumbotron">
-
         <div class="clearfix">
-            <a class="btn btn-info left" href="{% url 'doctor_calendar:schedule' 2%} "> هفته قبل </a>
-            <a class="btn btn-info right" href="{% url 'doctor_calendar:schedule' 1%}"> هفته بعد </a>
+            <a> رزرو وقت موفقیت آمیز بود </a>
+            <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
+            {{ calendar }}
         </div>
-        {{ calendar }}
     </div>
 
 {% endblock %}
