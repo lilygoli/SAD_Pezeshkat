@@ -4,9 +4,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
     <div class="jumbotron">
         <div class="clearfix">
-            <a> رزرو وقت موفقیت آمیز بود </a>
-            <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
             {{ calendar }}
+        </div>
+        <div class="clearfix">
+            <a> رزرو وقت موفقیت آمیز بود.</a>
+            <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
         </div>
     </div>
 

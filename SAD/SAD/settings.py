@@ -135,7 +135,7 @@ AUTH_USER_MODEL = 'accounts.User'
 LANGUAGE_CODE = 'fa-ir'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
+#locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 
 import dj_database_url
 prod_db = dj_database_url.config(conn_max_age=500)

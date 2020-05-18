@@ -6,7 +6,7 @@
         function tdclick(dateAndTime){
             var form = $('<form></form>');
             form.attr("method", "GET");
-            form.attr("action", "{% url 'doctor_calendar:verify' doctor %}");
+            form.attr("action", "{% url 'doctor_calendar:verify' doctor 0%}");
 
             var field = $('<input></input>');
             field.attr("type", "hidden");
