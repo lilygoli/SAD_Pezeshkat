@@ -38,7 +38,7 @@
         <p> آدرس : {{user.doctorprofileinfo.address}}</p>
 
 
-         <a href="{% url 'doctor_calendar:calendar' user.pk %}"><input type=button value='رزرو وقت'></a>
+         <a href="{% url 'doctor_calendar:calendar' user.pk 0 %}"><input type=button value='رزرو وقت'></a>
 </div>
 {% endblock %}
 

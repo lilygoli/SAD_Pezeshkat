@@ -66,6 +66,7 @@ def register(request):
             errors.pop()
             if id == '1':
                 profile_form.fields['score'].widget = forms.HiddenInput()
+                profile_form.fields['available_weekdays'].widget = forms.HiddenInput()
 
             user_form.fields['is_doctor'].widget = forms.HiddenInput()
             return render(request, 'registration/registration.html',
@@ -78,6 +79,7 @@ def register(request):
             user_form = UserForm(initial={'is_doctor': True})
             profile_form = DoctorProfileInfoForm(initial={'score': 0})
             profile_form.fields['score'].widget = forms.HiddenInput()
+            profile_form.fields['available_weekdays'].widget = forms.HiddenInput()
         else:
             user_form = UserForm(initial={'is_doctor': False})
             profile_form = PatientProfileInfoFrom()

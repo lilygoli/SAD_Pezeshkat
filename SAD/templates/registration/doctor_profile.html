@@ -51,6 +51,6 @@
         {% else %}
             <p>امتیاز : {{user.doctorprofileinfo.sore}}</p>
         {% endif %}
-        <a href="{% url 'doctor_calendar:schedule'%}"><input type=button value='مشاهده برنامه‌ی هفتگی'></a>
+        <a href="{% url 'doctor_calendar:schedule' 0 %}"><input type=button value='مشاهده برنامه‌ی هفتگی'></a>
 </div>
 {% endblock %}

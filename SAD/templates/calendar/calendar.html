@@ -5,8 +5,8 @@
     <div class="jumbotron">
 
         <div class="clearfix">
-            <a class="btn btn-info left" href="{% url 'doctor_calendar:calendar' user.pk %} "> هفته قبل </a>
-            <a class="btn btn-info right" href="{% url 'doctor_calendar:calendar' user.pk %}"> هفته بعد </a>
+            <a class="btn btn-info left" href="{% url 'doctor_calendar:calendar' doctor 2 %} "> هفته قبل </a>
+            <a class="btn btn-info right" href="{% url 'doctor_calendar:calendar' doctor 1%}"> هفته بعد </a>
         </div>
         {{ calendar }}
     </div>

@@ -117,6 +117,8 @@ class DoctorProfileInfo(models.Model):
         (NONE, '-')
 
     )
+    ONE_HOUR, HALF_HOUR, THREE_QUARTER = 1, 0.5, 0.75
+    DURATIONS=((ONE_HOUR,'یک ساعت'), (HALF_HOUR, 'نیم ساعت'), (THREE_QUARTER, 'سه ربع'))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     portfolio_site = models.URLField(blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default= None)
@@ -129,6 +131,11 @@ class DoctorProfileInfo(models.Model):
     on_site_fee = models.BooleanField(blank=True, default=False)
     address = models.CharField(max_length=500, null=False)
     credit = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])
+    visit_duration = models.FloatField(default=0.5, choices=DURATIONS)
+    available_weekdays = models.CharField(max_length=8, default='1111100')
+    start_hour = models.IntegerField(default=8, validators=[MaxValueValidator(20), MinValueValidator(8)])
+    end_hour = models.IntegerField(default=20, validators=[MaxValueValidator(20), MinValueValidator(9)])
+
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name
