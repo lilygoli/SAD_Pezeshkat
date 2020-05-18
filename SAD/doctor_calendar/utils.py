@@ -94,12 +94,11 @@ class Calendar(HTMLCalendar):
                 event_of_hour = events.filter(start_hour=hour, start_time__day=gdate.gday, start_time__month=gdate.gmonth,
                                               start_time__year=gdate.gyear)
                 if event_of_hour:
-                    if not self.curr_user.is_doctor:
-                        url = reverse('doctor_calendar:calendar', args=(self.doctor, 0,))
+                    if not self.curr_user.id == self.doctor:
                         if self.curr_user.id == event_of_hour[0].patient_user.id:
-                            o = f'<p class="cal-title">{event_of_hour[0].title}</p><a href="{url}">edit</a>'
+                            o = f'{event_of_hour[0].get_html_url}'
                         else:
-                            o = f'<p class="cal-title">{event_of_hour[0].title}</p><a href="{url}">edit</a>'
+                            o = f'<p class="cal-title">{event_of_hour[0].title}</p>'
                         cal += f'<td class="reserved"> {o} </td>'
                     else:
                         patient = User.objects.filter(email=event_of_hour[0].patient_user)
@@ -158,3 +157,6 @@ class Calendar(HTMLCalendar):
         cal += f'{self.format_day_header(duration)}\n'
         cal += f'{self.format_weekdays(self.week, events, duration, start_hour, available_days, end_hour)}\n'
         return cal
+
+
+

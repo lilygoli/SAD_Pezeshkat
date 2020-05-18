@@ -1,10 +1,13 @@
 from datetime import datetime as dt
 
+from django.http import HttpResponseRedirect
 from django.utils.safestring import mark_safe
 from django.views.generic import ListView
-
+import jdatetime
 from .models import *
 from .utils import Calendar
+
+PERCENT = 0.10
 
 
 def get_date(req_day):
@@ -38,8 +41,9 @@ class PatientCalendarView(ListView):
             back_or_forward += 1
         elif self.kwargs['week_num'] == '2':
             back_or_forward -= 1
-        else:
+        elif self.kwargs['week_num'] == '0':
             back_or_forward = 0
+
         clicks.number_clicks = back_or_forward
         clicks.save()
         cal = Calendar(d[0], d[1], d[2], doc, curr_user=self.request.user, offset=back_or_forward)
@@ -91,7 +95,6 @@ class VerifyView(ListView):
     # model = DoctorProfileInfo
     template_name = 'calendar/verify.html'
 
-
     def get_queryset(self):
         query_name = self.request.GET.get('q1')
         dateAndTime = query_name.split('#')
@@ -102,4 +105,17 @@ class VerifyView(ListView):
                   start_hour=dateAndTime[1])
         s.save()
 
+
+def cancel(request, doc_pk, usr_pk, evt_pk):
+    event = Event.objects.get(id=evt_pk)
+    doctor = DoctorProfileInfo.objects.get(user_id=doc_pk)
+    try:
+        patient = PatientProfileInfo.objects.get(user_id=usr_pk)
+    except Exception:
+        patient = DoctorProfileInfo.objects.get(user_id=usr_pk)
+    doctor.credit -= doctor.fee * (1 - PERCENT)
+    patient.credit += doctor.fee * (1 - PERCENT)
+    doctor.save()
+    patient.save()
+    event.delete()
 
