@@ -157,6 +157,3 @@ class Calendar(HTMLCalendar):
         cal += f'{self.format_day_header(duration)}\n'
         cal += f'{self.format_weekdays(self.week, events, duration, start_hour, available_days, end_hour)}\n'
         return cal
-
-
-

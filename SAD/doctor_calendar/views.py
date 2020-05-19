@@ -95,7 +95,6 @@ class DoctorCalenderView(ListView):
 
 
 class VerifyView(ListView):
-    #model = DoctorProfileInfo
     template_name = 'calendar/verify.html'
 
     def get_queryset(self):

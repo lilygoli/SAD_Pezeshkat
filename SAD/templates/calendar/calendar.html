@@ -2,6 +2,7 @@
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+    <script type="text/javascript" src="{% static 'scripts/cancel_appointment.js' %}"></script>
     <script type="text/javascript">
         function tdclick(dateAndTime) {
             var form = $('<form></form>');
@@ -28,19 +29,4 @@
         {{ calendar }}
     </div>
 
-    <script>
-        function clicked(e,usr, evt) {
-            var r = confirm('آیا از لغو ویزیت اطمینان دارید؟\n *درصدی از مبلغ بازگشت پذیر نیست.*');
-            if (r === true) {
-                $.ajax({
-                    url: "cancel/"+usr.toString()+"/"+evt.toString(),
-
-                });
-                window.location.reload();
-            } else {
-                e.preventDefault();
-
-            }
-        }
-    </script>
 {% endblock %}

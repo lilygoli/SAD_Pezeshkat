@@ -1,7 +1,7 @@
 {% extends "registration/index.html" %}
 {% block body_index_block %}
 {% load static %}
-<div class="jumbotron" style="background: rgba(182,195,184,0.76);">
+<div class="jumbotron">
     <h3>اطلاعات شخصی</h3>
         <p>نام : {{ user.name }}
             {% if user.doctorprofileinfo.profile_pic %}
