@@ -154,8 +154,6 @@ class EditProfileForm(UserChangeForm):
 
 
 class PatientEditProfileInfo(UserChangeForm):
-    password = None
-
     class Meta:
         model = PatientProfileInfo
         fields = (
@@ -174,6 +172,10 @@ class PatientEditProfileInfo(UserChangeForm):
             "weight": "وزن"
         }
 
+    def __init__(self, *args, **kwargs):
+        super(PatientEditProfileInfo, self).__init__(*args, **kwargs)
+        del self.fields['password']  # This is a declared field we really want to be removed
+
     def save(self, commit=True):
         if self.is_valid():
             # Get instance with self.instance & only update if a value's changed:
@@ -185,8 +187,6 @@ class PatientEditProfileInfo(UserChangeForm):
 
 
 class DoctorEditProfileInfo(UserChangeForm):
-    password = None
-
     class Meta:
         model = DoctorProfileInfo
         fields = (
@@ -202,6 +202,10 @@ class DoctorEditProfileInfo(UserChangeForm):
             'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
             'address': "آدرس",
         }
+
+    def __init__(self, *args, **kwargs):
+        super(DoctorEditProfileInfo, self).__init__(*args, **kwargs)
+        del self.fields['password']  # This is a declared field we really want to be removed
 
     def save(self, commit=True):
         if self.is_valid():

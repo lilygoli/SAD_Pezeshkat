@@ -17,24 +17,18 @@ def get_date(req_day):
     return dt.today().year, dt.today().month, dt.today().day
 
 
-class PatientCalendarView(ListView):
-    model = Event
-    template_name = 'calendar/calendar.html'
+def patient_cal(item, context, **kwargs):
+    # use today's date for the calendar
+    d = get_date(item.request.GET.get('day', None))
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))
-
-        doc = self.kwargs['pk']
-        try:
-            clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=self.request.user.id)
-            back_or_forward = clicks.number_clicks
-        except Exception:
-            clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=self.request.user.id, number_clicks=0)
-            clicks.save()
-            back_or_forward = 0
+    doc = item.kwargs['pk']
+    try:
+        clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=item.request.user.id)
+        back_or_forward = clicks.number_clicks
+    except Exception:
+        clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=item.request.user.id, number_clicks=0)
+        clicks.save()
+        back_or_forward = 0
 
         # Instantiate our calendar class with today's year and date
         if self.kwargs['week_num'] == '1':
@@ -48,11 +42,20 @@ class PatientCalendarView(ListView):
         clicks.save()
         cal = Calendar(d[0], d[1], d[2], doc, curr_user=self.request.user, offset=back_or_forward)
 
-        # Call the formatmonth method, which returns our calendar as a table
-        html_cal = cal.format_month()
-        context['calendar'] = mark_safe(html_cal)
-        context['doctor'] = doc
-        return context
+    # Call the formatmonth method, which returns our calendar as a table
+    html_cal = cal.format_month()
+    context['calendar'] = mark_safe(html_cal)
+    context['doctor'] = doc
+    return context
+
+
+class PatientCalendarView(ListView):
+    model = Event
+    template_name = 'calendar/calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return patient_cal(self,context,  **kwargs)
 
 
 class DoctorCalenderView(ListView):
@@ -92,7 +95,7 @@ class DoctorCalenderView(ListView):
 
 
 class VerifyView(ListView):
-    # model = DoctorProfileInfo
+    #model = DoctorProfileInfo
     template_name = 'calendar/verify.html'
 
     def get_queryset(self):

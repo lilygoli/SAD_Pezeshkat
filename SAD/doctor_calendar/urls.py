@@ -1,5 +1,4 @@
 from django.conf.urls import url
-
 from doctor_calendar import views as v
 
 app_name = 'doctor_calendar'
