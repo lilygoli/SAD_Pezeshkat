@@ -126,7 +126,8 @@ def edit_profile(request):
 
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
-
+            if not profile.profile_pic :
+                profile.profile_pic = 'default.jpg'
             profile.save()
             return redirect(reverse('accounts:index'))
         else:
