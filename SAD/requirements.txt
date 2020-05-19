@@ -1,10 +1,15 @@
 asgiref==3.2.7
 beautifulsoup4==4.9.0
+dj-database-url==0.5.0
 Django==3.0.4
-img==2.5
-Pillow==7.1.1
-gunicorn==20.0.4
 django-heroku==0.3.1
+django-heroku-db-utils==0.1.0
+django-jalali==3.3.0
+gunicorn==20.0.4
+img==2.5
+jdatetime==3.6.2
+Pillow==7.1.1
+psycopg2==2.8.5
 pytz==2019.3
 six==1.14.0
 soupsieve==2.0
@@ -12,3 +17,4 @@ sqlparse==0.3.1
 waitress==1.4.3
 WebOb==1.8.6
 WebTest==2.0.34
+whitenoise==5.0.1
