@@ -13,18 +13,12 @@ body {
 }
 
 .jumbotron {
-    /*content: "";*/
-    /*position: absolute;*/
-    /*background: rgba(198, 211, 200, 0.57);*/
+
     font-family: Calibri, serif;
     background: inherit;
 
     /*box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);*/
     /*filter: blur(5px);*/
-
-    /*background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
-    /*background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
-    /*background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
 
 }
 
@@ -170,7 +164,6 @@ ul.errorlist.error:before {
 }
 
 .jumbotron {
-    /*background-image: none;*/
     background-color:rgba(182,195,184,0.76) ;
 }
 
@@ -182,6 +175,13 @@ ul.errorlist.error:before {
     background-position: center;
     position: center;
     min-height: 90vh;
-    /*margin-bottom: 6vh; !**********!*/
 
+}
+
+.container#chart-container{
+    "background-color: rgba(127,237,223,0.33)" data-aos="fade-up" data-aos-delay="200
+}
+.figure.highcharts-figure{
+    position: relative;
+    margin: 3%
 }

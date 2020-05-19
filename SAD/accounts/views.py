@@ -1,22 +1,31 @@
-import os
-
 from django import forms
-from django.shortcuts import render, redirect
-from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
-from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo
-
-from accounts.models import DoctorProfileInfo, PatientProfileInfo, User
+from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse
+from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
+from accounts.models import DoctorProfileInfo, User
 
 
 def index(request):
     user = request.user
     if not user.is_authenticated:
-        args = {'posts': [{'title':'torokhoda', 'teaser':'kar kon'}]}
+        categories = DoctorProfileInfo.objects.order_by('specialty_bins').values(
+            'specialty_bins'
+        ).annotate(count=Count('specialty_bins'))
+
+        counts_by_category = {Inverse[i['specialty_bins']]: i['count'] for i in categories}
+        for i in Inverse.values():
+            try:
+                s = counts_by_category[i]
+            except Exception:
+                counts_by_category[i] = 0
+        print(counts_by_category)
+        args = counts_by_category
         return render(request, 'registration/index.html', args)
     else:
         args = {'user': user}
@@ -126,7 +135,7 @@ def edit_profile(request):
 
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
-            if not profile.profile_pic :
+            if not profile.profile_pic:
                 profile.profile_pic = 'default.jpg'
             profile.save()
             return redirect(reverse('accounts:index'))

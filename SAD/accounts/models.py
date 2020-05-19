@@ -70,6 +70,7 @@ class DoctorProfileInfo(models.Model):
         (SUPER_SPECIALIST, 'فوق تخصص'),
         (NORMAL, '-')
     )
+
     EYE = 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
     RADIO = 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'
     SKIN = 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'
@@ -118,10 +119,10 @@ class DoctorProfileInfo(models.Model):
 
     )
     ONE_HOUR, HALF_HOUR, THREE_QUARTER = 1, 0.5, 0.75
-    DURATIONS=((ONE_HOUR,'یک ساعت'), (HALF_HOUR, 'نیم ساعت'), (THREE_QUARTER, 'سه ربع'))
+    DURATIONS = ((ONE_HOUR, 'یک ساعت'), (HALF_HOUR, 'نیم ساعت'), (THREE_QUARTER, 'سه ربع'))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     portfolio_site = models.URLField(blank=True)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default= None)
+    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default=None)
     specialty_bins = models.CharField(max_length=254, null=False, choices=SPCIALTY_CHOICES, default=NONE)
     specialty = models.CharField(max_length=254, null=True, blank=True)
     degree = models.CharField(max_length=254, null=True, choices=DOCTOR_CHOICES, default=NORMAL)
@@ -135,7 +136,6 @@ class DoctorProfileInfo(models.Model):
     available_weekdays = models.CharField(max_length=8, default='1111100')
     start_hour = models.IntegerField(default=8, validators=[MaxValueValidator(20), MinValueValidator(8)])
     end_hour = models.IntegerField(default=20, validators=[MaxValueValidator(20), MinValueValidator(9)])
-
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name
@@ -159,7 +159,7 @@ class PatientProfileInfo(models.Model):
         (P, '+')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default= None)
+    profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default=None)
     birthday = models.DateField(null=False)
     medical_condition = models.CharField(max_length=254, null=True, blank=True)
     credit = models.FloatField(blank=True, null=True, default=0, validators=[MinValueValidator(0)])

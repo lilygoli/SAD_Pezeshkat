@@ -3,6 +3,10 @@
 
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/index.css" %}" type="text/css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <div class="row">
         <div class="container">
@@ -14,7 +18,6 @@
                             <h2>سلام {{ user.name }}</h2>
                             {% block body_index_block %}
                             {% endblock %}
-
                             <a href="{% url 'accounts:edit_profile' %}"><input type=button value='ویرایش پروفایل'></a>
                             <a href="{% url 'accounts:password_change' %}"><input type=button
                                                                                   value='تغییر رمز عبور'></a>
@@ -101,13 +104,12 @@
                         </a>
                     </div>
                 </div>
+
                 {#   TEMPORARY CODE!!! FOR TEST & FUN!   #}
                 <div class="container"><p></p></div>
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                <div class="container" style="background-color: rgba(127,237,223,0.33)" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="container" style="background-color: rgba(127,237,223,0.33)" data-aos="fade-up"
+                     data-aos-delay="200">
                     <figure class="highcharts-figure" style="position: relative;margin: 3%">
                         <div id="container"></div>
                     </figure>
@@ -171,7 +173,7 @@
                         },
                         series: [{
                             name: 'پزشک',
-                            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                            data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }}, {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}}, {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
 
                         }]
                     });

@@ -8,6 +8,13 @@ from django.core.exceptions import ValidationError
 from accounts.email_domians import DOMAINS
 from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
 
+Inverse = {'ﭼﺸﻢ ﭘﺰﺷﮑﯽ': 'eye', 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ': 'ray', 'ﭘﻮﺳﺖ ﻭ ﻣﻮ': 'hair', "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ": 'nuc', "ﺍﺭﺗﻮﭘﺪﯼ": 'ort',
+               'ﻗﻠﺐﻭﻋﺮﻭﻕ': 'heart',
+               'ﻃﺐ ﻓﯿﺰﯾﮑﯽ': 'fizik', 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ': 'brain', 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ': 'ear', 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ': 'brainsurg',
+               'ﭘﺎﺗﻮﻟﻮﮊﯼ': 'path', 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ': 'kidney', 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ': 'rayray',
+               'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ': 'general', 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ': 'women', 'ﺭﻭﺍﻧﭙﺰﺷﮑﯽ': 'psych', 'ﺩﺍﺧﻠﯽ': 'in', 'ﻃﺐﮐﺎﺭ': 'work',
+               'ﮐﻮﺩﮐﺎﻥ': 'kids', 'ﺑﯿﻬﻮﺷﯽ': 'faint', 'ﻋﻔﻮﻧﯽ': 'inf', '-': 'other'}
+
 DAY_CHOICES = (
     ("0", "شنبه"),
     ("1", "یکشنبه"),
