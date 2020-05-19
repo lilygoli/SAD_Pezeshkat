@@ -31,16 +31,16 @@ def patient_cal(item, context, **kwargs):
         back_or_forward = 0
 
         # Instantiate our calendar class with today's year and date
-        if self.kwargs['week_num'] == '1':
+        if item.kwargs['week_num'] == '1':
             back_or_forward += 1
-        elif self.kwargs['week_num'] == '2':
+        elif item.kwargs['week_num'] == '2':
             back_or_forward -= 1
-        elif self.kwargs['week_num'] == '0':
+        elif item.kwargs['week_num'] == '0':
             back_or_forward = 0
 
-        clicks.number_clicks = back_or_forward
-        clicks.save()
-        cal = Calendar(d[0], d[1], d[2], doc, curr_user=self.request.user, offset=back_or_forward)
+    clicks.number_clicks = back_or_forward
+    clicks.save()
+    cal = Calendar(d[0], d[1], d[2], doc, curr_user=item.request.user, offset=back_or_forward)
 
     # Call the formatmonth method, which returns our calendar as a table
     html_cal = cal.format_month()
@@ -55,7 +55,7 @@ class PatientCalendarView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return patient_cal(self,context,  **kwargs)
+        return patient_cal(self, context,  **kwargs)
 
 
 class DoctorCalenderView(ListView):
@@ -107,6 +107,10 @@ class VerifyView(ListView):
                   start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
                   start_hour=dateAndTime[1])
         s.save()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return patient_cal(self, context,  **kwargs)
 
 
 def cancel(request, doc_pk, usr_pk, evt_pk):
