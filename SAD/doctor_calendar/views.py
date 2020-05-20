@@ -1,6 +1,7 @@
 from datetime import datetime as dt
 
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.views.generic import ListView
 import jdatetime
@@ -55,7 +56,7 @@ class PatientCalendarView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return patient_cal(self, context,  **kwargs)
+        return patient_cal(self, context, **kwargs)
 
 
 class DoctorCalenderView(ListView):
@@ -98,18 +99,43 @@ class VerifyView(ListView):
     template_name = 'calendar/verify.html'
 
     def get_queryset(self):
+        is_successful = False
         query_name = self.request.GET.get('q1')
         dateAndTime = query_name.split('#')
         date = dateAndTime[0].split("-")
-        # print(self.kwargs['pk'])
-        s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user, title='reserved',
-                  start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
-                  start_hour=dateAndTime[1])
-        s.save()
+        doctor = DoctorProfileInfo.objects.get(user_id=self.kwargs['pk'])
+        patient = PatientProfileInfo.objects.get(user_id=self.request.user)
+
+        print(patient.credit, doctor.fee)
+        if patient.credit < doctor.fee:
+            is_successful = False
+        else:
+            doctor.credit += doctor.fee
+            patient.credit -= doctor.fee
+            doctor.save()
+            patient.save()
+            s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user,
+                      title='reserved',
+                      start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
+                      start_hour=dateAndTime[1])
+            s.save()
+            is_successful = True
+
+        # class Ans():
+        #     def __init__(self):
+        #         self.success = is_successful
+        #         self.dc = doctor
+        #         self.dt = date
+        context = {
+            'success': is_successful,
+            'doctor': doctor,
+            'date': date[2]
+        }
+        return render(None, 'calendar/verify.html', context=context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return patient_cal(self, context,  **kwargs)
+        return patient_cal(self, context, **kwargs)
 
 
 def cancel(request, doc_pk, usr_pk, evt_pk):
@@ -124,4 +150,3 @@ def cancel(request, doc_pk, usr_pk, evt_pk):
     doctor.save()
     patient.save()
     event.delete()
-
