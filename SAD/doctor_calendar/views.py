@@ -100,13 +100,14 @@ class VerifyView(ListView):
     is_successful = False
     doctor = None
     date = None
-
+    time = None
 
     def get_queryset(self):
         query_name = self.request.GET.get('q1')
         dateAndTime = query_name.split('#')
         date = dateAndTime[0].split("-")
         self.date = date
+        self.time = dateAndTime[1]
         doctor = DoctorProfileInfo.objects.get(user_id=self.kwargs['pk'])
         self.doctor = doctor
         patient = PatientProfileInfo.objects.get(user_id=self.request.user)
@@ -128,8 +129,14 @@ class VerifyView(ListView):
     def get_context_data(self, **kwargs):
         context = {
             'success': self.is_successful,
-            # 'doctor': self.doctor,
-            # 'date': self.date[2]
+            'address': self.doctor.address,
+            'name': self.doctor.user.name,
+            'lname': self.doctor.user.family_name,
+            'day': self.date[2],
+            'month': self.date[1],
+            'year': self.date[0],
+            'hour': self.time
+
         }
         return patient_cal(self, context, **kwargs)
 

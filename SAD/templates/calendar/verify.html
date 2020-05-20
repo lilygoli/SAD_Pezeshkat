@@ -9,8 +9,17 @@
         <div class="clearfix">
                 {% if success is True %}
                     <a> رزرو و پرداخت موفقیت آمیز بود</a>
+                    <br>
+                    <a> نام دکتر : {{ name }} {{ lname }}</a>
+                    <br>
+                    <a> تاریخ رزرو شما : {{ day }} {{ month }} {{ year }}</a>
+                    <br>
+                    <a> ساعت رزرو : {{ hour }}</a>
+                    <br>
+                    <a> آدرس مطب : {{ address }}</a>
                 {% else %}
                     <a> موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید</a>
+{#                    <a>  {{  address }} </a>#}
                 {% endif %}
 
             <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
