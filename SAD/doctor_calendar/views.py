@@ -97,18 +97,22 @@ class DoctorCalenderView(ListView):
 
 class VerifyView(ListView):
     template_name = 'calendar/verify.html'
+    is_successful = False
+    doctor = None
+    date = None
+
 
     def get_queryset(self):
-        is_successful = False
         query_name = self.request.GET.get('q1')
         dateAndTime = query_name.split('#')
         date = dateAndTime[0].split("-")
+        self.date = date
         doctor = DoctorProfileInfo.objects.get(user_id=self.kwargs['pk'])
+        self.doctor = doctor
         patient = PatientProfileInfo.objects.get(user_id=self.request.user)
 
-        print(patient.credit, doctor.fee)
         if patient.credit < doctor.fee:
-            is_successful = False
+            self.is_successful = False
         else:
             doctor.credit += doctor.fee
             patient.credit -= doctor.fee
@@ -119,22 +123,14 @@ class VerifyView(ListView):
                       start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
                       start_hour=dateAndTime[1])
             s.save()
-            is_successful = True
-
-        # class Ans():
-        #     def __init__(self):
-        #         self.success = is_successful
-        #         self.dc = doctor
-        #         self.dt = date
-        context = {
-            'success': is_successful,
-            'doctor': doctor,
-            'date': date[2]
-        }
-        return render(None, 'calendar/verify.html', context=context)
+            self.is_successful = True
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = {
+            'success': self.is_successful,
+            # 'doctor': self.doctor,
+            # 'date': self.date[2]
+        }
         return patient_cal(self, context, **kwargs)
 
 
