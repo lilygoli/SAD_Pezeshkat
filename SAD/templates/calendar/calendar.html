@@ -5,7 +5,7 @@
     <script type="text/javascript" src="{% static 'scripts/cancel_appointment.js' %}"></script>
     <script type="text/javascript">
         function tdclick(dateAndTime) {
-            if (confirm("آیا مطمئن هستید که میخواهید این رمان را رزرو کنید؟")) {
+            if (confirm("آیا مطمئن هستید که میخواهید این زمان را رزرو کنید؟")) {
                 var form = $('<form></form>');
                 form.attr("method", "GET");
                 form.attr("action", "{% url 'doctor_calendar:verify' doctor 0%}");

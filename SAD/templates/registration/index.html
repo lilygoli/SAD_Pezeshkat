@@ -160,7 +160,7 @@
                         tooltip: {
                             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                '<td style="padding:0"><b>{point.y:.1f} نفر/b></td></tr>',
+                                '<td style="padding:0"><b>{point.y:.1f} نفر</b></td></tr>',
                             footerFormat: '</table>',
                             shared: true,
                             useHTML: true
@@ -173,7 +173,9 @@
                         },
                         series: [{
                             name: 'پزشک',
-                            data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }}, {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}}, {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
+                            data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }},
+                    {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}},
+                    {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
 
                         }]
                     });

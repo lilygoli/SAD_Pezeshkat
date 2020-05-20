@@ -8,21 +8,22 @@
 {#        </div>#}
         <div class="clearfix">
                 {% if success is True %}
-                    <a> رزرو و پرداخت موفقیت آمیز بود</a>
+                    <p> رزرو و پرداخت موفقیت آمیز بود</p>
                     <br>
-                    <a> نام دکتر : {{ name }} {{ lname }}</a>
+                    <p> نام دکتر : {{ name }} {{ lname }}</p>
                     <br>
-                    <a> تاریخ رزرو شما : {{ day }} {{ month }} {{ year }}</a>
+                    <p> تاریخ رزرو شما : {{ day }}/ {{ month }}/ {{ year }}</p>
                     <br>
-                    <a> ساعت رزرو : {{ hour }}</a>
+                    <p> ساعت رزرو : {{ hour }}</p>
                     <br>
-                    <a> آدرس مطب : {{ address }}</a>
+                    <p> آدرس مطب : {{ address }}</p>
                 {% else %}
-                    <a> موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید</a>
-{#                    <a>  {{  address }} </a>#}
+                    <p> موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید</p>
+{#                    <p>  {{  address }} </p>#}
                 {% endif %}
 
             <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
+            <a class="btn btn-info right" href={{request.META.HTTP_REFERER}}> بازگشت به صفحه رزرو </a>
         </div>
     </div>
 

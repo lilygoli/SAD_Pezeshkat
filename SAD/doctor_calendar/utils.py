@@ -140,12 +140,6 @@ class Calendar(HTMLCalendar):
         return out
 
     def format_month(self):
-        # temporary usage for making events!!!
-        # print("doct",User.objects.all()[0].id )
-        # s = Event(doctor_user=User.objects.all()[0], patient_user=User.objects.all()[1], title='reserved', start_time=jdatetime.date(1399, 2, 28),
-        #               start_hour=12)
-        # s.save()
-
         events = Event.objects.filter(doctor_user=self.doctor)
         doctor = DoctorProfileInfo.objects.get(user_id=self.doctor)
         duration = doctor.visit_duration
