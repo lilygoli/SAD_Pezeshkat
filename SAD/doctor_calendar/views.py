@@ -37,12 +37,12 @@ class PatientCalendarView(ListView):
             back_or_forward = 0
 
             # Instantiate our calendar class with today's year and date
-            if self.kwargs['week_num'] == '1':
-                back_or_forward += 1
-            elif self.kwargs['week_num'] == '2':
-                back_or_forward -= 1
-            elif self.kwargs['week_num'] == '0':
-                back_or_forward = 0
+        if self.kwargs['week_num'] == '1':
+            back_or_forward += 1
+        elif self.kwargs['week_num'] == '2':
+            back_or_forward -= 1
+        elif self.kwargs['week_num'] == '0':
+            back_or_forward = 0
 
         clicks.number_clicks = back_or_forward
         clicks.save()
