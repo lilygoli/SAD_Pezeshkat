@@ -102,10 +102,10 @@ class VerifyView(ListView):
     def get_queryset(self):
         me = User.objects.get(is_staff=True)
         query_name = self.request.GET.get('q1')
-        dateAndTime = query_name.split('#')
-        date = dateAndTime[0].split("-")
+        date_and_time = query_name.split('#')
+        date = date_and_time[0].split("-")
         self.date = date
-        self.time = dateAndTime[1]
+        self.time = date_and_time[1]
         doctor = DoctorProfileInfo.objects.get(user_id=self.kwargs['pk'])
         self.doctor = doctor
         patient = PatientProfileInfo.objects.get(user_id=self.request.user)
@@ -123,7 +123,7 @@ class VerifyView(ListView):
             s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user,
                       title='reserved',
                       start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
-                      start_hour=dateAndTime[1])
+                      start_hour=date_and_time[1])
             s.save()
             self.is_successful = True
 
