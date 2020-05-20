@@ -44,6 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_doctor = models.BooleanField(null=False)
+    bank = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'

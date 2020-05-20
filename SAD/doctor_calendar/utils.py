@@ -110,7 +110,10 @@ class Calendar(HTMLCalendar):
                         cal += f'<td class="Unavailable-slot">' '</td>'
 
                     else:
-                        cal += f'<td onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
+                        if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday > self.day:
+                            cal += f'<td onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
+                        else:
+                            cal += f'<td onclick=myAlert()>   </td>'
 
             out += f'<tr>{cal}<tr>'
         return out

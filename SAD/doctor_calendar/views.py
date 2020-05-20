@@ -2,6 +2,7 @@ from datetime import datetime as dt
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from accounts.admin import admin
 from django.utils.safestring import mark_safe
 from django.views.generic import ListView
 import jdatetime
@@ -99,6 +100,7 @@ class VerifyView(ListView):
     time = None
 
     def get_queryset(self):
+        me = User.objects.get(is_staff=True)
         query_name = self.request.GET.get('q1')
         dateAndTime = query_name.split('#')
         date = dateAndTime[0].split("-")
@@ -113,6 +115,9 @@ class VerifyView(ListView):
         else:
             doctor.credit += doctor.fee
             patient.credit -= doctor.fee
+            me.bank += doctor.fee / 10
+            print(me.bank)
+            me.save()
             doctor.save()
             patient.save()
             s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user,
@@ -135,7 +140,7 @@ class VerifyView(ListView):
             'doc_pk': self.doctor.user.pk
 
         }
-        print(self.doctor.pk, self.doctor.user.name)
+
         return context
 
 
