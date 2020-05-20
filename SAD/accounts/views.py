@@ -65,7 +65,11 @@ def register(request):
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            return HttpResponseRedirect(reverse('accounts:user_login'))
+            new_user = authenticate(username=user_form.cleaned_data['email'],
+                                    password=user_form.cleaned_data['password'],
+                                    )
+            login(request, new_user)
+            return HttpResponseRedirect(reverse('accounts:index'))
         else:
 
             for i in user_form.errors.values():
