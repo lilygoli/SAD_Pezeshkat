@@ -96,7 +96,7 @@ class Calendar(HTMLCalendar):
                 if event_of_hour:
                     if not self.curr_user.id == self.doctor:
                         if self.curr_user.id == event_of_hour[0].patient_user.id:
-                            if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday >= self.day:
+                            if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday > self.day:
                                 o = f'{event_of_hour[0].get_html_url}'
                             else:
                                 o = f'<p class="cal-title">{event_of_hour[0].title}'
