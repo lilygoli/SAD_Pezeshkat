@@ -97,7 +97,7 @@ class DoctorProfileInfoForm(forms.ModelForm):
             "address": "آدرس",
             "score": "امتیاز",
             'visit_duration': 'مدت زمان متوسط هر ویزیت',
-            'available_weekdays': 'روزهای کاری هفته',
+            'available_weekdays': 'روزهای کاری ',
             'start_hour': 'ساعت سروع کار',
             'end_hour': 'ساعت پایان کار'
         }
@@ -194,11 +194,12 @@ class PatientEditProfileInfo(UserChangeForm):
 
 
 class DoctorEditProfileInfo(UserChangeForm):
+    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
     class Meta:
         model = DoctorProfileInfo
         fields = (
             'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
-            'address')
+            'address', 'visit_duration', 'start_hour', 'end_hour')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -208,6 +209,10 @@ class DoctorEditProfileInfo(UserChangeForm):
             'fee': "حق ویزیت",
             'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
             'address': "آدرس",
+            'visit_duration': 'مدت زمان متوسط هر ویزیت',
+            'available_weekdays': 'روزهای کاری ',
+            'start_hour': 'ساعت شروع کار',
+            'end_hour': 'ساعت پایان کار'
         }
 
     def __init__(self, *args, **kwargs):
