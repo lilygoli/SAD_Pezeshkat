@@ -184,12 +184,13 @@ class PatientEditProfileInfo(UserChangeForm):
         del self.fields['password']  # This is a declared field we really want to be removed
 
     def save(self, commit=True):
-        if self.is_valid():
-            # Get instance with self.instance & only update if a value's changed:
-            for field_name in self.fields:
-                if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                    setattr(self.instance, field_name, self.cleaned_data[field_name])
-                    self.instance.save()
+        if commit:
+            if self.is_valid():
+                # Get instance with self.instance & only update if a value's changed:
+                for field_name in self.fields:
+                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
+                        setattr(self.instance, field_name, self.cleaned_data[field_name])
+                        self.instance.save()
         return self.instance
 
 
@@ -220,13 +221,24 @@ class DoctorEditProfileInfo(UserChangeForm):
         del self.fields['password']  # This is a declared field we really want to be removed
 
     def save(self, commit=True):
-        if self.is_valid():
-            # Get instance with self.instance & only update if a value's changed:
-            for field_name in self.fields:
-                if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                    setattr(self.instance, field_name, self.cleaned_data[field_name])
-                    self.instance.save()
+        if commit:
+            if self.is_valid():
+                # Get instance with self.instance & only update if a value's changed:
+                for field_name in self.fields:
+                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
+                        setattr(self.instance, field_name, self.cleaned_data[field_name])
+                        self.instance.save()
         return self.instance
+
+    def clean_available_weekdays(self):
+        picked = self.cleaned_data['picked']
+        s = ''
+        for i in range(7):
+            if str(i) in picked:
+                s += '1'
+            else:
+                s += '0'
+        return s
 
 
 class UserSetPassword(SetPasswordForm):

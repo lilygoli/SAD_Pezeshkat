@@ -107,7 +107,7 @@ class Calendar(HTMLCalendar):
                         patient = User.objects.filter(email=event_of_hour[0].patient_user)
                         title = patient[0].name + " " + patient[0].family_name
                         url = reverse('accounts:mini_profile', args=(event_of_hour[0].patient_user.id,))
-                        cal += f'<td><p>{title}</p><a href="{url}">mini_profile</a> </td>'
+                        cal += f'<td><p class = "cal_title">{title}</p><a href="{url}"> اطلاعات بیمار </a> </td>'
                 else:
                     if not(start_hour <= hour <= end_hour and available_days[i] == '1'):
                         cal += f'<td class="Unavailable-slot">' '</td>'
