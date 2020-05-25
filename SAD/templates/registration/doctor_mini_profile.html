@@ -37,6 +37,11 @@
 
         <p> آدرس : {{user.doctorprofileinfo.address}}</p>
 
+        <p>مدت زمان ویزیت : {{user.doctorprofileinfo.visit_duration}} ساعت</p>
+
+        <p>ساعات کاری : {{user.doctorprofileinfo.start_hour}} تا {{user.doctorprofileinfo.end_hour}}</p>
+
+        <p>روزهای کاری : {{days}}</p>
 
          <a href="{% url 'doctor_calendar:calendar' user.pk 0 %}"><input type=button value='رزرو وقت'></a>
 </div>
