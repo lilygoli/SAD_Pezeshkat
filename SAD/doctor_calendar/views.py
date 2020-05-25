@@ -1,11 +1,10 @@
 from datetime import datetime as dt
 
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from accounts.admin import admin
+import jdatetime
+from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.generic import ListView
-import jdatetime
+
 from .models import *
 from .utils import Calendar
 
@@ -37,12 +36,7 @@ class PatientCalendarView(ListView):
             clicks.save()
             back_or_forward = 0
 
-            # Instantiate our calendar class with today's year and date
-        if self.kwargs['week_num'] == '1':
-            back_or_forward += 1
-        elif self.kwargs['week_num'] == '2':
-            back_or_forward -= 1
-        elif self.kwargs['week_num'] == '0':
+        if self.kwargs['week_num'] == '0':
             back_or_forward = 0
 
         clicks.number_clicks = back_or_forward
@@ -54,6 +48,31 @@ class PatientCalendarView(ListView):
         context['calendar'] = mark_safe(html_cal)
         context['doctor'] = doc
         return context
+
+
+def next_week(request, pk, week_num):
+    doc = pk
+    try:
+        print(doc, request.user.id)
+        clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=request.user.id)
+        back_or_forward = clicks.number_clicks
+        print("ck", clicks.number_clicks)
+    except Exception:
+        clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=request.user.id, number_clicks=0)
+        clicks.save()
+        back_or_forward = 0
+
+        # Instantiate our calendar class with today's year and date
+    if week_num == '1':
+        back_or_forward += 1
+    elif week_num == '2':
+        back_or_forward -= 1
+    elif week_num == '0':
+        back_or_forward = 0
+
+    clicks.number_clicks = back_or_forward
+    clicks.save()
+    return redirect('doctor_calendar:calendar', pk=doc, week_num=3)
 
 
 class DoctorCalenderView(ListView):
@@ -88,7 +107,6 @@ class DoctorCalenderView(ListView):
         # Call the formatmonth method, which returns our calendar as a table
         html_cal = cal.format_month()
         context['calendar'] = mark_safe(html_cal)
-        # print(context)
         return context
 
 
