@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AuthenticationConfig',
     'doctor_search.apps.DoctorSearchConfig',
-    'doctor_calendar.apps.DoctorCalendarConfig'
+    'doctor_calendar.apps.DoctorCalendarConfig',
+    'patient_list',
 ]
 
 MIDDLEWARE = [
