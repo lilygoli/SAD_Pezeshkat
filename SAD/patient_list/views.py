@@ -19,5 +19,4 @@ class PatientListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['patients'] = self.patients
-        print(context['patients'][0].pk)
         return context
