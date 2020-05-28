@@ -46,7 +46,7 @@
                     AOS.refresh();
                  })
                 </script>
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-static-top">
+<nav class="navbar navbar-default navbar-fixed-top navbar-static-top" role="navigation">
     <div class="container">
         <button class="navbar-toggler navbar-left button"  data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="True" aria-label="Toggle navigation"> ☰
@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <a class="navbar-brand navbar-right" href="{% url 'accounts:index' %}">پزشکات</a>
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown show navbar-nav navbar-right">
+            <li class="dropdown show navbar-item navbar-right">
                 {% if not user.is_authenticated %}
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,12 +67,11 @@
                         <ul><a class="dropdown-item" href="/register/?id=2" dir="rtl" lang="fa">به عنوان بیمار</a></ul>
 
                     </div>
+                <li><a class="navbar-link navbar-right" href="{% url 'accounts:user_login' %}">ورود</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
+                    <a class="navbar-link navbar-right" href="{% url 'doctor_search:search_page' %}">جست‌وجوی پزشک</a>
                     <li><a class="navbar-link navbar-right" href="{% url 'accounts:logout' %}">خروج</a></li>
-                    <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی پزشک</a></li>
-                {% else %}
-                    <li><a class="navbar-link" href="{% url 'accounts:user_login' %}">ورود</a></li>
                 {% endif %}
 <!--            <li class="navbar-nav navbar-right">-->
 <!--                <form class="navbar-form navbar-left" >-->
