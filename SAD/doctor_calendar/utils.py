@@ -152,6 +152,7 @@ class Calendar(HTMLCalendar):
         start_hour = doctor.start_hour
         end_hour = doctor.end_hour
         available_days = doctor.available_weekdays
+
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
         cal += f'{self.format_month_name(self.jyear, self.jmonth, (self.week[0][0], self.week[-1][0]), duration)}\n'
         cal += f'{self.format_day_header(duration)}\n'

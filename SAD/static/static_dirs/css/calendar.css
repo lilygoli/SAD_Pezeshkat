@@ -1,3 +1,7 @@
+#calendar-div{
+    width: 100%;
+    overflow-x:scroll;
+}
 .calendar {
     background-color: rgba(255, 255, 255, 0.53);
     font-size: small;
@@ -6,6 +10,8 @@
 
 .calendar tr, .calendar td {
     border: 1px solid black;
+    text-align: center;
+    font-size: x-small;
 }
 
 .calendar th {
@@ -41,33 +47,39 @@ a {
 }
 
 .left {
-  float: left;
+    float: left;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .btn {
-  outline: none;
-  color: black;
-  background-color: transparent;
-  box-shadow: 0 0 0 0;
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
 }
 
 .clearfix {
-  margin: 15px;
+    margin: 15px;
 }
 
-.Unavailable-slot{
+.Unavailable-slot {
     background-color: rgba(226, 0, 0, 0.52);
 }
 
-.reserved{
+.reserved {
     background-color: rgba(226, 202, 37, 0.52);
 }
 
-p.cal-title{
+p.cal-title {
     text-align: center;
     font-size: x-small;
 }
+
+p.cal_title {
+    text-align: center;
+    font-size: x-small;
+}
+

@@ -4,6 +4,12 @@ load
 static
 %
 }
+@font-face {
+    font-family: "DimaShekari";
+    font-size: large;
+    src: url("../fonts/DimaShekari.woff") format("woff");
+     font-size-adjust: 0.9;
+}
 
 body {
 
@@ -11,46 +17,48 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
+    background-color: #c5eddd;
+    font-family: 'DimaShekari', serif;
+    font-size-adjust: 0.6;
+
+
 
 }
 
 .jumbotron {
-
+    padding: auto;
+    margin-top: 12%;
     background: rgba(198, 211, 200, 0.76);
-    font-family: Calibri, serif;
-
-    /*background: -moz-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
-    /*background: -webkit-linear-gradient(left, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
-    /*background: linear-gradient(to right, #149554 0%, #37FE2F 50%, #22FBDD 100%);*/
 
 }
 
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
-    font-family: Calibri, sans-serif;
+
 }
 
 .jumbotron h2 {
     color: rgba(24, 66, 65, 0.79);
     font-size: x-large;
-    font-family: B Titr, serif;
+
 }
 
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
-    font-family: "B Titr", sans-serif;
+
 }
 
 .jumbotron h3 {
     color: #f5f5f5;
     font-size: large;
-    font-family: Calibri, sans-serif;
+
 }
 
 .jumbotron p {
     outline-color: black;
+
 }
 
 .error {
@@ -110,7 +118,9 @@ a.dropdown-item:hover {
 nav li {
     transition: 0.5s;
     color: white;
+
 }
+
 
 nav li:hover {
     background-color: #c5eddd;
@@ -119,6 +129,7 @@ nav li:hover {
 
 .nav.navbar-nav li a {
     color: #ffffff;
+    text-align: right;
 }
 
 .errorlist {
@@ -143,4 +154,31 @@ label {
     width: 40%;
 
 }
+
+#brand {
+    font-size: large;
+}
+
+.navbar-toggler {
+    background-color: #c5eddd;
+    margin-top: 0.5%;
+
+}
+
+.navbar-toggler:hover {
+    background-color: #c5eddd;
+    margin-top: 0.5%;
+}
+
+.navbar-toggler:focus {
+    background-color: #c5eddd;
+    margin-top: 0.5%;
+}
+
+@media (min-width: 900px) {
+    .navbar-toggler {
+        display: none;
+    }
+}
+
 

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'doctor_search.apps.DoctorSearchConfig',
     'doctor_calendar.apps.DoctorCalendarConfig',
     'patient_list',
+    'prescription.apps.PrescriptionConfig',
 ]
 
 MIDDLEWARE = [

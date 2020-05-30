@@ -23,6 +23,8 @@ from accounts import urls as u1
 from doctor_search import urls as u2
 from doctor_calendar import urls as u3
 from patient_list import urls as u4
+from prescription import urls as u5
+
 
 
 urlpatterns = [
@@ -31,5 +33,7 @@ urlpatterns = [
                   path('', include(u2)),
                   path('', include(u3)),
                   path('', include(u4)),
+                  path('', include(u4)),
+                  path('', include(u5)),
                   path('accounts/', include('django.contrib.auth.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

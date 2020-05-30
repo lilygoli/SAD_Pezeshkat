@@ -102,21 +102,25 @@ ul.errorlist.error:before {
 
 .carousel-caption {
     top: 0;
+    padding-top: unset;
     bottom: auto;
     text-align: right;
 }
 
 
 .carousel-caption > p {
-    max-width: 30%;
-    font-size: larger;
+    max-width: 40%;
+    max-height: inherit;
+    line-height: normal;
+    font-size: medium;
     font-palette: dark;
     color: black;
 }
 
 .carousel-caption > h3 {
-    max-width: 30%;
-    font-size: larger;
+    max-width: 40%;
+    line-height: normal;
+    font-size: large;
     font-palette: dark;
     color: black;
 }
@@ -138,7 +142,7 @@ ul.errorlist.error:before {
     max-height: 80%;
     position: absolute;
     margin: auto;
-    top: 20vh;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -164,7 +168,8 @@ ul.errorlist.error:before {
 }
 
 .jumbotron {
-    background-color:rgba(182,195,184,0.76) ;
+    background-color: rgba(182, 195, 184, 0.76);
+    margin-top: unset;
 }
 
 #slide {
@@ -178,10 +183,16 @@ ul.errorlist.error:before {
 
 }
 
-.container#chart-container{
-    "background-color: rgba(127,237,223,0.33)" data-aos="fade-up" data-aos-delay="200
+.container#chart-container {
+"background-color: rgba(127,237,223,0.33)" data-aos = "fade-up" data-aos-delay = "200
 }
-.figure.highcharts-figure{
+
+.figure.highcharts-figure {
     position: relative;
     margin: 3%
+}
+
+#chart-div {
+    overflow-x: scroll;
+    align-content: center;
 }
