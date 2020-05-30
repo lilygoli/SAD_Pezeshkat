@@ -50,7 +50,6 @@ def next_week(request, pk, week_num):
     clicks, _ = CalenderWeekClicks.objects.get_or_create(doctor_user_id=doc, patient_user_id=request.user.id)
     back_or_forward = clicks.number_clicks
 
-        # Instantiate our calendar class with today's year and date
     if week_num == '1':
         back_or_forward += 1
     elif week_num == '2':

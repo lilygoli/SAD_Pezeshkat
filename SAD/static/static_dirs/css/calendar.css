@@ -29,7 +29,9 @@
     height: 50px;
 }
 
-
+.calendar a{
+    font-size: 1vw;
+}
 .date-header {
     font-size: 1.5vw;
 }
@@ -78,7 +80,7 @@ a {
     background-color: rgba(226, 202, 37, 0.52);
 }
 .available:hover{
-    background-color: #6DDCBD;
+    background-color: #92dc3d;
 }
 
 p.cal-title {

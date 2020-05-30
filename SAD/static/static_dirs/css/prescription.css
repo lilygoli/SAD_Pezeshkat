@@ -1,0 +1,30 @@
+#submit-button {
+    margin-left: 0;
+    float: left;
+}
+
+#medicine {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.49);
+}
+
+#medicine p {
+    font-size: 1.3vw;
+}
+
+a.delete-row {
+    margin-right: 5%;
+    margin-top: 0;
+    color: #d62732;
+}
+
+a.delete-row:hover {
+    margin-right: 5%;
+    margin-top: 0;
+    color: #950054;
+}
+
+body {
+    background-repeat: repeat;
+}

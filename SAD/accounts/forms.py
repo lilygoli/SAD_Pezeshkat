@@ -196,6 +196,7 @@ class PatientEditProfileInfo(UserChangeForm):
 
 class DoctorEditProfileInfo(UserChangeForm):
     picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
+
     class Meta:
         model = DoctorProfileInfo
         fields = (

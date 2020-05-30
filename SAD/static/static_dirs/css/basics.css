@@ -40,7 +40,10 @@ a{
 }
 
 input {
-  font-size: 1vw
+  font-size: 1.3vw
+}
+.button, input[type="submit"]{
+    font-size: 1.3vw;
 }
 
 .jumbotron h1 {
