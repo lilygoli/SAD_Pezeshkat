@@ -15,15 +15,23 @@ body {
     background-image: url('../images/doc35.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
+
     background-position: center;
     background-color: #c5eddd;
     font-family: 'DimaShekari', serif;
-    font-size-adjust: 0.6;
-
-
+    font-size-adjust: 0.4;
+    font-size: 1.5vw;
 
 }
-
+label{
+    font-size: 1.5vw;
+}
+li{
+    font-size: 1.5vw;
+}
+a{
+    font-size: 1.6vw;
+}
 .jumbotron {
     padding: auto;
     margin-top: 12%;
@@ -31,16 +39,21 @@ body {
 
 }
 
+input {
+  font-size: 1vw
+}
+
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
+    font-size: 5vw
+
 
 }
 
 .jumbotron h2 {
     color: rgba(24, 66, 65, 0.79);
-    font-size: x-large;
-
+    font-size: 1vw;
 }
 
 .jumbotron h1 {

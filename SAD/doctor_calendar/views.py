@@ -30,13 +30,6 @@ class PatientCalendarView(ListView):
         doc = self.kwargs['pk']
         clicks, _ = CalenderWeekClicks.objects.get_or_create(doctor_user_id=doc, patient_user_id=self.request.user.id)
         back_or_forward = clicks.number_clicks
-        # try:
-        #     clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=self.request.user.id)
-        #     back_or_forward = clicks.number_clicks
-        # except Exception:
-        #     clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=self.request.user.id, number_clicks=0)
-        #     clicks.save()
-        #     back_or_forward = 0
 
         if self.kwargs['week_num'] == '0':
             back_or_forward = 0
@@ -56,13 +49,6 @@ def next_week(request, pk, week_num):
     doc = pk
     clicks, _ = CalenderWeekClicks.objects.get_or_create(doctor_user_id=doc, patient_user_id=request.user.id)
     back_or_forward = clicks.number_clicks
-    # try:
-    #     clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=request.user.id)
-    #     back_or_forward = clicks.number_clicks
-    # except Exception:
-    #     clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=request.user.id, number_clicks=0)
-    #     clicks.save()
-    #     back_or_forward = 0
 
         # Instantiate our calendar class with today's year and date
     if week_num == '1':
@@ -81,13 +67,6 @@ def doctor_next_week(request, week_num):
     doc = request.user
     clicks, _ = DoctorCalenderWeekClicks.objects.get_or_create(doctor_user_id=doc)
     back_or_forward = clicks.number_clicks
-    # try:
-    #     clicks = DoctorCalenderWeekClicks.objects.get(doctor_user=doc)
-    #     back_or_forward = clicks.number_clicks
-    # except Exception:
-    #     clicks = DoctorCalenderWeekClicks.objects.get(doctor_user=doc, number_clicks=0)
-    #     clicks.save()
-    #     back_or_forward = 0
 
         # Instantiate our calendar class with today's year and date
     if week_num == '1':
@@ -114,13 +93,6 @@ class DoctorCalenderView(ListView):
         doc = self.request.user.id
         clicks, _ = DoctorCalenderWeekClicks.objects.get_or_create(doctor_user_id=doc)
         back_or_forward = clicks.number_clicks
-        # try:
-        #     clicks = DoctorCalenderWeekClicks.objects.get(doctor_user_id=doc)
-        #     back_or_forward = clicks.number_clicks
-        # except Exception:
-        #     clicks = DoctorCalenderWeekClicks(doctor_user_id=doc, number_clicks=0)
-        #     clicks.save()
-        #     back_or_forward = 0
 
         if self.kwargs['week_num'] == '0':
             back_or_forward = 0

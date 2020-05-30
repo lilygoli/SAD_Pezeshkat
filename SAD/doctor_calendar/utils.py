@@ -114,7 +114,7 @@ class Calendar(HTMLCalendar):
 
                     else:
                         if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday > self.day:
-                            cal += f'<td onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
+                            cal += f'<td class="available" onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
                         else:
                             cal += f'<td onclick=myAlert()>   </td>'
 

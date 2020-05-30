@@ -20,11 +20,7 @@ body {
 }
 
 .jumbotron {
-
     background: inherit;
-
-    /*box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);*/
-    /*filter: blur(5px);*/
 
 }
 
@@ -32,25 +28,29 @@ body {
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
+    font-size: 5vw;
+
 }
 
 .jumbotron h2 {
     color: rgba(24, 66, 65, 0.79);
-    font-size: x-large;
+    font-size: 1vw;
 }
 
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
+    font-size: 4vw;
 }
 
 .jumbotron h3 {
     color: #f5f5f5;
-    font-size: large;
+    font-size: 1vw;
 }
 
 .jumbotron p {
     outline-color: black;
+    font-size: 1.4vw;
 }
 
 .error {
@@ -64,14 +64,14 @@ body {
 ul.errorlist {
     color: #c32b8e;
     background: none;
-    font-size: xx-small;
+    font-size: 0.5vw;
 
 }
 
 ul.errorlist.error:before {
     content: ".";
     color: #c32b8e;
-    font-size: x-large;
+    font-size: 5vw;
 }
 
 .navbar {
@@ -85,13 +85,16 @@ ul.errorlist.error:before {
     background-color: rgba(255, 255, 255, 0.09);
 
 }
-
+.carousel-indicators{
+    width: 50vw;
+}
 .carousel-indicators .active {
     background: yellow;
+
 }
 
 .carousel-inner > .item > img {
-    width: 40vh;
+    width: 20vw;
     height: 40vh;
     float: left;
     margin-left: 25vh;
@@ -107,6 +110,8 @@ ul.errorlist.error:before {
     padding-top: unset;
     bottom: auto;
     text-align: right;
+    font-size: 1.5vw;
+
 }
 
 
@@ -114,15 +119,16 @@ ul.errorlist.error:before {
     max-width: 40%;
     max-height: inherit;
     line-height: normal;
-    font-size: medium;
     font-palette: dark;
     color: black;
+    font-size: 1.3vw;
+
 }
 
 .carousel-caption > h3 {
     max-width: 40%;
     line-height: normal;
-    font-size: large;
+    font-size: 1.5vw;
     font-palette: dark;
     color: black;
 }
@@ -156,8 +162,7 @@ ul.errorlist.error:before {
     background-image: none;
     color: rgba(24, 66, 65, 0.79);
     text-align: center;
-    font-size: medium;
-    font-family: B Titr, serif;
+    font-size: 1vw;
 }
 
 #profile {
