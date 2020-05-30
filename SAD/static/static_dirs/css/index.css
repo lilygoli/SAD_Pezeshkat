@@ -4,17 +4,23 @@ load
 static
 %
 }
+@font-face {
+    font-family: "DimaShekari";
+    font-size: large;
+    src: url("../fonts/DimaShekari.woff") format("woff");
+}
+
 
 body {
-
     background-image: none;
     background-color: rgba(197, 237, 221, 0.54);
+    font-family: 'DimaShekari', serif;
+
 
 }
 
 .jumbotron {
 
-    font-family: Calibri, serif;
     background: inherit;
 
     /*box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);*/
@@ -26,25 +32,21 @@ body {
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
-    font-family: Calibri, sans-serif;
 }
 
 .jumbotron h2 {
     color: rgba(24, 66, 65, 0.79);
     font-size: x-large;
-    font-family: "B Titr", serif;
 }
 
 .jumbotron h1 {
     color: rgba(0, 0, 0, 0.57);
     text-align: center;
-    font-family: "B Titr", sans-serif;
 }
 
 .jumbotron h3 {
     color: #f5f5f5;
     font-size: large;
-    font-family: Calibri, sans-serif;
 }
 
 .jumbotron p {

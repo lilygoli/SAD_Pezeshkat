@@ -8,7 +8,6 @@ static
     font-family: "DimaShekari";
     font-size: large;
     src: url("../fonts/DimaShekari.woff") format("woff");
-     font-size-adjust: 0.9;
 }
 
 body {
