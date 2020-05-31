@@ -6,14 +6,6 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    {% if errors is not None %}
-                        <div class="alert alert-danger">
-                            <strong>خطا!</strong>
-                            {% for i in errors %}
-                                <ul>{{ i }}</ul>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
                     <form class="box" enctype="multipart/form-data" method="POST">
                         <h1 class="head">صفحه ثبت نام </h1>
                          <p class="text-muted">لطفا فرم زیر را تکمیل کنید.</p>
@@ -23,6 +15,14 @@
                         {{ profile_form.as_p }}
                     <input type="submit" name="" value="ثبت نام">
                      </form>
+                    {% if errors is not None %}
+                        <div class="alert alert-danger">
+                            <strong>خطا!</strong>
+                            {% for i in errors %}
+                                <ul>{{ i }}</ul>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
