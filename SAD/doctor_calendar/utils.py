@@ -1,9 +1,10 @@
-from calendar import HTMLCalendar
 import datetime
+from calendar import HTMLCalendar
+
 import jdatetime
-from accounts.models import User, DoctorProfileInfo
 from django.urls import reverse
 
+from accounts.models import User, DoctorProfileInfo
 from .models import Event
 
 
@@ -14,8 +15,8 @@ class Calendar(HTMLCalendar):
         self.year = year
         self.month = month
         self.day = day
-        self.date = datetime.date(year, month, day) + datetime.timedelta(days=abs(offset) * 7) if offset > 0 else\
-                    datetime.date(year, month, day) - datetime.timedelta(days=abs(offset) * 7)
+        self.date = datetime.date(year, month, day) + datetime.timedelta(days=abs(offset) * 7) if offset > 0 else \
+            datetime.date(year, month, day) - datetime.timedelta(days=abs(offset) * 7)
         self.jyear, self.jmonth, self.jday, self.week_day = self.find_jdate(self.date.year, self.date.month,
                                                                             self.date.day)
         self.jmonth_range = self.fix_kabise(self.jyear)
@@ -80,18 +81,19 @@ class Calendar(HTMLCalendar):
 
     @staticmethod
     def iter_hours(duration):
-        h_range = [8 + i * duration for i in range(int((20-8)/duration) + 1)]
+        h_range = [8 + i * duration for i in range(int((20 - 8) / duration) + 1)]
         for i in h_range:
             yield i
 
     def format_weekdays(self, week, events, duration, start_hour, available_days, end_hour):
         out = ''
         for date, i in week:
-            gdate = jdatetime.JalaliToGregorian(date.year,date.month, date.day)
+            gdate = jdatetime.JalaliToGregorian(date.year, date.month, date.day)
             cal = f'<th class="%s">%s</th>' % (
                 self.cssclasses_weekday_head[i], self.day_abr[i])
             for hour in self.iter_hours(duration):
-                event_of_hour = events.filter(start_hour=hour, start_time__day=gdate.gday, start_time__month=gdate.gmonth,
+                event_of_hour = events.filter(start_hour=hour, start_time__day=gdate.gday,
+                                              start_time__month=gdate.gmonth,
                                               start_time__year=gdate.gyear)
                 if event_of_hour:
                     if not self.curr_user.id == self.doctor:
@@ -107,14 +109,20 @@ class Calendar(HTMLCalendar):
                         patient = User.objects.filter(email=event_of_hour[0].patient_user)
                         title = patient[0].name + " " + patient[0].family_name
                         url = reverse('accounts:mini_profile', args=(event_of_hour[0].patient_user.id,))
-                        cal += f'<td><p>{title}</p><a href="{url}">mini_profile</a> </td>'
+                        prescription_url = reverse('prescription:make-prescription', args=(
+                            event_of_hour[0].doctor_user_id, event_of_hour[0].patient_user.id, event_of_hour[0].id))
+                        cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>' \
+                               f' <a href="{prescription_url}"> ایجاد نسخه </td>'
                 else:
-                    if not(start_hour <= hour <= end_hour and available_days[i] == '1'):
+                    if not (start_hour <= hour <= end_hour and available_days[i] == '1'):
                         cal += f'<td class="Unavailable-slot">' '</td>'
 
+                    elif self.curr_user.id == self.doctor:
+                        cal += f'<td>' '</td>'
                     else:
                         if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday > self.day:
-                            cal += f'<td onclick=tdclick(' + '"' + str(date) + '#' + str(hour) + '"' + ')>    </td>'
+                            cal += f'<td class="available" onclick=tdclick(' + '"' + str(date) + '#' + str(
+                                hour) + '"' + ')>    </td>'
                         else:
                             cal += f'<td onclick=myAlert()>   </td>'
 
@@ -140,7 +148,7 @@ class Calendar(HTMLCalendar):
         return '<tr>%s</tr>' % s
 
     def format_month_name(self, theyear, themonth, date_range, duration):
-        s = '%s %s' % (self.month_name[themonth-1], theyear)
+        s = '%s %s' % (self.month_name[themonth - 1], theyear)
         out = '<tr><th colspan="30" class="%s">%s <pre> از تاریخ %s تا %s </pre></th></tr>' % (
             'date-header', s, str(date_range[0]), str(date_range[1]))
         return out
@@ -152,6 +160,7 @@ class Calendar(HTMLCalendar):
         start_hour = doctor.start_hour
         end_hour = doctor.end_hour
         available_days = doctor.available_weekdays
+
         cal = f'<table border="0" cellpadding="0" cellspacing="0"     class="calendar">\n'
         cal += f'{self.format_month_name(self.jyear, self.jmonth, (self.week[0][0], self.week[-1][0]), duration)}\n'
         cal += f'{self.format_day_header(duration)}\n'

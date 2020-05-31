@@ -1,3 +1,11 @@
+#calendar-div{
+    width: 100%;
+    overflow-x:scroll;
+}
+#calendar-div{
+    width: 100%;
+    overflow-x:scroll;
+}
 .calendar {
     background-color: rgba(255, 255, 255, 0.53);
     font-size: small;
@@ -6,11 +14,13 @@
 
 .calendar tr, .calendar td {
     border: 1px solid black;
+    text-align: center;
+    font-size: 1vw;
 }
 
 .calendar th {
     text-align: center;
-    font-size: x-small;
+    font-size: 1vw;
 
 }
 
@@ -19,16 +29,19 @@
     height: 50px;
 }
 
+.calendar a{
+    font-size: 1vw;
+}
 .date-header {
-    font-size: small;
+    font-size: 1.5vw;
 }
 
 .date-range {
-    font-size: small;
+    font-size: 1.5vw;
 }
 
 .date {
-    font-size: small;
+    font-size: 1.5vw;
 }
 
 ul {
@@ -41,33 +54,42 @@ a {
 }
 
 .left {
-  float: left;
+    float: left;
 }
 
 .right {
-  float: right;
+    float: right;
 }
 
 .btn {
-  outline: none;
-  color: black;
-  background-color: transparent;
-  box-shadow: 0 0 0 0;
+    outline: none;
+    color: black;
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
 }
 
 .clearfix {
-  margin: 15px;
+    margin: 15px;
 }
 
-.Unavailable-slot{
+.Unavailable-slot {
     background-color: rgba(226, 0, 0, 0.52);
 }
 
-.reserved{
+.reserved {
     background-color: rgba(226, 202, 37, 0.52);
 }
-
-p.cal-title{
-    text-align: center;
-    font-size: x-small;
+.available:hover{
+    background-color: #92dc3d;
 }
+
+p.cal-title {
+    text-align: center;
+    font-size: 1vw;
+}
+
+p.cal_title {
+    text-align: center;
+    font-size: 1vw;
+}
+

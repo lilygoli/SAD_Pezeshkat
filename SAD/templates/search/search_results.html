@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body_block %}
-    <div class="container">
-    {% for doctor in object_list %}
-        <ul>
-            <div class="jumbotron">
-                <li>
-                    <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
-                    <br/>
-                    آدرس : {{ doctor.address }}
-                    {% if user.doctorprofileinfo.profile_pic %}
-                        <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
-                    {% else %}
-                        <img src="{% static "default.jpg" %}" width="120" height="120">
-                    {% endif %}
-                    <br/>
-                </li>
-            </div>
-            <div/>
-        </ul>
-    {% endfor %}
+    <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
+
+
+    <div class="container" id="search-container">
+        {% for doctor in object_list %}
+            <ul>
+                <div class="jumbotron">
+                    <li>
+                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+                        <br/>
+                        آدرس : {{ doctor.address }}
+                        {% if user.doctorprofileinfo.profile_pic %}
+                            <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
+                        {% else %}
+                            <img src="{% static "default.jpg" %}" width="120" height="120">
+                        {% endif %}
+                        <br/>
+                    </li>
+                </div>
+                <div/>
+            </ul>
+        {% endfor %}
     </div>
+
 {% endblock %}

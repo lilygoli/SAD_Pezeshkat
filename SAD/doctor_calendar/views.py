@@ -28,13 +28,8 @@ class PatientCalendarView(ListView):
         d = get_date(self.request.GET.get('day', None))
 
         doc = self.kwargs['pk']
-        try:
-            clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=self.request.user.id)
-            back_or_forward = clicks.number_clicks
-        except Exception:
-            clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=self.request.user.id, number_clicks=0)
-            clicks.save()
-            back_or_forward = 0
+        clicks, _ = CalenderWeekClicks.objects.get_or_create(doctor_user_id=doc, patient_user_id=self.request.user.id)
+        back_or_forward = clicks.number_clicks
 
         if self.kwargs['week_num'] == '0':
             back_or_forward = 0
@@ -52,17 +47,9 @@ class PatientCalendarView(ListView):
 
 def next_week(request, pk, week_num):
     doc = pk
-    try:
-        print(doc, request.user.id)
-        clicks = CalenderWeekClicks.objects.get(doctor_user=doc, patient_user=request.user.id)
-        back_or_forward = clicks.number_clicks
-        print("ck", clicks.number_clicks)
-    except Exception:
-        clicks = CalenderWeekClicks(doctor_user_id=doc, patient_user_id=request.user.id, number_clicks=0)
-        clicks.save()
-        back_or_forward = 0
+    clicks, _ = CalenderWeekClicks.objects.get_or_create(doctor_user_id=doc, patient_user_id=request.user.id)
+    back_or_forward = clicks.number_clicks
 
-        # Instantiate our calendar class with today's year and date
     if week_num == '1':
         back_or_forward += 1
     elif week_num == '2':
@@ -75,6 +62,24 @@ def next_week(request, pk, week_num):
     return redirect('doctor_calendar:calendar', pk=doc, week_num=3)
 
 
+def doctor_next_week(request, week_num):
+    doc = request.user
+    clicks, _ = DoctorCalenderWeekClicks.objects.get_or_create(doctor_user_id=doc)
+    back_or_forward = clicks.number_clicks
+
+        # Instantiate our calendar class with today's year and date
+    if week_num == '1':
+        back_or_forward += 1
+    elif week_num == '2':
+        back_or_forward -= 1
+    elif week_num == '0':
+        back_or_forward = 0
+
+    clicks.number_clicks = back_or_forward
+    clicks.save()
+    return redirect('doctor_calendar:schedule', week_num=3)
+
+
 class DoctorCalenderView(ListView):
     model = Event
     template_name = 'calendar/doctor_calender.html'
@@ -84,20 +89,11 @@ class DoctorCalenderView(ListView):
 
         # use today's date for the calendar
         d = get_date(self.request.GET.get('day', None))
+        doc = self.request.user.id
+        clicks, _ = DoctorCalenderWeekClicks.objects.get_or_create(doctor_user_id=doc)
+        back_or_forward = clicks.number_clicks
 
-        try:
-            clicks = DoctorCalenderWeekClicks.objects.get(doctor_user=self.request.user)
-            back_or_forward = clicks.number_clicks
-        except Exception:
-            clicks = DoctorCalenderWeekClicks(doctor_user=self.request.user, number_clicks=0)
-            clicks.save()
-            back_or_forward = 0
-        # Instantiate our calendar class with today's year and date
-        if self.kwargs['week_num'] == '1':
-            back_or_forward += 1
-        elif self.kwargs['week_num'] == '2':
-            back_or_forward -= 1
-        else:
+        if self.kwargs['week_num'] == '0':
             back_or_forward = 0
         clicks.number_clicks = back_or_forward
         clicks.save()

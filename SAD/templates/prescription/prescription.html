@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/prescription.css' %}">
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="jumbotron">
+            {{ medicine_formset.management_form }}
+            <h1>داروها</h1>
+            {% for med_form in medicine_formset %}
+                <div class="medicine-formset">
+                    <div class="jumbotron" id="medicine">
+                        <p>نام:{{ med_form.name }}
+                        <p>توضیح:{{ med_form.description }}</p>
+                        <p>هر {{ med_form.time_interval }} ساعت یکبار.</p>
+                        <p>مقدار هر بار مصرف (گرم):{{ med_form.dosage_every_time }}</p>
+                        <p>مقدار کل مصرف (گرم):{{ med_form.total_dosage }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% if medicine_formset.non_form_errors %}
+                {% for error in link_formset.non_form_errors %}
+                    {{ error|escape }}
+                {% endfor %}
+            {% endif %}
+            <div id="submit-button">
+                <input type="submit" value="ذخیره" class="button"/>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- Include formset plugin - including jQuery dependency -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"></script>
+    <script>
+        $('.medicine-formset').formset({
+            deleteText: 'حذف دارو',
+            addText: 'اضافه کردن دارو جدید'
+        });
+    </script>
+{% endblock %}

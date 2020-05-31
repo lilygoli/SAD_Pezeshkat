@@ -30,9 +30,23 @@ def index(request):
     else:
         args = {'user': user}
         if user.is_doctor:
+            args.update({"days": get_week_days(user)})
             return render(request, 'registration/doctor_profile.html', args)
         else:
             return render(request, 'registration/patient_profile.html', args)
+
+
+def get_week_days(user):
+    work_days = ""
+    doctor_days = user.doctorprofileinfo.available_weekdays
+    week = {0: "شنبه", 1: "یک‌‌شنبه", 2: "دوشنبه", 3: "سه‌شنبه", 4: "چهار‌شنبه", 5: "پنج‌شنبه", 6: "جمعه"}
+    for i in range(len(doctor_days)):
+        if doctor_days[i] == '1':
+            if work_days == "":
+                work_days += week.get(i)
+            else:
+                work_days += "، " + week.get(i)
+    return work_days
 
 
 @login_required
@@ -159,6 +173,7 @@ def mini_profile(request, pk):
     user_2 = User.objects.get(pk=pk)
     args = {'user': user_2}
     if user_2.is_doctor:
+        args.update({"days": get_week_days(user_2)})
         return render(request, 'registration/doctor_mini_profile.html', args)
     else:
         return render(request, 'registration/patient_mini_profile.html', args)

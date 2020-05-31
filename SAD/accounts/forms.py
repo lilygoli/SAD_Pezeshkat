@@ -97,7 +97,7 @@ class DoctorProfileInfoForm(forms.ModelForm):
             "address": "آدرس",
             "score": "امتیاز",
             'visit_duration': 'مدت زمان متوسط هر ویزیت',
-            'available_weekdays': 'روزهای کاری هفته',
+            'available_weekdays': 'روزهای کاری ',
             'start_hour': 'ساعت سروع کار',
             'end_hour': 'ساعت پایان کار'
         }
@@ -184,21 +184,24 @@ class PatientEditProfileInfo(UserChangeForm):
         del self.fields['password']  # This is a declared field we really want to be removed
 
     def save(self, commit=True):
-        if self.is_valid():
-            # Get instance with self.instance & only update if a value's changed:
-            for field_name in self.fields:
-                if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                    setattr(self.instance, field_name, self.cleaned_data[field_name])
-                    self.instance.save()
+        if commit:
+            if self.is_valid():
+                # Get instance with self.instance & only update if a value's changed:
+                for field_name in self.fields:
+                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
+                        setattr(self.instance, field_name, self.cleaned_data[field_name])
+                        self.instance.save()
         return self.instance
 
 
 class DoctorEditProfileInfo(UserChangeForm):
+    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
+
     class Meta:
         model = DoctorProfileInfo
         fields = (
             'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
-            'address')
+            'address', 'visit_duration', 'start_hour', 'end_hour')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -208,6 +211,10 @@ class DoctorEditProfileInfo(UserChangeForm):
             'fee': "حق ویزیت",
             'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
             'address': "آدرس",
+            'visit_duration': 'مدت زمان متوسط هر ویزیت',
+            'available_weekdays': 'روزهای کاری ',
+            'start_hour': 'ساعت شروع کار',
+            'end_hour': 'ساعت پایان کار'
         }
 
     def __init__(self, *args, **kwargs):
@@ -215,13 +222,24 @@ class DoctorEditProfileInfo(UserChangeForm):
         del self.fields['password']  # This is a declared field we really want to be removed
 
     def save(self, commit=True):
-        if self.is_valid():
-            # Get instance with self.instance & only update if a value's changed:
-            for field_name in self.fields:
-                if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                    setattr(self.instance, field_name, self.cleaned_data[field_name])
-                    self.instance.save()
+        if commit:
+            if self.is_valid():
+                # Get instance with self.instance & only update if a value's changed:
+                for field_name in self.fields:
+                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
+                        setattr(self.instance, field_name, self.cleaned_data[field_name])
+                        self.instance.save()
         return self.instance
+
+    def clean_available_weekdays(self):
+        picked = self.cleaned_data['picked']
+        s = ''
+        for i in range(7):
+            if str(i) in picked:
+                s += '1'
+            else:
+                s += '0'
+        return s
 
 
 class UserSetPassword(SetPasswordForm):

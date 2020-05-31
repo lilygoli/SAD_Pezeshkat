@@ -46,11 +46,19 @@
 
         <p> آدرس : {{user.doctorprofileinfo.address}}</p>
 
-        {% if user.doctorprofileinfo.score is None %}
+        {% if user.doctorprofileinfo.score == 0.0 %}
             <p>امتیاز : وارد نشده‌است.</p>
         {% else %}
             <p>امتیاز : {{user.doctorprofileinfo.sore}}</p>
         {% endif %}
+
+<!--        <p>مدت زمان ویزیت : {{user.doctorprofileinfo.visit_duration}} ساعت</p>-->
+
+<!--        <p>ساعات کاری : {{user.doctorprofileinfo.start_hour}} تا {{user.doctorprofileinfo.end_hour}}</p>-->
+
+<!--        <p>روزهای کاری : {{days}}</p>-->
+
         <a href="{% url 'doctor_calendar:schedule' 0 %}"><input type=button value='مشاهده برنامه‌ی هفتگی'></a>
+        <a href="{% url 'patient_list:list' %}"><input type=button value='مشاهده لیست بیماران'></a>
 </div>
 {% endblock %}
