@@ -5,3 +5,12 @@ body {
 #search-container{
     background-image: url("../images/doc35.jpg");
 }
+
+.jumbotron:hover {
+    background: #55ffce ;
+    transition: 0.5s;
+}
+
+li{
+    display: block;
+}
