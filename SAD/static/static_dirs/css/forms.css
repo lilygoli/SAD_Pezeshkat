@@ -1,6 +1,7 @@
 body {
     overflow-x: hidden;
     height: 100%;
+    background-image: url("../images/doc35.jpg");
 }
 .head{
     color: rgba(0, 0, 0, 0.57);
@@ -32,7 +33,13 @@ body {
 }
 
 .box input[type="text"],
-.box input[type="password"] {
+.box input[type="password"],
+.box input[type="email"],
+.box input[type="date"],
+.box input[type="number"],
+.box input[type="url"],
+.box select,
+.box input[type="file"]{
     background: none;
     display: block;
     margin: 20px auto;
@@ -41,10 +48,11 @@ body {
     padding: 10px 10px;
     width: 250px;
     outline: none;
-    color: white;
+    color: black;
     /*border-radius: 24px;*/
     transition: 0.25s
 }
+ /* todo .box input[type="checkbox"] */
 
 .box h1 {
     color: white;
@@ -53,12 +61,17 @@ body {
 }
 
 .box input[type="text"]:focus,
-.box input[type="password"]:focus {
+.box input[type="password"]:focus,
+.box input[type="email"]:focus,
+.box input[type="date"]:focus,
+.box input[type="number"]:focus,
+.box input[type="url"]:focus,
+.box select:focus{
     width: 300px;
     border-color: cornflowerblue;
 }
 
-.box input[type="submit"] {
+.box input[type="submit"]{
     background: none;
     display: block;
     margin: 20px auto;
@@ -66,7 +79,7 @@ body {
     border: 2px solid cornflowerblue;
     padding: 14px 40px;
     outline: none;
-    color: white;
+    color: darkblue;
     /*border-radius: 24px;*/
     transition: 0.25s;
     cursor: pointer
