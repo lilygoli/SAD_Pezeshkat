@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body_block %}
-    <div class="container">
+    <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
+    <div class="container" id="search-container">
     {% for patient in patients %}
         <ul>
             <div class="jumbotron">
