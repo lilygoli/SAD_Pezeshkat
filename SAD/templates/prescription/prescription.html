@@ -1,32 +1,77 @@
 {% extends "base.html" %}
+
 {% load static %}
+
+
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/prescription.css' %}">
 
 
     <form method="post">
         {% csrf_token %}
+        <div class="jumbotron" id="total-container">
+            <div class="jumbotron" id="middle-jumbotron">
+                {{ medicine_formset.management_form }}
+                <h1>داروها</h1>
+                {% for med_form in medicine_formset %}
+                    <div class="medicine-formset">
+                        <div class="jumbotron" id="{{ forloop.counter0 }}"
+                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                            {{ med_form.as_p }}
 
-        <div class="jumbotron">
-            {{ medicine_formset.management_form }}
-            <h1>داروها</h1>
-            {% for med_form in medicine_formset %}
-                <div class="medicine-formset">
-                    <div class="jumbotron" id="medicine">
-                        <p>نام:{{ med_form.name }}
-                        <p>توضیح:{{ med_form.description }}</p>
-                        <p>هر {{ med_form.time_interval }} ساعت یکبار.</p>
-                        <p>مقدار هر بار مصرف (گرم):{{ med_form.dosage_every_time }}</p>
-                        <p>مقدار کل مصرف (گرم):{{ med_form.total_dosage }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-
-            {% if medicine_formset.non_form_errors %}
-                {% for error in link_formset.non_form_errors %}
-                    {{ error|escape }}
                 {% endfor %}
-            {% endif %}
+
+                {% if medicine_formset.non_form_errors %}
+                    {% for error in link_formset.non_form_errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="jumbotron" id="middle-jumbotron">
+                {{ test_formset.management_form }}
+                <h1>آزمایش‌ها</h1>
+                {% for test_form in test_formset %}
+                    <div class="test-formset">
+                        <div class="jumbotron" id="{{ forloop.counter0 }}"
+                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                            {{ test_form.as_p }}
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if test_formset.non_form_errors %}
+                    {% for error in link_formset.non_form_errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="jumbotron" id="middle-jumbotron">
+                {{ injection_formset.management_form }}
+                <h1>تزریقات</h1>
+
+                {% for inj_form in injection_formset %}
+                    <div class="injection-formset">
+                        <div class="jumbotron" id="{{ forloop.counter0 }}"
+                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                            {{ inj_form.as_p }}
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+                {% if injection_formset.non_form_errors %}
+                    {% for error in link_formset.non_form_errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
             <div id="submit-button">
                 <input type="submit" value="ذخیره" class="button"/>
             </div>
@@ -40,7 +85,51 @@
     <script>
         $('.medicine-formset').formset({
             deleteText: 'حذف دارو',
-            addText: 'اضافه کردن دارو جدید'
+            addText: 'اضافه کردن دارو جدید',
+            removed: function (row) {
+                var idx = row.children()[0].id;
+                var url = window.location.pathname;
+                $.ajax({
+                    url: url + "delete-med/" + idx.toString(),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+
+                });
+            }
+        });
+
+        $('.test-formset').formset({
+            deleteText: 'حذف آزمایش',
+            addText: 'اضافه کردن آزمایش جدید',
+            removed: function (row) {
+                var idx = row.children()[0].id;
+                var url = window.location.pathname;
+                $.ajax({
+                    url: url + "delete-test/" + idx.toString(),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+
+                });
+            }
+
+        });
+
+        $('.injection-formset').formset({
+            deleteText: 'حذف تزریق',
+            addText: 'اضافه کردن تزریق جدید',
+            removed: function (row) {
+                var idx = row.children()[0].id;
+                var url = window.location.pathname;
+                $.ajax({
+                    url: url + "delete-injection/" + idx.toString(),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+
+                });
+            }
         });
     </script>
 {% endblock %}
