@@ -14,7 +14,7 @@
                         <img src="{% static "default.jpg" %}" width="120" height="120">
                     {% endif %}
                     <br/>
-                    <a class="btn btn-info"> مشاهده نسخه‌ها </a>
+                    <a class="btn btn-info" href="{% url 'prescription_list:pre_list' patient.user.pk%}">مشاهده نسخه‌ها</a>
                 </li>
             </div>
             <div/>

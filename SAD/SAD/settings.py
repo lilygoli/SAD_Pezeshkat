@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'doctor_calendar.apps.DoctorCalendarConfig',
     'patient_list',
     'prescription.apps.PrescriptionConfig',
+    'prescription_list',
 ]
 
 MIDDLEWARE = [
