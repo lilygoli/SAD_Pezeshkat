@@ -17,6 +17,7 @@ class Prescriptions(models.Model):
 
 class Tests(models.Model):
     prescription = models.ForeignKey(to=Prescriptions, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
+    form_row = models.IntegerField(null=False)
     name = models.CharField(max_length=200, null=False)
     description = models.CharField(max_length=1000, null=True)
     deadline = jmodels.jDateField(null=False)
@@ -38,6 +39,7 @@ class Medicine(models.Model):
 
 class Injections(models.Model):
     prescription = models.ForeignKey(to=Prescriptions, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
+    form_row = models.IntegerField(null=False)
     name = models.CharField(max_length=200, null=False)
     description = models.CharField(max_length=1000, null=True)
     deadline = jmodels.jDateField(null=False)

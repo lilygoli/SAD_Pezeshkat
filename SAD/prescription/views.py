@@ -38,36 +38,60 @@ def write_prescription(request, **kwargs):
         for l in injections]
 
     if request.method == 'POST':
-        medicine_formset = MedFormSet(request.POST)
-        # test_formset = TestFormSet(request.POST)
-        # injection_formset = InjectionFormSet(request.POST)
+        medicine_formset = MedFormSet(request.POST, prefix='med')
+        test_formset = TestFormSet(request.POST, prefix='test')
+        injection_formset = InjectionFormSet(request.POST, prefix='injection')
+
 
         # Now save the data for each form in the formset
-        count = 0
-        return_flag = True
-        for med_form in medicine_formset:
-            empty, idx = med_form.check_completeness()
-            print("Count", count)
+        return_flag1 = make_item(medicine_formset, prescription_id, Medicine)
+        return_flag2 = make_item(test_formset, prescription_id, Tests)
+        return_flag3 = make_item(injection_formset, prescription_id, Injections)
+
+        if return_flag1 and return_flag2 and return_flag3:
+            return redirect('doctor_calendar:schedule', week_num=0)
+
+    else:
+
+        medicine_formset = MedFormSet(initial=medicine_list, prefix='med')
+        test_formset = TestFormSet(initial=test_list, prefix='test')
+        injection_formset = InjectionFormSet(initial=injection_list, prefix='injection')
+
+    context = {
+        'medicine_formset': medicine_formset,
+        'test_formset': test_formset,
+        'injection_formset': injection_formset,
+    }
+
+    return render(request, 'prescription/prescription.html', context)
+
+
+def make_item(medicine_formset, prescription_id, med_class):
+    count = 0
+    return_flag = True
+    # print("AAAAAAA",medicine_formset.forms)
+    for med_form in medicine_formset:
+        empty, idx = med_form.check_completeness()
+        print("Count", count, idx, empty)
+        if not empty or count not in idx:
             if med_form.is_valid():
-                # print("chap", med_form)
-                # print("validddd")
-                if not empty or count != idx:
-                    m = med_form.save(commit=False)
-                    last_m = Medicine.objects.filter(prescription_id=prescription_id, form_row=count)
-                    # print("lastm",last_m)
-                    if len(last_m) <= 0:
-                        m.prescription_id = prescription_id
-                        m.form_row = count
-                        m.save()
-                    else:
-                        last_m = last_m[0]
-                        flag = False
-                        if m.name != last_m.name:
-                            last_m.name = m.name
-                            flag = True
-                        if m.description != last_m.description:
-                            last_m.description = m.description
-                            flag = True
+                # print("validdd")
+                m = med_form.save(commit=False)
+                last_m = med_class.objects.filter(prescription_id=prescription_id, form_row=count)
+                if len(last_m) <= 0:
+                    m.prescription_id = prescription_id
+                    m.form_row = count
+                    m.save()
+                else:
+                    last_m = last_m[0]
+                    flag = False
+                    if m.name != last_m.name:
+                        last_m.name = m.name
+                        flag = True
+                    if m.description != last_m.description:
+                        last_m.description = m.description
+                        flag = True
+                    if med_class == Medicine:
                         if m.time_interval != last_m.time_interval:
                             last_m.time_interval = m.time_interval
                             flag = True
@@ -77,46 +101,18 @@ def write_prescription(request, **kwargs):
                         if m.total_dosage != last_m.total_dosage:
                             last_m.total_dosage = m.total_dosage
                             flag = True
-                        if flag:
-                            last_m.save()
+                    else:
+                        if m.deadline != last_m.deadline:
+                            last_m.deadline = m.deadline
+                            flag = True
+                    if flag:
+                        last_m.save()
 
             else:
                 return_flag = False
                 print(med_form.errors)
-            count += 1
-        # for test_form in test_formset:
-        #     if test_form.is_valid():
-        #         t = test_form.save(commit=False)
-        #         t.prescription_id = prescription_id
-        #         t.save()
-        #     else:
-        #         print("testform")
-        #         print(test_form.errors)
-        # for injection_form in injection_formset:
-        #     if injection_form.is_valid():
-        #         i = injection_form.save()
-        #         i.prescription_id = prescription_id
-        #         i.save()
-        #
-        #     else:
-        #         print("injection")
-        #         print(injection_form.errors)
-        if return_flag:
-            return redirect('doctor_calendar:schedule', week_num=0)
-
-    else:
-
-        medicine_formset = MedFormSet(initial=medicine_list)
-        test_formset = TestFormSet(initial=test_list)
-        injection_formset = InjectionFormSet(initial=injection_list)
-
-    context = {
-        'medicine_formset': medicine_formset,
-        # 'test_formset': test_formset,
-        # 'injection_formset': injection_formset,
-    }
-
-    return render(request, 'prescription/prescription.html', context)
+        count += 1
+    return return_flag
 
 
 def delete_med(request, med_id, prescription_id):

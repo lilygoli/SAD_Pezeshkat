@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from accounts.forms import DateInput
 from .models import Tests, Medicine, Injections
 
 
@@ -8,7 +9,7 @@ class MedForm(forms.ModelForm):
     """
     Form for individual medicines
     """
-
+    prefix = 'med'
     class Meta:
         model = Medicine
         fields = (
@@ -25,21 +26,21 @@ class MedForm(forms.ModelForm):
     def check_completeness(self):
         print("DDDD", self.data)
         empty = False
-        idx = -1
-        for i in range(int(self.data['form-TOTAL_FORMS'])):
-            if not self.data['form-' + str(i) + '-name'] and not \
-                    self.data['form-' + str(i) + '-description'] and not \
-                    self.data['form-' + str(i) + '-time_interval'] and not \
-                    self.data['form-' + str(i) + '-dosage_every_time'] and not \
-                    self.data['form-' + str(i) + '-total_dosage']:
+        idx = []
+
+        for i in range(int(self.data['med-TOTAL_FORMS'])):
+            if not self.data['med-' + str(i) + '-name'] and not \
+                    self.data['med-' + str(i) + '-description'] and not \
+                    self.data['med-' + str(i) + '-time_interval'] and not \
+                    self.data['med-' + str(i) + '-dosage_every_time'] and not \
+                    self.data['med-' + str(i) + '-total_dosage']:
                 empty = True
-                idx = i
+                idx += [i]
         return empty, idx
 
     def clean(self):
         errors = {'name': [], 'time_interval': [], 'total_dosage': [], 'dosage_every_time': []}
         cln = self.cleaned_data
-        print("CLNNNN", cln)
         if 'name' not in cln.keys():
             errors['name'] += ['لطفا نام دارو را وارد کنید.']
         if 'time_interval' not in cln.keys():
@@ -57,7 +58,7 @@ class TestForm(forms.ModelForm):
     """
     Form for individual test
     """
-
+    prefix = 'test'
     class Meta:
         model = Tests
         fields = (
@@ -68,25 +69,32 @@ class TestForm(forms.ModelForm):
             'description': 'توضیح',
             'deadline': 'تا تاریخ'
         }
+        widgets = {
+            'deadline': DateInput()
+        }
 
     def check_completeness(self):
         empty = False
-        idx = -1
-        for i in range(int(self.data['form-TOTAL_FORMS'])):
-            if not self.data['form-' + str(i) + '-name'] and not \
-                    self.data['form-' + str(i) + '-description'] and not \
-                    self.data['form-' + str(i) + '-deadline']:
+        idx = []
+        print("EEEE", self.data)
+
+        for i in range(int(self.data['test-TOTAL_FORMS'])):
+            if not self.data['test-' + str(i) + '-name'] and not \
+                    self.data['test-' + str(i) + '-description'] and not \
+                    self.data['test-' + str(i) + '-deadline']:
+                # print("PLEAAAAAASE")
                 empty = True
-                idx = i
+                idx += [i]
         return empty, idx
 
     def clean(self):
+        # print("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEY")
         errors = {'name': [], 'deadline': []}
         cln = self.cleaned_data
         if 'name' not in cln.keys():
             errors['name'] += ['لطفا نام دارو را وارد کنید.']
         if 'deadline' not in cln.keys():
-            errors['deadline'] += ['لطفا مقدار تاریخ را مشخص کنید.']
+            errors['deadline'] += ['لطفا تاریخ را مشخص کنید.']
         if len(errors['name']) > 0 or len(errors['deadline']) > 0:
             raise ValidationError(errors)
 
@@ -95,7 +103,7 @@ class InjectionForm(forms.ModelForm):
     """
     Form for individual injection
     """
-
+    prefix = 'injection'
     class Meta:
         model = Injections
         fields = (
@@ -106,16 +114,21 @@ class InjectionForm(forms.ModelForm):
             'description': 'توضیح',
             'deadline': 'تا تاریخ'
         }
+        widgets = {
+            'deadline': DateInput()
+        }
 
     def check_completeness(self):
         empty = False
-        idx = -1
-        for i in range(int(self.data['form-TOTAL_FORMS'])):
-            if not self.data['form-' + str(i) + '-name'] and not \
-                    self.data['form-' + str(i) + '-description'] and not \
-                    self.data['form-' + str(i) + '-deadline']:
+        idx = []
+        print("FFFFF", self.data)
+        for i in range(int(self.data['injection-TOTAL_FORMS'])):
+            if not self.data['injection-' + str(i) + '-name'] and not \
+                    self.data['injection-' + str(i) + '-description'] and not \
+                    self.data['injection-' + str(i) + '-deadline']:
+                print("NOOOOOOOO")
                 empty = True
-                idx = i
+                idx += [i]
         return empty, idx
 
     def clean(self):
@@ -124,6 +137,6 @@ class InjectionForm(forms.ModelForm):
         if 'name' not in cln.keys():
             errors['name'] += ['لطفا نام دارو را وارد کنید.']
         if 'deadline' not in cln.keys():
-            errors['deadline'] += ['لطفا مقدار تاریخ را مشخص کنید.']
+            errors['deadline'] += ['لطفا تاریخ را مشخص کنید.']
         if len(errors['name']) > 0 or len(errors['deadline']) > 0:
             raise ValidationError(errors)
