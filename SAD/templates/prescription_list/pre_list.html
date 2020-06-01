@@ -11,8 +11,7 @@
             {% else %}
              {% for pr in pre %}
                     <div class="jumbotron">
-                            <h2> نسخه‌ی ویزیت در تاریخ {{pr.appointment.start_time.year}}/
-                                {{pr.appointment.start_time.month}}/{{pr.appointment.start_time.day}} </h2>
+                            <h2> نسخه‌ی ویزیت در تاریخ {{pr.appointment.start_time.year}}/{{pr.appointment.start_time.month}}/{{pr.appointment.start_time.day}} </h2>
                             {% for key, value in medicine.items %}
                                 {% if key == pr and value.count != 0%}
                                 <div class="jumbotron border">
