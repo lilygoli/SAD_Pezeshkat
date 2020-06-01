@@ -1,29 +1,30 @@
-{##}
 {% extends 'base.html' %}
 {% block body_block %}
-
-    <div class="container">
-        <div class="jumbotron">
-            <h1>صفحه ورود </h1>
-            {% if error is not None %}
-                <div class="container">
-
-                    <div class="alert alert-danger">
-                        <strong>خطا!</strong> {{ error }}
-                    </div>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}" type="text/css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <form class="box" method="post" action="{% url 'accounts:user_login' %}">
+                    {% csrf_token %}
+                    <h1 class="head">صفحه ورود </h1>
+                    <p class="text-muted"> لطفا ایمیل و رمز عبور خود را وارد کنید.</p>
+                    <input type="text" name="email" placeholder="ایمیل">
+                    <input type="password" name="password" placeholder="رمزعبور">
+                    <a class="forgot text-muted" href="{% url 'accounts:password_reset' %}">بازیابی زمز عبور</a>
+                    <input type="submit" value="ورود">
+                </form>
+                {% if error is not None %}
+                <div class="alert alert-danger">
+                    <strong>خطا!</strong> {{ error }}
                 </div>
             {% endif %}
-            <form method="post" action="{% url 'accounts:user_login' %}">
-                {% csrf_token %}
-                <label for="email">ایمیل:</label>
-                <input type="text" name="email" placeholder="Email">
-                <label for="password">رمزعبور:</label>
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" name="" value="ورود">
-            </form>
-            <a href="{% url 'accounts:password_reset' %}"><input type=button value='بازیابی رمز عبور' style="margin-right: 30px"></a>
         </div>
+            </div>
     </div>
+</div>
+
 
 {% endblock %}
 
