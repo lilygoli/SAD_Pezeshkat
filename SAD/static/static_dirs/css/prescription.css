@@ -3,16 +3,15 @@
     float: left;
 }
 
-#medicine {
+#middle-jumbotron{
     margin-top: 0;
-    margin-bottom: 0;
-    background-color: rgba(255, 255, 255, 0.49);
+    padding-top: 0;
+    margin-bottom: 3vh;
 }
 
-#medicine p {
-    font-size: 1.3vw;
+#total-container{
+    background-color: rgba(253, 255, 251, 0.67);
 }
-
 a.delete-row {
     margin-right: 5%;
     margin-top: 0;
