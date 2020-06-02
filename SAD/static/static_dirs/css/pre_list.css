@@ -1,0 +1,39 @@
+body {
+    background-image: none;
+}
+
+#search-container{
+    background-image: url("../images/doc35.jpg");
+}
+
+.jumbotron{
+    padding: auto;
+    margin-top: 8%;
+    border: 5px solid #06402e;
+}
+
+.border{
+    border: 5px groove #0db17a;
+
+}
+
+.jumbotron h3{
+    font-size: 3vw;
+}
+
+.list-group-item{
+    background-color: #88a69c;
+    margin: 0px;
+    padding: 10px 0px;
+}
+
+.btn-default, .btn-default:hover,
+.btn-default:active,
+.btn-default:visited,
+.btn-default:focus {
+    background-color: #67b1a8;
+    font-size: large;
+    position: center;
+    transition: .5s ease;
+    margin-right: 30vw;
+}

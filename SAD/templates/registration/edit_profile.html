@@ -1,18 +1,22 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body_block %}
-
+<link rel="stylesheet" href="{% static 'css/forms.css' %}" type="text/css">
 <div class="container">
-    <div class="jumbotron">
-        <form method="post" action="/profile/edit/"
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <form class="box" method="post" action="/profile/edit/"
                             enctype="multipart/form-data">
         {% csrf_token %}
         {{ edituser_form.as_p }}
         {{ editprofileinfo_form.as_p}}
-        <button type="submit">ثبت</button>
+        <input type="submit" value="ثبت">
     </form>
     </div>
     <br>
 </div>
+    </div>
 
 {% endblock %}
 
