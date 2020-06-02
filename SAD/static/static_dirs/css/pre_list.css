@@ -2,26 +2,26 @@ body {
     background-image: none;
 }
 
-#search-container{
+#search-container {
     background-image: url("../images/doc35.jpg");
 }
 
-.jumbotron{
+.jumbotron {
     padding: auto;
     margin-top: 8%;
     border: 5px solid #06402e;
 }
 
-.border{
+.border {
     border: 5px groove #0db17a;
 
 }
 
-.jumbotron h3{
+.jumbotron h3 {
     font-size: 3vw;
 }
 
-.list-group-item{
+.list-group-item {
     background-color: #88a69c;
     margin: 0px;
     padding: 10px 0px;
