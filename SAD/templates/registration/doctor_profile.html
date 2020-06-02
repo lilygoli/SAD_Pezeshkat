@@ -8,7 +8,7 @@
                     <div class="col-md-4">
                         <div class="profile-img">
 
-                            {% if user.patientprofileinfo.profile_pic %}
+                            {% if user.doctorprofileinfo.profile_pic %}
                             <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" alt=""/>
                              {% else %}
                              <img src= "{% static 'default.jpg' %}" alt="/">
