@@ -33,7 +33,6 @@ urlpatterns = [
                   path('', include(u2)),
                   path('', include(u3)),
                   path('', include(u4)),
-                  path('', include(u4)),
                   path('', include(u5)),
                   path('', include(u6)),
                   path('', include(u7)),

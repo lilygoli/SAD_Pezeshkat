@@ -1,62 +1,253 @@
 {% extends "registration/index.html" %}
 {% load static%}
 {% block body_index_block %}
-<div class="jumbotron">
+<link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
 
-    <h3>اطلاعات شخصی</h3>
-        <p>نام: {{ user.name }}
-            {% if user.patientprofileinfo.profile_pic %}
-                <img src= "{{ user.patientprofileinfo.profile_pic.url }}" width="240" align="left">
-            {% else %}
-                <img src= "{% static "default.jpg" %}" width="240" align="left">
-            {% endif %}
-        </p>
-         <p>نام خانوادگی : {{user.family_name}}</p>
-        <p>ایمیل : {{user.email}}</p>
-        <p>تاریخ تولد : {{user.patientprofileinfo.birthday}}</p>
-        {% if user.patientprofileinfo.medical_condition is None %}
-                <p>بیماری‌ها : وارد نشده‌است.</p>
-        {% else %}
-            <p>بیماری‌ها : {{user.patientprofileinfo.medical_condition}}</p>
-        {% endif %}
+                            {% if user.patientprofileinfo.profile_pic %}
+                            <img src= "{{ user.patientprofileinfo.profile_pic.url }}" alt=""/>
+                             {% else %}
+                             <img src= "{% static 'default.jpg' %}" alt="/">
+                             {% endif %}
+<!--                            <div class="file btn btn-lg btn-primary">-->
+<!--                                Change Photo-->
+<!--                                <input type="file" name="file"/>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{user.name}} {{user.family_name}}
+                                    </h5>
+                                    <h6>
+                                        بیمار
+                                    </h6>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li>
+                                    <a class="nav-link active " id="home-tab" href="#home" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">اطلاعات شخصی</a>
+                                </li>
+<!--                                <li>-->
+<!--                                    <a  class="nav-link" id="profile-tab" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false" >پروفایل بیمار</a>-->
+<!--                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>لینک‌های کاربردی</p>
+                            <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
+                            <a href="{% url 'visit_history:history' %}">مشاهده ویزیت های قبلی</a>
 
-        <p>شماره تلفن موارد پزشکی اضطراری : {{user.patientprofileinfo.medical_emergency_contact}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tab-content profile-tabb" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{ user.name }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>نام</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{ user.family_name }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>نام خانوادگی</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{ user.email }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>ایمیل</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{user.patientprofileinfo.birthday}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>تاریخ تولد</label>
+                                            </div>
+                                        </div>
 
-        {% if user.patientprofileinfo.credit is None %}
-            <p>اعتبار : وارد نشده‌است.</p>
-        {% else %}
-            <p>اعتبار : {{user.patientprofileinfo.credit}}</p>
-        {% endif %}
+                                    {% if user.patientprofileinfo.medical_condition is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>بیماری‌ها</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{user.patientprofileinfo.medical_condition}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>بیماری‌ها</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
-        {% if user.patientprofileinfo.blood_type is None %}
-            <p>گروه خونی : وارد نشده‌است.</p>
-        {% endif%}
-        {% if user.patientprofileinfo.blood_type is not None and user.patientprofileinfo.blood_plus_minus is None%}
-            <p>گروه خونی : {{user.patientprofileinfo.blood_type}} </p>
-        {% else %}
-            <p>گروه خونی :{{user.patientprofileinfo.blood_plus_minus}} {{user.patientprofileinfo.blood_type}}</p>
-        {% endif %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>{{user.patientprofileinfo.medical_emergency_contact}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>شماره تلفن موارد پزشکی اضطراری</label>
+                                            </div>
+                                        </div>
 
-        {% if user.patientprofileinfo.allergies is None %}
-            <p>حساسیت‌ها : وارد نشده‌است.</p>
-        {% else %}
-            <p>حساسیت‌ها : {{user.patientprofileinfo.allergies}}</p>
-        {% endif %}
+                                    {% if user.patientprofileinfo.credit is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>اعتبار</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> {{user.patientprofileinfo.credit}} تومان</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>اعتبار</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
-        {% if user.patientprofileinfo.height is None %}
-            <p>قد : وارد نشده‌است.</p>
-        {% else %}
-            <p>قد : {{user.patientprofileinfo.height}}</p>
-        {% endif %}
+                                    {% if user.patientprofileinfo.blood_type is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>گروه خونی</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                    {% if user.patientprofileinfo.blood_plus_minus is None %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> {{user.patientprofileinfo.blood_type}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>گروه خونی</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {% if user.patientprofileinfo.blood_plus_minus == 'P'%}
+                                                <p> + {{user.patientprofileinfo.blood_type}}</p>
+                                                {% endif%}
+                                                {% if user.patientprofileinfo.blood_plus_minus == 'N'%}
+                                                <p> - {{user.patientprofileinfo.blood_type}}</p>
+                                                {% endif%}
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>گروه خونی</label>
+                                            </div>
+                                        </div>
 
-        {% if user.patientprofileinfo.weight is None %}
-            <p>وزن : وارد نشده‌است.</p>
-        {% else %}
-            <p>وزن : {{user.patientprofileinfo.weight}}</p>
-        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+
+                                {% if user.patientprofileinfo.allergies is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>حساسیت‌ها</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> {{user.patientprofileinfo.allergies}}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>حساسیت‌ها</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
 
-        <a href="{% url 'visit_history:history' %}"><input type=button value='مشاهده ویزیت های قبلی'></a>
-</div>
-{% endblock %}
+                                {% if user.patientprofileinfo.height is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>قد</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> {{user.patientprofileinfo.height}} متر</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>قد</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
 
+                                {% if user.patientprofileinfo.weight is None %}
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <p>وارد نشده است.</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>وزن</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p> {{user.patientprofileinfo.weight}} کیلوگرم</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>وزن</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                            </div>
+<!--                           <div class="tab-pan fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-md-6">-->
+<!--                                                <p>{{user.patientprofileinfo.birthday}}</p>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-md-6">-->
+<!--                                                <label>تاریخ تولد</label>-->
+<!--                                            </div>-->
+
+<!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock%}
