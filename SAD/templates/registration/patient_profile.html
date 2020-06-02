@@ -54,6 +54,9 @@
         {% else %}
             <p>وزن : {{user.patientprofileinfo.weight}}</p>
         {% endif %}
+
+
+        <a href="{% url 'visit_history:history' %}"><input type=button value='مشاهده ویزیت های قبلی'></a>
 </div>
 {% endblock %}
 

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'patient_list',
     'prescription.apps.PrescriptionConfig',
     'prescription_list',
+    'visit_history.apps.VisitHistoryConfig',
+    'prescription_list_patient.apps.PrescriptionListPatientConfig',
 ]
 
 MIDDLEWARE = [

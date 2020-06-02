@@ -4,15 +4,15 @@ from doctor_calendar.models import Event
 from prescription.models import Tests, Injections, Medicine, Prescriptions
 
 
-class PrescriptionListView(ListView):
-    template_name = 'prescription_list/pre_list.html'
+class PrescriptionListPatientView(ListView):
+    template_name = 'prescription_list_patient/pre_list_patient.html'
     prescrip = None
     medicine = None
     tests = None
     injections = None
 
     def get_queryset(self, ):
-        self.prescrip = Prescriptions.objects.filter(doctor=self.request.user.pk, patient=self.kwargs['pk'])
+        self.prescrip = Prescriptions.objects.filter(patient=self.request.user.pk, doctor=self.kwargs['pk'])
         self.medicine = {}
         self.tests = {}
         self.injections = {}

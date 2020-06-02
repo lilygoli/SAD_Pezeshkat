@@ -3,18 +3,18 @@
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
     <div class="container" id="search-container">
-    {% for patient in patients %}
+    {% for doctor in doctors %}
         <ul>
             <div class="jumbotron">
                 <li>
-                    <a href="{% url 'accounts:mini_profile' patient.user.pk %}"> {{ patient.user.name }} {{ patient.user.family_name }}</a>
-                    {% if patient.patientprofileinfo.profile_pic %}
-                        <img src="{{ patient.profile_pic.url }}" width="120" height="120">
+                    <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+                    {% if doctor.doctorprofileinfo.profile_pic %}
+                        <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
                     {% else %}
                         <img src="{% static "default.jpg" %}" width="120" height="120">
                     {% endif %}
                     <br/>
-                    <a class="btn btn-info" href="{% url 'prescription_list:pre_list' patient.user.pk%}">مشاهده نسخه‌ها</a>
+                    <a class="btn btn-info" href="{% url 'prescription_list_patient:pre_list_patient' doctor.user.pk%}">مشاهده نسخه‌ها</a>
                 </li>
             </div>
             <div/>

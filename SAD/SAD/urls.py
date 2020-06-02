@@ -17,7 +17,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
-
 from django.conf.urls.static import static
 from accounts import urls as u1
 from doctor_search import urls as u2
@@ -25,8 +24,8 @@ from doctor_calendar import urls as u3
 from patient_list import urls as u4
 from prescription import urls as u5
 from prescription_list import urls as u6
-
-
+from visit_history import urls as u7
+from prescription_list_patient import urls as u8
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -37,5 +36,7 @@ urlpatterns = [
                   path('', include(u4)),
                   path('', include(u5)),
                   path('', include(u6)),
+                  path('', include(u7)),
+                  path('', include(u8)),
                   path('accounts/', include('django.contrib.auth.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
