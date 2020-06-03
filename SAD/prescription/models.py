@@ -1,8 +1,8 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django_jalali.db import models as jmodels
 
 from accounts.models import User
-from django_jalali.db import models as jmodels
 from doctor_calendar.models import Event
 
 
@@ -19,7 +19,7 @@ class Tests(models.Model):
     prescription = models.ForeignKey(to=Prescriptions, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
     form_row = models.IntegerField(null=False)
     name = models.CharField(max_length=200, null=False)
-    description = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     deadline = jmodels.jDateField(null=False)
 
 
@@ -27,7 +27,7 @@ class Medicine(models.Model):
     prescription = models.ForeignKey(to=Prescriptions, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
     form_row = models.IntegerField(null=False)
     name = models.CharField(max_length=200, null=False)
-    description = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     starting_time = jmodels.jDateField(null=True)
     starting_hour = models.FloatField(null=True)
     time_interval = models.FloatField(null=False)
@@ -41,9 +41,5 @@ class Injections(models.Model):
     prescription = models.ForeignKey(to=Prescriptions, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
     form_row = models.IntegerField(null=False)
     name = models.CharField(max_length=200, null=False)
-    description = models.CharField(max_length=1000, null=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     deadline = jmodels.jDateField(null=False)
-
-
-
-

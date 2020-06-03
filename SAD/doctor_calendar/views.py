@@ -135,7 +135,7 @@ class VerifyView(ListView):
             doctor.save()
             patient.save()
             s = Event(doctor_user=User.objects.filter(pk=self.kwargs['pk'])[0], patient_user=self.request.user,
-                      title='reserved',
+                      title='رزرو شده',
                       start_time=jdatetime.date(int(date[0]), int(date[1]), int(date[2])),
                       start_hour=date_and_time[1])
             s.save()

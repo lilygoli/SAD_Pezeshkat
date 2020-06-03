@@ -2,87 +2,137 @@
 
 {% load static %}
 
-
 {% block body_block %}
+
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/prescription.css' %}">
 
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <form method="post">
         {% csrf_token %}
         <div class="jumbotron" id="total-container">
-            <div class="jumbotron" id="middle-jumbotron">
-                {{ medicine_formset.management_form }}
-                <h1>داروها</h1>
-                {% for med_form in medicine_formset %}
-                    <div class="medicine-formset">
-                        <div class="jumbotron" id="{{ forloop.counter0 }}"
-                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
-                            {{ med_form.as_p }}
 
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ medicine_formset.management_form }}
+
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                داروها</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="jumbotron" id="middle-jumbotron">
+                                {% for med_form in medicine_formset %}
+
+                                    <div class="medicine-formset">
+                                        <div class="jumbotron" id="{{ forloop.counter0 }}"
+                                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                                            {{ med_form.as_p }}
+
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+
+                                {% if medicine_formset.non_form_errors %}
+                                    {% for error in link_formset.non_form_errors %}
+                                        {{ error|escape }}
+                                    {% endfor %}
+                                {% endif %}
+
+                            </div>
                         </div>
                     </div>
-                {% endfor %}
-
-                {% if medicine_formset.non_form_errors %}
-                    {% for error in link_formset.non_form_errors %}
-                        {{ error|escape }}
-                    {% endfor %}
-                {% endif %}
+                </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ test_formset.management_form }}
+                    <h4 class="panel-title">
 
-            <div class="jumbotron" id="middle-jumbotron">
-                {{ test_formset.management_form }}
-                <h1>آزمایش‌ها</h1>
-                {% for test_form in test_formset %}
-                    <div class="test-formset">
-                        <div class="jumbotron" id="{{ forloop.counter0 }}"
-                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
-                            {{ test_form.as_p }}
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            آزمایش‌ها</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="jumbotron" id="middle-jumbotron-1">
+                            {% for test_form in test_formset %}
+                                <div class="test-formset">
 
+                                    <div class="jumbotron" id="{{ forloop.counter0 }}"
+                                         style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                                        {{ test_form.as_p }}
+                                        {{ test_form.media }}
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            {% if test_formset.non_form_errors %}
+                                {% for error in link_formset.non_form_errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
-                {% endfor %}
-
-                {% if test_formset.non_form_errors %}
-                    {% for error in link_formset.non_form_errors %}
-                        {{ error|escape }}
-                    {% endfor %}
-                {% endif %}
+                </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ injection_formset.management_form }}
 
-            <div class="jumbotron" id="middle-jumbotron">
-                {{ injection_formset.management_form }}
-                <h1>تزریقات</h1>
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            تزریقات</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="jumbotron" id="middle-jumbotron-2">
+                            {% for inj_form in injection_formset %}
+                                <div class="injection-formset">
+                                    <div class="jumbotron" id="{{ forloop.counter0 }}"
+                                         style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
+                                        {{ inj_form.as_p }}
 
-                {% for inj_form in injection_formset %}
-                    <div class="injection-formset">
-                        <div class="jumbotron" id="{{ forloop.counter0 }}"
-                             style="margin-top: 0;margin-bottom: 0;background-color: rgba(255, 255, 255, 0.49);">
-                            {{ inj_form.as_p }}
+                                    </div>
 
+                                </div>
+                            {% endfor %}
+
+                            {% if injection_formset.non_form_errors %}
+                                {% for error in link_formset.non_form_errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endif %}
                         </div>
-
                     </div>
-                {% endfor %}
-
-                {% if injection_formset.non_form_errors %}
-                    {% for error in link_formset.non_form_errors %}
-                        {{ error|escape }}
-                    {% endfor %}
-                {% endif %}
+                </div>
             </div>
+        </div>
 
-            <div id="submit-button">
-                <input type="submit" value="ذخیره" class="button"/>
-            </div>
+
+        <div id="submit-button">
+            <input type="submit" value="ذخیره" class="button"/>
+        </div>
         </div>
 
     </form>
 
+
     <!-- Include formset plugin - including jQuery dependency -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"></script>
     <script type="text/javascript" src="{% static 'scripts/formset.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
+    <link rel="stylesheet" href={%static "scripts/bootstrap-datepicker.min.css"%}/>
+
     <script>
         $('.medicine-formset').formset({
             deleteText: 'حذف دارو',
@@ -124,6 +174,7 @@
             deleteText: 'حذف داروی تزریقی',
             addText: 'اضافه کردن داروی تزریقی جدید',
             prefix: 'injection',
+
             removed: function (row) {
                 var idx = row.children()[0].id;
                 var url = window.location.pathname;
@@ -136,5 +187,22 @@
                 });
             }
         });
+
     </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('.datepicker').datepicker(
+                {
+                     minDate: 0,
+                    dateFormat: 'yy-mm-dd'
+                }
+            );
+        });
+    </script>
+    <script>
+
+   </script>
 {% endblock %}
+

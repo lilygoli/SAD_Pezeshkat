@@ -145,6 +145,7 @@ nav li:hover {
 .nav.navbar-nav li a {
     color: #ffffff;
     text-align: right;
+    font-size: 1vw;
 }
 
 .errorlist {
@@ -190,7 +191,7 @@ label {
     margin-top: 0.5%;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 770px) {
     .navbar-toggler {
         display: none;
     }

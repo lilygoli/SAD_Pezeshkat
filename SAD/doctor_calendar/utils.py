@@ -5,6 +5,7 @@ import jdatetime
 from django.urls import reverse
 
 from accounts.models import User, DoctorProfileInfo
+from prescription.models import Prescriptions
 from .models import Event
 
 
@@ -111,8 +112,18 @@ class Calendar(HTMLCalendar):
                         url = reverse('accounts:mini_profile', args=(event_of_hour[0].patient_user.id,))
                         prescription_url = reverse('prescription:make-prescription', args=(
                             event_of_hour[0].doctor_user_id, event_of_hour[0].patient_user.id, event_of_hour[0].id))
-                        cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>' \
-                               f' <a href="{prescription_url}"> ایجاد نسخه </td>'
+                        if gdate.gyear > self.year or (gdate.gyear >= self.year and gdate.gmonth > self.month) or (
+                                gdate.gyear >= self.year and gdate.gmonth >= self.month and gdate.gday > self.day):
+                            if len(Prescriptions.objects.filter(appointment_id=event_of_hour[0].id,
+                                                                patient_id=event_of_hour[0].patient_user_id,
+                                                                doctor_id=event_of_hour[0].doctor_user_id)):
+                                prescription_text = 'ویرایش نسخه'
+                            else:
+                                prescription_text = 'ایجاد نسخه'
+                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>' \
+                                   f' <a href="{prescription_url}"> {prescription_text}</td>'
+                        else:
+                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>'
                 else:
                     if not (start_hour <= hour <= end_hour and available_days[i] == '1'):
                         cal += f'<td class="Unavailable-slot">' '</td>'
@@ -120,7 +131,8 @@ class Calendar(HTMLCalendar):
                     elif self.curr_user.id == self.doctor:
                         cal += f'<td>' '</td>'
                     else:
-                        if gdate.gyear > self.year or gdate.gmonth > self.month or gdate.gday > self.day:
+                        if gdate.gyear > self.year or (gdate.gyear >= self.year and gdate.gmonth > self.month) or (
+                                gdate.gyear >= self.year and gdate.gmonth >= self.month and gdate.gday > self.day):
                             cal += f'<td class="available" onclick=tdclick(' + '"' + str(date) + '#' + str(
                                 hour) + '"' + ')>    </td>'
                         else:

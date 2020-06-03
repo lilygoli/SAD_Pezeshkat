@@ -5,7 +5,22 @@
 
 #middle-jumbotron{
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 3vh;
+    background-color: rgba(255, 156, 12, 0.29);
+    margin-bottom: 3vh;
+}
+
+#middle-jumbotron-1{
+    margin-top: 0;
+    padding-top: 3vh;
+    background-color: rgba(204, 157, 255, 0.29);
+    margin-bottom: 3vh;
+}
+
+#middle-jumbotron-2{
+    margin-top: 0;
+    padding-top: 3vh;
+    background-color: rgba(0, 255, 245, 0.29);
     margin-bottom: 3vh;
 }
 

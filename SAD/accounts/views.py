@@ -171,7 +171,7 @@ def edit_profile(request):
 
 def mini_profile(request, pk):
     user_2 = User.objects.get(pk=pk)
-    args = {'user': user_2}
+    args = {'user': user_2, 'request_user': request.user}
     if user_2.is_doctor:
         args.update({"days": get_week_days(user_2)})
         return render(request, 'registration/doctor_mini_profile.html', args)

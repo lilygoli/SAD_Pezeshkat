@@ -8,8 +8,8 @@ from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
 class Event(models.Model):
     doctor_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_created')
     patient_user = models.ForeignKey(to=User, on_delete=models.CASCADE,
-                                     related_name='%(class)s_requests_name')  # todo error if patient = doctor
-    title = models.CharField(max_length=100)
+                                     related_name='%(class)s_requests_name')
+    title = models.CharField(max_length=100, default='رزرو شده')
     description = models.TextField(default='رزرو شده')
     start_time = jmodels.jDateField(null=False)
     start_hour = models.FloatField(null=False)

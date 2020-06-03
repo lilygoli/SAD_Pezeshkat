@@ -42,7 +42,6 @@ def write_prescription(request, **kwargs):
         test_formset = TestFormSet(request.POST, prefix='test')
         injection_formset = InjectionFormSet(request.POST, prefix='injection')
 
-
         # Now save the data for each form in the formset
         return_flag1 = make_item(medicine_formset, prescription_id, Medicine)
         return_flag2 = make_item(test_formset, prescription_id, Tests)
@@ -61,6 +60,7 @@ def write_prescription(request, **kwargs):
         'medicine_formset': medicine_formset,
         'test_formset': test_formset,
         'injection_formset': injection_formset,
+
     }
 
     return render(request, 'prescription/prescription.html', context)
@@ -69,10 +69,10 @@ def write_prescription(request, **kwargs):
 def make_item(medicine_formset, prescription_id, med_class):
     count = 0
     return_flag = True
-    # print("AAAAAAA",medicine_formset.forms)
     for med_form in medicine_formset:
         empty, idx = med_form.check_completeness()
         print("Count", count, idx, empty)
+        print("med_form", med_form)
         if not empty or count not in idx:
             if med_form.is_valid():
                 # print("validdd")
