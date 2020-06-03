@@ -2,7 +2,7 @@
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
-    < class="container emp-profile">
+    <div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
@@ -28,13 +28,6 @@
                         پزشک
                     </h6>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li>
-                            <a class="nav-link active " id="home-tab" href="#home" data-toggle="tab" role="tab"
-                               aria-controls="home" aria-selected="true">اطلاعات شخصی</a>
-                        </li>
-                        <!--                                <li>-->
-                        <!--                                    <a  class="nav-link" id="profile-tab" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false" >پروفایل بیمار</a>-->
-                        <!--                                </li>-->
                     </ul>
                 </div>
             </div>
@@ -237,8 +230,8 @@
                 </div>
             </div>
         </div>
-
     </form>
+
     </div>
 {% endblock %}
 

@@ -1,276 +1,280 @@
 {% extends "registration/index.html" %}
-{% load static%}
+{% load static %}
 {% block body_index_block %}
-<link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
-<div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
+    <link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
 
-                            {% if user.doctorprofileinfo.profile_pic %}
-                            <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" alt=""/>
-                             {% else %}
-                             <img src= "{% static 'default.jpg' %}" alt="/">
-                             {% endif %}
-<!--                            <div class="file btn btn-lg btn-primary">-->
-<!--                                Change Photo-->
-<!--                                <input type="file" name="file"/>-->
-<!--                            </div>-->
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                        {{user.name}} {{user.family_name}}
-                                    </h5>
-                                    <h6>
-                                        پزشک
-                                    </h6>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li>
-                                    <a class="nav-link active " id="home-tab" href="#home" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">اطلاعات شخصی</a>
-                                </li>
-<!--                                <li>-->
-<!--                                    <a  class="nav-link" id="profile-tab" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false" >پروفایل بیمار</a>-->
-<!--                                </li>-->
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
+                        {% if user.doctorprofileinfo.profile_pic %}
+                            <img src="{{ user.doctorprofileinfo.profile_pic.url }}" alt=""/>
+                        {% else %}
+                            <img src="{% static 'default.jpg' %}" alt="/">
+                        {% endif %}
+                        <!--                            <div class="file btn btn-lg btn-primary">-->
+                        <!--                                Change Photo-->
+                        <!--                                <input type="file" name="file"/>-->
+                        <!--                            </div>-->
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>لینک‌های کاربردی</p>
-                            <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
-                            <a href="{% url 'doctor_calendar:schedule' 0 %}">مشاهده برنامه‌ی هفتگی</a><br>
-                            <a href="{% url 'patient_list:list' %}">مشاهده لیست بیماران</a>
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tab-content profile-tabb" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{ user.name }}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>نام</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{ user.family_name }}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>نام خانوادگی</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{ user.email }}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>ایمیل</label>
-                                            </div>
-                                        </div>
-
-
-                                    {% if user.doctorprofileinfo.portfolio_site is None %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وارد نشده است.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>وب سایت</label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.portfolio_site}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>وب سایت</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-
-                                    {% if user.doctorprofileinfo.specialty is None %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وارد نشده است.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>تخصص</label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p> {{user.doctorprofileinfo.specialty}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>تخصص</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-                                    <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.degree}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>درجه پزشکی</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.address}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>آدرس</label>
-                                            </div>
-                                        </div>
-
-                                {% if user.doctorprofileinfo.educational_background is None %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وارد نشده است.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>پیشینه تحصیلی</label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p> {{user.doctorprofileinfo.educational_background}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>پیشینه تحصیلی</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-                                    <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.credit}} تومان</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>اعتبار</label>
-                                            </div>
-                                        </div>
-
-
-                                {% if uuser.doctorprofileinfo.fee is None %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وارد نشده است.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>حق ویزیت </label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p> {{user.doctorprofileinfo.fee}} تومان</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>حق ویزیت</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-                                {% if user.doctorprofileinfo.on_site_fee is False %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وجود ندارد.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>قابلیت پرداخت حق ویزیت در مطب</label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وجود دارد.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>قابلیت پرداخت حق ویزیت در مطب</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-                                {% if user.doctorprofileinfo.score == 0.0 %}
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <p>وارد نشده است.</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>امتیاز </label>
-                                            </div>
-                                        </div>
-                                    {% else %}
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p> {{user.doctorprofileinfo.score}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>امتیاز</label>
-                                            </div>
-                                        </div>
-                                    {% endif %}
-
-                                <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.visit_duration}} ساعت</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>مدت زمان ویزیت</label>
-                                            </div>
-                                        </div>
-
-                                <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{user.doctorprofileinfo.start_hour}} تا {{user.doctorprofileinfo.end_hour}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>ساعات کاری</label>
-                                            </div>
-                                        </div>
-
-                                <div class="row">
-                                            <div class="col-md-6">
-                                                <p>{{days}}</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>روز‌های کاری</label>
-                                            </div>
-                                        </div>
-                            </div>
-<!--                           <div class="tab-pan fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-6">-->
-<!--                                                <p>{{user.patientprofileinfo.birthday}}</p>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-md-6">-->
-<!--                                                <label>تاریخ تولد</label>-->
-<!--                                            </div>-->
-
-<!--                                </div>-->
-                            </div>
-                        </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            {{ user.name }} {{ user.family_name }}
+                        </h5>
+                        <h6>
+                            پزشک
+                        </h6>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li>
+                                <a class="nav-link active " id="home-tab" href="#home" data-toggle="tab" role="tab"
+                                   aria-controls="home" aria-selected="true">اطلاعات شخصی</a>
+                            </li>
+                            <!--                                <li>-->
+                            <!--                                    <a  class="nav-link" id="profile-tab" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false" >پروفایل بیمار</a>-->
+                            <!--                                </li>-->
+                        </ul>
                     </div>
                 </div>
-            </form>
-        </div>
-{% endblock%}
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>لینک‌های کاربردی</p>
+                        <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
+                        <a href="{% url 'doctor_calendar:schedule' 0 %}">مشاهده برنامه‌ی هفتگی</a><br>
+                        <a href="{% url 'patient_list:list' %}">مشاهده لیست بیماران</a>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tab-content profile-tabb" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.name }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>نام</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.family_name }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>نام خانوادگی</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.email }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ایمیل</label>
+                                </div>
+                            </div>
+
+
+                            {% if user.doctorprofileinfo.portfolio_site is None %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وارد نشده است.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>وب سایت</label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>{{ user.doctorprofileinfo.portfolio_site }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>وب سایت</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+
+                            {% if user.doctorprofileinfo.specialty is None %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وارد نشده است.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>تخصص</label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> {{ user.doctorprofileinfo.specialty }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>تخصص</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.doctorprofileinfo.degree }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>درجه پزشکی</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.doctorprofileinfo.address }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>آدرس</label>
+                                </div>
+                            </div>
+
+                            {% if user.doctorprofileinfo.educational_background is None %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وارد نشده است.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>پیشینه تحصیلی</label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> {{ user.doctorprofileinfo.educational_background }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>پیشینه تحصیلی</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.doctorprofileinfo.credit }} تومان</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>اعتبار</label>
+                                </div>
+                            </div>
+
+
+                            {% if uuser.doctorprofileinfo.fee is None %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وارد نشده است.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>حق ویزیت </label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> {{ user.doctorprofileinfo.fee }} تومان</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>حق ویزیت</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if user.doctorprofileinfo.on_site_fee is False %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وجود ندارد.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>قابلیت پرداخت حق ویزیت در مطب</label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وجود دارد.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>قابلیت پرداخت حق ویزیت در مطب</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if user.doctorprofileinfo.score == 0.0 %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>وارد نشده است.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>امتیاز </label>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p> {{ user.doctorprofileinfo.score }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>امتیاز</label>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.doctorprofileinfo.visit_duration }} ساعت</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>مدت زمان ویزیت</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ user.doctorprofileinfo.start_hour }}
+                                        تا {{ user.doctorprofileinfo.end_hour }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ساعات کاری</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>{{ days }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>روز‌های کاری</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
+                            </div>
+                        </div>
+
+                        <!--                           <div class="tab-pan fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+                        <!--                                        <div class="row">-->
+                        <!--                                            <div class="col-md-6">-->
+                        <!--                                                <p>{{user.patientprofileinfo.birthday}}</p>-->
+                        <!--                                            </div>-->
+                        <!--                                            <div class="col-md-6">-->
+                        <!--                                                <label>تاریخ تولد</label>-->
+                        <!--                                            </div>-->
+
+                        <!--                                </div>-->
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+    </div>
+{% endblock %}
 

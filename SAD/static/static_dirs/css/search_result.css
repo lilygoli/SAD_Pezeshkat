@@ -7,7 +7,7 @@ body {
 }
 
 .jumbotron:hover {
-    background: #55ffce ;
+    background: rgba(117, 195, 135, 0.43);
     transition: 0.5s;
 }
 

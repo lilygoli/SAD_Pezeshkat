@@ -115,7 +115,7 @@ class InjectionForm(forms.ModelForm):
             'deadline': 'مهلت انجام تا'
         }
         widgets = {
-            'deadline': DateInput()
+            'deadline': forms.DateInput(attrs={'class': 'datepicker'})
         }
 
     def check_completeness(self):
