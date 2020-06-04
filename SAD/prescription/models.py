@@ -10,6 +10,7 @@ class Prescriptions(models.Model):
     doctor = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_created')
     patient = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='%(class)s_requests_name')
     appointment = models.ForeignKey(to=Event, on_delete=models.CASCADE, related_name='%(class)s_requests_event')
+    comment = models.CharField(max_length=1000, default="")
 
     class Meta:
         unique_together = ('doctor', 'patient', 'appointment')

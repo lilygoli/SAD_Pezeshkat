@@ -2,7 +2,7 @@ from django.views.generic import ListView
 
 from doctor_calendar.models import Event
 from prescription.models import Tests, Injections, Medicine, Prescriptions
-
+from django.shortcuts import redirect, render
 
 class PrescriptionListPatientView(ListView):
     template_name = 'prescription_list_patient/pre_list_patient.html'
@@ -22,6 +22,15 @@ class PrescriptionListPatientView(ListView):
             self.injections.update({i: Injections.objects.filter(prescription=i)})
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        if self.request.GET.get('mySubmit'):
+            pres = Prescriptions.objects.filter(comment=self.request.GET.get('tmp'))[0]
+            print(pres.comment)
+            pres.comment = self.request.GET.get('comment')
+            pres.save()
+            self.prescrip = Prescriptions.objects.filter(patient=self.request.user.pk, doctor=self.kwargs['pk'])
+            # return render(self.request, 'prescription_list_patient/pre_list_patient.html', self.args)
+
+
         context = super().get_context_data(**kwargs)
         context['pre'] = self.prescrip
         context['medicine'] = self.medicine
