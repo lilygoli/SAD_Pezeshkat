@@ -184,6 +184,7 @@ class PatientEditProfileInfo(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(PatientEditProfileInfo, self).__init__(*args, **kwargs)
+        del self.fields['password']
 
 
 class DoctorEditProfileInfo(forms.ModelForm):

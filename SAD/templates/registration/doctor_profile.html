@@ -2,14 +2,14 @@
 {% load static %}
 {% block body_index_block %}
     <link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
-    <div class="container emp-profile">
+    <div class="container-fluid emp-profile">
         <form method="post">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <div class="profile-img">
 
                         {% if user.doctorprofileinfo.profile_pic %}
-                            <img src="{{ user.doctorprofileinfo.profile_pic.url }}" alt=""/>
+                            <img src="{{ user.doctorprofileinfo.profile_pic.url }}" alt="Avatar"/>
                         {% else %}
                             <img src="{% static 'default.jpg' %}" alt="/">
                         {% endif %}
@@ -19,8 +19,8 @@
                         <!--                            </div>-->
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="profile-head">
+                <div class="col-md-6 col-xs-6">
+                    <div class="right-tabs profile-head">
                         <h5>
                             {{ user.name }} {{ user.family_name }}
                         </h5>
@@ -41,7 +41,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <div class="profile-work">
                         <p>لینک‌های کاربردی</p>
                         <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
@@ -50,34 +50,34 @@
 
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="tab-content profile-tabb" id="myTabContent">
+                <div class="col-md-6 col-xs-4">
+                    <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane active">
                             <h1>خوش آمدید</h1>
                         </div>
 
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.name }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>نام</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.family_name }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>نام خانوادگی</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.email }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>ایمیل</label>
                                 </div>
                             </div>
@@ -85,19 +85,19 @@
 
                             {% if user.doctorprofileinfo.portfolio_site is None %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وارد نشده است.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>وب سایت</label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>{{ user.doctorprofileinfo.portfolio_site }}</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>وب سایت</label>
                                     </div>
                                 </div>
@@ -106,67 +106,67 @@
 
                             {% if user.doctorprofileinfo.specialty is None %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وارد نشده است.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>تخصص</label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p> {{ user.doctorprofileinfo.specialty }}</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>تخصص</label>
                                     </div>
                                 </div>
                             {% endif %}
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.doctorprofileinfo.degree }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>درجه پزشکی</label>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.doctorprofileinfo.address }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>آدرس</label>
                                 </div>
                             </div>
 
                             {% if user.doctorprofileinfo.educational_background is None %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وارد نشده است.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>پیشینه تحصیلی</label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p> {{ user.doctorprofileinfo.educational_background }}</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>پیشینه تحصیلی</label>
                                     </div>
                                 </div>
                             {% endif %}
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.doctorprofileinfo.credit }} تومان</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>اعتبار</label>
                                 </div>
                             </div>
@@ -174,19 +174,19 @@
 
                             {% if uuser.doctorprofileinfo.fee is None %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وارد نشده است.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>حق ویزیت </label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p> {{ user.doctorprofileinfo.fee }} تومان</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>حق ویزیت</label>
                                     </div>
                                 </div>
@@ -194,19 +194,19 @@
 
                             {% if user.doctorprofileinfo.on_site_fee is False %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وجود ندارد.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>قابلیت پرداخت حق ویزیت در مطب</label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وجود دارد.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>قابلیت پرداخت حق ویزیت در مطب</label>
                                     </div>
                                 </div>
@@ -214,16 +214,16 @@
 
                             {% if user.doctorprofileinfo.score == 0.0 %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p>وارد نشده است.</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <label>امتیاز </label>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <p> {{ user.doctorprofileinfo.score }}</p>
                                     </div>
                                     <div class="col-md-6">
@@ -233,33 +233,33 @@
                             {% endif %}
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.doctorprofileinfo.visit_duration }} ساعت</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>مدت زمان ویزیت</label>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ user.doctorprofileinfo.start_hour }}
                                         تا {{ user.doctorprofileinfo.end_hour }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>ساعات کاری</label>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <p>{{ days }}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6">
                                     <label>روز‌های کاری</label>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-xs-2">
                                 <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
                             </div>
                         </div>
@@ -277,8 +277,7 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </form>
+        </form>
     </div>
 {% endblock %}
 
