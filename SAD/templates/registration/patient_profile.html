@@ -13,10 +13,6 @@
                              {% else %}
                              <img src= "{% static 'default.jpg' %}" alt="/">
                              {% endif %}
-<!--                            <div class="file btn btn-lg btn-primary">-->
-<!--                                Change Photo-->
-<!--                                <input type="file" name="file"/>-->
-<!--                            </div>-->
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -31,18 +27,16 @@
                                 <li>
                                     <a class="nav-link active " id="home-tab" href="#home" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">اطلاعات شخصی</a>
                                 </li>
-<!--                                <li>-->
-<!--                                    <a  class="nav-link" id="profile-tab" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false" >پروفایل بیمار</a>-->
-<!--                                </li>-->
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
-                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-4">
+                        <div class="tab-pane active">
+                            <h1>خوش آمدید</h1>
+                        </div>
                         <div class="profile-work">
                             <p>لینک‌های کاربردی</p>
                             <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
@@ -232,6 +226,10 @@
                                             </div>
                                         </div>
                                     {% endif %}
+                                <div class="col-md-2">
+                                <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">ویرایش پروفایل</a>
+                                </div>
+                    </div>
 
                             </div>
 <!--                           <div class="tab-pan fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->

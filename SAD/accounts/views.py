@@ -164,7 +164,14 @@ def edit_profile(request):
         if not request.user.is_doctor:
             editprofileinfo_form = PatientEditProfileInfo(instance=request.user.patientprofileinfo)
         else:
-            editprofileinfo_form = DoctorEditProfileInfo(instance=request.user.doctorprofileinfo)
+            init = []
+            weekdays = request.user.doctorprofileinfo.available_weekdays
+            for i in range(7):
+                if weekdays[i] == '1':
+                    init.append(str(i))
+
+            editprofileinfo_form = DoctorEditProfileInfo(instance=request.user.doctorprofileinfo,
+                                initial={'available_weekdays': init})
         args = {'edituser_form': edituser_form, 'editprofileinfo_form': editprofileinfo_form}
         return render(request, 'registration/edit_profile.html', args)
 

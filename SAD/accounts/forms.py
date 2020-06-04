@@ -1,3 +1,5 @@
+import ast
+
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import PasswordChangeForm
@@ -153,10 +155,11 @@ class EditProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('name', 'email')
+        fields = ('name', 'family_name','email')
         labels = {
             "name": "نام",
             "email": "ایمیل",
+            "family_name": "نام‌خانوادگی"
         }
 
 
@@ -181,27 +184,16 @@ class PatientEditProfileInfo(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(PatientEditProfileInfo, self).__init__(*args, **kwargs)
-        del self.fields['password']  # This is a declared field we really want to be removed
-
-    def save(self, commit=True):
-        if commit:
-            if self.is_valid():
-                # Get instance with self.instance & only update if a value's changed:
-                for field_name in self.fields:
-                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                        setattr(self.instance, field_name, self.cleaned_data[field_name])
-                        self.instance.save()
-        return self.instance
 
 
-class DoctorEditProfileInfo(UserChangeForm):
-    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
+class DoctorEditProfileInfo(forms.ModelForm):
+    available_weekdays = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
 
     class Meta:
         model = DoctorProfileInfo
         fields = (
             'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
-            'address', 'visit_duration', 'start_hour', 'end_hour')
+            'address','visit_duration', 'start_hour', 'end_hour', 'available_weekdays')
         labels = {
             "portfolio_site": "وبسایت شخصی",
             "profile_pic": "عکس",
@@ -219,23 +211,12 @@ class DoctorEditProfileInfo(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(DoctorEditProfileInfo, self).__init__(*args, **kwargs)
-        del self.fields['password']  # This is a declared field we really want to be removed
-
-    def save(self, commit=True):
-        if commit:
-            if self.is_valid():
-                # Get instance with self.instance & only update if a value's changed:
-                for field_name in self.fields:
-                    if getattr(self.instance, field_name) != self.cleaned_data[field_name]:
-                        setattr(self.instance, field_name, self.cleaned_data[field_name])
-                        self.instance.save()
-        return self.instance
 
     def clean_available_weekdays(self):
-        picked = self.cleaned_data['picked']
+        available_weekdays = self.cleaned_data['available_weekdays']
         s = ''
         for i in range(7):
-            if str(i) in picked:
+            if str(i) in available_weekdays:
                 s += '1'
             else:
                 s += '0'
