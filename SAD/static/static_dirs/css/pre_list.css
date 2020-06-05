@@ -1,5 +1,6 @@
 body {
     background-image: none;
+    background-repeat: repeat;
 }
 
 #search-container {
