@@ -120,12 +120,19 @@ def make_item(medicine_formset, prescription_id, med_class):
     return return_flag
 
 
-def delete_med(request, med_id, prescription_id, cal):
-    print('WHAAAAT')
-    m = Medicine.objects.filter(prescription_id=prescription_id, form_row=med_id)
+def delete_med(request, med_id, prescription_id, cal, med_type):
+    print("Type", med_type)
+    if med_type == '0':
+        medication = Medicine
+    elif med_type == '1':
+        medication = Tests
+    else:
+        medication = Injections
+    m = medication.objects.filter(prescription_id=prescription_id, form_row=med_id)
+
     if len(m):
         m[0].delete()
-        ms = Medicine.objects.filter(prescription_id=prescription_id, form_row__gt=med_id)
+        ms = medication.objects.filter(prescription_id=prescription_id, form_row__gt=med_id)
         print(ms)
         for i in ms:
             i.form_row = i.form_row - 1
@@ -135,27 +142,3 @@ def delete_med(request, med_id, prescription_id, cal):
         return redirect('prescription:prescription', prescription_id=prescription_id, cal=cal)
 
 
-def delete_test(request, test_id, prescription_id, cal):
-    m = Tests.objects.filter(prescription_id=prescription_id, form_row=test_id)
-    if len(m):
-        m[0].delete()
-        ms = Tests.objects.filter(prescription_id=prescription_id, form_row__gt=test_id)
-        for i in ms:
-            i.form_row = i.form_row - 1
-            i.save()
-        return redirect('prescription:prescription', prescription_id=m[0].prescription_id, cal=cal)
-    else:
-        return redirect('prescription:prescription', prescription_id=prescription_id, cal=cal)
-
-
-def delete_injection(request, inj_id, prescription_id, cal):
-    m = Injections.objects.filter(prescription_id=prescription_id, form_row=inj_id)
-    if len(m):
-        m[0].delete()
-        ms = Injections.objects.filter(prescription_id=prescription_id, form_row__gt=inj_id)
-        for i in ms:
-            i.form_row = i.form_row - 1
-            i.save()
-        return redirect('prescription:prescription', prescription_id=m[0].prescription_id, cal=cal)
-    else:
-        return redirect('prescription:prescription', prescription_id=prescription_id, cal=cal)
