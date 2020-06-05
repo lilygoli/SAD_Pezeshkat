@@ -131,7 +131,7 @@
     <script type="text/javascript" src="{% static 'scripts/formset.js' %}"></script>
     <script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
-    <link rel="stylesheet" href={%static "css/bootstrap-datepicker.min.css" %}/>
+    <link rel="stylesheet" href={% static "css/bootstrap-datepicker.min.css" %}/>
 
     <script>
         $('.medicine-formset').formset({
@@ -142,9 +142,9 @@
             removed: function (row) {
                 var idx = row.children()[0].id;
                 var url = window.location.pathname;
-                console.log(url)
+                console.log(url);
                 $.ajax({
-                    url: url + "delete-med/" + idx.toString(),
+                    url: url + "delete-med/" + idx.toString() + "/0",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
                     },
@@ -160,8 +160,10 @@
             removed: function (row) {
                 var idx = row.children()[0].id;
                 var url = window.location.pathname;
+                console.log(url);
+
                 $.ajax({
-                    url: url + "delete-test/" + idx.toString(),
+                    url: url + "delete-med/" + idx.toString() + "/1",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
                     },
@@ -180,7 +182,7 @@
                 var idx = row.children()[0].id;
                 var url = window.location.pathname;
                 $.ajax({
-                    url: url + "delete-injection/" + idx.toString(),
+                    url: url + "delete-med/" + idx.toString() +"/2",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
                     },
@@ -196,7 +198,7 @@
         $(document).ready(function () {
             $('.datepicker').datepicker(
                 {
-                     minDate: 0,
+                    minDate: 0,
                     dateFormat: 'yy-mm-dd'
                 }
             );
@@ -204,6 +206,6 @@
     </script>
     <script>
 
-   </script>
+    </script>
 {% endblock %}
 
