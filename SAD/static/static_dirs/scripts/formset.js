@@ -71,20 +71,20 @@
                             forms.eq(i).find('input,select,textarea,label').each(function () {
                                 if ($(this).attr("for")) {
                                     if ($(this).attr("for").includes(options.prefix, 0)) {
-                                        console.log("yes " + $(this).attr("for"));
+                                        // console.log("yes " + $(this).attr("for"));
                                         if ($(this).attr("for").includes("name", 0)) {
                                             x = x + 1;
                                         }
                                         updateElementIndex($(this), options.prefix, x - 1);
-                                        console.log(x);
-                                        console.log("f " + $(this).attr("for"))
+                                        // console.log(x);
+                                        // console.log("f " + $(this).attr("for"))
 
                                     }
                                 }
-                                console.log("hey");
+                                // console.log("hey");
 
                                 updateElementIndex($(this), options.prefix, x-1);
-                                 console.log("fff " + $(this).attr("for"))
+                                 // console.log("fff " + $(this).attr("for"))
                             });
 
                         }

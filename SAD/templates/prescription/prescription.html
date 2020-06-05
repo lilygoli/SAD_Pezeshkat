@@ -142,6 +142,7 @@
             removed: function (row) {
                 var idx = row.children()[0].id;
                 var url = window.location.pathname;
+                console.log(url)
                 $.ajax({
                     url: url + "delete-med/" + idx.toString(),
                     beforeSend: function (xhr) {
