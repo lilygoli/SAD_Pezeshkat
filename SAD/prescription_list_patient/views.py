@@ -34,8 +34,11 @@ class PrescriptionListPatientView(ListView):
             pres = Prescriptions.objects.filter(comment=self.request.GET.get('tmp'))[0]
             pres.comment = self.request.GET.get('comment')
             pres.save()
-            self.prescrip = Prescriptions.objects.filter(patient=self.request.user.pk, doctor=self.kwargs['pk'])
-
+            self.prescrip = Prescriptions.objects.filter(patient=self.request.user.pk, doctor=self.kwargs['pk']).order_by('id')
+            for i in self.prescrip:
+                if len(Medicine.objects.filter(prescription=i)) == 0 and len(Tests.objects.filter(
+                        prescription=i)) == 0 and len(Injections.objects.filter(prescription=i)) == 0:
+                    self.prescrip = self.prescrip.exclude(id=i.id)
 
         context = super().get_context_data(**kwargs)
         context['pre'] = self.prescrip
