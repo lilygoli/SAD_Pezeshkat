@@ -12,11 +12,15 @@ class PrescriptionListView(ListView):
     injections = None
 
     def get_queryset(self, ):
-        self.prescrip = Prescriptions.objects.filter(doctor=self.request.user.pk, patient=self.kwargs['pk'])
+        self.prescrip = Prescriptions.objects.filter(doctor=self.request.user.pk, patient=self.kwargs['pk']).order_by(
+            'id')
         self.medicine = {}
         self.tests = {}
         self.injections = {}
         for i in self.prescrip:
+            if len(Medicine.objects.filter(prescription=i)) == 0 and len(Tests.objects.filter(
+                    prescription=i)) == 0 and len(Injections.objects.filter(prescription=i)) == 0:
+                self.prescrip = self.prescrip.exclude(id=i.id)
             self.medicine.update({i: Medicine.objects.filter(prescription=i)})
             self.tests.update({i: Tests.objects.filter(prescription=i)})
             self.injections.update({i: Injections.objects.filter(prescription=i)})

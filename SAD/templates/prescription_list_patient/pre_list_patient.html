@@ -15,13 +15,19 @@
                     <h2> نسخه‌ی ویزیت در
                         تاریخ {{ pr.appointment.start_time.year }}/{{ pr.appointment.start_time.month }}/{{ pr.appointment.start_time.day }} </h2>
 
-                    <a class="button" href="#{{ pr.id }}"> افزودن نظر </a>
+                    {% if pr.comment == "" %}
+                        <a class="button" href="#{{ pr.id }}"> افزودن نظر </a>
+                    {% else %}
+                        <a class="button" href="#{{ pr.id }}"> ویرایش نظر </a>
+
+                    {% endif %}
+                    <br>
                     <div id={{ pr.id }} class="overlay">
                         <div class="popup">
                             <h2>یادداشت خود را دررابطه با این نسخه بنویسید و یا ویرایش کنید</h2>
                             <a class="close" href="#">&times;</a>
                             <div class="content">
-                                <form href="#" method="get">
+                                <form method="get">
                                 <textarea class="textarea" name="comment">{{ pr.comment }}
                                 </textarea>
                                     <br>
@@ -31,23 +37,23 @@
                             </div>
                         </div>
                     </div>
-                    <style>
-                    </style>
-
 
 
                     {% for key, value in medicine.items %}
                         {% if key == pr and value.count != 0 %}
+                            <br>
+                            <h4 style="font-size: 1.2vw"> نظرات قبلی : {{ pr.comment }}</h4>
                             <div class="jumbotron border">
+
                                 <h3> داروها :</h3>
                                 {% for meds in value %}
                                     <li class="list-group-item">
                                         <p>نام دارو: {{ meds.name }}</p>
                                         <p> شرح: {{ meds.description }}</p>
-                                        <p> تاریخ شروع
-                                            مصرف: {{ meds.starting_time.year }}/{{ meds.starting_time.month }}/{{ meds.starting_time.day }}</p>
+
                                         <p> هر {{ meds.time_interval }} ساعت یکبار مصرف شود. </p>
-                                        <p> زمان باقی‌مانده مصرف : {{ meds.times_left }} روز </p>
+                                        <p> هر بار {{ meds.dosage_every_time }}    گرم مصرف شود </p>
+
                                     </li>
                                 {% endfor %}
                             </div>

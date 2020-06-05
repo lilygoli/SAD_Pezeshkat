@@ -21,6 +21,9 @@ body {
     font-size: 3vw;
 }
 
+.jumbotron h4{
+    font-size: 20px;
+}
 .list-group-item {
     background-color: #88a69c;
     margin: 0px;
