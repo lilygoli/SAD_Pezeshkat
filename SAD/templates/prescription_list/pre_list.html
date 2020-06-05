@@ -20,8 +20,11 @@
                                 {% for meds in value %}
                                     <li class="list-group-item">
                                         <p>نام دارو: {{ meds.name }}</p>
+                                        {% if description is None%}
+                                            <p> شرح : وارد نشده است.</p>
+                                        {% esle%}
                                         <p> شرح: {{ meds.description }}</p>
-
+                                        {% endif %}}
                                         <p> هر {{ meds.time_interval }} ساعت یکبار مصرف شود. </p>
                                         <p> هر بار {{ meds.dosage_every_time }} گرم مصرف شود </p>
                                     </li>
