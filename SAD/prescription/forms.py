@@ -28,7 +28,7 @@ class MedForm(forms.ModelForm):
     def check_completeness(self):
         empty = False
         idx = []
-
+        print("DATAAA", self.data)
         for i in range(int(self.data['med-TOTAL_FORMS'])):
             if not self.data['med-' + str(i) + '-name'] and not \
                     self.data['med-' + str(i) + '-description'] and not \
