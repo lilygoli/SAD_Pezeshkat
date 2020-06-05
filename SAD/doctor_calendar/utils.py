@@ -124,6 +124,16 @@ class Calendar(HTMLCalendar):
                                    f' <a href="{prescription_url}"> {prescription_text}</td>'
                         else:
                             cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>'
+                            now = datetime.date(self.year, self.month, self.day)
+                            then = datetime.date(gdate.gyear, gdate.gmonth, gdate.gday)
+                            if now - then <= datetime.timedelta(7):
+                                if len(Prescriptions.objects.filter(appointment_id=event_of_hour[0].id,
+                                                                    patient_id=event_of_hour[0].patient_user_id,
+                                                                    doctor_id=event_of_hour[0].doctor_user_id)):
+                                    prescription_text = 'ویرایش نسخه'
+                                else:
+                                    prescription_text = 'ایجاد نسخه'
+                                cal += f' <a href="{prescription_url}"> {prescription_text}</td>'
                 else:
                     if not (start_hour <= hour <= end_hour and available_days[i] == '1'):
                         cal += f'<td class="Unavailable-slot">' '</td>'

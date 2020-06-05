@@ -9,13 +9,13 @@ from .models import Medicine, Prescriptions, Tests, Injections
 @login_required
 def make_prescription(request, doc_id, patient_id, event_id):
     p, _ = Prescriptions.objects.get_or_create(appointment_id=event_id, doctor_id=doc_id, patient_id=patient_id)
-    return redirect('prescription:prescription', prescription_id=p.pk)
+    return redirect('prescription:prescription', prescription_id=p.pk, cal=0)
 
 
 @login_required
 def write_prescription(request, **kwargs):
     prescription_id = kwargs['prescription_id']
-
+    cal = kwargs['cal']
     # Create the formset, specifying the form and formset we want to use.
     MedFormSet = formset_factory(MedForm)
     TestFormSet = formset_factory(TestForm)
@@ -48,7 +48,12 @@ def write_prescription(request, **kwargs):
         return_flag3 = make_item(injection_formset, prescription_id, Injections)
 
         if return_flag1 and return_flag2 and return_flag3:
-            return redirect('doctor_calendar:schedule', week_num=0)
+            if cal == '0':
+                print('ok')
+                return redirect('doctor_calendar:schedule', week_num=0)
+            else:
+                pk = Prescriptions.objects.filter(id=prescription_id)[0].patient_id
+                return redirect('prescription_list:pre_list', pk=pk)
 
     else:
 

@@ -69,7 +69,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    <a class="btn btn-default" href="{% url 'prescription:prescription' pr.pk %}">ویرایش</a>
+                    <a class="btn btn-default" href="{% url 'prescription:prescription' pr.pk 1%}">ویرایش</a>
                 </div>
             {% endfor %}
         {% endif %}

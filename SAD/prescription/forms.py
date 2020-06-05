@@ -94,6 +94,8 @@ class TestForm(forms.ModelForm):
             errors['name'] += ['لطفا نام دارو را وارد کنید.']
         if 'deadline' not in cln.keys():
             errors['deadline'] += ['لطفا تاریخ را وارد کنید.']
+        elif cln['deadline'] < datetime.today().date().togregorian():
+            errors['deadline'] += ['از این تاریخ گذشته است.']
         if len(errors['name']) > 0 or len(errors['deadline']) > 0:
             raise ValidationError(errors)
 
@@ -132,13 +134,12 @@ class InjectionForm(forms.ModelForm):
     def clean(self):
         errors = {'name': [], 'deadline': []}
         cln = self.cleaned_data
-        date = cln['deadline']
 
         if 'name' not in cln.keys():
             errors['name'] += ['لطفا نام دارو را وارد کنید.']
         if 'deadline' not in cln.keys():
             errors['deadline'] += ['لطفا تاریخ را مشخص کنید.']
-        if date < datetime.today().date().togregorian():
+        elif cln['deadline'] < datetime.today().date().togregorian():
             errors['deadline'] += ['از این تاریخ گذشته است.']
         if len(errors['name']) > 0 or len(errors['deadline']) > 0:
             raise ValidationError(errors)
