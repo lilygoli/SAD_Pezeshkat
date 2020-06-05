@@ -43,9 +43,9 @@ def write_prescription(request, **kwargs):
         injection_formset = InjectionFormSet(request.POST, prefix='injection')
 
         # Now save the data for each form in the formset
-        return_flag1 = make_item(medicine_formset, prescription_id, Medicine)
-        return_flag2 = make_item(test_formset, prescription_id, Tests)
-        return_flag3 = make_item(injection_formset, prescription_id, Injections)
+        return_flag1 = make_item(request, medicine_formset, prescription_id, Medicine)
+        return_flag2 = make_item(request, test_formset, prescription_id, Tests)
+        return_flag3 = make_item(request, injection_formset, prescription_id, Injections)
 
         if return_flag1 and return_flag2 and return_flag3:
             if cal == '0':
@@ -71,16 +71,13 @@ def write_prescription(request, **kwargs):
     return render(request, 'prescription/prescription.html', context)
 
 
-def make_item(medicine_formset, prescription_id, med_class):
+def make_item(request, medicine_formset, prescription_id, med_class):
     count = 0
     return_flag = True
     for med_form in medicine_formset:
         empty, idx = med_form.check_completeness()
-        print("Count", count, idx, empty)
-        print("med_form", med_form)
         if not empty or count not in idx:
             if med_form.is_valid():
-                # print("validdd")
                 m = med_form.save(commit=False)
                 last_m = med_class.objects.filter(prescription_id=prescription_id, form_row=count)
                 if len(last_m) <= 0:
@@ -89,30 +86,15 @@ def make_item(medicine_formset, prescription_id, med_class):
                     m.save()
                 else:
                     last_m = last_m[0]
-                    flag = False
-                    if m.name != last_m.name:
-                        last_m.name = m.name
-                        flag = True
-                    if m.description != last_m.description:
-                        last_m.description = m.description
-                        flag = True
+                    last_m.name = m.name
+                    last_m.description = m.description
                     if med_class == Medicine:
-                        if m.time_interval != last_m.time_interval:
-                            last_m.time_interval = m.time_interval
-                            flag = True
-                        if m.dosage_every_time != last_m.dosage_every_time:
-                            last_m.dosage_every_time = m.dosage_every_time
-                            flag = True
-                        if m.total_dosage != last_m.total_dosage:
-                            last_m.total_dosage = m.total_dosage
-                            flag = True
+                        last_m.time_interval = m.time_interval
+                        last_m.dosage_every_time = m.dosage_every_time
+                        last_m.total_dosage = m.total_dosage
                     else:
-                        if m.deadline != last_m.deadline:
-                            last_m.deadline = m.deadline
-                            flag = True
-                    if flag:
-                        last_m.save()
-
+                        last_m.deadline = m.deadline
+                    last_m.save()
             else:
                 return_flag = False
                 print(med_form.errors)
@@ -121,7 +103,6 @@ def make_item(medicine_formset, prescription_id, med_class):
 
 
 def delete_med(request, med_id, prescription_id, cal, med_type):
-    print("Type", med_type)
     if med_type == '0':
         medication = Medicine
     elif med_type == '1':
@@ -140,5 +121,3 @@ def delete_med(request, med_id, prescription_id, cal, med_type):
         return redirect('prescription:prescription', prescription_id=m[0].prescription_id, cal=cal)
     else:
         return redirect('prescription:prescription', prescription_id=prescription_id, cal=cal)
-
-
