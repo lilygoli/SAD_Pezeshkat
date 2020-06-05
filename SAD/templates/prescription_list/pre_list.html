@@ -22,7 +22,7 @@
                                         <p>نام دارو: {{ meds.name }}</p>
                                         {% if description is None%}
                                             <p> شرح : وارد نشده است.</p>
-                                        {% esle%}
+                                        {% else%}
                                         <p> شرح: {{ meds.description }}</p>
                                         {% endif %}}
                                         <p> هر {{ meds.time_interval }} ساعت یکبار مصرف شود. </p>
