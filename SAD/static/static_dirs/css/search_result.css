@@ -21,6 +21,7 @@ body {
     padding: auto;
     width: 20vw;
     height: 40vh;
+    max-height: 40vw;
     border: 0.3vw solid #065319;
     border-radius: 3%;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
@@ -31,6 +32,7 @@ body {
     position: relative;
     width: 20vw;
     height: 40vh;
+    max-height: 40vw;
     padding: auto;
     margin: auto;
     text-align: center;
@@ -67,7 +69,13 @@ body {
     margin: 3vh auto auto;
     width: 18vw;
     height: 33vh;
+    max-height: 33vw;
+    padding: unset;
 
+}
+
+.flip-card-back p {
+    font-size: 2vw;
 }
 
 /* Style the front side (fallback if image is missing) */
@@ -101,5 +109,5 @@ body {
 }
 
 img {
-  border-radius: 50%;
+    border-radius: 50%;
 }

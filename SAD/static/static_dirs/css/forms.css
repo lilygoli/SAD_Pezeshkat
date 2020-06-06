@@ -78,6 +78,7 @@ body {
 .box input[type="url"]:focus,
 .box select:focus {
     width: 25vw;
+
     border-color: cornflowerblue;
 }
 
@@ -103,10 +104,44 @@ body {
 }
 
 
-.card{
+.card {
     padding-left: 30vw;
 }
+
 @media (max-width: 1000px) {
-            .card{
-    padding-right: 25vw;}
+    .card {
+        padding-right: 25vw;
+    }
 }
+
+@media (max-width: 700px) {
+
+    .box {
+        padding: unset;
+        padding-bottom: 2vw;
+        width: 50vw;
+    }
+
+    .box input[type="text"],
+    .box input[type="password"],
+    .box input[type="email"],
+    .box input[type="date"],
+    .box input[type="number"],
+    .box input[type="url"],
+    .box select,
+    .box input[type="file"] {
+        height: 1vw;
+    }
+
+    .box input[type="submit"] {
+        padding: auto;
+        padding-top: 1vw;
+        padding-bottom: 2vw;
+        height: 3vw;
+    }
+
+    .card {
+        padding-right: 20vw;
+    }
+}
+

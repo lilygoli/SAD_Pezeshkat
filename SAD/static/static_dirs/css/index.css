@@ -85,9 +85,11 @@ ul.errorlist.error:before {
     background-color: rgba(255, 255, 255, 0.09);
 
 }
-.carousel-indicators{
+
+.carousel-indicators {
     width: 50vw;
 }
+
 .carousel-indicators .active {
     background: yellow;
 
@@ -97,7 +99,7 @@ ul.errorlist.error:before {
     width: 20vw;
     height: 40vh;
     float: left;
-    margin-left: 25vh;
+    margin-left: 15vw;
 
 }
 
@@ -124,6 +126,7 @@ ul.errorlist.error:before {
     font-size: 1.3vw;
 
 }
+
 
 .carousel-caption > h3 {
     max-width: 40%;
@@ -203,3 +206,45 @@ ul.errorlist.error:before {
     overflow-x: scroll;
     align-content: center;
 }
+
+@media (max-width: 700px) {
+    .carousel-inner > .item > img {
+        width: 35vw;
+        margin-left: 15vw;
+    }
+
+    .carousel {
+        max-height: 50vh;
+    }
+
+    .carousel-caption > p {
+        margin-right: -1vw;
+        max-width: 30%;
+        font-size: 3vw;
+
+    }
+
+    #logo h2 {
+        font-size: 4vw;
+    }
+
+    #logo {
+        background-size: inherit;
+    }
+
+    #profile {
+        background-size: inherit;
+    }
+
+    #slide {
+        background-size: inherit;
+    }
+
+    .highcharts-figure  {
+       max-width: 50vw;
+    }
+
+
+}
+
+
