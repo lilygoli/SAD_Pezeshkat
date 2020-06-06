@@ -3,6 +3,11 @@
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
     <div class="container" id="search-container">
+        {% if doctors.count == 0 %}
+            <div class="jumbotron border">
+                <p class="text"> ویزیتی وجود ندارد.</p>
+            </div>
+        {% else %}
     {% for doctor in doctors %}
         <ul>
             <div class="jumbotron">
@@ -21,5 +26,6 @@
             <div/>
         </ul>
     {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}
