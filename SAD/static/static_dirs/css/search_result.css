@@ -93,3 +93,7 @@ body {
 .flip-card-back h1{
     font-size: 3vw;
 }
+
+#card-jumbotron h3{
+    margin: 0;
+}

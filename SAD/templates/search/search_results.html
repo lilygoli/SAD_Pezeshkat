@@ -15,7 +15,7 @@
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div class="jumbotron" id="card-jumbotron">
-                                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+                                        <h3> {{ doctor.user.name }} {{ doctor.user.family_name }}</h3>
                                         <br/>
                                         {% if user.doctorprofileinfo.profile_pic %}
                                             <img src="{{ doctor.profile_pic.url }}" width="120" height="120"
@@ -32,6 +32,8 @@
                                     {% else %}
                                         <h1>{{ doctor.specialty_bins }}</h1>
                                     {% endif %}
+                                    <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+
                                     <p>هزینه ویزیت:{{ doctor.fee }}</p>
                                     <p>آدرس:{{ doctor.address }}</p>
                                 </div>
