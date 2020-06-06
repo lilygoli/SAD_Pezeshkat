@@ -1,9 +1,5 @@
 body {
-    background-image: none;
-    background-repeat: repeat;
-}
-
-#search-container {
+   background-repeat: repeat;
     background-image: url("../images/doc35.jpg");
 }
 
