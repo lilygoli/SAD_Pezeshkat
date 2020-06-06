@@ -7,16 +7,13 @@ from prescription.models import Tests, Injections, Medicine, Prescriptions
 class PrescriptionListView(ListView):
     template_name = 'prescription_list/pre_list.html'
     prescrip = None
-    medicine = None
-    tests = None
-    injections = None
+    medicine = {}
+    tests = {}
+    injections = {}
 
     def get_queryset(self, ):
         self.prescrip = Prescriptions.objects.filter(doctor=self.request.user.pk, patient=self.kwargs['pk']).order_by(
             'id')
-        self.medicine = {}
-        self.tests = {}
-        self.injections = {}
         for i in self.prescrip:
             if len(Medicine.objects.filter(prescription=i)) == 0 and len(Tests.objects.filter(
                     prescription=i)) == 0 and len(Injections.objects.filter(prescription=i)) == 0:
