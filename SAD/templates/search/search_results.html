@@ -17,12 +17,10 @@
                                     <div class="jumbotron" id="card-jumbotron">
                                         <h3> {{ doctor.user.name }} {{ doctor.user.family_name }}</h3>
                                         <br/>
-                                        {% if user.doctorprofileinfo.profile_pic %}
-                                            <img src="{{ doctor.profile_pic.url }}" width="120" height="120"
-                                                 alt="orig-prf" id="prf">
+                                        {% if doctor.user.doctorprofileinfo.profile_pic %}
+                                            <img src="{{ doctor.user.doctorprofileinfo.profile_pic.url }}" alt="orig-prf" id="prf">
                                         {% else %}
-                                            <img src="{% static "default.jpg" %}" width="120" height="120" alt="prf"
-                                                 id="prf">
+                                            <img src="{% static "default.jpg" %}" alt="original-prf" id="prf">
                                         {% endif %}
                                     </div>
                                 </div>

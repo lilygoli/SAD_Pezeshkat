@@ -64,9 +64,10 @@ body {
 }
 
 #card-jumbotron {
-    margin: 5vh auto auto;
+    margin: 3vh auto auto;
     width: 18vw;
-    height: 30vh;
+    height: 33vh;
+
 }
 
 /* Style the front side (fallback if image is missing) */
@@ -86,14 +87,15 @@ body {
     width: 8vw;
     height: 8vw;
 }
-#search-jumbotron{
+
+#search-jumbotron {
     height: 300vh;
 }
 
-.flip-card-back h1{
+.flip-card-back h1 {
     font-size: 3vw;
 }
 
-#card-jumbotron h3{
+#card-jumbotron h3 {
     margin: 0;
 }
