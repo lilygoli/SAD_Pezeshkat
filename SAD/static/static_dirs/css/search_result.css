@@ -86,7 +86,7 @@ body {
     width: 8vw;
     height: 8vw;
 }
-.jumbotron{
+#search-jumbotron{
     height: 300vh;
 }
 
