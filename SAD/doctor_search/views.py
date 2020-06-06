@@ -2,16 +2,14 @@ from django.views.generic import TemplateView, ListView
 
 from django.db.models import Q
 from accounts.models import DoctorProfileInfo
-# from SAD.accounts.models import DoctorProfileInfo
-
 
 class HomePageView(TemplateView):
     template_name = 'search/search_page.html'
 
-
 class SearchResultsView(ListView):
     model = DoctorProfileInfo
     template_name = 'search/search_results.html'
+
 
     def get_queryset(self):
         query_name = self.request.GET.get('q1')

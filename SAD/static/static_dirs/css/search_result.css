@@ -2,15 +2,94 @@ body {
     background-image: none;
 }
 
-#search-container{
+#search-container {
     background-image: url("../images/doc35.jpg");
 }
 
-.jumbotron:hover {
-    background: rgba(117, 195, 135, 0.43);
-    transition: 0.5s;
+
+#cards-li {
+    width: 33%;
+    float: right;
+    display: block;
+    margin-bottom: 3vh;
+    margin-top: 1vh;
 }
 
-li{
-    display: block;
+
+.flip-card {
+    background-color: transparent;
+    padding: auto;
+    width: 20vw;
+    height: 40vh;
+    border: 0.3vw solid #065319;
+    border-radius: 3%;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 20vw;
+    height: 40vh;
+    padding: auto;
+    margin: auto;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front {
+    position: absolute;
+    width: 97.5%;
+    height: 97.5%;
+    border-radius: 5px;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    position: absolute;
+    width: 97.5%;
+    height: 97.5%;
+    right: 0.52vw;
+    border-radius: 5px;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+#card-jumbotron {
+    margin: 5vh auto auto;
+    width: 18vw;
+    height: 30vh;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-color: rgb(52, 173, 165);
+    color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-color: rgb(34, 87, 80);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+#prf {
+    width: 8vw;
+    height: 8vw;
+}
+.jumbotron{
+    height: 300vh;
+}
+
+.flip-card-back h1{
+    font-size: 3vw;
 }

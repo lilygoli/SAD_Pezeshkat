@@ -1,28 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body_block %}
+
     <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
 
-
     <div class="container" id="search-container">
-        {% for doctor in object_list %}
-            <ul>
-                <div class="jumbotron">
-                    <li>
-                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
-                        <br/>
-                        آدرس : {{ doctor.address }}
-                        {% if user.doctorprofileinfo.profile_pic %}
-                            <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
-                        {% else %}
-                            <img src="{% static "default.jpg" %}" width="120" height="120">
-                        {% endif %}
-                        <br/>
+        <div class="jumbotron">
+            <h1>نتایج جست و جو</h1>
+            {% for doctor in object_list %}
+                <ul>
+                    <li id="cards-li">
+
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="jumbotron" id="card-jumbotron">
+                                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+                                        <br/>
+                                        {% if user.doctorprofileinfo.profile_pic %}
+                                            <img src="{{ doctor.profile_pic.url }}" width="120" height="120"
+                                                 alt="orig-prf" id="prf">
+                                        {% else %}
+                                            <img src="{% static "default.jpg" %}" width="120" height="120" alt="prf"
+                                                 id="prf">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="flip-card-back">
+                                    {% if doctor.specialty %}
+                                        <h1>{{ doctor.specialty }}</h1>
+                                    {% else %}
+                                        <h1>{{ doctor.specialty_bins }}</h1>
+                                    {% endif %}
+                                    <p>هزینه ویزیت:{{ doctor.fee }}</p>
+                                    <p>آدرس:{{ doctor.address }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                </div>
-                <div/>
-            </ul>
-        {% endfor %}
+
+                </ul>
+            {% endfor %}
+        </div>
+
     </div>
 
 {% endblock %}
