@@ -99,3 +99,7 @@ body {
 #card-jumbotron h3 {
     margin: 0;
 }
+
+img {
+  border-radius: 50%;
+}

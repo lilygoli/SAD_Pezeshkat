@@ -8,10 +8,11 @@
             <div class="jumbotron">
                 <li>
                     <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
-                    {% if doctor.doctorprofileinfo.profile_pic %}
-                        <img src="{{ doctor.profile_pic.url }}" width="120" height="120">
+                    {% if doctor.user.doctorprofileinfo.profile_pic %}
+                        <img src="{{ doctor.user.doctorprofileinfo.profile_pic.url }}" width="120" height="120">
                     {% else %}
-                        <img src="{% static "default.jpg" %}" width="120" height="120">
+                        {{ doctor.doctorprofileinfo.profile_pic.url }}
+                        <img src="{% static 'default.jpg' %}" width="120" height="120">
                     {% endif %}
                     <br/>
                     <a class="btn btn-info" href="{% url 'prescription_list_patient:pre_list_patient' doctor.user.pk%}">مشاهده نسخه‌ها</a>
