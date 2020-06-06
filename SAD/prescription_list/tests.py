@@ -46,19 +46,11 @@ class DoctorPrescriptionTest(TestCase):
             url=reverse('prescription_list:pre_list', args=[2]))
         self.client.login(username='doctor@gmail.com', password='doc12345')
         response = self.client.get(url)
-        print(response.context['pre'])
-        print(Prescriptions.objects.all())
         self.assertQuerysetEqual(response.context['pre'], Prescriptions.objects.all(), transform=lambda x: x,
                                  ordered=False)
-        print(response.context['medicine'][response.context['pre'][0]])
-        print(Medicine.objects.all())
         self.assertQuerysetEqual(response.context['medicine'][response.context['pre'][0]], Medicine.objects.all(),
                                  transform=lambda x: x, ordered=False)
-        print(response.context['tests'][response.context['pre'][0]])
-        print(Tests.objects.all())
         self.assertQuerysetEqual(response.context['tests'][response.context['pre'][0]], Tests.objects.all(),
                                  transform=lambda x: x, ordered=False)
-        print(response.context['injections'][response.context['pre'][0]])
-        print(Injections.objects.all())
         self.assertQuerysetEqual(response.context['injections'][response.context['pre'][0]], Injections.objects.all(),
                                  transform=lambda x: x, ordered=False)

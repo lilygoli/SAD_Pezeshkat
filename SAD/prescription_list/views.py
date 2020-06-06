@@ -1,6 +1,4 @@
 from django.views.generic import ListView
-
-from doctor_calendar.models import Event
 from prescription.models import Tests, Injections, Medicine, Prescriptions
 
 
