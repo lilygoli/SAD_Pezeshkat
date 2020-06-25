@@ -12,13 +12,13 @@ def rate(request):
         doctor_id = request.POST.get('doctor', '')
         doctor = User.objects.get(pk=doctor_id)
         try:
-            Rating.objects.get(doctor=doctor, patient=request.user, score=star_value)
+            rate_object = Rating.objects.get(doctor=doctor, patient=request.user)
+            rate_object.score = star_value
         except Rating.DoesNotExist:
-            # todo chech visit date
             rate_object = Rating.objects.create(doctor=doctor, patient=request.user, score=star_value)
-            rate_object.save()
-            doctor.doctorprofileinfo.score = get_mean_score(doctor)
-            doctor.doctorprofileinfo.save()
+        rate_object.save()
+        doctor.doctorprofileinfo.score = get_mean_score(doctor)
+        doctor.doctorprofileinfo.save()
     return HttpResponseRedirect(reverse('visit_history:history'))
 
 
@@ -26,6 +26,8 @@ def get_mean_score(doctor):
     all_rates = Rating.objects.filter(doctor=doctor).values_list('score', flat=True)
     s = sum(all_rates)
     count = len(all_rates)
+    print(count)
+    print(all_rates)
     if count == 0:
         score_average = 0.0
     else:

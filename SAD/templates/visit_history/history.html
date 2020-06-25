@@ -19,9 +19,6 @@
                         {{ doctor.doctorprofileinfo.profile_pic.url }}
                         <img src="{% static 'default.jpg' %}" width="120" height="120">
                     {% endif %}
-                        {% if doctor.user.pk in ratings %}
-                            <p> قبلا رای داده شده است. </p>
-                        {% else %}
                             <form method="post">
                                 {% csrf_token %}
                                 <div>
@@ -29,8 +26,6 @@
                                     </div>
                                 </div>
                              </form>
-
-                    {% endif %}
                     <br/>
                     <a class="btn btn-info" href="{% url 'prescription_list_patient:pre_list_patient' doctor.user.pk%}">مشاهده نسخه‌ها</a>
                 </li>
@@ -58,7 +53,9 @@
                                 type: 'POST',
                                 data: {'rating': data.rating, 'doctor': id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                                 success: function() {
-                                    location.reload();
+                                    if(confirm('با تشکر از رأی شما:)')){
+                                        window.location.reload();
+                                    }
                                 }
                             });
                             });
