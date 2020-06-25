@@ -26,6 +26,7 @@ from prescription import urls as u5
 from prescription_list import urls as u6
 from visit_history import urls as u7
 from prescription_list_patient import urls as u8
+from doctor_rating import urls as u9
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -37,5 +38,6 @@ urlpatterns = [
                   path('', include(u6)),
                   path('', include(u7)),
                   path('', include(u8)),
+                  path('', include(u9)),
                   path('accounts/', include('django.contrib.auth.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

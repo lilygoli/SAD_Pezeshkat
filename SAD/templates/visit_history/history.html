@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body_block %}
-    <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/search_result.css' %}" type="text/css">
     <div class="container" id="search-container">
         {% if doctors.count == 0 %}
             <div class="jumbotron border">
@@ -19,13 +19,51 @@
                         {{ doctor.doctorprofileinfo.profile_pic.url }}
                         <img src="{% static 'default.jpg' %}" width="120" height="120">
                     {% endif %}
+                        {% if doctor.user.pk in ratings %}
+                            <p> قبلا رای داده شده است. </p>
+                        {% else %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <div>
+                                    <div class="rateYo" id="{{doctor.user.pk}}">
+                                    </div>
+                                </div>
+                             </form>
+
+                    {% endif %}
                     <br/>
                     <a class="btn btn-info" href="{% url 'prescription_list_patient:pre_list_patient' doctor.user.pk%}">مشاهده نسخه‌ها</a>
                 </li>
             </div>
-            <div/>
         </ul>
     {% endfor %}
-        {% endif %}
-    </div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" rel="stylesheet"/>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                    <script>
+                        $(document).ready(function(){
+                        $(".rateYo").rateYo({
+                            halfStar: true,
+                            rating: 0,
+                            numStars:5,
+                            minValue:0,
+                            maxValue:5,
+                            normalFill: 'gray',
+                            ratedFill: 'yellow'
+                        });
+                        $(".rateYo").rateYo().on('rateyo.set',function(e, data){
+                            var id = jQuery(this).attr("id");
+                            $.ajax({
+                                url: "{% url 'doctor_rating:rate' %}",
+                                type: 'POST',
+                                data: {'rating': data.rating, 'doctor': id, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                                success: function() {
+                                    location.reload();
+                                }
+                            });
+                            });
+                        });
+                    </script>
+{% endif %}
+</div>
 {% endblock %}

@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'prescription_list',
     'visit_history.apps.VisitHistoryConfig',
     'prescription_list_patient.apps.PrescriptionListPatientConfig',
-
+    'doctor_rating'
 ]
 
 MIDDLEWARE = [

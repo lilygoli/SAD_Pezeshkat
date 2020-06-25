@@ -1,10 +1,8 @@
 from django.views.generic import ListView
-
-from accounts.models import User, DoctorProfileInfo
+from accounts.models import DoctorProfileInfo
 from doctor_calendar.models import Event
+from doctor_rating.models import Rating
 
-
-# from SAD.doctor_calendar.models import Event
 
 class DoctorListView(ListView):
     template_name = 'visit_history/history.html'
@@ -19,5 +17,5 @@ class DoctorListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['doctors'] = self.doctors
-        # print("sdsdsdsD ", context['doctors'])
+        context['ratings'] = Rating.objects.filter(patient=self.request.user.pk).values_list('doctor', flat=True)
         return context
