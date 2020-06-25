@@ -13,10 +13,7 @@
                     {% else %}
                         <img src="{% static 'default.jpg' %}" alt="/">
                     {% endif %}
-                    <!--                            <div class="file btn btn-lg btn-primary">-->
-                    <!--                                Change Photo-->
-                    <!--                                <input type="file" name="file"/>-->
-                    <!--                            </div>-->
+
                 </div>
             </div>
             <div class="col-md-6 col-xs-6">
@@ -138,7 +135,7 @@
                         {% endif %}
 
 
-                        {% if uuser.doctorprofileinfo.fee is None %}
+                        {% if user.doctorprofileinfo.fee is None %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
                                     <p>وارد نشده است.</p>
@@ -178,25 +175,21 @@
                             </div>
                         {% endif %}
 
-                        {% if user.doctorprofileinfo.score == 0.0 %}
+
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وارد نشده است.</p>
+                                    <p>
+                                        <div>
+                                            <div id="rateYo">
+                                            </div>
+                                        </div>
+                                    </p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
                                     <label>امتیاز </label>
                                 </div>
                             </div>
-                        {% else %}
-                            <div class="row">
-                                <div class="col-md-6 col-xs-6">
-                                    <p> {{ user.doctorprofileinfo.score }}</p>
-                                </div>
-                                <div class="col-md-6 col-xs-6">
-                                    <label>امتیاز</label>
-                                </div>
-                            </div>
-                        {% endif %}
+
 
                         <div class="row">
                             <div class="col-md-6 col-xs-6">
@@ -232,6 +225,21 @@
     </form>
 
     </div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" rel="stylesheet"/>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+                    <script>
+                        $("#rateYo").rateYo({
+                            halfStar: true,
+                            readOnly: true,
+                            rating: '{{user.doctorprofileinfo.score}}',
+                            numStars:5,
+                            minValue:0,
+                            maxValue:5,
+                            normalFill: 'gray',
+                            ratedFill: 'yellow'
+                        })
+                    </script>
 {% endblock %}
 
 

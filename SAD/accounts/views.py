@@ -17,7 +17,6 @@ def index(request):
         categories = DoctorProfileInfo.objects.order_by('specialty_bins').values(
             'specialty_bins'
         ).annotate(count=Count('specialty_bins'))
-
         counts_by_category = {Inverse[i['specialty_bins']]: i['count'] for i in categories}
         for i in Inverse.values():
             try:
@@ -176,6 +175,7 @@ def edit_profile(request):
         return render(request, 'registration/edit_profile.html', args)
 
 
+@login_required
 def mini_profile(request, pk):
     user_2 = User.objects.get(pk=pk)
     args = {'user': user_2, 'request_user': request.user}
