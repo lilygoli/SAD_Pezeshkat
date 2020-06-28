@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -6,9 +8,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse
+from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse, TimeInterval
 from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
 from accounts.models import DoctorProfileInfo, User
+from doctor_calendar.models import Event
 
 
 def index(request):
@@ -184,3 +187,29 @@ def mini_profile(request, pk):
         return render(request, 'registration/doctor_mini_profile.html', args)
     else:
         return render(request, 'registration/patient_mini_profile.html', args)
+
+
+@login_required
+def monthly_income(request):
+    doctor_fee = request.user.doctorprofileinfo.fee
+    if request.method == "POST":
+        date_form = TimeInterval(request.POST)
+        if date_form.is_valid():
+            clean_data = date_form.cleaned_data
+            appointments = Event.objects.filter(doctor_user=request.user)
+            interval = clean_data['end_date'] - clean_data['start_date']
+            income = {i: 0 for i in range(interval.days)}
+            for i in appointments:
+                if clean_data['start_date'].year == i.start_time.year:
+                    if clean_data['start_date'].month <= i.start_time.month <= clean_data['end_date'].month:
+                        if clean_data['start_date'].day <= i.start_time.day <= clean_data['end_date'].day:
+                            day_diff = i.start_time.day - clean_data['start_date'].day
+                            income.update({day_diff: income.get(day_diff) + doctor_fee})
+            ins = [income.get(i) for i in range(interval.days)]
+            args = {'form': date_form, 'income': income, 'ins': ins}
+            return render(request, 'doctor_income/income.html', args)
+    else:
+        date_form = TimeInterval()
+        args = {'form': date_form, 'income': {}}
+        return render(request, 'doctor_income/income.html', args)
+

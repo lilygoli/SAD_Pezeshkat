@@ -1,5 +1,4 @@
-import ast
-
+import datetime
 from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import PasswordChangeForm
@@ -270,3 +269,18 @@ class UserPasswordChange(PasswordChangeForm):
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
         help_text=''
     )
+
+
+class TimeInterval(forms.Form):
+    start_date = forms.DateField(widget=DateInput(attrs={'class': 'datepicker'}))
+    end_date = forms.DateField(widget=DateInput(attrs={'class': 'datepicker'}))
+    #todo errors
+
+    # def clean(self):
+    #     errors = {'end_date': []}
+    #     cln = self.cleaned_data
+    #     if cln['end_date'] - cln['start_date'] < datetime.timedelta(14) or\
+    #             cln['end_date'] - cln['start_date'] > datetime.timedelta(60):
+    #         errors['end_date'] += ['لطفا باازه زمانی‌ای بین ۲ هفته تا ۲ ماه را انتخاب کنید.']
+    #     if len(errors['end_date']) > 0:
+    #         raise ValidationError(errors)

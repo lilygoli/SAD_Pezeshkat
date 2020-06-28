@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_block %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
+<div class="jumbotron">
+    <form action="{% url 'accounts:monthly_income'%}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">برو</button>
+    </form>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('.datepicker').datepicker(
+            {
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+            }
+        );
+    });
+</script>
+{% if income|length > 0 %}
+<div class="container" id="chart-div">
+    <figure class="highcharts-figure" style="max-width:50vw; position: center;margin: 5vw;">
+        <div id="container"></div>
+    </figure>
+</div>
+<!--todo x labels-->
+<script>
+    Highcharts.chart('container', {
+
+        chart: {
+            scrollablePlotArea: {
+                minWidth: 700
+            }
+        },
+
+        title: {
+            text: 'درآمد بازه مشخص شده'
+        },
+
+        // subtitle: {
+        //     text: {{user.name}}{{user.family_name}}
+        // },
+
+        xAxis: {
+            title: {
+                text: "روز‌ ها"
+            },
+            // tickInterval: 7 * 24 * 3600 * 1000, // one week
+            tickWidth: 0,
+            gridLineWidth: 1,
+            labels: {
+                align: 'left',
+                x: 3,
+                y: -3
+            }
+        },
+
+        yAxis: [{ // left y axis
+            title: {
+                text: 'درآمد'
+            },
+            labels: {
+                align: 'left',
+                x: 3,
+                y: 16,
+                format: '{value:.,0f}'
+            },
+            showFirstLabel: false
+        }],
+
+        legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            borderWidth: 0
+        },
+
+        tooltip: {
+            shared: true,
+            crosshairs: true
+        },
+
+        plotOptions: {
+            series: {
+                cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function (e) {
+                            hs.htmlExpand(null, {
+                                pageOrigin: {
+                                    x: e.pageX || e.clientX,
+                                    y: e.pageY || e.clientY
+                                },
+                                headingText: this.series.name,
+                                maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/>' + this.y,
+                                width: 200
+                            });
+                        }
+                    }
+                },
+                marker: {
+                    lineWidth: 1
+                }
+            }
+        },
+
+        series: [{
+            name: 'خط درآمد',
+            lineWidth: 4,
+            marker: {
+                radius: 4
+            },
+            data: {{ins}
+    }
+    }]
+
+    })
+    ;
+</script>
+{% endif %}
+
+{% endblock %}
