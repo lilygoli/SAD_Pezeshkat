@@ -39,17 +39,20 @@
 <body>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{% static 'scripts/toggler.js' %}"></script>
-
 <nav class="navbar navbar-default navbar-fixed-top navbar-static-top" role="navigation">
+
     <div class="container">
+
         <button class="navbar-toggler navbar-left button " data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="True" aria-label="Toggle navigation"> ☰
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse " id="navbarCollapse">
 
-            <ul class="nav navbar-nav navbar-right ">
+{#            <ul style="margin-right: 80vw"><p> سلام {{ user.name }}</p></ul>#}
 
+            <ul class="nav navbar-nav navbar-right ">
 
                 {% if not user.is_authenticated %}
                     <li class="dropdown show navbar-item ">
@@ -59,9 +62,11 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" dir="rtl">
-                            <ul><a class="dropdown-item" href="/register/?id=1" dir="rtl" lang="fa">به عنوان پزشک</a>
+                            <ul><a class="dropdown-item" href="/register/?id=1" dir="rtl" lang="fa">به عنوان
+                                پزشک</a>
                             </ul>
-                            <ul><a class="dropdown-item" href="/register/?id=2" dir="rtl" lang="fa">به عنوان بیمار</a>
+                            <ul><a class="dropdown-item" href="/register/?id=2" dir="rtl" lang="fa">به عنوان
+                                بیمار</a>
                             </ul>
 
                         </div>
@@ -72,10 +77,12 @@
                     <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>
                     <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی
                         پزشک</a></li>
+
                 {% endif %}
                 <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
 
             </ul>
+
         </div>
     </div>
 </nav>

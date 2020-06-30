@@ -6,8 +6,8 @@ static
 }
 @font-face {
     font-family: "DimaShekari";
-    font-size: large;
-    src: url("../fonts/DimaShekari.woff") format("woff");
+    font-size: medium;
+    src: url("../fonts/DimaShekari1.woff") format("woff");
 }
 
 

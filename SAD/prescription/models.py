@@ -30,12 +30,14 @@ class Medicine(models.Model):
     name = models.CharField(max_length=200, null=False)
     description = models.CharField(max_length=1000, null=True, blank=True)
     starting_time = jmodels.jDateField(null=True)
-    starting_hour = models.FloatField(null=True)
+    starting_hour = models.TimeField(null=True)
     time_interval = models.FloatField(null=False)
     status = models.BooleanField(default=False)
     total_dosage = models.IntegerField(null=False, validators=[MinValueValidator(0)])
     dosage_every_time = models.IntegerField(null=False, validators=[MinValueValidator(0)])
+    dosage_remaining = models.IntegerField(null=True, validators=[MinValueValidator(0)])
     times_left = models.IntegerField(null=True)
+    finished = models.BooleanField(default=False)
 
 
 class Injections(models.Model):

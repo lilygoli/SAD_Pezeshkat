@@ -83,6 +83,9 @@ def make_item(request, medicine_formset, prescription_id, med_class):
                 if len(last_m) <= 0:
                     m.prescription_id = prescription_id
                     m.form_row = count
+                    if med_class == Medicine:
+                        m.times_left = m.total_dosage // m.dosage_every_time + 1
+                        m.dosage_remaining = m.total_dosage
                     m.save()
                 else:
                     last_m = last_m[0]
@@ -92,6 +95,8 @@ def make_item(request, medicine_formset, prescription_id, med_class):
                         last_m.time_interval = m.time_interval
                         last_m.dosage_every_time = m.dosage_every_time
                         last_m.total_dosage = m.total_dosage
+                        last_m.times_left = m.total_dosage // m.dosage_every_time + 1
+                        last_m.dosage_remaining = m.total_dosage
                     else:
                         last_m.deadline = m.deadline
                     last_m.save()

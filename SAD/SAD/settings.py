@@ -53,8 +53,13 @@ INSTALLED_APPS = [
     'prescription_list',
     'visit_history.apps.VisitHistoryConfig',
     'prescription_list_patient.apps.PrescriptionListPatientConfig',
-    'doctor_rating'
+    'doctor_rating',
+    'bootstrap_datepicker_plus',
+    'bootstrap4',
+    'widget_tweaks',
 ]
+
+
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -133,7 +138,9 @@ STATICFILES_DIRS = [STATIC_DIR, os.path.join(BASE_DIR, 'static', 'static_dirs'),
 # STATICFILES_DIRS = (
 #     os.path.join(PROJECT_ROOT, 'static'),
 # )
-
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'

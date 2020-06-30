@@ -14,11 +14,8 @@
             {% if user.is_authenticated %}
                 <div class="container" id="profile">
                     <div class="jumbotron" id="profile-jumbotron">
-                        <div class="container">
-                            <h2>سلام {{ user.name }}</h2>
                             {% block body_index_block %}
                             {% endblock %}
-                        </div>
                     </div>
                 </div>
             {% else %}

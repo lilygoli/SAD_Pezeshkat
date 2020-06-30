@@ -3,6 +3,7 @@
 {% block body_index_block %}
 <link rel="stylesheet" href="{% static "css/profile.css" %}" type="text/css">
 <div class="container-fluid emp-profile">
+{#    <div class="jumbotron" id="profile-holder">#}
             <form method="post">
                 <div class="row">
                     <div class="col-md-4 col-xs-4">
@@ -37,8 +38,8 @@
                         <div class="profile-work">
                             <p>لینک‌های کاربردی</p>
                             <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
-                            <a href="{% url 'visit_history:history' %}">مشاهده ویزیت های قبلی</a>
-
+                            <a href="{% url 'visit_history:history' %}">مشاهده ویزیت های قبلی</a><br>
+                            <a href="{% url 'medicine_page:medicines' %}">لیست داروهای شما</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-4">
@@ -249,5 +250,7 @@
                     </div>
                 </div>
             </form>
+{#</div>#}
+
 </div>
 {% endblock%}

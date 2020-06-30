@@ -28,11 +28,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-2">
-                {% if not request_user.is_doctor %}
-                    <a class="btn btn-default" href="{% url 'doctor_calendar:calendar' user.pk 0 %}">رزرو وقت</a>
-                {% endif %}
-            </div>
+
         </div>
         <div class="row">
             <div class="col-md-10 col-xs-10">
@@ -221,8 +217,14 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </form>
+     <div class="col-md-2 col-xs-2">
+                {% if not request_user.is_doctor %}
+                    <a class="btn btn-default" href="{% url 'doctor_calendar:calendar' user.pk 0 %}">رزرو وقت</a>
+                {% endif %}
+            </div>
 
     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

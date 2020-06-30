@@ -1,0 +1,189 @@
+.ui-datepicker {
+    width: 17em;
+    padding: .2em .2em 0;
+    z-index: 9999 !important;
+}
+
+#ui-datepicker-div {
+    background-color: rgba(225, 226, 164, 0.82);
+    border: 1px solid rgba(34, 87, 80, 0.76);
+}
+
+thead th {
+    color: white;
+    background-color: #9b2c32;
+}
+
+
+ul li {
+    list-style-type: none;
+}
+
+div.bootstrap-datetimepicker-widget.dropdown-menu {
+    position: page;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: right;
+    width: 30vw;
+    height: 50vh;
+    font-size: 14px;
+    text-align: right;
+    align-content: center;
+    list-style: none;
+    background-color: rgba(225, 226, 164, 0.82);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+div.bootstrap-datetimepicker-widget .table-condensed > thead > tr > th,
+.bootstrap-datetimepicker-widget .table-condensed > tbody > tr > td,
+.bootstrap-datetimepicker-widget .table-condensed > tfoot > tr > td {
+    padding: 2vw;
+    width: 4vw;
+    float: top;
+    background-color: rgba(121, 193, 54, 0.36);
+    border: 3px solid rgba(34, 87, 80, 0.76);
+    border-radius: 4px;
+
+}
+
+.required label:after, label.required:after {
+    content: " *";
+    color: #ff4149;
+
+}
+
+.bootstrap-datetimepicker-widget .list-unstyled {
+    align-items: center;
+    padding-right: 0;
+    list-style: none;
+}
+
+
+div.bootstrap-datetimepicker-widget .btn {
+    display: inline-block;
+    /*padding: 6px 12px;*/
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #9b2c32;
+    border: 1px solid rgba(240, 0, 25, 0.98);
+    border-radius: 4px;
+}
+
+div.bootstrap-datetimepicker-widget .btn:hover {
+
+    background-color: #810403;
+    border: 1px solid rgba(240, 0, 25, 0.98);
+    border-radius: 4px;
+}
+
+
+.glyphicon.glyphicon-chevron-up,
+.glyphicon.glyphicon-chevron-down {
+    position: relative;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    height: 15px;
+    width: 3vw;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon.glyphicon-chevron-up:hover,
+.glyphicon.glyphicon-chevron-down:hover {
+    background-color: #7a2327;
+}
+
+#med-header {
+    background-color: rgba(228, 177, 80, 0.21);
+    width: min-content;
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    margin-right: 4vw;
+    border-radius: 500px;
+
+
+    box-shadow: 0 2.8px 2.2px rgba(228, 177, 80, 0.50),
+    0 6.7px 5.3px rgba(228, 177, 80, 0.50),
+    0 12.5px 10px rgba(228, 177, 80, 0.40),
+    0 100px 80px rgba(228, 177, 80, 0.30);
+
+
+}
+
+.jumbotron h1, .jumbotron h2 {
+    color: #e4813d;
+}
+
+body {
+    background-image: url('../images/drugs7.jpg'), url('../images/pattern2.jpg');
+    background-repeat: no-repeat, repeat;
+    background-position: top;
+}
+
+.jumbotron {
+    padding: auto;
+    margin-top: 8%;
+    background: rgb(229, 236, 206);
+    margin-right: 2vw;
+    width: 70vw;
+    border: 5px solid #96a66a;
+}
+
+#question {
+    padding: auto;
+    margin-top: 8%;
+    background: rgb(236, 234, 234);
+    margin-right: 1vw;
+    width: 55vw;
+    border: 5px solid #770689;
+}
+
+
+.jumbotron h3 {
+    font-size: 3vw;
+}
+
+.jumbotron h4 {
+    font-size: 20px;
+}
+
+.list-group-item {
+    background-color: #88a69c;
+    margin: 0px;
+    padding: 10px 0px;
+}
+
+.btn-default, .btn-default:hover,
+.btn-default:active,
+.btn-default:visited,
+.btn-default:focus {
+    background-color: #67b1a8;
+    font-size: large;
+    position: center;
+    transition: .5s ease;
+    margin-right: 30vw;
+}
+
