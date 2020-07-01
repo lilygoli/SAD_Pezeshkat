@@ -32,10 +32,11 @@
 {% if income|length > 0 %}
 <div class="container" id="chart-div">
     <figure class="highcharts-figure" style="max-width:50vw; position: center;margin: 5vw;">
-        <div id="container"></div>
+        <div id="container">
+        </div>
     </figure>
 </div>
-<!--todo x labels-->
+
 <script>
     Highcharts.chart('container', {
 
@@ -121,12 +122,10 @@
             marker: {
                 radius: 4
             },
-            data: {{ins}
-    }
+            data: {{ins}}
     }]
 
-    })
-    ;
+    });
 </script>
 {% endif %}
 
