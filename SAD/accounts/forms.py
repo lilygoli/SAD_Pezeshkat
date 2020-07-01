@@ -278,11 +278,16 @@ class TimeInterval(forms.Form):
     def clean(self):
         errors = {'start_date': [], 'end_date': []}
         cln = self.cleaned_data
+        print(cln)
         if cln['start_date'] is None:
             errors['start_date'] += ['لطفا تاریخ شروع بازه را وارد کنید.']
         if cln['end_date'] is None:
             errors['end_date'] += ['لطفا تاریخ پایان بازه را وارد کنید.']
         if cln['start_date'] is not None and cln['end_date'] is not None and cln['end_date'] < cln['start_date']:
             errors['start_date'] += ['بازه انتخاب شده معتبر نمی‌باشد، تاریخ شروع بازه باید قبل از تاریخ پایان آن باشد.']
+        if cln['start_date'] is not None and cln['end_date'] is not None and \
+                (cln['end_date'] - cln['start_date'] > datetime.timedelta(60) or
+                 cln['end_date'] - cln['start_date'] < datetime.timedelta(14)):
+            errors['start_date'] += ['طول بازه معتبر نیست.']
         if len(errors['start_date']) > 0 or len(errors['end_date']) > 0:
             raise ValidationError(errors)

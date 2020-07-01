@@ -206,7 +206,10 @@ def monthly_income(request):
                         if clean_data['start_date'].day <= i.start_time.day <= clean_data['end_date'].day:
                             day_diff = i.start_time.day - clean_data['start_date'].day
                             income.update({day_diff: income.get(day_diff) + doctor_fee})
-            ins = [income.get(i) for i in range(interval.days)]
+            ins = [0]
+            for i in range(interval.days):
+                ins.append((ins[-1] + income.get(i)))
+            ins.pop(0)
             args = {'form': date_form, 'income': income, 'ins': ins, 'errors':errors}
             return render(request, 'doctor_income/income.html', args)
         else:
