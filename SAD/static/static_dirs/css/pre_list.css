@@ -1,17 +1,29 @@
 body {
-   background-repeat: repeat;
-    background-image: url("../images/doc35.jpg");
+   /*background-repeat: repeat;*/
+    /*background-image: url("../images/doc35.jpg");*/
 }
 
 .jumbotron {
     padding: auto;
-    margin-top: 8%;
-    border: 5px solid #06402e;
+    /*margin-top: 40vh;*/
+    border: 5px solid #8fc58b;
 }
-
+#pre-title{
+    color: #444f58;
+}
+#search-jumbotron{
+        margin-top: 40vh;
+    background-color: rgba(249, 255, 233, 0.9);
+}
+.jumbotron.border{
+    background-color: #e3e7b2;
+}
 .border {
-    border: 5px groove #0db17a;
+    border: 5px groove #0a5405;
 
+}
+.jumbotron.border h3{
+    color: #6e4615;
 }
 
 .jumbotron h3 {
@@ -22,18 +34,32 @@ body {
     font-size: 20px;
 }
 .list-group-item {
-    background-color: #88a69c;
+    background-color: rgba(3, 84, 36, 0.58);
     margin: 0px;
+    margin-bottom: 1%;
     padding: 10px 0px;
+    border-radius: 5px;
 }
-
+.list-group-item p{
+    margin-right: 1vw;
+    color: #e8ece7;
+}
 .btn-default, .btn-default:hover,
 .btn-default:active,
-.btn-default:visited,
-.btn-default:focus {
-    background-color: #67b1a8;
+.btn-default:visited, .btn-default:focus
+{
+    background-color: #f79011;
     font-size: large;
+    color: black;
     position: center;
-    transition: .5s ease;
-    margin-right: 30vw;
+    /*transition: .5s ease;*/
+    margin-right: 37vw;
+}
+.btn-default:hover {
+    background-color: #fccd4e;
+    font-size: large;
+    color: black;
+    position: center;
+    /*transition: .5s ease;*/
+    margin-right: 37vw;
 }

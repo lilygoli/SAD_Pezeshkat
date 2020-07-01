@@ -1,3 +1,9 @@
+body{
+    background-image: url('../images/header12.jpg'), url('../images/pattern3.jpg');
+    background-repeat: no-repeat, repeat;
+    background-position: top;
+    background-size: 100% 330px, 100% 700px;
+}
 #calendar-div{
     width: 100%;
     overflow-x:scroll;

@@ -3,7 +3,7 @@
 {% block body_block %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
-    <div class="jumbotron">
+    <div class="jumbotron" id="search-jumbotron">
 
     <div class="clearfix">
         <a class="btn btn-info left" href="{% url 'doctor_calendar:doctor-calendar-next' 2 %} "> هفته قبل </a>

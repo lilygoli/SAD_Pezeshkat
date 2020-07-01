@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.min.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/income.css' %}" type="text/css">
 
-<div class="jumbotron">
+<div class="jumbotron" id="search-jumbotron">
     <form action="{% url 'accounts:monthly_income'%}" method="POST">
         {% csrf_token %}
         {{form.as_p}}
