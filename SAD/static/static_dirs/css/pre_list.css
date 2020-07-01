@@ -1,6 +1,7 @@
 body {
    /*background-repeat: repeat;*/
     /*background-image: url("../images/doc35.jpg");*/
+    background-attachment: fixed;
 }
 
 .jumbotron {

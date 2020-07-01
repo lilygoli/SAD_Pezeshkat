@@ -15,6 +15,7 @@ body {
     background-image: none;
     background-color: rgba(197, 237, 221, 0.54);
     font-family: 'DimaShekari', serif;
+    background-attachment: fixed;
 
 
 }

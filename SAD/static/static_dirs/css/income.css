@@ -1,3 +1,6 @@
+body{
+    background-attachment: fixed;
+}
 .ui-datepicker {
     width: 17em;
     padding: .2em .2em 0;
@@ -5,81 +8,6 @@
 }
 
 #ui-datepicker-div {
-    background-color: rgba(225, 226, 164, 0.82);
+    background-color: #bec1bd;
     border: 1px solid rgba(34, 87, 80, 0.76);
-}
-
-div.bootstrap-datetimepicker-widget.dropdown-menu {
-    position: page;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: right;
-    width: 30vw;
-    height: 50vh;
-    font-size: 14px;
-    text-align: right;
-    align-content: center;
-    list-style: none;
-    background-color: rgba(225, 226, 164, 0.82);
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-
-div.bootstrap-datetimepicker-widget .table-condensed > thead > tr > th,
-.bootstrap-datetimepicker-widget .table-condensed > tbody > tr > td,
-.bootstrap-datetimepicker-widget .table-condensed > tfoot > tr > td {
-    padding: 2vw;
-    width: 4vw;
-    float: top;
-    background-color: rgba(121, 193, 54, 0.36);
-    border: 3px solid rgba(34, 87, 80, 0.76);
-    border-radius: 4px;
-
-}
-
-.required label:after, label.required:after {
-    content: " *";
-    color: #ff4149;
-
-}
-
-.bootstrap-datetimepicker-widget .list-unstyled {
-    align-items: center;
-    padding-right: 0;
-    list-style: none;
-}
-
-
-div.bootstrap-datetimepicker-widget .btn {
-    display: inline-block;
-    /*padding: 6px 12px;*/
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #9b2c32;
-    border: 1px solid rgba(240, 0, 25, 0.98);
-    border-radius: 4px;
-}
-
-div.bootstrap-datetimepicker-widget .btn:hover {
-
-    background-color: #810403;
-    border: 1px solid rgba(240, 0, 25, 0.98);
-    border-radius: 4px;
 }

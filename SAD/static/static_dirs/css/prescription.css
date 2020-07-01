@@ -41,4 +41,5 @@ a.delete-row:hover {
 
 body {
     /*background-repeat: repeat;*/
+    background-attachment: fixed;
 }
