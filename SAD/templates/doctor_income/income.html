@@ -11,11 +11,14 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
 <script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/income.css' %}" type="text/css">
+
 <div class="jumbotron">
     <form action="{% url 'accounts:monthly_income'%}" method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">برو</button>
+        <button type="submit">مشاهده نمودار درآمد</button>
     </form>
 </div>
 <script>
@@ -25,6 +28,7 @@
             {
                 dateFormat: 'yy-mm-dd',
                 changeMonth: true,
+                showButtonPanel: true,
             }
         );
     });

@@ -192,6 +192,7 @@ def mini_profile(request, pk):
 @login_required
 def monthly_income(request):
     doctor_fee = request.user.doctorprofileinfo.fee
+    errors = ''
     if request.method == "POST":
         date_form = TimeInterval(request.POST)
         if date_form.is_valid():
@@ -206,7 +207,13 @@ def monthly_income(request):
                             day_diff = i.start_time.day - clean_data['start_date'].day
                             income.update({day_diff: income.get(day_diff) + doctor_fee})
             ins = [income.get(i) for i in range(interval.days)]
-            args = {'form': date_form, 'income': income, 'ins': ins}
+            args = {'form': date_form, 'income': income, 'ins': ins, 'errors':errors}
+            return render(request, 'doctor_income/income.html', args)
+        else:
+            for i in date_form.errors.values():
+                errors += i + '\n'
+            errors.pop()
+            args = {'form': date_form, 'income': {}, 'ins': {}, 'errors': errors}
             return render(request, 'doctor_income/income.html', args)
     else:
         date_form = TimeInterval()

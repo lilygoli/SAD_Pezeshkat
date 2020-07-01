@@ -272,15 +272,17 @@ class UserPasswordChange(PasswordChangeForm):
 
 
 class TimeInterval(forms.Form):
-    start_date = forms.DateField(widget=DateInput(attrs={'class': 'datepicker'}))
-    end_date = forms.DateField(widget=DateInput(attrs={'class': 'datepicker'}))
-    #todo errors
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), label="از تاریخ ", required=False)
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), label="تا تاریخ ", required=False)
 
-    # def clean(self):
-    #     errors = {'end_date': []}
-    #     cln = self.cleaned_data
-    #     if cln['end_date'] - cln['start_date'] < datetime.timedelta(14) or\
-    #             cln['end_date'] - cln['start_date'] > datetime.timedelta(60):
-    #         errors['end_date'] += ['لطفا باازه زمانی‌ای بین ۲ هفته تا ۲ ماه را انتخاب کنید.']
-    #     if len(errors['end_date']) > 0:
-    #         raise ValidationError(errors)
+    def clean(self):
+        errors = {'start_date': [], 'end_date': []}
+        cln = self.cleaned_data
+        if cln['start_date'] is None:
+            errors['start_date'] += ['لطفا تاریخ شروع بازه را وارد کنید.']
+        if cln['end_date'] is None:
+            errors['end_date'] += ['لطفا تاریخ پایان بازه را وارد کنید.']
+        if cln['start_date'] is not None and cln['end_date'] is not None and cln['end_date'] < cln['start_date']:
+            errors['start_date'] += ['بازه انتخاب شده معتبر نمی‌باشد، تاریخ شروع بازه باید قبل از تاریخ پایان آن باشد.']
+        if len(errors['start_date']) > 0 or len(errors['end_date']) > 0:
+            raise ValidationError(errors)
