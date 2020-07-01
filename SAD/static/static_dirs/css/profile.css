@@ -58,6 +58,7 @@
 body {
     background-image: url('../images/header2.jpg'), url('../images/pattern2.jpg');
     background-repeat: no-repeat, repeat;
+    background-attachment: fixed;
     background-position: top;
     background-size: 100%, 100%;
 }

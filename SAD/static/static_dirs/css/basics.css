@@ -17,6 +17,7 @@ body {
     /*background-size: 100%;*/
     background-image: url('../images/header12.jpg'), url('../images/pattern3.jpg');
     background-repeat: no-repeat, repeat;
+    background-attachment: fixed;
     background-position: top;
     background-size: 100% 330px, 100% 700px;
     /*background-attachment: fixed;*/
