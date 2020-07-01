@@ -55,11 +55,10 @@ INSTALLED_APPS = [
     'prescription_list_patient.apps.PrescriptionListPatientConfig',
     'doctor_rating',
     'bootstrap_datepicker_plus',
+    'medicine_page',
     'bootstrap4',
     'widget_tweaks',
 ]
-
-
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',

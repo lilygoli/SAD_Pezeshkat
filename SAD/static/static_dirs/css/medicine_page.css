@@ -19,6 +19,11 @@ ul li {
     list-style-type: none;
 }
 
+#med-li {
+    margin-top: 10%;
+    margin-bottom: 0;
+}
+
 div.bootstrap-datetimepicker-widget.dropdown-menu {
     position: page;
     left: 0;
@@ -64,6 +69,23 @@ div.bootstrap-datetimepicker-widget .table-condensed > thead > tr > th,
     list-style: none;
 }
 
+#self-error {
+    width: 69.5vw;
+    margin-right: 5.5vw;
+    margin-top: 10%;
+    animation: fadeinout 10s linear forwards;
+    margin-bottom: 0;
+}
+
+
+@keyframes fadeinout {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
 
 div.bootstrap-datetimepicker-widget .btn {
     display: inline-block;
@@ -141,15 +163,65 @@ body {
     background-image: url('../images/drugs7.jpg'), url('../images/pattern2.jpg');
     background-repeat: no-repeat, repeat;
     background-position: top;
-    background-size: 100% , 100% ;
+    background-size: 100%, 100%;
 
 }
+
+#add-button {
+    /*background-image: url("../images/add-button.png");*/
+    border: 2px solid #0c6b27;
+    background-color: darkseagreen;
+    height: 2.5em;
+    width: 2.5em;
+    font-size: 22px;
+    border-radius: 999px;
+    position: relative;
+}
+div.sticky{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    float:right;
+    margin-top: 15%;
+    top: 20%;
+}
+#add-button-header {
+    color: #cd7cb2;
+    font-size: large;
+    margin-right: -1.2vw
+}
+
+#add-button::after,
+#add-button::before {
+    content: "";
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#add-button:hover {
+    background-color: rgba(227, 20, 29, 0.74);
+    transition: ease 0.6s;
+}
+
+#add-button::before {
+    height: 1em;
+    width: 0.2em;
+}
+
+#add-button::after {
+    height: 0.2em;
+    width: 1em;
+}
+
 
 .jumbotron {
     padding: auto;
     margin-top: 8%;
     background: rgb(229, 236, 206);
-    margin-right: 2vw;
+    margin-right: 4vw;
     width: 70vw;
     border: 5px solid #96a66a;
 }
@@ -178,14 +250,38 @@ body {
     padding: 10px 0px;
 }
 
-.btn-default, .btn-default:hover,
+.btn-default,
 .btn-default:active,
 .btn-default:visited,
 .btn-default:focus {
-    background-color: #67b1a8;
-    font-size: large;
+    background-color: #79aec8;
+    font-size: 1.3vw;
     position: center;
     transition: .5s ease;
     margin-right: 30vw;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.btn-default:hover {
+    background-color: #5e879b;
+    font-size: 1.3vw;
+    position: center;
+    transition: .5s ease;
+    margin-right: 30vw;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-weight: normal;
 }
 
