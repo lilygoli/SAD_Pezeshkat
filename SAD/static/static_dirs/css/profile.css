@@ -5,9 +5,8 @@
     background:  linear-gradient(rgba(156, 210, 184, 0.99), rgba(156, 210, 184, 0.99), rgb(217, 255, 241));
     border: none;
     width: 65vw;
-    margin: 22% 10vw 0.1% 30vw;
+    margin: 24% 10vw 0.1% 30vw;
     padding-right: 1vw;
-    /*margin-right: 0;*/
     box-shadow: 0 2.8px 2.2px rgba(156, 210, 184, 0.5),
     0 6.7px 5.3px rgba(156, 210, 184, 0.50),
     0 12.5px 10px rgba(156, 210, 184, 0.40),
@@ -60,6 +59,7 @@ body {
     background-image: url('../images/header2.jpg'), url('../images/pattern2.jpg');
     background-repeat: no-repeat, repeat;
     background-position: top;
+    background-size: 100%, 100%;
 }
 
 .row-fluid {

@@ -1,10 +1,8 @@
 body {
-    background-image: none;
+    /*background-image: none;*/
 }
 
-#search-container {
-    background-image: url("../images/doc35.jpg");
-}
+
 
 
 #cards-li {
@@ -80,8 +78,11 @@ body {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-    background-color: rgb(52, 173, 165);
+    background-color: rgb(161, 177, 0);
     color: black;
+}
+#card-jumbotron{
+    background-color: #f2fff0;
 }
 
 /* Style the back side */
@@ -97,6 +98,10 @@ body {
 }
 
 #search-jumbotron {
+    margin-top: 40vh;
+}
+#search-jumbotron-all {
+    margin-top: 40vh;
     height: 300vh;
 }
 

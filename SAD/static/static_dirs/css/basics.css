@@ -12,11 +12,16 @@ static
 
 body {
 
-    background-image: url('../images/doc35.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
+    /*background-image: url('../images/doc35.jpg');*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100%;*/
+    background-image: url('../images/header12.jpg'), url('../images/pattern3.jpg');
+    background-repeat: no-repeat, repeat;
+    background-position: top;
+    background-size: 100% 330px, 100% 700px;
+    /*background-attachment: fixed;*/
 
-    background-position: center;
+    /*background-position: center;*/
     background-color: #c5eddd;
     font-family: 'DimaShekari', serif;
     font-size-adjust: 0.4;
@@ -27,7 +32,8 @@ body {
 label {
     font-size: 1.5vw;
 }
-
+#search-jumbotron {
+    margin-top: 40vh;}
 li {
     font-size: 1.5vw;
 }
@@ -39,7 +45,7 @@ a {
 .jumbotron {
     padding: auto;
     margin-top: 12%;
-    background: rgba(198, 211, 200, 0.76);
+    background: rgba(156, 211, 208, 0.9);
 
 }
 

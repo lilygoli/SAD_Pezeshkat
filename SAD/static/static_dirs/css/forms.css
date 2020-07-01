@@ -1,8 +1,8 @@
 body {
-    overflow-x: hidden;
-    height: 100%;
-    background-image: url("../images/doc35.jpg");
-    background-repeat: repeat;
+    /*overflow-x: hidden;*/
+    /*height: 100%;*/
+    /*background-repeat: repeat;*/
+
 }
 
 .head {
@@ -30,7 +30,7 @@ body {
     max-width: 40vw;
     padding: 3.2vh;
     position: center;
-    background: rgba(198, 211, 200, 0.76);
+    background: rgba(156, 211, 208, 0.9);
     text-align: center;
     transition: 0.25s;
     margin-top: 17.3vh;

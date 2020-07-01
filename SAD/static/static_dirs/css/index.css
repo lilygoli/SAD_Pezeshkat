@@ -169,12 +169,12 @@ ul.errorlist.error:before {
 }
 
 #profile {
-    background-image: url('../images/doc35.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: center;
-    min-height: 90vh;
+    /*background-image: url('../images/doc35.jpg');*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*position: center;*/
+    /*min-height: 90vh;*/
 }
 
 .jumbotron {

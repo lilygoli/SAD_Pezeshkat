@@ -14,7 +14,7 @@
 <script src="https://rawgithub.com/miladjafary/highcharts-plugins/master/js/highcharts-localization.js"></script>
 <link rel="stylesheet" href="{% static 'css/income.css' %}" type="text/css">
 
-<div class="jumbotron">
+<div class="jumbotron" id="search-jumbotron">
     <h3 style="color: black"> لطفا بازه‌ی زمانی‌ای بین دو هفته تا دو ماه را انتخاب کنید.</h3>
     <br>
     <form action="{% url 'accounts:monthly_income'%}" method="POST">

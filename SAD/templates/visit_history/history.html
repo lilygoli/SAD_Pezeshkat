@@ -10,7 +10,7 @@
         {% else %}
     {% for doctor in doctors %}
         <ul>
-            <div class="jumbotron">
+            <div class="jumbotron" id="search-jumbotron">
                 <li>
                     <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
                     {% if doctor.user.doctorprofileinfo.profile_pic %}
