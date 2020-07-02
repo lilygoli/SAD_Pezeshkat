@@ -11,3 +11,14 @@ body{
     background-color: #bec1bd;
     border: 1px solid rgba(34, 87, 80, 0.76);
 }
+
+#chart-div {
+    overflow-x: scroll;
+    align-content: center;
+}
+
+@media (max-width: 700px) {
+    .highcharts-figure  {
+       max-width: 50vw;
+    }
+}
