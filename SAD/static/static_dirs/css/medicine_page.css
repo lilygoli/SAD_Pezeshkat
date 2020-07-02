@@ -1,8 +1,11 @@
 
-.ui-datepicker {
+.ui-datepicker, .ui-datepicker-buttonpane {
     width: 17em;
     padding: .2em .2em 0;
     z-index: 9999 !important;
+    margin: .7em 0 0 0;
+    background-color: #9b2c32;
+    border-top: 1px solid #c40017
 }
 
 #ui-datepicker-div {
@@ -172,28 +175,35 @@ body {
     /*background-image: url("../images/add-button.png");*/
     border: 2px solid #0c6b27;
     background-color: darkseagreen;
-    height: 2.5em;
-    width: 2.5em;
+    height: 5vw;
+    width: 5vw;
     font-size: 22px;
-    border-radius: 999px;
+    border-radius: 6vw;
     position: relative;
 }
-div.sticky{
+
+label{
+  font-size: unset;
+}
+div.sticky {
     position: -webkit-sticky; /* Safari */
     position: sticky;
-    float:right;
+    float: right;
     margin-top: 15%;
     top: 20%;
 }
+
 #add-button-header {
     color: #cd7cb2;
     font-size: large;
+    width: 10vw;
     margin-right: -1.2vw
 }
 
 #add-button::after,
 #add-button::before {
     content: "";
+    size: 2vw;
     display: block;
     background-color: white;
     position: absolute;
@@ -208,13 +218,13 @@ div.sticky{
 }
 
 #add-button::before {
-    height: 1em;
-    width: 0.2em;
+    height: 1vw;
+    width: 0.2vw;
 }
 
 #add-button::after {
-    height: 0.2em;
-    width: 1em;
+    height: 0.2vw;
+    width: 1vw;
 }
 
 
