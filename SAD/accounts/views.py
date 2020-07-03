@@ -13,6 +13,9 @@ from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoFo
 from accounts.models import DoctorProfileInfo, User
 from doctor_calendar.models import Event
 
+from scrapy.crawler import CrawlerProcess
+from .utils import URLsSpider
+
 
 def index(request):
     user = request.user
@@ -30,6 +33,7 @@ def index(request):
         args = counts_by_category
         return render(request, 'registration/index.html', args)
     else:
+
         args = {'user': user}
         if user.is_doctor:
             args.update({"days": get_week_days(user)})

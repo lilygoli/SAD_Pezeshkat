@@ -59,7 +59,8 @@ class StartSelfMedFrom(forms.ModelForm):
 def clean_med(self):
     clean_med_date(self)
     if 'dosage_remaining' in self.cleaned_data.keys() and 'dosage_every_time' in self.cleaned_data.keys() \
-            and self.cleaned_data['dosage_every_time'] > self.cleaned_data['total_dosage']:
+        and self.cleaned_data['dosage_remaining'] and self.cleaned_data['dosage_every_time']\
+            and self.cleaned_data['dosage_every_time'] > self.cleaned_data['dosage_remaining']:
         if 'dosage_every_time' in self.errors.keys():
             self.errors['dosage_every_time'] += ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']
         else:
@@ -116,6 +117,7 @@ class SelfMedForm(forms.ModelForm):
     def clean(self):
         clean_med_date(self)
         if 'total_dosage' in self.cleaned_data.keys() and 'dosage_every_time' in self.cleaned_data.keys() \
+                and self.cleaned_data['total_dosage'] and self.cleaned_data['dosage_every_time'] \
                 and self.cleaned_data['dosage_every_time'] > self.cleaned_data['total_dosage']:
             if 'dosage_every_time' in self.errors.keys():
                 self.errors['dosage_every_time'] += ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']

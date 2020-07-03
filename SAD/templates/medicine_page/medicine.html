@@ -213,7 +213,7 @@
 
                                             {% render_field start_notif_form.dosage_remaining class="form-control form-control-sm" value=med.dosage_remaining id=med.id %}
 
-                                            <button onclick="disablingFunction2('{{ med.id }}')">تغییر مقدار</button>
+                                            <button onclick="disablingFunction('{{ med.id }}')">تغییر مقدار</button>
                                             <br><br>
                                             <label for="total_dosage">مقدار هربار مصرف (گرم):</label>
                                             {% render_field start_notif_form.dosage_every_time class="form-control form-control-sm" value=med.dosage_every_time id=med.id %}

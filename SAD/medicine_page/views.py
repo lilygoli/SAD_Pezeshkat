@@ -101,6 +101,7 @@ def add_med(request):
         if med_form.is_valid():
             x = med_form.save(commit=False)
             x.user = request.user
+            x.dosage_remaining = x.total_dosage
             x.save()
             print("xxxxxxxx", x)
         else:
