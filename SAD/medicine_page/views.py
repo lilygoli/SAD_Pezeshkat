@@ -117,69 +117,9 @@ def add_med(request):
 
     return redirect('medicine_page:medicines')
 
-# @login_required
-# def write_prescription(request):
-#     # Create the formset, specifying the form and formset we want to use.
-#     MedFormSet = formset_factory(SelfMedForm)
-#
-#     # Get our existing link data for this user.  This is used as initial data.
-#     medicines = SelfMedForm.objects.filter(user=request.user).order_by('id')
-#
-#     medicine_list = [
-#         {'user': request.user, 'name': l.name, 'description': l.description,
-#          'time_interval': l.time_interval, 'total_dosage': l.total_dosage,
-#          "dosage_every_time": l.dosage_every_time, 'starting_time': l.starting_time,
-#          'starting_hour': l.starting_hour}
-#         for l in medicines]
-#
-#     if request.method == 'POST':
-#         medicine_formset = MedFormSet(request.POST, prefix='self-med')
-#
-#         # Now save the data for each form in the formset
-#         return_flag1 = make_item(request, medicine_formset)
-#
-#         if return_flag1:
-#             return redirect('medicine_page:medicines')
-#
-#     else:
-#
-#         medicine_formset = MedFormSet(initial=medicine_list, prefix='med')
-#
-#     context = {
-#         'medicine_formset': medicine_formset,
-#
-#     }
-#
-#     # return render(request, 'medicine_page/medicine.html',
-#     #                       { 'meds': zipped, 'error_id': med_id})
-#
-#
-# def make_item(request, medicine_formset):
-#     count = 0
-#     return_flag = True
-#     for med_form in medicine_formset:
-#         empty, idx = med_form.check_completeness()
-#         if not empty or count not in idx:
-#             if med_form.is_valid():
-#                 m = med_form.save(commit=False)
-#                 last_m = SelfMedForm.objects.filter(user_id=request.user.id, form_row=count)
-#                 if len(last_m) <= 0:
-#                     m.user = request.user
-#                     m.times_left = m.total_dosage // m.dosage_every_time + 1
-#                     m.dosage_remaining = m.total_dosage
-#                     m.save()
-#                 else:
-#                     last_m = last_m[0]
-#                     last_m.name = m.name
-#                     last_m.description = m.description
-#                     last_m.time_interval = m.time_interval
-#                     last_m.dosage_every_time = m.dosage_every_time
-#                     last_m.total_dosage = m.total_dosage
-#                     last_m.times_left = m.total_dosage // m.dosage_every_time + 1
-#                     last_m.dosage_remaining = m.total_dosage
-#                     last_m.save()
-#             else:
-#                 return_flag = False
-#                 print(med_form.errors)
-#         count += 1
-#     return return_flag
+
+@login_required
+def delete_med(request, med_id):
+    SelfAddedMedicine.objects.filter(id=med_id).delete()
+    return redirect('medicine_page:medicines')
+
