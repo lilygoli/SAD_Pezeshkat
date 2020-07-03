@@ -68,7 +68,7 @@
                                 </div>
                             {% endif %}
                             {% if med.status or med.finished %}
-                                <p> تاریخ شروع دارو: {{ med.starting_time }}</p>
+                                <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
                             {% else %}
 
                                 <div id="q-{{ med.id }}" style="display: none">
@@ -97,7 +97,6 @@
                                             <label class="required" for="starting_time">تاریخ شروع:</label>
 
                                             {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
-
                                             <br><br>
                                             <label class="required" for="starting_hour">زمان شروع:</label>
                                             {% render_field start_notif_form.starting_hour %} <br><br>
@@ -168,7 +167,7 @@
                                 </div>
                             {% endif %}
                             {% if med.status or med.finished %}
-                                <p> تاریخ شروع دارو: {{ med.starting_time }}</p>
+                                <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
                             {% else %}
 
                                 <div id="q-{{ med.id }}" style="display: none">
@@ -195,7 +194,7 @@
                                             کنید.</p><br>
                                         <form method="post" action={% url "medicine_page:start_notif" med.id 1 %}>
                                             {% csrf_token %}
-                                            <label class="required" for="starting_time">تاریخ شروع:</label>
+                                            <label class="required" for="starting_time">تاریخ شروع دارو:</label>
 
                                             {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
 

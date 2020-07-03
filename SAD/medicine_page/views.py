@@ -34,7 +34,6 @@ class MedicineListView(ListView, FormMixin):
 
         return context
 
-
 @login_required
 def set_start_time(request, med_id, self):
     if request.method == 'POST':
@@ -43,6 +42,7 @@ def set_start_time(request, med_id, self):
             prev_dosage = med.dosage_remaining
             prev_dosage_every = med.dosage_every_time
             med_form = StartMedFrom(request.POST, instance=med)
+            print(request.POST)
         else:
             med = SelfAddedMedicine.objects.get(id=med_id)
             prev_dosage = med.dosage_remaining
@@ -69,8 +69,8 @@ def set_start_time(request, med_id, self):
                     med_form_list += [StartMedFrom()]
             zipped = zip(all_meds, med_form_list)
             self_zipped = zip(self_meds, self_forms)
-            print(med_form.errors)
-            print("INVALDDD")
+            # print(med_form.errors)
+            # print("INVALDDD")
             return render(request, 'medicine_page/medicine.html',
                           {'meds': zipped, 'self_meds': self_zipped, 'error_id': med_id,
                            'empty_self_form': SelfMedForm()})
@@ -81,9 +81,10 @@ def set_start_time(request, med_id, self):
 @login_required
 def disable_notif(request, med_id):
     med = Medicine.objects.get(id=med_id)
-    print(med, "RRRRRRRR")
     med.status = False
     med.save()
+
+    return redirect('medicine_page:medicines')
 
 
 @login_required
@@ -91,6 +92,9 @@ def disable_self_notif(request, med_id):
     med = SelfAddedMedicine.objects.get(id=med_id)
     med.status = False
     med.save()
+    return redirect('medicine_page:medicines')
+
+
 
 
 @login_required
@@ -103,7 +107,6 @@ def add_med(request):
             x.user = request.user
             x.dosage_remaining = x.total_dosage
             x.save()
-            print("xxxxxxxx", x)
         else:
             all_meds = Medicine.objects.filter(prescription__patient=request.user.pk)
             self_meds = SelfAddedMedicine.objects.filter(user=request.user).order_by('id')
