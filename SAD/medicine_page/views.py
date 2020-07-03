@@ -123,3 +123,21 @@ def delete_med(request, med_id):
     SelfAddedMedicine.objects.filter(id=med_id).delete()
     return redirect('medicine_page:medicines')
 
+
+def decrement_med(med_id, type):
+    if type == '0':  # for prescription medicine
+        med = Medicine.objects.filter(id=med_id)
+    else:  # for self-added medicine
+        med = SelfAddedMedicine.objects.filter(id=med_id)
+    if not med:
+        return
+    if med.dosage_remaining <= med.dosage_every_time:
+        med.dosage_remaining = 0
+        med.times_left = 0
+        med.status = False
+        med.finished = True
+    else:
+        med.dosage_remaining -= med.dosage_every_time
+        med.ties_left -= 1
+
+    med.save()

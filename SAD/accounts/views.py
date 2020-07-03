@@ -13,8 +13,7 @@ from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoFo
 from accounts.models import DoctorProfileInfo, User
 from doctor_calendar.models import Event
 
-from scrapy.crawler import CrawlerProcess
-from .utils import URLsSpider
+
 
 
 def index(request):
