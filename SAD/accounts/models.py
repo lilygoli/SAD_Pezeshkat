@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 from django.utils import timezone
+from django_jalali.db import models as jmodels
 
 
 class UserManager(BaseUserManager):
@@ -176,3 +177,8 @@ class PatientProfileInfo(models.Model):
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name
+
+
+class Income(models.Model):
+    start_date = jmodels.jDateField(null=False)
+    end_date = jmodels.jDateField(null=False)

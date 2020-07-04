@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ValidationError
 
 from accounts.email_domians import DOMAINS
-from accounts.models import User, DoctorProfileInfo, PatientProfileInfo
+from accounts.models import User, DoctorProfileInfo, PatientProfileInfo, Income
 
 Inverse = {'ﭼﺸﻢ ﭘﺰﺷﮑﯽ': 'eye', 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ': 'ray', 'ﭘﻮﺳﺖ ﻭ ﻣﻮ': 'hair', "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ": 'nuc', "ﺍﺭﺗﻮﭘﺪﯼ": 'ort',
                'ﻗﻠﺐﻭﻋﺮﻭﻕ': 'heart',
@@ -271,14 +271,26 @@ class UserPasswordChange(PasswordChangeForm):
     )
 
 
-class TimeInterval(forms.Form):
-    start_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), label="از تاریخ ", required=False)
-    end_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), label="تا تاریخ ", required=False)
+class TimeInterval(forms.ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = Income
+        fields = (
+            'start_date', 'end_date'
+        )
+        labels = {
+            'start_date': 'از تاریخ',
+            'end_date': 'تا تاریخ'
+        }
+        widgets = {
+            'start_date': forms.DateInput(attrs={'class': 'datepicker'}),
+            'end_date': forms.DateInput(attrs={'class': 'datepicker'})
+        }
 
     def clean(self):
         errors = {'start_date': [], 'end_date': []}
         cln = self.cleaned_data
-        print(cln)
         if cln['start_date'] is None:
             errors['start_date'] += ['لطفا تاریخ شروع بازه را وارد کنید.']
         if cln['end_date'] is None:
