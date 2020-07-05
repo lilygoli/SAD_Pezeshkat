@@ -55,6 +55,7 @@
                                 </p>
 
                             {% else %}
+                                 {% if not med.finished %}
                                 <div>
                                     <p>وضعیت یادآوری قرص: غیرفعال
 
@@ -66,6 +67,10 @@
                                                 value="1"/>
                                     </p>
                                 </div>
+
+                                    {% else %}
+                                        <p>دارو تمام شده است.</p>
+                                     {% endif %}
                             {% endif %}
                             {% if med.status or med.finished %}
                                 <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
@@ -154,6 +159,7 @@
                                 </p>
 
                             {% else %}
+                                {% if not med.finished %}
                                 <div>
                                     <p>وضعیت یادآوری قرص: غیرفعال
 
@@ -165,6 +171,9 @@
                                                 value="1"/>
                                     </p>
                                 </div>
+                                    {% else %}
+                                    <p>دارو تمام شده است.</p>
+                                    {% endif %}
                             {% endif %}
                             {% if med.status or med.finished %}
                                 <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
