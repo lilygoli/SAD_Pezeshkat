@@ -38,6 +38,8 @@ class Medicine(models.Model):
     dosage_remaining = models.IntegerField(null=True, validators=[MinValueValidator(0)])
     times_left = models.IntegerField(null=True)
     finished = models.BooleanField(default=False)
+    send_notification = models.BooleanField(default=False)
+    number = models.IntegerField(default=0)
 
 
 class Injections(models.Model):
