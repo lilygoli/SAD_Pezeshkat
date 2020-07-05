@@ -12,12 +12,12 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <div class="container" id="med-container">
         <div class="jumbotron" id="med-header"><h1>داروها</h1></div>
-
-    <div class="sticky">
-        <h2 id="add-button-header">اضافه کردن دارو</h2>
-        <!-- Trigger the modal with a button -->
-        <button type="button" id="add-button" class="btn btn-info btn-lg" data-toggle="modal"
-                data-target="#myModal"></button></div>
+        <div class="sticky">
+            <h2 id="add-button-header">اضافه کردن دارو</h2>
+            <!-- Trigger the modal with a button -->
+            <button type="button" id="add-button" class="btn btn-info btn-lg" data-toggle="modal"
+                    data-target="#myModal"></button>
+        </div>
         {% if meds.count == 0 %}
             <div class="jumbotron border">
                 <p class="text"> دارویی وجود ندارد.</p>
@@ -36,7 +36,18 @@
                 <ul>
                     <li id="med-li">
                         <div class="jumbotron">
-
+                            <script>
+                                if ('{{ med.send_notification }}' === 'True') {
+                                    if (Notification.permission !== 'granted')
+                                        Notification.requestPermission();
+                                    else {
+                                        var notification = new Notification('یادآوری !', {
+                                            icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
+                                            bobody: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
+                                        });
+                                    }
+                                }
+                            </script>
                             <h2>دارو:</h2>
                             <p>نام دارو: {{ med.name }}</p>
                             {% if med.description %}
@@ -55,20 +66,27 @@
                                 </p>
 
                             {% else %}
-                                <div>
-                                    <p>وضعیت یادآوری قرص: غیرفعال
+                                {% if not med.finished %}
+                                    <div>
+                                        <p>وضعیت یادآوری قرص: غیرفعال
 
-                                        <label for="active" style="margin-right: 3vw">فعال کردن یادآوری</label><input
-                                                type="checkbox"
-                                                name="active"
-                                                onclick="checkbox('{{ med.id }}')"
-                                                id="active-{{ med.id }}"
-                                                value="1"/>
-                                    </p>
-                                </div>
+                                            <label for="active" style="margin-right: 3vw">فعال کردن
+                                                یادآوری</label><input
+                                                    type="checkbox"
+                                                    name="active"
+                                                    onclick="checkbox('{{ med.id }}')"
+                                                    id="active-{{ med.id }}"
+                                                    value="1"/>
+                                        </p>
+                                    </div>
+
+                                {% else %}
+                                    <p>دارو تمام شده است.</p>
+                                {% endif %}
                             {% endif %}
                             {% if med.status or med.finished %}
-                                <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
+                                <p>تاریخ شروع دارو:<span
+                                        style="float: left; padding-left: 40vw">{{ med.starting_time }}</span></p>
                             {% else %}
 
                                 <div id="q-{{ med.id }}" style="display: none">
@@ -135,7 +153,18 @@
                 <ul>
                     <li>
                         <div class="jumbotron">
-
+                            <script>
+                                if ('{{ med.send_notification }}' === 'True') {
+                                    if (Notification.permission !== 'granted')
+                                        Notification.requestPermission();
+                                    else {
+                                        var notification = new Notification('یادآوری !', {
+                                            icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
+                                            body: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
+                                        });
+                                    }
+                                }
+                            </script>
                             <h2>دارو: <p>(اضافه شده توسط شما)</p></h2>
                             <p>نام دارو: {{ med.name }}</p>
                             {% if med.description %}
@@ -154,20 +183,26 @@
                                 </p>
 
                             {% else %}
-                                <div>
-                                    <p>وضعیت یادآوری قرص: غیرفعال
+                                {% if not med.finished %}
+                                    <div>
+                                        <p>وضعیت یادآوری قرص: غیرفعال
 
-                                        <label for="active" style="margin-right: 3vw">فعال کردن یادآوری</label><input
-                                                type="checkbox"
-                                                name="active"
-                                                onclick="checkbox('{{ med.id }}')"
-                                                id="active-{{ med.id }}"
-                                                value="1"/>
-                                    </p>
-                                </div>
+                                            <label for="active" style="margin-right: 3vw">فعال کردن
+                                                یادآوری</label><input
+                                                    type="checkbox"
+                                                    name="active"
+                                                    onclick="checkbox('{{ med.id }}')"
+                                                    id="active-{{ med.id }}"
+                                                    value="1"/>
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    <p>دارو تمام شده است.</p>
+                                {% endif %}
                             {% endif %}
                             {% if med.status or med.finished %}
-                                <p>تاریخ شروع دارو:<span style="float: left; padding-left: 40vw" >{{ med.starting_time }}</span></p>
+                                <p>تاریخ شروع دارو:<span
+                                        style="float: left; padding-left: 40vw">{{ med.starting_time }}</span></p>
                             {% else %}
 
                                 <div id="q-{{ med.id }}" style="display: none">
@@ -243,7 +278,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" style="color: red"> &times; </button>
+                        <button type="button" class="close" data-dismiss="modal" style="color: red"> &times;</button>
                         <h4 class="modal-title">داروی جدید</h4>
                     </div>
                     <div class="modal-body">
@@ -273,12 +308,15 @@
         </div>
 
     </div>
-
-
-
     <script>
-        window.onload = function () {
+        window.setInterval('refresh()', 13000 * 60);
 
+        function refresh() {
+            window.location.reload();
+        }
+
+
+        window.onload = function () {
             var arrayLength = document.getElementsByName("med-dosage_remaining").length;
             for (var i = 0; i < arrayLength; i++) {
                 document.getElementsByName("med-dosage_remaining")[i].disabled = true;
