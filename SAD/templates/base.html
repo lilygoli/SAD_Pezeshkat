@@ -50,7 +50,6 @@
 
         <div class="collapse navbar-collapse " id="navbarCollapse">
 
-{#            <ul style="margin-right: 80vw"><p> سلام {{ user.name }}</p></ul>#}
 
             <ul class="nav navbar-nav navbar-right ">
 
@@ -72,16 +71,28 @@
                         </div>
                     </li>
                     <li><a class="navbar-link " href="{% url 'accounts:user_login' %}">ورود</a></li>
+                <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>
                     <li><a class="navbar-link" href="{% url 'accounts:search_page' %}">جست‌وجوی
                         پزشک</a></li>
-
+                    {% if user.is_doctor %}
+                        <li>
+                            <li><a href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a></li>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.patientprofileinfo.profile_pic.url }}"/></a></li>
+                    {% endif %}
                 {% endif %}
-                <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
 
             </ul>
+<!--            <ul class="nav navbar-nav navbar-left ">-->
+<!--                {% if user.is_authenticated %}-->
+<!--                    <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>-->
+<!--                {% endif %}-->
+<!--            </ul>-->
+
 
         </div>
     </div>

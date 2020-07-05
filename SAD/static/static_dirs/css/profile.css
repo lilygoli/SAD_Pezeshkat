@@ -78,6 +78,7 @@ img {
 .profile-img img {
     width: 18vw;
     height: 18vw;
+    float: left;
 }
 
 .profile-head h5 {
