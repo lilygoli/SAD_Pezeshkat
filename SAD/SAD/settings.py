@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'accounts.apps.AuthenticationConfig',
     'doctor_calendar.apps.DoctorCalendarConfig',
     'prescription.apps.PrescriptionConfig',
-    'prescription_list',
-    'prescription_list_patient.apps.PrescriptionListPatientConfig',
     'doctor_rating',
     'bootstrap_datepicker_plus',
     'medicine_page',

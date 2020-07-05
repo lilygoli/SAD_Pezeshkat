@@ -17,24 +17,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
 from accounts import urls as u1
-from doctor_calendar import urls as u3
-from doctor_rating import urls as u9
-from medicine_page import urls as u10
+from doctor_calendar import urls as u2
+from doctor_rating import urls as u3
+from medicine_page import urls as u4
 from prescription import urls as u5
-from prescription_list import urls as u6
-from prescription_list_patient import urls as u8
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include(u1)),
+                  path('', include(u2)),
                   path('', include(u3)),
+                  path('', include(u4)),
                   path('', include(u5)),
-                  path('', include(u6)),
-                  path('', include(u8)),
-                  path('', include(u9)),
-                  path('', include(u10)),
                   path('accounts/', include('django.contrib.auth.urls')),
               ]
 if settings.DEBUG:
