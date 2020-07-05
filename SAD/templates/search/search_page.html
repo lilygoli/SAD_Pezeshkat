@@ -1,22 +1,77 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body_block %}
-    <div class="container">
-    <div class="jumbotron" id="search-jumbotron">
+<link rel="stylesheet" href="{% static 'css/search_result.css' %}" type="text/css">
+    <div class="container" id="search-container">
+        <div class="jumbotron" id="search-jumbotron-all">
     <h1> جستوجوی پزشک </h1>
-    <form action="{% url 'accounts:search_results' %}" method="GET" value="{{ request.GET.q }}">
-        <input type="text" name="q1" value="{{ request.Get.q1 }}" placeholder="نام دکتر مورد نظر"/>
-        <br/>
-        <br/>
-        <input type="text" name="q2" value="{{ request.GET.q2 }}" placeholder="نام خانوادگی دکتر مورد نظر"/>
-        <br/>
-        <br/>
-        <input type="text" name="q3" value="{{ request.GET.q3 }}" placeholder="تخصص دکتر مورد نظر"/>
-        <br/>
-        <br/>
-        <input type="submit" name="submit" value="جستجو"/>
-    </form>
+            <br>
+            <br>
+        <input type="text" name="q1" placeholder="نام دکتر مورد نظر" id="nameInput">
+        <input type="text" name="q2" placeholder="نام خانوادگی دکتر مورد نظر" id="familyNameInput">
+        <input type="text" name="q3" placeholder="تخصص دکتر مورد نظر" id="specialityInput">
+            <br>
+            <br>
+            <ul id="myUL">
+            {% for doctor in object_list %}
+                    <li id="cards-li"  data-role="card">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="jumbotron" id="card-jumbotron">
+                                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}" class="name"> {{ doctor.user.name }}</a>
+                                        <a href="{% url 'accounts:mini_profile' doctor.user.pk %}" class="family_name"> {{ doctor.user.family_name }}</a>
+                                        <br/>
+                                        {% if doctor.user.doctorprofileinfo.profile_pic %}
+                                            <img src="{{ doctor.user.doctorprofileinfo.profile_pic.url }}"
+                                                 alt="orig-prf" id="prf">
+                                        {% else %}
+                                            <img src="{% static 'default/default_8.jpg'%}" alt="original-prf" id="prf">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="flip-card-back">
+                                    {% if doctor.specialty %}
+                                        <h1>{{ doctor.specialty }}</h1>
+                                    {% else %}
+                                        <h1>{{ doctor.specialty_bins}} </h1>
+                                    {% endif %}
+                                    <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
+
+                                    <p>هزینه ویزیت:{{ doctor.fee }}</p>
+                                    <p>آدرس:{{ doctor.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+            {% endfor %}
+            </ul>
+        </div>
     </div>
-    </div>
+
+<script>
+    $(document).ready(function() {
+        $("#nameInput").on("keyup", function() {
+            var value = $(this).val();
+                $('li[data-role="card"]').filter(function() {
+                $(this).toggle($(this).find('.name').text().indexOf(value) > -1)
+         });
+        });
+        $("#familyNameInput").on("keyup", function() {
+            var value = $(this).val();
+                $('li[data-role="card"]').filter(function() {
+                $(this).toggle($(this).find('.family_name').text().indexOf(value) > -1)
+         });
+        });
+        $("#specialityInput").on("keyup", function() {
+            var value = $(this).val();
+                $('li[data-role="card"]').filter(function() {
+                $(this).toggle($(this).find('.flip-card-back h1').text().indexOf(value) > -1)
+         });
+        });
+    });
+</script>
+
 {% endblock %}
 
 

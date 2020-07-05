@@ -236,22 +236,10 @@ def monthly_income(request):
         return render(request, 'doctor_income/income.html', args)
 
 
-class HomePageView(TemplateView):
-    template_name = 'search/search_page.html'
-
-
-class SearchResultsView(ListView):
-    model = DoctorProfileInfo
-    template_name = 'search/search_results.html'
-
-    def get_queryset(self):
-        query_name = self.request.GET.get('q1')
-        query_family_name = self.request.GET.get('q2')
-        query_speciality = self.request.GET.get('q3')
-        object_list = DoctorProfileInfo.objects.filter(
-            Q(specialty_bins__contains=query_speciality) & Q(user__name__contains=query_name) & Q(
-                user__family_name__contains=query_family_name))
-        return object_list
+def doctor_search(request):
+    object_list = DoctorProfileInfo.objects.all()
+    args = {'object_list': object_list}
+    return render(request, 'search/search_page.html', args)
 
 
 class PatientListView(ListView):

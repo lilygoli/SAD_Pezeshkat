@@ -78,11 +78,9 @@
                     <li><a class="navbar-link" href="{% url 'accounts:search_page' %}">جست‌وجوی
                         پزشک</a></li>
                     {% if user.is_doctor %}
-                        <li>
-                            <li><a href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a></li>
-                        </li>
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a></li>
                     {% else %}
-                        <li><a href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.patientprofileinfo.profile_pic.url }}"/></a></li>
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.patientprofileinfo.profile_pic.url }}"/></a></li>
                     {% endif %}
                 {% endif %}
 

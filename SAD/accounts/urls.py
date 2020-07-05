@@ -24,8 +24,7 @@ urlpatterns = [
     url(r'^$', v.index, name='index'),
     url(r'^mini_profile/(?P<pk>\d+)$', v.mini_profile, name='mini_profile'),
     url(r'monthly_income$', v.monthly_income, name='monthly_income'),
-    url(r'^search_result/', login_required(v.SearchResultsView.as_view()), name='search_results'),
-    url(r'^search_page/', login_required(v.HomePageView.as_view()), name='search_page'),
+    url(r'^search_page/', v.doctor_search, name='search_page'),
     url(r'^list/', login_required(v.PatientListView.as_view()), name='list'),
     url(r'^visit_history/', v.DoctorListView.as_view(), name='history')
 
