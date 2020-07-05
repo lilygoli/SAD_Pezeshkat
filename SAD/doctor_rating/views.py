@@ -19,7 +19,7 @@ def rate(request):
         rate_object.save()
         doctor.doctorprofileinfo.score = get_mean_score(doctor)
         doctor.doctorprofileinfo.save()
-    return HttpResponseRedirect(reverse('visit_history:history'))
+    return HttpResponseRedirect(reverse('accounts:history'))
 
 
 def get_mean_score(doctor):

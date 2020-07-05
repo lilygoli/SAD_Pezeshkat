@@ -10,8 +10,15 @@ from django.urls import reverse
 
 from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse, TimeInterval
 from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
-from accounts.models import DoctorProfileInfo, User
+from django.views.generic import TemplateView, ListView
+
+from django.db.models import Q
+from accounts.models import DoctorProfileInfo
+from django.views.generic import ListView
+
+from accounts.models import User, PatientProfileInfo, DoctorProfileInfo
 from doctor_calendar.models import Event
+from doctor_rating.models import Rating
 
 
 def index(request):
@@ -224,3 +231,54 @@ def monthly_income(request):
         args = {'form': date_form, 'income': {}}
         return render(request, 'doctor_income/income.html', args)
 
+
+class HomePageView(TemplateView):
+    template_name = 'search/search_page.html'
+
+
+class SearchResultsView(ListView):
+    model = DoctorProfileInfo
+    template_name = 'search/search_results.html'
+
+    def get_queryset(self):
+        query_name = self.request.GET.get('q1')
+        query_family_name = self.request.GET.get('q2')
+        query_speciality = self.request.GET.get('q3')
+        object_list = DoctorProfileInfo.objects.filter(
+            Q(specialty_bins__contains=query_speciality) & Q(user__name__contains=query_name) & Q(
+                user__family_name__contains=query_family_name))
+        return object_list
+
+
+class PatientListView(ListView):
+    template_name = 'patient_list/list.html'
+    patients = None
+
+    def get_queryset(self):
+        patients = Event.objects.filter(doctor_user=self.request.user.pk)
+        self.patients = PatientProfileInfo.objects.none()
+        for i in patients:
+            self.patients |= PatientProfileInfo.objects.filter(user=i.patient_user)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        self.patients.order_by('id')
+        context['patients'] = self.patients
+        return context
+
+
+class DoctorListView(ListView):
+    template_name = 'visit_history/history.html'
+    doctors = None
+
+    def get_queryset(self):
+        doctors = Event.objects.filter(patient_user=self.request.user.pk)
+        self.doctors = DoctorProfileInfo.objects.none()
+        for i in doctors:
+            self.doctors |= DoctorProfileInfo.objects.filter(user=i.doctor_user)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['doctors'] = self.doctors
+        context['ratings'] = Rating.objects.filter(patient=self.request.user.pk).values_list('doctor', flat=True)
+        return context

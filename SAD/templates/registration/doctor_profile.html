@@ -9,7 +9,7 @@
                     <div class="profile-img">
 
                         {% if user.doctorprofileinfo.profile_pic == '' or  user.doctorprofileinfo.profile_pic == None%}
-                                <img src="http://tinygraphs.com/spaceinvaders/helloworld" alt="/">
+                                <img src="http://tinygraphs.com/labs/isogrids/hexa/helloworld" alt="/">
                              {% else %}
                                 <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" alt="Avatar"/>
                              {% endif %}
@@ -46,7 +46,7 @@
                         <p>لینک‌های کاربردی</p>
                         <a href="{% url 'accounts:password_change' %}">تغییر رمزعبور</a><br>
                         <a href="{% url 'doctor_calendar:schedule' 0 %}">مشاهده برنامه‌ی هفتگی</a><br>
-                        <a href="{% url 'patient_list:list' %}">مشاهده لیست بیماران</a><br>
+                        <a href="{% url 'accounts:list' %}">مشاهده لیست بیماران</a><br>
                         <a href="{% url 'accounts:monthly_income'%}">مشاهده درآمد </a>
 
                     </div>

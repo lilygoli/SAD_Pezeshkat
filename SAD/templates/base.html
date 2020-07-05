@@ -75,7 +75,7 @@
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>
-                    <li><a class="navbar-link" href="{% url 'doctor_search:search_page' %}">جست‌وجوی
+                    <li><a class="navbar-link" href="{% url 'accounts:search_page' %}">جست‌وجوی
                         پزشک</a></li>
 
                 {% endif %}
