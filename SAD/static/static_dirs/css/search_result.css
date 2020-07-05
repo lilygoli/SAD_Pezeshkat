@@ -103,7 +103,7 @@ body {
 }
 #search-jumbotron-all {
     margin-top: 40vh;
-    height: 300vh;
+    height: 500vh;
 }
 
 .flip-card-back h1 {
@@ -134,4 +134,24 @@ input[type=text]:focus {
      outline: none;
      border: 1px solid #a0d18c;
      color: #2d9fd9;
+}
+
+@media (max-width: 770px) {
+    #cards-li {
+        width: 100%;
+
+    }
+    .flip-card{
+        width: unset;
+        padding: unset;
+
+    }
+    .flip-card-inner {
+        width: unset;
+        padding-right: 1vw;
+    }
+    #card-jumbotron {
+        width: unset;
+        padding-right: 1vw;
+    }
 }
