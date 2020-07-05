@@ -8,11 +8,11 @@
             <div class="col-md-4 col-xs-4">
                 <div class="profile-img">
 
-                    {% if user.doctorprofileinfo.profile_pic == '' or  user.doctorprofileinfo.profile_pic == None%}
-                                <img src="http://tinygraphs.com/labs/isogrids/hexa/helloworld" alt="/">
-                             {% else %}
-                                <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" alt="Avatar"/>
-                             {% endif %}
+                    {% if user.doctorprofileinfo.profile_pic%}
+                        <img src= "{{ user.doctorprofileinfo.profile_pic.url }}" alt="Avatar"/>
+                    {% else %}
+                         <img src="{% static 'default/default_8.jpg' %}" alt="/">
+                    {% endif %}
 
                 </div>
             </div>

@@ -9,10 +9,10 @@
                     <div class="col-md-4 col-xs-4">
                         <div class="profile-img align-left">
 
-                            {% if user.patientprofileinfo.profile_pic == '' or  user.patientprofileinfo.profile_pic == None%}
-                                <img src="http://tinygraphs.com/labs/isogrids/hexa/helloworld" alt="/">
-                             {% else %}
+                            {% if user.patientprofileinfo.profile_pic%}
                                 <img src= "{{ user.patientprofileinfo.profile_pic.url }}" alt="Avatar"/>
+                             {% else %}
+                                <img src="{% static 'default/default_8.jpg' %}" alt="/">
                              {% endif %}
                         </div>
                     </div>

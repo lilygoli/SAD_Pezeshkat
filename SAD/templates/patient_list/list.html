@@ -14,11 +14,9 @@
                 <li>
                     <a href="{% url 'accounts:mini_profile' patient.user.pk %}"> {{ patient.user.name }} {{ patient.user.family_name }}</a>
                     {% if patient.user.patientprofileinfo.profile_pic %}
-                            {{ patient.patientprofileinfo.profile_pic }}
                         <img src="{{ patient.user.patientprofileinfo.profile_pic.url }}" width="120" height="120">
                     {% else %}
-                        {{ patient.patientprofileinfo.profile_pic }}
-                        <img src="{% static 'default.jpg' %}" width="120" height="120">
+                        <img src="{% static 'default/default_8.jpg' %}" width="120" height="120">
                     {% endif %}
                     <br/>
                     <a class="btn btn-info" href="{% url 'prescription:pre_list' patient.user.pk%}">مشاهده نسخه‌ها</a>

@@ -17,7 +17,7 @@
                         <img src="{{ doctor.user.doctorprofileinfo.profile_pic.url }}" width="120" height="120">
                     {% else %}
                         {{ doctor.doctorprofileinfo.profile_pic.url }}
-                        <img src="{% static 'default.jpg' %}" width="120" height="120">
+                        <img src="{% static 'default/default_8.jpg' %}" width="120" height="120">
                     {% endif %}
                             <form method="post">
                                 {% csrf_token %}

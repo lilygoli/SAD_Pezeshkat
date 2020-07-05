@@ -1,4 +1,4 @@
-import datetime
+import random
 
 from django import forms
 from django.contrib.auth import authenticate, login, logout
@@ -7,15 +7,10 @@ from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
 from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse, TimeInterval
 from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
 from django.views.generic import TemplateView, ListView
-
 from django.db.models import Q
-from accounts.models import DoctorProfileInfo
-from django.views.generic import ListView
-
 from accounts.models import User, PatientProfileInfo, DoctorProfileInfo
 from doctor_calendar.models import Event
 from doctor_rating.models import Rating
@@ -88,6 +83,12 @@ def register(request):
             profile.user = user
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
+            if not profile.profile_pic:
+                default_pic = 'default'
+                random_num = random.randint(1, 8)
+                default_pic += '_' + str(random_num) + '.jpg'
+                profile.profile_pic = default_pic
+
             profile.save()
             new_user = authenticate(username=user_form.cleaned_data['email'],
                                     password=user_form.cleaned_data['password'],
@@ -163,8 +164,11 @@ def edit_profile(request):
 
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
-            # if not profile.profile_pic:
-            #     profile.profile_pic = 'default.jpg'
+            if not profile.profile_pic:
+                default_pic = 'default'
+                random_num = random.randint(1, 8)
+                default_pic += '_' + str(random_num) + '.jpg'
+                profile.profile_pic = default_pic
             profile.save()
             return redirect(reverse('accounts:index'))
         else:
