@@ -117,3 +117,21 @@ body {
 img {
     border-radius: 50%;
 }
+
+input[type=text]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #2d9fd9;
+     color: #a0d18c;
+     width: 10vw;
+     height: 2.5vw;
+     padding-left: 10px;
+    margin: 1vw;
+    }
+
+input[type=text]:focus {
+     outline: none;
+     border: 1px solid #a0d18c;
+     color: #2d9fd9;
+}
