@@ -9,8 +9,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse, TimeInterval
 from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
-from django.views.generic import TemplateView, ListView
-from django.db.models import Q
+from django.views.generic import ListView
 from accounts.models import User, PatientProfileInfo, DoctorProfileInfo
 from doctor_calendar.models import Event
 from doctor_rating.models import Rating
@@ -236,6 +235,7 @@ def monthly_income(request):
         return render(request, 'doctor_income/income.html', args)
 
 
+@login_required
 def doctor_search(request):
     object_list = DoctorProfileInfo.objects.all()
     args = {'object_list': object_list}
