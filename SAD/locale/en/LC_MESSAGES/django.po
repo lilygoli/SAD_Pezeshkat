@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 00:48+0430\n"
+"POT-Creation-Date: 2020-07-09 01:59+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,1228 +17,577 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\accounts\forms.py:22
+#: accounts/forms.py:22 doctor_calendar/utils.py:25
 msgid "شنبه"
 msgstr "Saturday"
 
-#: .\accounts\forms.py:23
+#: accounts/forms.py:23 doctor_calendar/utils.py:25
 msgid "یکشنبه"
 msgstr "Sunday"
 
-#: .\accounts\forms.py:24
+#: accounts/forms.py:24 doctor_calendar/utils.py:25
 msgid "دوشنبه"
 msgstr "Monday"
 
-#: .\accounts\forms.py:25
+#: accounts/forms.py:25 doctor_calendar/utils.py:25
 msgid "سه شنبه"
 msgstr "Tuesday"
 
-#: .\accounts\forms.py:26
+#: accounts/forms.py:26 doctor_calendar/utils.py:25
 msgid "چهارشنبه"
 msgstr "Wednesday"
 
-#: .\accounts\forms.py:27
+#: accounts/forms.py:27 doctor_calendar/utils.py:25
 msgid "پنجشنبه"
 msgstr "Thursday"
 
-#: .\accounts\forms.py:28
+#: accounts/forms.py:28 doctor_calendar/utils.py:25
 msgid "جمعه"
 msgstr "Friday"
 
-#: .\accounts\forms.py:38 .\accounts\forms.py:48
-#: .\templates\registration\login.html:19
+#: accounts/forms.py:38 accounts/forms.py:48
+#: templates/registration/login.html:19
 msgid "رمزعبور"
 msgstr "Password"
 
-#: .\accounts\forms.py:46 .\accounts\forms.py:162 .\medicine_page\forms.py:102
-#: .\templates\registration\doctor_mini_profile.html:53
-#: .\templates\registration\doctor_profile.html:78
-#: .\templates\registration\patient_mini_profile.html:49
-#: .\templates\registration\patient_profile.html:71
-#: .\templates\search\search_page.html:19
-#: .\templates\search\search_page.html:20
+#: accounts/forms.py:46 accounts/forms.py:162 medicine_page/forms.py:103
+#: prescription/forms.py:21 prescription/forms.py:70 prescription/forms.py:115
+#: templates/registration/doctor_mini_profile.html:53
+#: templates/registration/doctor_profile.html:78
+#: templates/registration/patient_mini_profile.html:49
+#: templates/registration/patient_profile.html:71
+#: templates/search/search_page.html:19 templates/search/search_page.html:20
 msgid "نام"
 msgstr "Name"
 
-#: .\accounts\forms.py:47 .\templates\registration\doctor_mini_profile.html:61
-#: .\templates\registration\doctor_profile.html:86
-#: .\templates\registration\patient_mini_profile.html:57
-#: .\templates\registration\patient_profile.html:79
-#: .\templates\search\search_page.html:21
-#: .\templates\search\search_page.html:22
+#: accounts/forms.py:47 templates/registration/doctor_mini_profile.html:61
+#: templates/registration/doctor_profile.html:86
+#: templates/registration/patient_mini_profile.html:57
+#: templates/registration/patient_profile.html:79
+#: templates/search/search_page.html:21 templates/search/search_page.html:22
 msgid "نام خانوادگی"
 msgstr "Family Name"
 
-#: .\accounts\forms.py:49 .\accounts\forms.py:163
-#: .\templates\registration\doctor_profile.html:94
-#: .\templates\registration\login.html:18
-#: .\templates\registration\patient_profile.html:87
+#: accounts/forms.py:49 accounts/forms.py:163
+#: templates/registration/doctor_profile.html:94
+#: templates/registration/login.html:18
+#: templates/registration/patient_profile.html:87
 msgid "ایمیل"
 msgstr "Email"
 
-#: .\accounts\forms.py:68
+#: accounts/forms.py:68
 msgid "ایمیل نامعتبر است."
 msgstr "invalid email"
 
-#: .\accounts\forms.py:83 .\accounts\forms.py:193
+#: accounts/forms.py:83 accounts/forms.py:193
 msgid "روزهای کاری"
 msgstr "Work Days"
 
-#: .\accounts\forms.py:93 .\accounts\forms.py:201
+#: accounts/forms.py:93 accounts/forms.py:201
 msgid "وبسایت شخصی"
 msgstr "Portfolio"
 
-#: .\accounts\forms.py:94 .\accounts\forms.py:142 .\accounts\forms.py:175
-#: .\accounts\forms.py:202
+#: accounts/forms.py:94 accounts/forms.py:142 accounts/forms.py:175
+#: accounts/forms.py:202
 msgid "عکس"
 msgstr "Picture"
 
-#: .\accounts\forms.py:95
+#: accounts/forms.py:95
 msgid "دسته تخصص"
 msgstr "Specialty Group"
 
-#: .\accounts\forms.py:96 .\accounts\forms.py:203
-#: .\templates\registration\doctor_mini_profile.html:92
-#: .\templates\registration\doctor_mini_profile.html:101
-#: .\templates\registration\doctor_profile.html:126
-#: .\templates\registration\doctor_profile.html:135
-#: .\templates\search\search_page.html:23
-#: .\templates\search\search_page.html:24
+#: accounts/forms.py:96 accounts/forms.py:203
+#: templates/registration/doctor_mini_profile.html:92
+#: templates/registration/doctor_mini_profile.html:101
+#: templates/registration/doctor_profile.html:126
+#: templates/registration/doctor_profile.html:135
+#: templates/search/search_page.html:23 templates/search/search_page.html:24
 msgid "تخصص"
 msgstr "Specialty"
 
-#: .\accounts\forms.py:97 .\accounts\forms.py:204
-#: .\templates\registration\doctor_mini_profile.html:111
-#: .\templates\registration\doctor_profile.html:145
+#: accounts/forms.py:97 accounts/forms.py:204
+#: templates/registration/doctor_mini_profile.html:111
+#: templates/registration/doctor_profile.html:145
 msgid "درجه پزشکی"
 msgstr "Educational Degree"
 
-#: .\accounts\forms.py:98 .\accounts\forms.py:205
-#: .\templates\registration\doctor_mini_profile.html:130
-#: .\templates\registration\doctor_mini_profile.html:139
-#: .\templates\registration\doctor_profile.html:164
-#: .\templates\registration\doctor_profile.html:173
+#: accounts/forms.py:98 accounts/forms.py:205
+#: templates/registration/doctor_mini_profile.html:130
+#: templates/registration/doctor_mini_profile.html:139
+#: templates/registration/doctor_profile.html:164
+#: templates/registration/doctor_profile.html:173
 msgid "پیشینه تحصیلی"
 msgstr "Educational History"
 
-#: .\accounts\forms.py:99 .\accounts\forms.py:206
-#: .\templates\registration\doctor_profile.html:194
-#: .\templates\registration\doctor_profile.html:203
-#: .\templates\search\search_page.html:53
+#: accounts/forms.py:99 accounts/forms.py:206
+#: templates/registration/doctor_profile.html:194
+#: templates/registration/doctor_profile.html:203
+#: templates/search/search_page.html:53
 msgid "حق ویزیت"
 msgstr "Fee"
 
-#: .\accounts\forms.py:100
+#: accounts/forms.py:100
 msgid "مشخص شدن حق ویزیت در مطب"
 msgstr "Paying in Place"
 
-#: .\accounts\forms.py:101 .\accounts\forms.py:208
-#: .\templates\registration\doctor_mini_profile.html:120
-#: .\templates\registration\doctor_profile.html:154
-#: .\templates\search\search_page.html:54
+#: accounts/forms.py:101 accounts/forms.py:208
+#: templates/registration/doctor_mini_profile.html:120
+#: templates/registration/doctor_profile.html:154
+#: templates/search/search_page.html:54
 msgid "آدرس"
 msgstr "Address"
 
-#: .\accounts\forms.py:102 .\templates\registration\doctor_profile.html:234
+#: accounts/forms.py:102 templates/registration/doctor_profile.html:234
 msgid "امتیاز"
 msgstr "Score"
 
-#: .\accounts\forms.py:103 .\accounts\forms.py:209
+#: accounts/forms.py:103 accounts/forms.py:209
 msgid "مدت زمان متوسط هر ویزیت"
 msgstr "Average Appointment Time Length"
 
-#: .\accounts\forms.py:104 .\accounts\forms.py:210
+#: accounts/forms.py:104 accounts/forms.py:210
 msgid "روزهای کاری "
 msgstr "Work Days"
 
-#: .\accounts\forms.py:105
+#: accounts/forms.py:105
 msgid "ساعت سروع کار"
 msgstr "Starting Work Hour"
 
-#: .\accounts\forms.py:106 .\accounts\forms.py:212
+#: accounts/forms.py:106 accounts/forms.py:212
 msgid "ساعت پایان کار"
 msgstr "Ending Work Hour"
 
-#: .\accounts\forms.py:122
+#: accounts/forms.py:122
 msgid "لطفا دسته‌ی تخصص خود را مشخص کنید یا نام آن را در بخش تخصص بنویسید."
 msgstr ""
 "Please specify you Specialty Group or write a description in Specialty box."
 
-#: .\accounts\forms.py:124
+#: accounts/forms.py:124
 msgid ""
 "لطفا حق ویزیت را مشخص کنید یا گزینه \"مشخص شدن حق ویزیت در مطب\" را انتخاب "
 "کنید."
 msgstr "Please specify fee or choose the Pay in Place option"
 
-#: .\accounts\forms.py:143 .\accounts\forms.py:176
-#: .\templates\registration\patient_profile.html:95
+#: accounts/forms.py:143 accounts/forms.py:176
+#: templates/registration/patient_profile.html:95
 msgid "تاریخ تولد"
 msgstr "Birth date"
 
-#: .\accounts\forms.py:144 .\accounts\forms.py:177
+#: accounts/forms.py:144 accounts/forms.py:177
 msgid "بیماری ها"
 msgstr "Medical Conditions"
 
-#: .\accounts\forms.py:145 .\accounts\forms.py:178
-#: .\templates\registration\patient_mini_profile.html:94
-#: .\templates\registration\patient_profile.html:124
+#: accounts/forms.py:145 accounts/forms.py:178
+#: templates/registration/patient_mini_profile.html:94
+#: templates/registration/patient_profile.html:124
 msgid "شماره تلفن موارد پزشکی اضطراری"
 msgstr "Emergency Phone Number"
 
-#: .\accounts\forms.py:146 .\accounts\forms.py:179
-#: .\templates\registration\doctor_profile.html:183
-#: .\templates\registration\patient_profile.html:134
-#: .\templates\registration\patient_profile.html:143
+#: accounts/forms.py:146 accounts/forms.py:179
+#: templates/registration/doctor_profile.html:183
+#: templates/registration/patient_profile.html:134
+#: templates/registration/patient_profile.html:143
 msgid "اعتبار"
 msgstr "Credit"
 
-#: .\accounts\forms.py:147 .\accounts\forms.py:180
-#: .\templates\registration\patient_mini_profile.html:104
-#: .\templates\registration\patient_mini_profile.html:114
-#: .\templates\registration\patient_mini_profile.html:128
-#: .\templates\registration\patient_profile.html:154
-#: .\templates\registration\patient_profile.html:164
-#: .\templates\registration\patient_profile.html:178
+#: accounts/forms.py:147 accounts/forms.py:180
+#: templates/registration/patient_mini_profile.html:104
+#: templates/registration/patient_mini_profile.html:114
+#: templates/registration/patient_mini_profile.html:128
+#: templates/registration/patient_profile.html:154
+#: templates/registration/patient_profile.html:164
+#: templates/registration/patient_profile.html:178
 msgid "گروه خونی"
 msgstr "Blood Type"
 
-#: .\accounts\forms.py:148 .\accounts\forms.py:181
+#: accounts/forms.py:148 accounts/forms.py:181
 msgid "گروه خونی مثبت/منفی"
 msgstr "Blood Type +/-"
 
-#: .\accounts\forms.py:149 .\accounts\forms.py:182
+#: accounts/forms.py:149 accounts/forms.py:182
 msgid "حساسیت ها"
 msgstr "Allergies"
 
-#: .\accounts\forms.py:150 .\accounts\forms.py:183
-#: .\templates\registration\patient_mini_profile.html:162
-#: .\templates\registration\patient_mini_profile.html:171
-#: .\templates\registration\patient_profile.html:212
-#: .\templates\registration\patient_profile.html:221
+#: accounts/forms.py:150 accounts/forms.py:183
+#: templates/registration/patient_mini_profile.html:162
+#: templates/registration/patient_mini_profile.html:171
+#: templates/registration/patient_profile.html:212
+#: templates/registration/patient_profile.html:221
 msgid "قد"
 msgstr "Height"
 
-#: .\accounts\forms.py:151 .\accounts\forms.py:184
-#: .\templates\registration\patient_mini_profile.html:182
-#: .\templates\registration\patient_mini_profile.html:191
-#: .\templates\registration\patient_profile.html:232
-#: .\templates\registration\patient_profile.html:241
+#: accounts/forms.py:151 accounts/forms.py:184
+#: templates/registration/patient_mini_profile.html:182
+#: templates/registration/patient_mini_profile.html:191
+#: templates/registration/patient_profile.html:232
+#: templates/registration/patient_profile.html:241
 msgid "وزن"
 msgstr "Weight"
 
-#: .\accounts\forms.py:164
+#: accounts/forms.py:164
 msgid "نام‌خانوادگی"
 msgstr "Family Name"
 
-#: .\accounts\forms.py:207
+#: accounts/forms.py:207
 msgid "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب"
 msgstr "Paying in Place"
 
-#: .\accounts\forms.py:211
+#: accounts/forms.py:211
 msgid "ساعت شروع کار"
 msgstr "Work Starting Hour"
 
-#: .\accounts\forms.py:235 .\accounts\forms.py:257
+#: accounts/forms.py:235 accounts/forms.py:257
 msgid "تکرار رمز با رمز جدید یکسان نیست."
 msgstr "The repeated password is not the same as the new password."
 
-#: .\accounts\forms.py:238 .\accounts\forms.py:265
+#: accounts/forms.py:238 accounts/forms.py:265
 msgid "رمز عبور جدید"
 msgstr "New Password"
 
-#: .\accounts\forms.py:244 .\accounts\forms.py:270
+#: accounts/forms.py:244 accounts/forms.py:270
 msgid "تکرار رمز عبور جدید"
 msgstr "repeat new password"
 
-#: .\accounts\forms.py:256
+#: accounts/forms.py:256
 msgid "رمز عبور قدیمی نادرست وارد شده است."
 msgstr "The old password is wrong."
 
-#: .\accounts\forms.py:260
+#: accounts/forms.py:260
 msgid "رمز عبور قدیمی"
 msgstr "old password"
 
-#: .\accounts\forms.py:286
+#: accounts/forms.py:286
 msgid "از تاریخ"
 msgstr "from (date)"
 
-#: .\accounts\forms.py:287
+#: accounts/forms.py:287
 msgid "تا تاریخ"
 msgstr "to"
 
-#: .\accounts\forms.py:298
+#: accounts/forms.py:298
 msgid "لطفا تاریخ شروع بازه را وارد کنید."
 msgstr "Please input the starting date."
 
-#: .\accounts\forms.py:300
+#: accounts/forms.py:300
 msgid "لطفا تاریخ پایان بازه را وارد کنید."
 msgstr "Please input the ending date."
 
-#: .\accounts\forms.py:302
+#: accounts/forms.py:302
 msgid ""
 "بازه انتخاب شده معتبر نمی‌باشد، تاریخ شروع بازه باید قبل از تاریخ پایان آن "
 "باشد."
 msgstr "The date interval is not valid."
 
-#: .\accounts\forms.py:306
+#: accounts/forms.py:306
 msgid "طول بازه معتبر نیست."
 msgstr "The time length is not valid"
 
-#: .\accounts\models.py:68
+#: accounts/models.py:68
 msgid "دکتری"
 msgstr "Doctorate"
 
-#: .\accounts\models.py:69
+#: accounts/models.py:69
 msgid "کارشناسی"
 msgstr "Bachelor"
 
-#: .\accounts\models.py:70
+#: accounts/models.py:70
 msgid "کارشناسی ارشد"
 msgstr "Master"
 
-#: .\accounts\models.py:71
+#: accounts/models.py:71
 msgid "متخصص"
 msgstr "Specialist"
 
-#: .\accounts\models.py:72
+#: accounts/models.py:72
 msgid "فوق تخصص"
 msgstr "Super Specialist"
 
-#: .\accounts\models.py:99
+#: accounts/models.py:99
 msgid "ﭼﺸﻢ ﭘﺰﺷﮑﯽ"
 msgstr "Optometrist"
 
-#: .\accounts\models.py:100
+#: accounts/models.py:100
 msgid "ﺭﺍﺩﯾﻮﻟﻮﮊﯼ"
 msgstr "Radiologist"
 
-#: .\accounts\models.py:101
+#: accounts/models.py:101
 msgid "ﭘﻮﺳﺖ ﻭ ﻣﻮ"
 msgstr "Dermatologist"
 
-#: .\accounts\models.py:102
+#: accounts/models.py:102
 msgid "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"
 msgstr "Nuclear Medicine Specialist"
 
-#: .\accounts\models.py:103
+#: accounts/models.py:103
 msgid "ﺍﺭﺗﻮﭘﺪﯼ"
 msgstr "Orthopedist"
 
-#: .\accounts\models.py:104
+#: accounts/models.py:104
 msgid "ﻗﻠﺐﻭﻋﺮﻭﻕ"
 msgstr "Cardiologist"
 
-#: .\accounts\models.py:105
+#: accounts/models.py:105
 msgid "ﻃﺐ ﻓﯿﺰﯾﮑﯽ"
 msgstr "Physiologist"
 
-#: .\accounts\models.py:106
+#: accounts/models.py:106
 msgid "ﻣﻐﺰﻭﺍﻋﺼﺎﺏ"
 msgstr "Neurologist"
 
-#: .\accounts\models.py:107
+#: accounts/models.py:107
 msgid "ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ"
 msgstr "Otolaryngologist"
 
-#: .\accounts\models.py:108
+#: accounts/models.py:108
 msgid "ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ"
 msgstr "Neural Surgeon"
 
-#: .\accounts\models.py:109
+#: accounts/models.py:109
 msgid "ﭘﺎﺗﻮﻟﻮﮊﯼ"
 msgstr "Pathologist"
 
-#: .\accounts\models.py:110
+#: accounts/models.py:110
 msgid "ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ"
 msgstr "Urologist"
 
-#: .\accounts\models.py:111
+#: accounts/models.py:111
 msgid "ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ"
 msgstr "Radiotherapist"
 
-#: .\accounts\models.py:112
+#: accounts/models.py:112
 msgid "ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ"
 msgstr "General Surgeon"
 
-#: .\accounts\models.py:113
+#: accounts/models.py:113
 msgid "ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ"
 msgstr "Gynecologist"
 
-#: .\accounts\models.py:114
+#: accounts/models.py:114
 msgid "روانپزشکی"
 msgstr "Psychiatry"
 
-#: .\accounts\models.py:115
+#: accounts/models.py:115
 msgid "ﺩﺍﺧﻠﯽ"
 msgstr "Internist"
 
-#: .\accounts\models.py:116
+#: accounts/models.py:116
 msgid "ﻃﺐﮐﺎﺭ"
 msgstr "Hematologist"
 
-#: .\accounts\models.py:117
+#: accounts/models.py:117
 msgid "ﮐﻮﺩﮐﺎﻥ"
 msgstr "Pediatrician"
 
-#: .\accounts\models.py:118
+#: accounts/models.py:118
 msgid "ﺑﯿﻬﻮﺷﯽ"
 msgstr "Anesthesiologist"
 
-#: .\accounts\models.py:119
+#: accounts/models.py:119
 msgid "ﻋﻔﻮﻧﯽ"
 msgstr "Infectious disease specialist"
 
-#: .\accounts\models.py:124
+#: accounts/models.py:124
 msgid "یک ساعت"
 msgstr "One hour"
 
-#: .\accounts\models.py:124
+#: accounts/models.py:124
 msgid "نیم ساعت"
 msgstr "Half an hour"
 
-#: .\accounts\models.py:124
+#: accounts/models.py:124
 msgid "سه ربع"
 msgstr "Three quarters"
 
-#: .\accounts\models.py:174
+#: accounts/models.py:174
 msgid "شماره وارد شده معتبر نیست."
 msgstr "Invalid Phone Number"
 
-#: .\accounts\models.py:176
+#: accounts/models.py:176
 msgid "شماره موبایل معتبر وارد کنید."
 msgstr "Please enter a valid phone number"
 
-#: .\accounts\views.py:147
+#: accounts/views.py:147
 msgid "اکانت شما فعال نیست."
 msgstr "Your account is inactive."
 
-#: .\accounts\views.py:152
+#: accounts/views.py:152
 msgid "ایمیل یا رمز عبور اشتباه میباشد."
 msgstr "The entered email or password is wrong."
 
-#: .\medicine_page\forms.py:65 .\medicine_page\forms.py:67
-#: .\medicine_page\forms.py:123 .\medicine_page\forms.py:125
-msgid "مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد."
-msgstr "Each usage dose should be less than total dosage."
-
-#: .\medicine_page\forms.py:76 .\medicine_page\forms.py:82
-msgid "لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)"
-msgstr "Please input a valid starting date. (sample: 1399-12-01)"
-
-#: .\medicine_page\forms.py:80
-msgid "تاریخ شروع باید امروز یا بعد از امروز باشد"
-msgstr "Starting date should be Today and onwards."
-
-#: .\medicine_page\forms.py:84
-msgid "لطفا تاریخ شروع معتبر وارد کنید."
-msgstr "Please input a valid starting date."
-
-#: .\medicine_page\forms.py:86
-msgid "لطفا تاریخ معتبر وارد کنید."
-msgstr "Please input a valid date."
-
-#: .\medicine_page\forms.py:88
-msgid "زمان شروع باید از الان به بعد باشد."
-msgstr "Starting date should be Today and onwards."
-
-#: .\medicine_page\forms.py:103
-msgid "توضیح"
-msgstr "Description"
-
-#: .\medicine_page\forms.py:104
-msgid "بازه زمانی بین دو بار مصرف (به ساعت)"
-msgstr "Time interval between 2 consumptions (hour)"
-
-#: .\medicine_page\forms.py:105 .\medicine_page\forms.py:106
-msgid "مقدار کل مصرف (گرم)"
-msgstr "Total Dosage"
-
-msgid "مقدار هر بار مصرف (گرم)"
-msgstr "Dosage Every Time"
-
-#: .\medicine_page\forms.py:107
-msgid "تاریخ شروع"
-msgstr "Starting date"
-
-#: .\medicine_page\forms.py:108
-msgid "زمان شروع"
-msgstr "Starting time"
-
-#: .\medicine_page\forms.py:109
-msgid "فعال بود یادآوری"
-msgstr "Enable notifications"
-
-#: .\templates\calendar\calendar.html:11
-msgid "آیا مطمئن هستید که میخواهید این زمان را رزرو کنید؟"
-msgstr "Are you sure about this reservation?"
-
-#: .\templates\calendar\calendar.html:31
-msgid "از زمان رزرو این ساعت گذشته است!"
-msgstr "This time's reservation interval has passed."
-
-#: .\templates\calendar\calendar.html:37
-#: .\templates\calendar\doctor_calender.html:12
-msgid "هفته قبل"
-msgstr "Previous"
-
-#: .\templates\calendar\calendar.html:38
-#: .\templates\calendar\doctor_calender.html:13
-msgid "هفته بعد"
-msgstr "Next"
-
-#: .\templates\calendar\verify.html:14
-msgid "رزرو و پرداخت موفقیت آمیز بود"
-msgstr "Your reservation was successful."
-
-#: .\templates\calendar\verify.html:16
-msgid "نام دکتر"
-msgstr "Doctor's Name"
-
-#: .\templates\calendar\verify.html:18
-msgid "تاریخ رزرو شما"
-msgstr "Your Reservation Date"
-
-#: .\templates\calendar\verify.html:20
-msgid "ساعت رزرو"
-msgstr "Reservation Hour"
-
-#: .\templates\calendar\verify.html:22
-msgid "آدرس مطب"
-msgstr "Office Address"
-
-#: .\templates\calendar\verify.html:24
-msgid "موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید"
-msgstr "Your credit isn't enough, please increase your credit."
-
-#: .\templates\calendar\verify.html:28
-msgid "بازگشت به صفحه پروفایل"
-msgstr "Back to profile page"
-
-#: .\templates\calendar\verify.html:29
-msgid "بازگشت به صفحه رزرو"
-msgstr "Back to reservation page"
-
-#: .\templates\doctor_income\income.html:21
-msgid "لطفا بازه‌ی زمانی‌ای بین دو هفته تا دو ماه را انتخاب کنید"
-msgstr "Please enter a time interval between 2 weeks to 2 months"
-
-#: .\templates\doctor_income\income.html:26
-msgid "مشاهده نمودار درآمد"
-msgstr "Income Chart"
-
-#: .\templates\doctor_income\income.html:67
-msgid "درآمد تجمعی در بازه مشخص شده"
-msgstr "Cumulative income in the given interval"
-
-#: .\templates\doctor_income\income.html:72
-msgid "روزها"
-msgstr "Days"
-
-#: .\templates\doctor_income\income.html:88
-msgid "(درآمد (تومان"
-msgstr "Income(Toman)"
-
-#: .\templates\doctor_income\income.html:109
-msgid "درآمد تا روز "
-msgstr "Income until day"
-
-#: .\templates\doctor_income\income.html:109
-msgid "ام بازه"
-msgstr "th of the interval"
-
-#: .\templates\doctor_income\income.html:110
-#: .\templates\registration\doctor_mini_profile.html:157
-#: .\templates\registration\doctor_profile.html:180
-#: .\templates\registration\doctor_profile.html:200
-#: .\templates\registration\patient_profile.html:140
-msgid "تومان"
-msgstr "Toman"
-
-#: .\templates\doctor_income\income.html:116
-msgid " درامد"
-msgstr "income"
-
-#: .\templates\medicine_page\medicine.html:46
-#: .\templates\prescription_list\pre_list.html:21
-#: .\templates\prescription_list_patient\pre_list_patient.html:51
-msgid "داروها"
-msgstr "Medicines"
-
-#: .\templates\medicine_page\medicine.html:48
-msgid "اضافه کردن دارو"
-msgstr "Add Medicine"
-
-#: .\templates\medicine_page\medicine.html:55
-msgid "دارویی وجود ندارد."
-msgstr "There is no medicine."
-
-#: .\templates\medicine_page\medicine.html:83
-#: .\templates\medicine_page\medicine.html:196
-
-msgid "دارو:"
-msgstr "Medicine"
-
-#: .\templates\medicine_page\medicine.html:84
-
-msgid "نام دارو:"
-msgstr "Medicine Name:"
-
-#: .\templates\medicine_page\medicine.html:86
-#: .\templates\medicine_page\medicine.html:199
-
-msgid "توضیحات پزشک:"
-msgstr "Doctor's Instructions"
-
-#: .\templates\medicine_page\medicine.html:88
-#: .\templates\medicine_page\medicine.html:201
-
-msgid "بازه زمانی بین دو قرص:"
-msgstr "Time interval between 2 consumptions (hour)"
-
-#: .\templates\medicine_page\medicine.html:88
-#: .\templates\medicine_page\medicine.html:201
-#: .\templates\registration\doctor_mini_profile.html:199
-#: .\templates\registration\doctor_profile.html:240
-msgid "ساعت"
-msgstr "hour"
-
-#: .\templates\medicine_page\medicine.html:89
-#: .\templates\medicine_page\medicine.html:202
-msgid "میزان هربار مصرف: "
-msgstr "Dosage Every Time"
-
-#: .\templates\medicine_page\medicine.html:89
-#: .\templates\medicine_page\medicine.html:202
-msgid "گرم"
-msgstr "Grams"
-
-#: .\templates\medicine_page\medicine.html:91
-#: .\templates\medicine_page\medicine.html:204
-msgid "وضعیت یادآوری قرص: فعال"
-msgstr "Notifications: On"
-
-#: .\templates\medicine_page\medicine.html:93
-#: .\templates\medicine_page\medicine.html:206
-
-msgid "غیرفعال کردن یادآوری"
-msgstr "Disable notifications"
-
-#: .\templates\medicine_page\medicine.html:104
-#: .\templates\medicine_page\medicine.html:217
-msgid "وضعیت یادآوری قرص: غیرفعال"
-msgstr "Notifications: Off"
-
-#: .\templates\medicine_page\medicine.html:107
-#: .\templates\medicine_page\medicine.html:220
-msgid "فعال کردن یادآوری"
-msgstr "Enable notifications"
-
-#: .\templates\medicine_page\medicine.html:117
-#: .\templates\medicine_page\medicine.html:229
-
-msgid "دارو تمام شده است."
-msgstr "This medicine has finished."
-
-#: .\templates\medicine_page\medicine.html:121
-#: .\templates\medicine_page\medicine.html:233
-#: .\templates\medicine_page\medicine.html:260
-
-msgid "تاریخ شروع دارو:"
-msgstr "Starting Date:"
-
-#: .\templates\medicine_page\medicine.html:142
-#: .\templates\medicine_page\medicine.html:255
-msgid ""
-"اگر مایلید پزشکات زمان خوردن این دارو را به شما یادآوری کند، زمان شروع را "
-"وارد کنید."
-msgstr "If you would like our website to send you notifications for reminding you of your medicines, please enter starting time."
-
-#: .\templates\medicine_page\medicine.html:147
-
-msgid "تاریخ شروع:"
-msgstr "Starting date"
-
-#: .\templates\medicine_page\medicine.html:152
-#: .\templates\medicine_page\medicine.html:266
-
-msgid "زمان شروع:"
-msgstr "Starting time"
-
-#: .\templates\medicine_page\medicine.html:154
-msgid ""
-" **مقادیر زیر بر اساس نسخه شما , دفعات قبلی استفاده ی شما از این دارو "
-"(درصورت فعال بودن این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید "
-"هر یک را تغییردهید.**"
-msgstr "The numbers below are taken directly from your prescriptions or your previous usage of this medicine (if notifications of this medicine has been active before). You are able to change them if you like."
-
-#: .\templates\medicine_page\medicine.html:156
-#: .\templates\medicine_page\medicine.html:270
-
-msgid "مقدار کل باقی مانده (گرم):"
-msgstr "Total Remaining Consumption Amount"
-
-#: .\templates\medicine_page\medicine.html:160
-#: .\templates\medicine_page\medicine.html:164
-#: .\templates\medicine_page\medicine.html:274
-#: .\templates\medicine_page\medicine.html:278
-
-msgid "تغییر مقدار"
-msgstr "Change Password"
-
-#: .\templates\medicine_page\medicine.html:162
-#: .\templates\medicine_page\medicine.html:276
-
-msgid "مقدار هربار مصرف (گرم):"
-msgstr "Consumption Amount Each Time"
-
-#: .\templates\medicine_page\medicine.html:169
-#: .\templates\medicine_page\medicine.html:323
-msgid "ذخیره"
-msgstr "Save"
-
-#: .\templates\medicine_page\medicine.html:196
-msgid "(اضافه شده توسط شما)"
-msgstr "(Added by You)"
-
-#: .\templates\medicine_page\medicine.html:197
-
-msgid "نام دارو: "
-msgstr "Medicine Name"
-
-#: .\templates\medicine_page\medicine.html:268
-msgid ""
-" **مقادیر زیر بر اساس دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن "
-"این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییر دهید."
-"**"
-msgstr "The numbers below are based on your previous consumption of this medicine (if notifications of this medicine has been acitve before). You are able to change them if you like."
-
-#: .\templates\medicine_page\medicine.html:290
-msgid "حذف"
-msgstr "Delete"
-
-#: .\templates\medicine_page\medicine.html:308
-
-msgid "داروی جدید"
-msgstr "New Password"
-
-#: .\templates\medicine_page\medicine.html:326
-msgid "بستن"
-msgstr "Close"
-
-#: .\templates\medicine_page\medicine.html:440
-msgid "آیا از غیرفعال کردن یادآوری اطمینان دارید؟"
-msgstr "Are you sure you want to turn off notifications?"
-
-#: .\templates\patient_list\list.html:11
-msgid " بیماری وجود ندارد."
-msgstr "There is no patient."
-
-#: .\templates\patient_list\list.html:25
-#: .\templates\visit_history\history.html:33
-msgid "مشاهده نسخه‌ها"
-msgstr "Prescriptions"
-
-#: .\templates\prescription_list\pre_list.html:11
-#: .\templates\prescription_list_patient\pre_list_patient.html:12
-msgid " نسخه‌ای وجود ندارد."
-msgstr "There is no prescription."
-
-#: .\templates\prescription_list\pre_list.html:16
-#: .\templates\prescription_list_patient\pre_list_patient.html:18
-msgid "نسخه‌ی ویزیت در تاریخ"
-msgstr "Prescription of the visit in"
-
-#: .\templates\prescription_list\pre_list.html:24
-#: .\templates\prescription_list_patient\pre_list_patient.html:54
-msgid "نام دارو"
-msgstr "Medicine Name"
-
-#: .\templates\prescription_list\pre_list.html:26
-#: .\templates\prescription_list_patient\pre_list_patient.html:56
-msgid "شرح : وارد نشده است."
-msgstr "Description : Unknown"
-
-#: .\templates\prescription_list\pre_list.html:28
-#: .\templates\prescription_list\pre_list.html:47
-#: .\templates\prescription_list\pre_list.html:65
-#: .\templates\prescription_list_patient\pre_list_patient.html:58
-#: .\templates\prescription_list_patient\pre_list_patient.html:78
-#: .\templates\prescription_list_patient\pre_list_patient.html:96
-msgid "شرح"
-msgstr "Description"
-
-#: .\templates\prescription_list\pre_list.html:30
-#: .\templates\prescription_list_patient\pre_list_patient.html:60
-msgid "هر"
-msgstr "Use ever"
-
-#: .\templates\prescription_list\pre_list.html:30
-#: .\templates\prescription_list_patient\pre_list_patient.html:60
-msgid "ساعت یکبار مصرف شود."
-msgstr "hours"
-
-#: .\templates\prescription_list\pre_list.html:31
-#: .\templates\prescription_list_patient\pre_list_patient.html:61
-msgid "هر بار"
-msgstr "Each time use"
-
-#: .\templates\prescription_list\pre_list.html:31
-#: .\templates\prescription_list_patient\pre_list_patient.html:61
-msgid "گرم مصرف شود"
-msgstr "grams"
-
-#: .\templates\prescription_list\pre_list.html:43
-#: .\templates\prescription_list_patient\pre_list_patient.html:74
-msgid "آزمایش ها"
-msgstr "Tests"
-
-#: .\templates\prescription_list\pre_list.html:46
-#: .\templates\prescription_list_patient\pre_list_patient.html:77
-msgid "نوع تست"
-msgstr "Test type"
-
-#: .\templates\prescription_list\pre_list.html:48
-#: .\templates\prescription_list\pre_list.html:66
-#: .\templates\prescription_list_patient\pre_list_patient.html:79
-#: .\templates\prescription_list_patient\pre_list_patient.html:97
-msgid "حداکثر تا تاریخ"
-msgstr "Should be done by "
-
-#: .\templates\prescription_list\pre_list.html:48
-#: .\templates\prescription_list_patient\pre_list_patient.html:79
-msgid "انجام شود."
-msgstr " at the latest."
-
-#: .\templates\prescription_list\pre_list.html:61
-#: .\templates\prescription_list_patient\pre_list_patient.html:92
-msgid "تزریقات"
-msgstr "Injections"
-
-#: .\templates\prescription_list\pre_list.html:64
-#: .\templates\prescription_list_patient\pre_list_patient.html:95
-msgid "نام آمپول"
-msgstr "Ampoule's Name"
-
-#: .\templates\prescription_list\pre_list.html:67
-#: .\templates\prescription_list_patient\pre_list_patient.html:98
-msgid "مصرف شود."
-msgstr " at the latest."
-
-#: .\templates\prescription_list\pre_list.html:74
-msgid "ویرایش"
-msgstr "Edit"
-
-#: .\templates\prescription_list_patient\pre_list_patient.html:22
-msgid "افزودن نظر"
-msgstr "add comment"
-
-#: .\templates\prescription_list_patient\pre_list_patient.html:24
-msgid "ویرایش نظر"
-msgstr "Edit comment"
-
-#: .\templates\prescription_list_patient\pre_list_patient.html:30
-msgid "یادداشت خود را دررابطه با این نسخه بنویسید و یا ویرایش کنید"
-msgstr "Write/Edit your comment on this prescription"
-
-#: .\templates\prescription_list_patient\pre_list_patient.html:38
-msgid "افزودن"
-msgstr "add"
-
-#: .\templates\prescription_list_patient\pre_list_patient.html:48
-msgid "نظرات قبلی"
-msgstr "Previous Comments"
-
-#: .\templates\registration\doctor_mini_profile.html:36
-#: .\templates\registration\doctor_profile.html:36
-msgid "پزشک"
-msgstr "Doctor"
-
-#: .\templates\registration\doctor_mini_profile.html:68
-#: .\templates\registration\doctor_mini_profile.html:89
-#: .\templates\registration\doctor_mini_profile.html:127
-#: .\templates\registration\doctor_mini_profile.html:148
-#: .\templates\registration\doctor_profile.html:102
-#: .\templates\registration\doctor_profile.html:123
-#: .\templates\registration\doctor_profile.html:161
-#: .\templates\registration\doctor_profile.html:191
-#: .\templates\registration\patient_mini_profile.html:72
-#: .\templates\registration\patient_mini_profile.html:101
-#: .\templates\registration\patient_mini_profile.html:138
-#: .\templates\registration\patient_mini_profile.html:159
-#: .\templates\registration\patient_mini_profile.html:179
-#: .\templates\registration\patient_profile.html:102
-#: .\templates\registration\patient_profile.html:131
-#: .\templates\registration\patient_profile.html:151
-#: .\templates\registration\patient_profile.html:188
-#: .\templates\registration\patient_profile.html:209
-#: .\templates\registration\patient_profile.html:229
-msgid "وارد نشده است."
-msgstr "Unknown"
-
-#: .\templates\registration\doctor_mini_profile.html:71
-#: .\templates\registration\doctor_mini_profile.html:80
-#: .\templates\registration\doctor_profile.html:105
-#: .\templates\registration\doctor_profile.html:114
-msgid "وب سایت"
-msgstr "Portfolio"
-
-#: .\templates\registration\doctor_mini_profile.html:151
-#: .\templates\registration\doctor_mini_profile.html:160
-msgid "حق ویزیت "
-msgstr "Fee"
-
-#: .\templates\registration\doctor_mini_profile.html:168
-#: .\templates\registration\doctor_mini_profile.html:177
-#: .\templates\registration\doctor_profile.html:211
-#: .\templates\registration\doctor_profile.html:220
-msgid "وجود ندارد."
-msgstr "Does not exist."
-
-#: .\templates\registration\doctor_mini_profile.html:171
-#: .\templates\registration\doctor_mini_profile.html:180
-#: .\templates\registration\doctor_profile.html:214
-#: .\templates\registration\doctor_profile.html:223
-msgid "قابلیت پرداخت حق ویزیت در مطب"
-msgstr "Paying in Place"
-
-#: .\templates\registration\doctor_mini_profile.html:192
-msgid "امتیاز "
-msgstr "Score"
-
-#: .\templates\registration\doctor_mini_profile.html:202
-#: .\templates\registration\doctor_profile.html:243
-msgid "مدت زمان ویزیت"
-msgstr "Average Appointment Time Length"
-
-#: .\templates\registration\doctor_mini_profile.html:209
-msgid "تا"
-msgstr "to"
-
-#: .\templates\registration\doctor_mini_profile.html:212
-#: .\templates\registration\doctor_profile.html:253
-msgid "ساعات کاری"
-msgstr "Working Hours"
-
-#: .\templates\registration\doctor_mini_profile.html:221
-#: .\templates\registration\doctor_profile.html:262
-msgid "روز‌های کاری"
-msgstr "Work Days"
-
-#: .\templates\registration\doctor_mini_profile.html:232
-msgid "رزرو وقت"
-msgstr "Make an Appointment"
-
-#: .\templates\registration\doctor_profile.html:41
-#: .\templates\registration\patient_profile.html:40
-msgid "اطلاعات شخصی"
-msgstr "Personal Info"
-
-#: .\templates\registration\doctor_profile.html:54
-#: .\templates\registration\patient_profile.html:50
-msgid "لینک‌های کاربردی"
-msgstr "Your Links"
-
-#: .\templates\registration\doctor_profile.html:55
-#: .\templates\registration\patient_profile.html:51
-msgid "تغییر رمزعبور"
-msgstr "Change Password"
-
-#: .\templates\registration\doctor_profile.html:56
-msgid "مشاهده برنامه‌ی هفتگی"
-msgstr "Weekly Schedule"
-
-#: .\templates\registration\doctor_profile.html:57
-msgid "مشاهده لیست بیماران"
-msgstr "Patient List"
-
-#: .\templates\registration\doctor_profile.html:58
-msgid "مشاهده درآمد"
-msgstr "Check Income"
-
-#: .\templates\registration\doctor_profile.html:67
-#: .\templates\registration\patient_profile.html:61
-msgid "خوش آمدید"
-msgstr "Welcome"
-
-#: .\templates\registration\doctor_profile.html:250
+#: doctor_calendar/utils.py:26
+msgid "فروردین"
+msgstr "Farvardin"
+
+#: doctor_calendar/utils.py:26
+msgid "اردیبهشت"
+msgstr "Ordibehesht"
+
+#: doctor_calendar/utils.py:26
+msgid "خرداد"
+msgstr "Khordad"
+
+#: doctor_calendar/utils.py:26
+msgid "تیر"
+msgstr "Tir"
+
+#: doctor_calendar/utils.py:26
+msgid "مرداد"
+msgstr "Mordad"
+
+#: doctor_calendar/utils.py:26
+msgid "شهریور"
+msgstr "Shahrivar"
+
+#: doctor_calendar/utils.py:26
+msgid "مهر"
+msgstr "Mehr"
+
+#: doctor_calendar/utils.py:27
+msgid "آبان"
+msgstr "Aban"
+
+#: doctor_calendar/utils.py:27
+msgid "آذر"
+msgstr "Azar"
+
+#: doctor_calendar/utils.py:27
+msgid "دی"
+msgstr "Dey"
+
+#: doctor_calendar/utils.py:27
+msgid "بهمن"
+msgstr "Bahman"
+
+#: doctor_calendar/utils.py:27
+msgid "اسفند"
+msgstr "Esfans"
+
+#: doctor_calendar/utils.py:120 doctor_calendar/utils.py:133
+msgid "ویرایش نسخه"
+msgstr "Edit prescription"
+
+#: doctor_calendar/utils.py:122 doctor_calendar/utils.py:135
+msgid "ایجاد نسخه"
+msgstr "Create prescription"
+
+#: doctor_calendar/utils.py:123 doctor_calendar/utils.py:126
+msgid "اطلاعات"
+msgstr "Information"
+
+#: doctor_calendar/utils.py:162
+msgid " عصر"
+msgstr " pm"
+
+#: doctor_calendar/utils.py:164
+msgid " صبح"
+msgstr " am"
+
+#: doctor_calendar/utils.py:175
+msgid "از تاریخ "
+msgstr "from"
+
+#: doctor_calendar/utils.py:175 templates/registration/doctor_profile.html:250
 msgid "تا "
 msgstr "to"
 
-#: .\templates\registration\doctor_profile.html:267
-#: .\templates\registration\patient_profile.html:246
-msgid "ویرایش پروفایل"
-msgstr "Edit Profile"
-
-#: .\templates\registration\edit_profile.html:17
-msgid "ثبت"
-msgstr "submit"
-
-#: .\templates\registration\login.html:16
-msgid "صفحه ورود"
-msgstr "LOGIN"
-
-#: .\templates\registration\login.html:17
-msgid "لطفا ایمیل و رمز عبور خود را وارد کنید."
-msgstr "Please enter your email and password."
-
-#: .\templates\registration\login.html:20
-msgid "بازیابی زمز عبور"
-msgstr "Password Reset"
-
-#: .\templates\registration\login.html:21
-msgid "ورود"
-msgstr "Login"
-
-#: .\templates\registration\login.html:29
-msgid "خطا"
-msgstr "Error!"
-
-#: .\templates\registration\password_change_done.html:7
-#: .\templates\registration\password_reset_complete.html:7
-msgid "تغییر رمز موفق"
-msgstr "Success"
-
-#: .\templates\registration\password_change_done.html:13
-#: .\templates\registration\password_reset_complete.html:13
-msgid "رمز شما با موفقیت تغییر یافت."
-msgstr "Your password has successfully changed."
-
-#: .\templates\registration\password_change_form.html:14
-#: .\templates\registration\password_change_form.html:18
-msgid "تغییر رمز عبور"
-msgstr "Password Reset"
-
-#: .\templates\registration\password_change_form.html:15
-msgid "رمز عبور جدید را وارد کنید."
-msgstr "Please enter the new password."
-
-#: .\templates\registration\password_reset_confirm.html:7
-msgid "رمز جدید را وارد کنید"
-msgstr "Please enter the new password."
-
-#: .\templates\registration\password_reset_confirm.html:18
-msgid "رمز جدید"
-msgstr "New Password"
-
-#: .\templates\registration\password_reset_confirm.html:25
-msgid "لینک بازیابی رمز منقضی شده است. لطفا دوباره درخواست بازیابی رمز بدهید."
-msgstr "The link has expired."
-
-#: .\templates\registration\password_reset_done.html:6
-msgid "ایمیل ارسال شد."
-msgstr "Email has been sent"
-
-#: .\templates\registration\password_reset_done.html:12
-msgid "inbox خود را چک کنید."
-msgstr "Check your inbox."
-
-#: .\templates\registration\password_reset_done.html:13
-msgid ""
-"ایمیل بازیابی رمز برای شما ارسال شده است. ایمیل تا دقایقی دیگر به دست شما "
-"میرسد."
-msgstr "An email has been sent to you."
-
-#: .\templates\registration\password_reset_form.html:14
-msgid "فراموشی رمز"
-msgstr "Password Reset"
-
-#: .\templates\registration\password_reset_form.html:15
-msgid "ایمیل خود را وارد کنید تا ایمیل تغییر رمز عبور برایتان ارسال شود."
-msgstr ""
-"Please enter your email so we can send you an email to change your password."
-
-#: .\templates\registration\password_reset_form.html:18
-msgid "ارسال"
-msgstr "Send"
-
-#: .\templates\registration\patient_mini_profile.html:33
-#: .\templates\registration\patient_profile.html:35
-msgid "بیمار"
-msgstr "Patient"
-
-#: .\templates\registration\patient_mini_profile.html:65
-msgid "سال تولد"
-msgstr "Birth year"
-
-#: .\templates\registration\patient_mini_profile.html:75
-#: .\templates\registration\patient_mini_profile.html:84
-#: .\templates\registration\patient_profile.html:105
-#: .\templates\registration\patient_profile.html:114
-msgid "بیماری‌ها"
-msgstr "Medical Conditions"
-
-#: .\templates\registration\patient_mini_profile.html:141
-#: .\templates\registration\patient_mini_profile.html:150
-#: .\templates\registration\patient_profile.html:191
-#: .\templates\registration\patient_profile.html:200
-msgid "حساسیت‌ها"
-msgstr "Allergies"
-
-#: .\templates\registration\patient_mini_profile.html:168
-#: .\templates\registration\patient_profile.html:218
-msgid "متر"
-msgstr "Meter"
-
-#: .\templates\registration\patient_mini_profile.html:188
-#: .\templates\registration\patient_profile.html:238
-msgid "کیلوگرم"
-msgstr "Kilograms"
-
-#: .\templates\registration\patient_profile.html:52
-msgid "مشاهده ویزیت های قبلی"
-msgstr "Previous Appointments"
-
-#: .\templates\registration\patient_profile.html:53
-msgid "لیست داروهای شما"
-msgstr "Medicine List"
-
-#: .\templates\registration\registration.html:16
-msgid "خطا!"
-msgstr "Error!"
-
-#: .\templates\registration\registration.html:22
-msgid "صفحه ثبت نام"
-msgstr "SIGN UP"
-
-#: .\templates\registration\registration.html:23
-msgid "لطفا فرم زیر را تکمیل کنید."
-msgstr "Please fill in the form."
-
-#: .\templates\registration\registration.html:27
-msgid "ثبت نام"
-msgstr "register"
-
-#: .\templates\visit_history\history.html:11
-msgid "ویزیتی وجود ندارد."
-msgstr "There is no visit."
-
-#: .\templates\visit_history\history.html:60
-msgid "با تشکر از رأی شما :)"
-msgstr "Thanks for your vote :)"
-
-#: .\venv2\Lib\site-packages\bootstrap4\components.py:17
-#: .\venv2\Lib\site-packages\bootstrap4\templates\bootstrap4\form_errors.html:3
-#: .\venv2\Lib\site-packages\bootstrap4\templates\bootstrap4\messages.html:4
+#: env/lib/python3.7/site-packages/bootstrap4/components.py:17
+#: env/lib/python3.7/site-packages/bootstrap4/templates/bootstrap4/form_errors.html:3
+#: env/lib/python3.7/site-packages/bootstrap4/templates/bootstrap4/messages.html:4
 msgid "close"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\contrib\messages\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
+#: env/lib/python3.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\contrib\sitemaps\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:7
+#: env/lib/python3.7/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\contrib\staticfiles\apps.py:9
-#: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+#: env/lib/python3.7/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\contrib\syndication\apps.py:7
-#: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
+#: env/lib/python3.7/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\paginator.py:45
-#: .\venv\Lib\site-packages\django\core\paginator.py:45
+#: env/lib/python3.7/site-packages/django/core/paginator.py:45
 msgid "That page number is not an integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\paginator.py:47
-#: .\venv\Lib\site-packages\django\core\paginator.py:47
+#: env/lib/python3.7/site-packages/django/core/paginator.py:47
 msgid "That page number is less than 1"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\paginator.py:52
-#: .\venv\Lib\site-packages\django\core\paginator.py:52
+#: env/lib/python3.7/site-packages/django/core/paginator.py:52
 msgid "That page contains no results"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:32
-#: .\venv\Lib\site-packages\django\core\validators.py:32
+#: env/lib/python3.7/site-packages/django/core/validators.py:32
 msgid "Enter a valid value."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:103
-#: .\venv2\Lib\site-packages\django\forms\fields.py:659
-#: .\venv\Lib\site-packages\django\core\validators.py:103
-#: .\venv\Lib\site-packages\django\forms\fields.py:659
+#: env/lib/python3.7/site-packages/django/core/validators.py:103
+#: env/lib/python3.7/site-packages/django/forms/fields.py:659
 msgid "Enter a valid URL."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:155
-#: .\venv\Lib\site-packages\django\core\validators.py:155
+#: env/lib/python3.7/site-packages/django/core/validators.py:155
 msgid "Enter a valid integer."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:166
-#: .\venv\Lib\site-packages\django\core\validators.py:166
+#: env/lib/python3.7/site-packages/django/core/validators.py:166
 msgid "Enter a valid email address."
 msgstr ""
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
-#: .\venv2\Lib\site-packages\django\core\validators.py:240
-#: .\venv\Lib\site-packages\django\core\validators.py:240
+#: env/lib/python3.7/site-packages/django/core/validators.py:240
 msgid ""
 "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:247
-#: .\venv\Lib\site-packages\django\core\validators.py:247
+#: env/lib/python3.7/site-packages/django/core/validators.py:247
 msgid ""
 "Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:256
-#: .\venv2\Lib\site-packages\django\core\validators.py:276
-#: .\venv\Lib\site-packages\django\core\validators.py:256
-#: .\venv\Lib\site-packages\django\core\validators.py:276
+#: env/lib/python3.7/site-packages/django/core/validators.py:256
+#: env/lib/python3.7/site-packages/django/core/validators.py:276
 msgid "Enter a valid IPv4 address."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:261
-#: .\venv2\Lib\site-packages\django\core\validators.py:277
-#: .\venv\Lib\site-packages\django\core\validators.py:261
-#: .\venv\Lib\site-packages\django\core\validators.py:277
+#: env/lib/python3.7/site-packages/django/core/validators.py:261
+#: env/lib/python3.7/site-packages/django/core/validators.py:277
 msgid "Enter a valid IPv6 address."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:271
-#: .\venv2\Lib\site-packages\django\core\validators.py:275
-#: .\venv\Lib\site-packages\django\core\validators.py:271
-#: .\venv\Lib\site-packages\django\core\validators.py:275
+#: env/lib/python3.7/site-packages/django/core/validators.py:271
+#: env/lib/python3.7/site-packages/django/core/validators.py:275
 msgid "Enter a valid IPv4 or IPv6 address."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:305
-#: .\venv\Lib\site-packages\django\core\validators.py:305
+#: env/lib/python3.7/site-packages/django/core/validators.py:305
 msgid "Enter only digits separated by commas."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:311
-#: .\venv\Lib\site-packages\django\core\validators.py:311
+#: env/lib/python3.7/site-packages/django/core/validators.py:311
 #, python-format
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:343
-#: .\venv\Lib\site-packages\django\core\validators.py:343
+#: env/lib/python3.7/site-packages/django/core/validators.py:343
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:352
-#: .\venv\Lib\site-packages\django\core\validators.py:352
+#: env/lib/python3.7/site-packages/django/core/validators.py:352
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:362
-#: .\venv\Lib\site-packages\django\core\validators.py:362
+#: env/lib/python3.7/site-packages/django/core/validators.py:362
 #, python-format
 msgid ""
 "Ensure this value has at least %(limit_value)d character (it has "
@@ -1249,8 +598,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:377
-#: .\venv\Lib\site-packages\django\core\validators.py:377
+#: env/lib/python3.7/site-packages/django/core/validators.py:377
 #, python-format
 msgid ""
 "Ensure this value has at most %(limit_value)d character (it has "
@@ -1261,33 +609,27 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:396
-#: .\venv2\Lib\site-packages\django\forms\fields.py:291
-#: .\venv2\Lib\site-packages\django\forms\fields.py:326
-#: .\venv\Lib\site-packages\django\core\validators.py:396
-#: .\venv\Lib\site-packages\django\forms\fields.py:291
-#: .\venv\Lib\site-packages\django\forms\fields.py:326
+#: env/lib/python3.7/site-packages/django/core/validators.py:396
+#: env/lib/python3.7/site-packages/django/forms/fields.py:291
+#: env/lib/python3.7/site-packages/django/forms/fields.py:326
 msgid "Enter a number."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:398
-#: .\venv\Lib\site-packages\django\core\validators.py:398
+#: env/lib/python3.7/site-packages/django/core/validators.py:398
 #, python-format
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:403
-#: .\venv\Lib\site-packages\django\core\validators.py:403
+#: env/lib/python3.7/site-packages/django/core/validators.py:403
 #, python-format
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:408
-#: .\venv\Lib\site-packages\django\core\validators.py:408
+#: env/lib/python3.7/site-packages/django/core/validators.py:408
 #, python-format
 msgid ""
 "Ensure that there are no more than %(max)s digit before the decimal point."
@@ -1296,404 +638,331 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:470
-#: .\venv\Lib\site-packages\django\core\validators.py:470
+#: env/lib/python3.7/site-packages/django/core/validators.py:470
 #, python-format
 msgid ""
 "File extension “%(extension)s” is not allowed. Allowed extensions are: "
 "%(allowed_extensions)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\core\validators.py:522
-#: .\venv\Lib\site-packages\django\core\validators.py:522
+#: env/lib/python3.7/site-packages/django/core/validators.py:522
 msgid "Null characters are not allowed."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\base.py:1181
-#: .\venv2\Lib\site-packages\django\forms\models.py:759
-#: .\venv\Lib\site-packages\django\db\models\base.py:1181
-#: .\venv\Lib\site-packages\django\forms\models.py:759
+#: env/lib/python3.7/site-packages/django/db/models/base.py:1181
+#: env/lib/python3.7/site-packages/django/forms/models.py:759
 msgid "and"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\base.py:1183
-#: .\venv\Lib\site-packages\django\db\models\base.py:1183
+#: env/lib/python3.7/site-packages/django/db/models/base.py:1183
 #, python-format
 msgid "%(model_name)s with this %(field_labels)s already exists."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:104
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:104
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:104
 #, python-format
 msgid "Value %(value)r is not a valid choice."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:105
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:105
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:105
 msgid "This field cannot be null."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:106
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:106
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:106
 msgid "This field cannot be blank."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:107
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:107
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:107
 #, python-format
 msgid "%(model_name)s with this %(field_label)s already exists."
 msgstr ""
 
 #. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
 #. Eg: "Title must be unique for pub_date year"
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:111
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:111
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:111
 #, python-format
 msgid ""
 "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:130
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:130
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:130
 #, python-format
 msgid "Field of type: %(field_type)s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:937
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:937
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:937
 #, python-format
 msgid "“%(value)s” value must be either True or False."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:938
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:938
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:938
 #, python-format
 msgid "“%(value)s” value must be either True, False, or None."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:940
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:940
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:940
 msgid "Boolean (Either True or False)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:981
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:981
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:981
 #, python-format
 msgid "String (up to %(max_length)s)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1045
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1045
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1045
 msgid "Comma-separated integers"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1094
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1094
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
 "format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1096
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1239
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1096
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1239
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1096
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1239
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
 "date."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1099
-#: .\venv2\Lib\site-packages\django_jalali\db\models.py:45
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1099
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1099
+#: env/lib/python3.7/site-packages/django_jalali/db/models.py:45
 msgid "Date (without time)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1237
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1237
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1237
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
 "uuuuuu]][TZ] format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1241
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1241
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1241
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
 "[TZ]) but it is an invalid date/time."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1245
-#: .\venv2\Lib\site-packages\django_jalali\db\models.py:193
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1245
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1245
+#: env/lib/python3.7/site-packages/django_jalali/db/models.py:193
 msgid "Date (with time)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1393
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1393
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1393
 #, python-format
 msgid "“%(value)s” value must be a decimal number."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1395
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1395
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1395
 msgid "Decimal number"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1534
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1534
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1534
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
 "uuuuuu] format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1537
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1537
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1537
 msgid "Duration"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1587
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1587
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1587
 msgid "Email address"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1610
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1610
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1610
 msgid "File path"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1676
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1676
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1676
 #, python-format
 msgid "“%(value)s” value must be a float."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1678
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1678
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1678
 msgid "Floating point number"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1716
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1716
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1716
 #, python-format
 msgid "“%(value)s” value must be an integer."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1718
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1718
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1718
 msgid "Integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1801
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1801
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1801
 msgid "Big (8 byte) integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1817
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1817
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1817
 msgid "IPv4 address"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1848
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1848
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1848
 msgid "IP address"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1928
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1929
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1928
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1929
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1928
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1929
 #, python-format
 msgid "“%(value)s” value must be either None, True or False."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1931
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1931
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1931
 msgid "Boolean (Either True, False or None)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1966
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1966
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1966
 msgid "Positive integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1979
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1979
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1979
 msgid "Positive small integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:1993
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1993
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:1993
 #, python-format
 msgid "Slug (up to %(max_length)s)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2025
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2025
 msgid "Small integer"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2032
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2032
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2032
 msgid "Text"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2060
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2060
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2060
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2062
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2062
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2062
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2065
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2065
 msgid "Time"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2191
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2191
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2191
 msgid "URL"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2213
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2213
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2213
 msgid "Raw binary data"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2278
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2278
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2278
 #, python-format
 msgid "“%(value)s” is not a valid UUID."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\__init__.py:2280
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2280
+#: env/lib/python3.7/site-packages/django/db/models/fields/__init__.py:2280
 msgid "Universally unique identifier"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\files.py:221
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:221
+#: env/lib/python3.7/site-packages/django/db/models/fields/files.py:221
 msgid "File"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\files.py:360
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:360
+#: env/lib/python3.7/site-packages/django/db/models/fields/files.py:360
 msgid "Image"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:778
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:778
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:778
 #, python-format
 msgid "%(model)s instance with %(field)s %(value)r does not exist."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:780
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:780
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:780
 msgid "Foreign Key (type determined by related field)"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:1012
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1012
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:1012
 msgid "One-to-one relationship"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:1066
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1066
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:1066
 #, python-format
 msgid "%(from)s-%(to)s relationship"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:1067
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1067
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:1067
 #, python-format
 msgid "%(from)s-%(to)s relationships"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\db\models\fields\related.py:1109
-#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1109
+#: env/lib/python3.7/site-packages/django/db/models/fields/related.py:1109
 msgid "Many-to-many relationship"
 msgstr ""
 
 #. Translators: If found as last label character, these punctuation
 #. characters will prevent the default label_suffix to be appended to the label
-#: .\venv2\Lib\site-packages\django\forms\boundfield.py:149
-#: .\venv\Lib\site-packages\django\forms\boundfield.py:149
+#: env/lib/python3.7/site-packages/django/forms/boundfield.py:149
 msgid ":?.!"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:53
-#: .\venv\Lib\site-packages\django\forms\fields.py:53
+#: env/lib/python3.7/site-packages/django/forms/fields.py:53
 msgid "This field is required."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:246
-#: .\venv\Lib\site-packages\django\forms\fields.py:246
+#: env/lib/python3.7/site-packages/django/forms/fields.py:246
 msgid "Enter a whole number."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:397
-#: .\venv2\Lib\site-packages\django\forms\fields.py:1127
-#: .\venv2\Lib\site-packages\django_jalali\forms\__init__.py:14
-#: .\venv\Lib\site-packages\django\forms\fields.py:397
-#: .\venv\Lib\site-packages\django\forms\fields.py:1127
+#: env/lib/python3.7/site-packages/django/forms/fields.py:397
+#: env/lib/python3.7/site-packages/django/forms/fields.py:1127
+#: env/lib/python3.7/site-packages/django_jalali/forms/__init__.py:14
 msgid "Enter a valid date."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:421
-#: .\venv2\Lib\site-packages\django\forms\fields.py:1128
-#: .\venv\Lib\site-packages\django\forms\fields.py:421
-#: .\venv\Lib\site-packages\django\forms\fields.py:1128
+#: env/lib/python3.7/site-packages/django/forms/fields.py:421
+#: env/lib/python3.7/site-packages/django/forms/fields.py:1128
 msgid "Enter a valid time."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:443
-#: .\venv2\Lib\site-packages\django_jalali\forms\__init__.py:53
-#: .\venv\Lib\site-packages\django\forms\fields.py:443
+#: env/lib/python3.7/site-packages/django/forms/fields.py:443
+#: env/lib/python3.7/site-packages/django_jalali/forms/__init__.py:53
 msgid "Enter a valid date/time."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:472
-#: .\venv\Lib\site-packages\django\forms\fields.py:472
+#: env/lib/python3.7/site-packages/django/forms/fields.py:472
 msgid "Enter a valid duration."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:473
-#: .\venv\Lib\site-packages\django\forms\fields.py:473
+#: env/lib/python3.7/site-packages/django/forms/fields.py:473
 #, python-brace-format
 msgid "The number of days must be between {min_days} and {max_days}."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:533
-#: .\venv\Lib\site-packages\django\forms\fields.py:533
+#: env/lib/python3.7/site-packages/django/forms/fields.py:533
 msgid "No file was submitted. Check the encoding type on the form."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:534
-#: .\venv\Lib\site-packages\django\forms\fields.py:534
+#: env/lib/python3.7/site-packages/django/forms/fields.py:534
 msgid "No file was submitted."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:535
-#: .\venv\Lib\site-packages\django\forms\fields.py:535
+#: env/lib/python3.7/site-packages/django/forms/fields.py:535
 msgid "The submitted file is empty."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:537
-#: .\venv\Lib\site-packages\django\forms\fields.py:537
+#: env/lib/python3.7/site-packages/django/forms/fields.py:537
 #, python-format
 msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
@@ -1701,672 +970,547 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:540
-#: .\venv\Lib\site-packages\django\forms\fields.py:540
+#: env/lib/python3.7/site-packages/django/forms/fields.py:540
 msgid "Please either submit a file or check the clear checkbox, not both."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:601
-#: .\venv\Lib\site-packages\django\forms\fields.py:601
+#: env/lib/python3.7/site-packages/django/forms/fields.py:601
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:763
-#: .\venv2\Lib\site-packages\django\forms\fields.py:853
-#: .\venv2\Lib\site-packages\django\forms\models.py:1275
-#: .\venv\Lib\site-packages\django\forms\fields.py:763
-#: .\venv\Lib\site-packages\django\forms\fields.py:853
-#: .\venv\Lib\site-packages\django\forms\models.py:1275
+#: env/lib/python3.7/site-packages/django/forms/fields.py:763
+#: env/lib/python3.7/site-packages/django/forms/fields.py:853
+#: env/lib/python3.7/site-packages/django/forms/models.py:1275
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:854
-#: .\venv2\Lib\site-packages\django\forms\fields.py:969
-#: .\venv2\Lib\site-packages\django\forms\models.py:1274
-#: .\venv\Lib\site-packages\django\forms\fields.py:854
-#: .\venv\Lib\site-packages\django\forms\fields.py:969
-#: .\venv\Lib\site-packages\django\forms\models.py:1274
+#: env/lib/python3.7/site-packages/django/forms/fields.py:854
+#: env/lib/python3.7/site-packages/django/forms/fields.py:969
+#: env/lib/python3.7/site-packages/django/forms/models.py:1274
 msgid "Enter a list of values."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:970
-#: .\venv\Lib\site-packages\django\forms\fields.py:970
+#: env/lib/python3.7/site-packages/django/forms/fields.py:970
 msgid "Enter a complete value."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\fields.py:1186
-#: .\venv\Lib\site-packages\django\forms\fields.py:1186
+#: env/lib/python3.7/site-packages/django/forms/fields.py:1186
 msgid "Enter a valid UUID."
 msgstr ""
 
 #. Translators: This is the default suffix added to form field labels
-#: .\venv2\Lib\site-packages\django\forms\forms.py:81
-#: .\venv\Lib\site-packages\django\forms\forms.py:81
+#: env/lib/python3.7/site-packages/django/forms/forms.py:81
 msgid ":"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\forms.py:207
-#: .\venv\Lib\site-packages\django\forms\forms.py:207
+#: env/lib/python3.7/site-packages/django/forms/forms.py:207
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:93
-#: .\venv\Lib\site-packages\django\forms\formsets.py:93
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:93
 msgid "ManagementForm data is missing or has been tampered with"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:345
-#: .\venv\Lib\site-packages\django\forms\formsets.py:345
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:345
 #, python-format
 msgid "Please submit %d or fewer forms."
 msgid_plural "Please submit %d or fewer forms."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:352
-#: .\venv\Lib\site-packages\django\forms\formsets.py:352
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:352
 #, python-format
 msgid "Please submit %d or more forms."
 msgid_plural "Please submit %d or more forms."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:379
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:386
-#: .\venv\Lib\site-packages\django\forms\formsets.py:379
-#: .\venv\Lib\site-packages\django\forms\formsets.py:386
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:379
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:386
 msgid "Order"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\formsets.py:391
-#: .\venv\Lib\site-packages\django\forms\formsets.py:391
+#: env/lib/python3.7/site-packages/django/forms/formsets.py:391
 msgid "Delete"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:754
-#: .\venv\Lib\site-packages\django\forms\models.py:754
+#: env/lib/python3.7/site-packages/django/forms/models.py:754
 #, python-format
 msgid "Please correct the duplicate data for %(field)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:758
-#: .\venv\Lib\site-packages\django\forms\models.py:758
+#: env/lib/python3.7/site-packages/django/forms/models.py:758
 #, python-format
 msgid "Please correct the duplicate data for %(field)s, which must be unique."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:764
-#: .\venv\Lib\site-packages\django\forms\models.py:764
+#: env/lib/python3.7/site-packages/django/forms/models.py:764
 #, python-format
 msgid ""
 "Please correct the duplicate data for %(field_name)s which must be unique "
 "for the %(lookup)s in %(date_field)s."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:773
-#: .\venv\Lib\site-packages\django\forms\models.py:773
+#: env/lib/python3.7/site-packages/django/forms/models.py:773
 msgid "Please correct the duplicate values below."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:1094
-#: .\venv\Lib\site-packages\django\forms\models.py:1094
+#: env/lib/python3.7/site-packages/django/forms/models.py:1094
 msgid "The inline value did not match the parent instance."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:1161
-#: .\venv\Lib\site-packages\django\forms\models.py:1161
+#: env/lib/python3.7/site-packages/django/forms/models.py:1161
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\models.py:1277
-#: .\venv\Lib\site-packages\django\forms\models.py:1277
+#: env/lib/python3.7/site-packages/django/forms/models.py:1277
 #, python-format
 msgid "“%(pk)s” is not a valid value."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\utils.py:162
-#: .\venv\Lib\site-packages\django\forms\utils.py:162
+#: env/lib/python3.7/site-packages/django/forms/utils.py:162
 #, python-format
 msgid ""
 "%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
 "may be ambiguous or it may not exist."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:395
-#: .\venv\Lib\site-packages\django\forms\widgets.py:395
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:395
 msgid "Clear"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:396
-#: .\venv\Lib\site-packages\django\forms\widgets.py:396
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:396
 msgid "Currently"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:397
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_stacked.html:12
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_tabular.html:34
-#: .\venv\Lib\site-packages\django\forms\widgets.py:397
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:397
 msgid "Change"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:709
-#: .\venv\Lib\site-packages\django\forms\widgets.py:709
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:709
 msgid "Unknown"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:710
-#: .\venv\Lib\site-packages\django\forms\widgets.py:710
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:710
 msgid "Yes"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\forms\widgets.py:711
-#: .\venv\Lib\site-packages\django\forms\widgets.py:711
+#: env/lib/python3.7/site-packages/django/forms/widgets.py:711
 msgid "No"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:788
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:788
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:788
 msgid "yes,no,maybe"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:817
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:834
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:817
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:834
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:817
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:834
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:836
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:836
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:836
 #, python-format
 msgid "%s KB"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:838
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:838
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:838
 #, python-format
 msgid "%s MB"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:840
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:840
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:840
 #, python-format
 msgid "%s GB"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:842
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:842
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:842
 #, python-format
 msgid "%s TB"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\template\defaultfilters.py:844
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:844
+#: env/lib/python3.7/site-packages/django/template/defaultfilters.py:844
 #, python-format
 msgid "%s PB"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:62
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:62
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:62
 msgid "p.m."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:63
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:63
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:63
 msgid "a.m."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:68
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:68
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:68
 msgid "PM"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:69
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:69
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:69
 msgid "AM"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:150
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:150
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:150
 msgid "midnight"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dateformat.py:152
-#: .\venv\Lib\site-packages\django\utils\dateformat.py:152
+#: env/lib/python3.7/site-packages/django/utils/dateformat.py:152
 msgid "noon"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
+#: env/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Monday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
+#: env/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Tuesday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
+#: env/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Wednesday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
+#: env/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Thursday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:6
-#: .\venv\Lib\site-packages\django\utils\dates.py:6
+#: env/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Friday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:7
-#: .\venv\Lib\site-packages\django\utils\dates.py:7
+#: env/lib/python3.7/site-packages/django/utils/dates.py:7
 msgid "Saturday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:7
-#: .\venv\Lib\site-packages\django\utils\dates.py:7
+#: env/lib/python3.7/site-packages/django/utils/dates.py:7
 msgid "Sunday"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
+#: env/lib/python3.7/site-packages/django/utils/dates.py:10
 msgid "Mon"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
+#: env/lib/python3.7/site-packages/django/utils/dates.py:10
 msgid "Tue"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
+#: env/lib/python3.7/site-packages/django/utils/dates.py:10
 msgid "Wed"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
+#: env/lib/python3.7/site-packages/django/utils/dates.py:10
 msgid "Thu"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:10
-#: .\venv\Lib\site-packages\django\utils\dates.py:10
+#: env/lib/python3.7/site-packages/django/utils/dates.py:10
 msgid "Fri"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:11
-#: .\venv\Lib\site-packages\django\utils\dates.py:11
+#: env/lib/python3.7/site-packages/django/utils/dates.py:11
 msgid "Sat"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:11
-#: .\venv\Lib\site-packages\django\utils\dates.py:11
+#: env/lib/python3.7/site-packages/django/utils/dates.py:11
 msgid "Sun"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "January"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "February"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "March"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "April"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "May"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:14
-#: .\venv\Lib\site-packages\django\utils\dates.py:14
+#: env/lib/python3.7/site-packages/django/utils/dates.py:14
 msgid "June"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
+#: env/lib/python3.7/site-packages/django/utils/dates.py:15
 msgid "July"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
+#: env/lib/python3.7/site-packages/django/utils/dates.py:15
 msgid "August"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
+#: env/lib/python3.7/site-packages/django/utils/dates.py:15
 msgid "September"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
+#: env/lib/python3.7/site-packages/django/utils/dates.py:15
 msgid "October"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:15
-#: .\venv\Lib\site-packages\django\utils\dates.py:15
+#: env/lib/python3.7/site-packages/django/utils/dates.py:15
 msgid "November"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:16
-#: .\venv\Lib\site-packages\django\utils\dates.py:16
+#: env/lib/python3.7/site-packages/django/utils/dates.py:16
 msgid "December"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "jan"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "feb"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "mar"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "apr"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "may"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:19
-#: .\venv\Lib\site-packages\django\utils\dates.py:19
+#: env/lib/python3.7/site-packages/django/utils/dates.py:19
 msgid "jun"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "jul"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "aug"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "sep"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "oct"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "nov"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:20
-#: .\venv\Lib\site-packages\django\utils\dates.py:20
+#: env/lib/python3.7/site-packages/django/utils/dates.py:20
 msgid "dec"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:23
-#: .\venv\Lib\site-packages\django\utils\dates.py:23
+#: env/lib/python3.7/site-packages/django/utils/dates.py:23
 msgctxt "abbrev. month"
 msgid "Jan."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:24
-#: .\venv\Lib\site-packages\django\utils\dates.py:24
+#: env/lib/python3.7/site-packages/django/utils/dates.py:24
 msgctxt "abbrev. month"
 msgid "Feb."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:25
-#: .\venv\Lib\site-packages\django\utils\dates.py:25
+#: env/lib/python3.7/site-packages/django/utils/dates.py:25
 msgctxt "abbrev. month"
 msgid "March"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:26
-#: .\venv\Lib\site-packages\django\utils\dates.py:26
+#: env/lib/python3.7/site-packages/django/utils/dates.py:26
 msgctxt "abbrev. month"
 msgid "April"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:27
-#: .\venv\Lib\site-packages\django\utils\dates.py:27
+#: env/lib/python3.7/site-packages/django/utils/dates.py:27
 msgctxt "abbrev. month"
 msgid "May"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:28
-#: .\venv\Lib\site-packages\django\utils\dates.py:28
+#: env/lib/python3.7/site-packages/django/utils/dates.py:28
 msgctxt "abbrev. month"
 msgid "June"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:29
-#: .\venv\Lib\site-packages\django\utils\dates.py:29
+#: env/lib/python3.7/site-packages/django/utils/dates.py:29
 msgctxt "abbrev. month"
 msgid "July"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:30
-#: .\venv\Lib\site-packages\django\utils\dates.py:30
+#: env/lib/python3.7/site-packages/django/utils/dates.py:30
 msgctxt "abbrev. month"
 msgid "Aug."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:31
-#: .\venv\Lib\site-packages\django\utils\dates.py:31
+#: env/lib/python3.7/site-packages/django/utils/dates.py:31
 msgctxt "abbrev. month"
 msgid "Sept."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:32
-#: .\venv\Lib\site-packages\django\utils\dates.py:32
+#: env/lib/python3.7/site-packages/django/utils/dates.py:32
 msgctxt "abbrev. month"
 msgid "Oct."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:33
-#: .\venv\Lib\site-packages\django\utils\dates.py:33
+#: env/lib/python3.7/site-packages/django/utils/dates.py:33
 msgctxt "abbrev. month"
 msgid "Nov."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:34
-#: .\venv\Lib\site-packages\django\utils\dates.py:34
+#: env/lib/python3.7/site-packages/django/utils/dates.py:34
 msgctxt "abbrev. month"
 msgid "Dec."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:37
-#: .\venv\Lib\site-packages\django\utils\dates.py:37
+#: env/lib/python3.7/site-packages/django/utils/dates.py:37
 msgctxt "alt. month"
 msgid "January"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:38
-#: .\venv\Lib\site-packages\django\utils\dates.py:38
+#: env/lib/python3.7/site-packages/django/utils/dates.py:38
 msgctxt "alt. month"
 msgid "February"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:39
-#: .\venv\Lib\site-packages\django\utils\dates.py:39
+#: env/lib/python3.7/site-packages/django/utils/dates.py:39
 msgctxt "alt. month"
 msgid "March"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:40
-#: .\venv\Lib\site-packages\django\utils\dates.py:40
+#: env/lib/python3.7/site-packages/django/utils/dates.py:40
 msgctxt "alt. month"
 msgid "April"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:41
-#: .\venv\Lib\site-packages\django\utils\dates.py:41
+#: env/lib/python3.7/site-packages/django/utils/dates.py:41
 msgctxt "alt. month"
 msgid "May"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:42
-#: .\venv\Lib\site-packages\django\utils\dates.py:42
+#: env/lib/python3.7/site-packages/django/utils/dates.py:42
 msgctxt "alt. month"
 msgid "June"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:43
-#: .\venv\Lib\site-packages\django\utils\dates.py:43
+#: env/lib/python3.7/site-packages/django/utils/dates.py:43
 msgctxt "alt. month"
 msgid "July"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:44
-#: .\venv\Lib\site-packages\django\utils\dates.py:44
+#: env/lib/python3.7/site-packages/django/utils/dates.py:44
 msgctxt "alt. month"
 msgid "August"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:45
-#: .\venv\Lib\site-packages\django\utils\dates.py:45
+#: env/lib/python3.7/site-packages/django/utils/dates.py:45
 msgctxt "alt. month"
 msgid "September"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:46
-#: .\venv\Lib\site-packages\django\utils\dates.py:46
+#: env/lib/python3.7/site-packages/django/utils/dates.py:46
 msgctxt "alt. month"
 msgid "October"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:47
-#: .\venv\Lib\site-packages\django\utils\dates.py:47
+#: env/lib/python3.7/site-packages/django/utils/dates.py:47
 msgctxt "alt. month"
 msgid "November"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\dates.py:48
-#: .\venv\Lib\site-packages\django\utils\dates.py:48
+#: env/lib/python3.7/site-packages/django/utils/dates.py:48
 msgctxt "alt. month"
 msgid "December"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\ipv6.py:8
-#: .\venv\Lib\site-packages\django\utils\ipv6.py:8
+#: env/lib/python3.7/site-packages/django/utils/ipv6.py:8
 msgid "This is not a valid IPv6 address."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\text.py:69
-#: .\venv\Lib\site-packages\django\utils\text.py:69
+#: env/lib/python3.7/site-packages/django/utils/text.py:69
 #, python-format
 msgctxt "String to return when truncating text"
 msgid "%(truncated_text)s…"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\text.py:235
-#: .\venv\Lib\site-packages\django\utils\text.py:235
+#: env/lib/python3.7/site-packages/django/utils/text.py:235
 msgid "or"
 msgstr ""
 
 #. Translators: This string is used as a separator between list elements
-#: .\venv2\Lib\site-packages\django\utils\text.py:254
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:83
-#: .\venv\Lib\site-packages\django\utils\text.py:254
-#: .\venv\Lib\site-packages\django\utils\timesince.py:83
+#: env/lib/python3.7/site-packages/django/utils/text.py:254
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:83
 msgid ", "
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:9
-#: .\venv\Lib\site-packages\django\utils\timesince.py:9
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:9
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:10
-#: .\venv\Lib\site-packages\django\utils\timesince.py:10
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:10
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:11
-#: .\venv\Lib\site-packages\django\utils\timesince.py:11
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:11
 #, python-format
 msgid "%d week"
 msgid_plural "%d weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:12
-#: .\venv\Lib\site-packages\django\utils\timesince.py:12
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:12
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:13
-#: .\venv\Lib\site-packages\django\utils\timesince.py:13
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:13
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:14
-#: .\venv\Lib\site-packages\django\utils\timesince.py:14
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:14
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv2\Lib\site-packages\django\utils\timesince.py:72
-#: .\venv\Lib\site-packages\django\utils\timesince.py:72
+#: env/lib/python3.7/site-packages/django/utils/timesince.py:72
 msgid "0 minutes"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:110
-#: .\venv\Lib\site-packages\django\views\csrf.py:110
+#: env/lib/python3.7/site-packages/django/views/csrf.py:110
 msgid "Forbidden"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:111
-#: .\venv\Lib\site-packages\django\views\csrf.py:111
+#: env/lib/python3.7/site-packages/django/views/csrf.py:111
 msgid "CSRF verification failed. Request aborted."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:115
-#: .\venv\Lib\site-packages\django\views\csrf.py:115
+#: env/lib/python3.7/site-packages/django/views/csrf.py:115
 msgid ""
 "You are seeing this message because this HTTPS site requires a “Referer "
 "header” to be sent by your Web browser, but none was sent. This header is "
@@ -2374,16 +1518,14 @@ msgid ""
 "hijacked by third parties."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:120
-#: .\venv\Lib\site-packages\django\views\csrf.py:120
+#: env/lib/python3.7/site-packages/django/views/csrf.py:120
 msgid ""
 "If you have configured your browser to disable “Referer” headers, please re-"
 "enable them, at least for this site, or for HTTPS connections, or for “same-"
 "origin” requests."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:124
-#: .\venv\Lib\site-packages\django\views\csrf.py:124
+#: env/lib/python3.7/site-packages/django/views/csrf.py:124
 msgid ""
 "If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
 "including the “Referrer-Policy: no-referrer” header, please remove them. The "
@@ -2392,137 +1534,112 @@ msgid ""
 "\" …> for links to third-party sites."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:132
-#: .\venv\Lib\site-packages\django\views\csrf.py:132
+#: env/lib/python3.7/site-packages/django/views/csrf.py:132
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when "
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:137
-#: .\venv\Lib\site-packages\django\views\csrf.py:137
+#: env/lib/python3.7/site-packages/django/views/csrf.py:137
 msgid ""
 "If you have configured your browser to disable cookies, please re-enable "
 "them, at least for this site, or for “same-origin” requests."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\csrf.py:142
-#: .\venv\Lib\site-packages\django\views\csrf.py:142
+#: env/lib/python3.7/site-packages/django/views/csrf.py:142
 msgid "More information is available with DEBUG=True."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:41
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:41
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:41
 msgid "No year specified"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:61
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:111
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:208
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:61
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:111
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:208
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:61
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:111
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:208
 msgid "Date out of range"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:90
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:90
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:90
 msgid "No month specified"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:142
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:142
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:142
 msgid "No day specified"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:188
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:188
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:188
 msgid "No week specified"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:338
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:367
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:338
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:367
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:338
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:367
 #, python-format
 msgid "No %(verbose_name_plural)s available"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:589
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:589
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:589
 #, python-format
 msgid ""
 "Future %(verbose_name_plural)s not available because %(class_name)s."
 "allow_future is False."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\dates.py:623
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:623
+#: env/lib/python3.7/site-packages/django/views/generic/dates.py:623
 #, python-format
 msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\detail.py:54
-#: .\venv\Lib\site-packages\django\views\generic\detail.py:54
+#: env/lib/python3.7/site-packages/django/views/generic/detail.py:54
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\list.py:67
-#: .\venv\Lib\site-packages\django\views\generic\list.py:67
+#: env/lib/python3.7/site-packages/django/views/generic/list.py:67
 msgid "Page is not “last”, nor can it be converted to an int."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\list.py:72
-#: .\venv\Lib\site-packages\django\views\generic\list.py:72
+#: env/lib/python3.7/site-packages/django/views/generic/list.py:72
 #, python-format
 msgid "Invalid page (%(page_number)s): %(message)s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\generic\list.py:154
-#: .\venv\Lib\site-packages\django\views\generic\list.py:154
+#: env/lib/python3.7/site-packages/django/views/generic/list.py:154
 #, python-format
 msgid "Empty list and “%(class_name)s.allow_empty” is False."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\static.py:40
-#: .\venv\Lib\site-packages\django\views\static.py:40
+#: env/lib/python3.7/site-packages/django/views/static.py:40
 msgid "Directory indexes are not allowed here."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\static.py:42
-#: .\venv\Lib\site-packages\django\views\static.py:42
+#: env/lib/python3.7/site-packages/django/views/static.py:42
 #, python-format
 msgid "“%(path)s” does not exist"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\static.py:80
-#: .\venv\Lib\site-packages\django\views\static.py:80
+#: env/lib/python3.7/site-packages/django/views/static.py:80
 #, python-format
 msgid "Index of %(directory)s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:7
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:7
 msgid "Django: the Web framework for perfectionists with deadlines."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:346
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:346
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:346
 #, python-format
 msgid ""
 "View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
 "target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:368
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:368
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:368
 msgid "The install worked successfully! Congratulations!"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:369
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:369
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:369
 #, python-format
 msgid ""
 "You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
@@ -2531,97 +1648,886 @@ msgid ""
 "URLs."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:384
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:384
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:384
 msgid "Django Documentation"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:385
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:385
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:385
 msgid "Topics, references, &amp; how-to’s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:396
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:396
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:396
 msgid "Tutorial: A Polling App"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:397
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:397
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:397
 msgid "Get started with Django"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:408
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:408
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:408
 msgid "Django Community"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django\views\templates\default_urlconf.html:409
-#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:409
+#: env/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:409
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\filters.py:39
-#: .\venv2\Lib\site-packages\django_jalali\admin\filterspecs.py:39
+#: env/lib/python3.7/site-packages/django_jalali/admin/filters.py:39
+#: env/lib/python3.7/site-packages/django_jalali/admin/filterspecs.py:39
 msgid "Any date"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\filters.py:40
-#: .\venv2\Lib\site-packages\django_jalali\admin\filterspecs.py:40
+#: env/lib/python3.7/site-packages/django_jalali/admin/filters.py:40
+#: env/lib/python3.7/site-packages/django_jalali/admin/filterspecs.py:40
 msgid "Today"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\filters.py:44
-#: .\venv2\Lib\site-packages\django_jalali\admin\filterspecs.py:41
+#: env/lib/python3.7/site-packages/django_jalali/admin/filters.py:44
+#: env/lib/python3.7/site-packages/django_jalali/admin/filterspecs.py:41
 msgid "Past 7 days"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\filters.py:48
-#: .\venv2\Lib\site-packages\django_jalali\admin\filterspecs.py:45
+#: env/lib/python3.7/site-packages/django_jalali/admin/filters.py:48
+#: env/lib/python3.7/site-packages/django_jalali/admin/filterspecs.py:45
 msgid "This month"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\filters.py:52
-#: .\venv2\Lib\site-packages\django_jalali\admin\filterspecs.py:49
+#: env/lib/python3.7/site-packages/django_jalali/admin/filters.py:52
+#: env/lib/python3.7/site-packages/django_jalali/admin/filterspecs.py:49
 msgid "This year"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\widgets.py:50
-#: .\venv2\Lib\site-packages\jalali_date\widgets.py:45
+#: env/lib/python3.7/site-packages/django_jalali/admin/widgets.py:50
 msgid "Date:"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\admin\widgets.py:50
-#: .\venv2\Lib\site-packages\jalali_date\widgets.py:45
+#: env/lib/python3.7/site-packages/django_jalali/admin/widgets.py:50
 msgid "Time:"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\db\models.py:48
+#: env/lib/python3.7/site-packages/django_jalali/db/models.py:48
 msgid "Enter a valid date in YYYY-MM-DD format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\db\models.py:49
+#: env/lib/python3.7/site-packages/django_jalali/db/models.py:49
 #, python-format
 msgid "Invalid date: %s"
 msgstr ""
 
-#: .\venv2\Lib\site-packages\django_jalali\db\models.py:190
+#: env/lib/python3.7/site-packages/django_jalali/db/models.py:190
 msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_stacked.html:12
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_tabular.html:34
-msgid "View"
+#: env/lib/python3.7/site-packages/jsonfield/fields.py:48
+msgid "Enter valid JSON."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_stacked.html:14
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_tabular.html:36
-msgid "View on site"
+#: env/lib/python3.7/site-packages/jsonfield/forms.py:15
+#, python-format
+msgid "\"%(value)s\" value must be valid JSON."
 msgstr ""
 
-#: .\venv2\Lib\site-packages\jalali_date\templates\admin\edit_inline\jalali_tabular.html:20
-msgid "Delete?"
+#: env/lib/python3.7/site-packages/star_ratings/admin.py:21
+msgid "Score"
 msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/admin.py:39
+msgid "Rating average"
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/models.py:21
+msgid ""
+"User is mandatory. Enable 'STAR_RATINGS_ANONYMOUS' for anonymous ratings."
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/models.py:48
+msgid "Already rated."
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:40
+msgid "Log in to rate"
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:66
+msgid "Average: "
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:69
+msgid "Rating Count: "
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:72
+msgid "You Rated: "
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:72
+msgid "Not rated"
+msgstr ""
+
+#: env/lib/python3.7/site-packages/star_ratings/templates/star_ratings/widget_base.html:74
+msgid "Please log in to rate."
+msgstr ""
+
+#: medicine_page/forms.py:65 medicine_page/forms.py:68
+#: medicine_page/forms.py:124 medicine_page/forms.py:126
+msgid "مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد."
+msgstr "Each usage dose should be less than total dosage."
+
+#: medicine_page/forms.py:77 medicine_page/forms.py:83
+msgid "لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)"
+msgstr "Please input a valid starting date. (sample: 1399-12-01)"
+
+#: medicine_page/forms.py:81
+msgid "تاریخ شروع باید امروز یا بعد از امروز باشد"
+msgstr "Starting date should be Today and onwards."
+
+#: medicine_page/forms.py:85
+msgid "لطفا تاریخ شروع معتبر وارد کنید."
+msgstr "Please input a valid starting date."
+
+#: medicine_page/forms.py:87
+msgid "لطفا تاریخ معتبر وارد کنید."
+msgstr "Please input a valid date."
+
+#: medicine_page/forms.py:89
+msgid "زمان شروع باید از الان به بعد باشد."
+msgstr "Starting date should be Today and onwards."
+
+#: medicine_page/forms.py:104 prescription/forms.py:22 prescription/forms.py:71
+#: prescription/forms.py:116
+msgid "توضیح"
+msgstr "Description"
+
+#: medicine_page/forms.py:105 prescription/forms.py:23
+msgid "بازه زمانی بین دو بار مصرف (به ساعت)"
+msgstr "Time interval between 2 consumptions (hour)"
+
+#: medicine_page/forms.py:106 prescription/forms.py:24
+msgid "مقدار کل مصرف (گرم)"
+msgstr "Total Dosage"
+
+#: medicine_page/forms.py:107
+msgid "مقدار هر بار مصرف (گرم)"
+msgstr "Dosage Every Time"
+
+#: medicine_page/forms.py:108
+msgid "تاریخ شروع"
+msgstr "Starting date"
+
+#: medicine_page/forms.py:109
+msgid "زمان شروع"
+msgstr "Starting time"
+
+#: medicine_page/forms.py:110
+msgid "فعال بود یادآوری"
+msgstr "Enable notifications"
+
+#: prescription/forms.py:25
+msgid "مقدار هربار مصرف (گرم)"
+msgstr "Total consumption (grams)"
+
+#: prescription/forms.py:46 prescription/forms.py:94 prescription/forms.py:139
+msgid "لطفا نام دارو را وارد کنید."
+msgstr "Please input medicine's name."
+
+#: prescription/forms.py:48
+msgid "لطفا بازه زمانی را مشخص کنید."
+msgstr "Please input time interval."
+
+#: prescription/forms.py:50
+msgid "لطفا مقدار کل مصرف را مشخص کنید."
+msgstr "Please input total dosage."
+
+#: prescription/forms.py:52
+msgid "لطفا مقدار هر بار مصرف را مشخص کنید."
+msgstr "Please input dosage of each use."
+
+#: prescription/forms.py:72 prescription/forms.py:117
+msgid "مهلت انجام تا"
+msgstr " Due date"
+
+#: prescription/forms.py:96
+msgid "لطفا تاریخ را وارد کنید."
+msgstr "Please input date."
+
+#: prescription/forms.py:98 prescription/forms.py:143
+msgid "از این تاریخ گذشته است."
+msgstr "This date has passed."
+
+#: prescription/forms.py:141
+msgid "لطفا تاریخ را مشخص کنید."
+msgstr "Please input date."
+
+#: templates/calendar/calendar.html:11
+msgid "آیا مطمئن هستید که میخواهید این زمان را رزرو کنید؟"
+msgstr "Are you sure about this reservation?"
+
+#: templates/calendar/calendar.html:31
+msgid "از زمان رزرو این ساعت گذشته است!"
+msgstr "This time's reservation interval has passed."
+
+#: templates/calendar/calendar.html:37
+#: templates/calendar/doctor_calender.html:12
+msgid "هفته قبل"
+msgstr "Previous"
+
+#: templates/calendar/calendar.html:38
+#: templates/calendar/doctor_calender.html:13
+msgid "هفته بعد"
+msgstr "Next"
+
+#: templates/calendar/verify.html:14
+msgid "رزرو و پرداخت موفقیت آمیز بود"
+msgstr "Your reservation was successful."
+
+#: templates/calendar/verify.html:16
+msgid "نام دکتر"
+msgstr "Doctor's Name"
+
+#: templates/calendar/verify.html:18
+msgid "تاریخ رزرو شما"
+msgstr "Your Reservation Date"
+
+#: templates/calendar/verify.html:20
+msgid "ساعت رزرو"
+msgstr "Reservation Hour"
+
+#: templates/calendar/verify.html:22
+msgid "آدرس مطب"
+msgstr "Office Address"
+
+#: templates/calendar/verify.html:24
+msgid "موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید"
+msgstr "Your credit isn't enough, please increase your credit."
+
+#: templates/calendar/verify.html:28
+msgid "بازگشت به صفحه پروفایل"
+msgstr "Back to profile page"
+
+#: templates/calendar/verify.html:29
+msgid "بازگشت به صفحه رزرو"
+msgstr "Back to reservation page"
+
+#: templates/doctor_income/income.html:21
+msgid "لطفا بازه‌ی زمانی‌ای بین دو هفته تا دو ماه را انتخاب کنید"
+msgstr "Please enter a time interval between 2 weeks to 2 months"
+
+#: templates/doctor_income/income.html:26
+msgid "مشاهده نمودار درآمد"
+msgstr "Income Chart"
+
+#: templates/doctor_income/income.html:67
+msgid "درآمد تجمعی در بازه مشخص شده"
+msgstr "Cumulative income in the given interval"
+
+#: templates/doctor_income/income.html:72
+msgid "روزها"
+msgstr "Days"
+
+#: templates/doctor_income/income.html:94
+msgid "(درآمد (تومان"
+msgstr "Income(Toman)"
+
+#: templates/doctor_income/income.html:121
+msgid "درآمد تا روز "
+msgstr "Income until day"
+
+#: templates/doctor_income/income.html:121
+msgid "ام بازه"
+msgstr "th of the interval"
+
+#: templates/doctor_income/income.html:122
+#: templates/registration/doctor_mini_profile.html:157
+#: templates/registration/doctor_profile.html:180
+#: templates/registration/doctor_profile.html:200
+#: templates/registration/patient_profile.html:140
+msgid "تومان"
+msgstr "Toman"
+
+#: templates/doctor_income/income.html:128
+msgid " درامد"
+msgstr "income"
+
+#: templates/medicine_page/medicine.html:54
+#: templates/prescription/prescription.html:24
+#: templates/prescription_list/pre_list.html:21
+#: templates/prescription_list_patient/pre_list_patient.html:51
+msgid "داروها"
+msgstr "Medicines"
+
+#: templates/medicine_page/medicine.html:56
+msgid "اضافه کردن دارو"
+msgstr "Add Medicine"
+
+#: templates/medicine_page/medicine.html:63
+msgid "دارویی وجود ندارد."
+msgstr "There is no medicine."
+
+#: templates/medicine_page/medicine.html:91
+#: templates/medicine_page/medicine.html:215
+msgid "دارو:"
+msgstr "Medicine"
+
+#: templates/medicine_page/medicine.html:92
+msgid "نام دارو:"
+msgstr "Medicine Name:"
+
+#: templates/medicine_page/medicine.html:94
+#: templates/medicine_page/medicine.html:218
+msgid "توضیحات پزشک:"
+msgstr "Doctor's Instructions"
+
+#: templates/medicine_page/medicine.html:96
+#: templates/medicine_page/medicine.html:220
+msgid "بازه زمانی بین دو قرص:"
+msgstr "Time interval between 2 consumptions (hour)"
+
+#: templates/medicine_page/medicine.html:96
+#: templates/medicine_page/medicine.html:220
+#: templates/registration/doctor_mini_profile.html:199
+#: templates/registration/doctor_profile.html:240
+msgid "ساعت"
+msgstr "hour"
+
+#: templates/medicine_page/medicine.html:97
+#: templates/medicine_page/medicine.html:221
+msgid "میزان هربار مصرف: "
+msgstr "Dosage Every Time"
+
+#: templates/medicine_page/medicine.html:97
+#: templates/medicine_page/medicine.html:221
+msgid "گرم"
+msgstr "Grams"
+
+#: templates/medicine_page/medicine.html:100
+#: templates/medicine_page/medicine.html:110
+#: templates/medicine_page/medicine.html:224
+#: templates/medicine_page/medicine.html:234
+msgid "وضعیت یادآوری قرص: فعال"
+msgstr "Notifications: On"
+
+#: templates/medicine_page/medicine.html:102
+#: templates/medicine_page/medicine.html:112
+#: templates/medicine_page/medicine.html:226
+#: templates/medicine_page/medicine.html:236
+msgid "غیرفعال کردن یادآوری"
+msgstr "Disable notifications"
+
+#: templates/medicine_page/medicine.html:124
+#: templates/medicine_page/medicine.html:248
+msgid "وضعیت یادآوری قرص: غیرفعال"
+msgstr "Notifications: Off"
+
+#: templates/medicine_page/medicine.html:127
+#: templates/medicine_page/medicine.html:251
+msgid "فعال کردن یادآوری"
+msgstr "Enable notifications"
+
+#: templates/medicine_page/medicine.html:137
+#: templates/medicine_page/medicine.html:260
+msgid "دارو تمام شده است."
+msgstr "This medicine has finished."
+
+#: templates/medicine_page/medicine.html:141
+#: templates/medicine_page/medicine.html:264
+#: templates/medicine_page/medicine.html:291
+msgid "تاریخ شروع دارو:"
+msgstr "Starting Date:"
+
+#: templates/medicine_page/medicine.html:161
+#: templates/medicine_page/medicine.html:286
+msgid ""
+"اگر مایلید پزشکات زمان خوردن این دارو را به شما یادآوری کند، زمان شروع را "
+"وارد کنید."
+msgstr ""
+"If you would like our website to send you notifications for reminding you of "
+"your medicines, please enter starting time."
+
+#: templates/medicine_page/medicine.html:166
+msgid "تاریخ شروع:"
+msgstr "Starting date"
+
+#: templates/medicine_page/medicine.html:171
+#: templates/medicine_page/medicine.html:297
+msgid "زمان شروع:"
+msgstr "Starting time"
+
+#: templates/medicine_page/medicine.html:173
+msgid ""
+" **مقادیر زیر بر اساس نسخه شما , دفعات قبلی استفاده ی شما از این دارو "
+"(درصورت فعال بودن این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید "
+"هر یک را تغییردهید.**"
+msgstr ""
+"The numbers below are taken directly from your prescriptions or your "
+"previous usage of this medicine (if notifications of this medicine has been "
+"active before). You are able to change them if you like."
+
+#: templates/medicine_page/medicine.html:175
+#: templates/medicine_page/medicine.html:301
+msgid "مقدار کل باقی مانده (گرم):"
+msgstr "Total Remaining Consumption Amount"
+
+#: templates/medicine_page/medicine.html:179
+#: templates/medicine_page/medicine.html:183
+#: templates/medicine_page/medicine.html:305
+#: templates/medicine_page/medicine.html:309
+msgid "تغییر مقدار"
+msgstr "Change Password"
+
+#: templates/medicine_page/medicine.html:181
+#: templates/medicine_page/medicine.html:307
+msgid "مقدار هربار مصرف (گرم):"
+msgstr "Consumption Amount Each Time"
+
+#: templates/medicine_page/medicine.html:188
+#: templates/medicine_page/medicine.html:354
+#: templates/prescription/prescription.html:122
+msgid "ذخیره"
+msgstr "Save"
+
+#: templates/medicine_page/medicine.html:215
+msgid "(اضافه شده توسط شما)"
+msgstr "(Added by You)"
+
+#: templates/medicine_page/medicine.html:216
+msgid "نام دارو: "
+msgstr "Medicine Name"
+
+#: templates/medicine_page/medicine.html:299
+msgid ""
+" **مقادیر زیر بر اساس دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن "
+"این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییر دهید."
+"**"
+msgstr ""
+"The numbers below are based on your previous consumption of this medicine "
+"(if notifications of this medicine has been acitve before). You are able to "
+"change them if you like."
+
+#: templates/medicine_page/medicine.html:321
+msgid "حذف"
+msgstr "Delete"
+
+#: templates/medicine_page/medicine.html:339
+msgid "داروی جدید"
+msgstr "New Password"
+
+#: templates/medicine_page/medicine.html:357
+msgid "بستن"
+msgstr "Close"
+
+#: templates/patient_list/list.html:11
+msgid " بیماری وجود ندارد."
+msgstr "There is no patient."
+
+#: templates/patient_list/list.html:25 templates/visit_history/history.html:33
+msgid "مشاهده نسخه‌ها"
+msgstr "Prescriptions"
+
+#: templates/prescription/prescription.html:59
+msgid "آزمایش‌ها"
+msgstr "Tests"
+
+#: templates/prescription/prescription.html:92
+#: templates/prescription_list/pre_list.html:61
+#: templates/prescription_list_patient/pre_list_patient.html:92
+msgid "تزریقات"
+msgstr "Injections"
+
+#: templates/prescription/prescription.html:139
+msgid "حذف دارو"
+msgstr "Delete medicine"
+
+#: templates/prescription/prescription.html:140
+msgid "اضافه کردن دارو جدید"
+msgstr "Add new medicine"
+
+#: templates/prescription/prescription.html:158
+msgid "حذف آزمایش"
+msgstr "Delete test"
+
+#: templates/prescription/prescription.html:159
+msgid "اضافه کردن آزمایش جدید"
+msgstr "Add new test"
+
+#: templates/prescription/prescription.html:178
+msgid "حذف داروی تزریقی"
+msgstr "Delete Ampule"
+
+#: templates/prescription/prescription.html:179
+msgid "اضافه کردن داروی تزریقی جدید"
+msgstr "Add new Ampule"
+
+#: templates/prescription_list/pre_list.html:11
+#: templates/prescription_list_patient/pre_list_patient.html:12
+msgid " نسخه‌ای وجود ندارد."
+msgstr "There is no prescription."
+
+#: templates/prescription_list/pre_list.html:16
+#: templates/prescription_list_patient/pre_list_patient.html:18
+msgid "نسخه‌ی ویزیت در تاریخ"
+msgstr "Prescription of the visit in"
+
+#: templates/prescription_list/pre_list.html:24
+#: templates/prescription_list_patient/pre_list_patient.html:54
+msgid "نام دارو"
+msgstr "Medicine Name"
+
+#: templates/prescription_list/pre_list.html:26
+#: templates/prescription_list_patient/pre_list_patient.html:56
+msgid "شرح : وارد نشده است."
+msgstr "Description : Unknown"
+
+#: templates/prescription_list/pre_list.html:28
+#: templates/prescription_list/pre_list.html:47
+#: templates/prescription_list/pre_list.html:65
+#: templates/prescription_list_patient/pre_list_patient.html:58
+#: templates/prescription_list_patient/pre_list_patient.html:78
+#: templates/prescription_list_patient/pre_list_patient.html:96
+msgid "شرح"
+msgstr "Description"
+
+#: templates/prescription_list/pre_list.html:30
+#: templates/prescription_list_patient/pre_list_patient.html:60
+msgid "هر"
+msgstr "Use ever"
+
+#: templates/prescription_list/pre_list.html:30
+#: templates/prescription_list_patient/pre_list_patient.html:60
+msgid "ساعت یکبار مصرف شود."
+msgstr "hours"
+
+#: templates/prescription_list/pre_list.html:31
+#: templates/prescription_list_patient/pre_list_patient.html:61
+msgid "هر بار"
+msgstr "Each time use"
+
+#: templates/prescription_list/pre_list.html:31
+#: templates/prescription_list_patient/pre_list_patient.html:61
+msgid "گرم مصرف شود"
+msgstr "grams"
+
+#: templates/prescription_list/pre_list.html:43
+#: templates/prescription_list_patient/pre_list_patient.html:74
+msgid "آزمایش ها"
+msgstr "Tests"
+
+#: templates/prescription_list/pre_list.html:46
+#: templates/prescription_list_patient/pre_list_patient.html:77
+msgid "نوع تست"
+msgstr "Test type"
+
+#: templates/prescription_list/pre_list.html:48
+#: templates/prescription_list/pre_list.html:66
+#: templates/prescription_list_patient/pre_list_patient.html:79
+#: templates/prescription_list_patient/pre_list_patient.html:97
+msgid "حداکثر تا تاریخ"
+msgstr "Should be done by "
+
+#: templates/prescription_list/pre_list.html:48
+#: templates/prescription_list_patient/pre_list_patient.html:79
+msgid "انجام شود."
+msgstr " at the latest."
+
+#: templates/prescription_list/pre_list.html:64
+#: templates/prescription_list_patient/pre_list_patient.html:95
+msgid "نام آمپول"
+msgstr "Ampoule's Name"
+
+#: templates/prescription_list/pre_list.html:67
+#: templates/prescription_list_patient/pre_list_patient.html:98
+msgid "مصرف شود."
+msgstr " at the latest."
+
+#: templates/prescription_list/pre_list.html:74
+msgid "ویرایش"
+msgstr "Edit"
+
+#: templates/prescription_list_patient/pre_list_patient.html:22
+msgid "افزودن نظر"
+msgstr "add comment"
+
+#: templates/prescription_list_patient/pre_list_patient.html:24
+msgid "ویرایش نظر"
+msgstr "Edit comment"
+
+#: templates/prescription_list_patient/pre_list_patient.html:30
+msgid "یادداشت خود را دررابطه با این نسخه بنویسید و یا ویرایش کنید"
+msgstr "Write/Edit your comment on this prescription"
+
+#: templates/prescription_list_patient/pre_list_patient.html:38
+msgid "افزودن"
+msgstr "add"
+
+#: templates/prescription_list_patient/pre_list_patient.html:48
+msgid "نظرات قبلی"
+msgstr "Previous Comments"
+
+#: templates/registration/doctor_mini_profile.html:36
+#: templates/registration/doctor_profile.html:36
+msgid "پزشک"
+msgstr "Doctor"
+
+#: templates/registration/doctor_mini_profile.html:68
+#: templates/registration/doctor_mini_profile.html:89
+#: templates/registration/doctor_mini_profile.html:127
+#: templates/registration/doctor_mini_profile.html:148
+#: templates/registration/doctor_profile.html:102
+#: templates/registration/doctor_profile.html:123
+#: templates/registration/doctor_profile.html:161
+#: templates/registration/doctor_profile.html:191
+#: templates/registration/patient_mini_profile.html:72
+#: templates/registration/patient_mini_profile.html:101
+#: templates/registration/patient_mini_profile.html:138
+#: templates/registration/patient_mini_profile.html:159
+#: templates/registration/patient_mini_profile.html:179
+#: templates/registration/patient_profile.html:102
+#: templates/registration/patient_profile.html:131
+#: templates/registration/patient_profile.html:151
+#: templates/registration/patient_profile.html:188
+#: templates/registration/patient_profile.html:209
+#: templates/registration/patient_profile.html:229
+msgid "وارد نشده است."
+msgstr "Unknown"
+
+#: templates/registration/doctor_mini_profile.html:71
+#: templates/registration/doctor_mini_profile.html:80
+#: templates/registration/doctor_profile.html:105
+#: templates/registration/doctor_profile.html:114
+msgid "وب سایت"
+msgstr "Portfolio"
+
+#: templates/registration/doctor_mini_profile.html:151
+#: templates/registration/doctor_mini_profile.html:160
+msgid "حق ویزیت "
+msgstr "Fee"
+
+#: templates/registration/doctor_mini_profile.html:168
+#: templates/registration/doctor_mini_profile.html:177
+#: templates/registration/doctor_profile.html:211
+#: templates/registration/doctor_profile.html:220
+msgid "وجود ندارد."
+msgstr "Does not exist."
+
+#: templates/registration/doctor_mini_profile.html:171
+#: templates/registration/doctor_mini_profile.html:180
+#: templates/registration/doctor_profile.html:214
+#: templates/registration/doctor_profile.html:223
+msgid "قابلیت پرداخت حق ویزیت در مطب"
+msgstr "Paying in Place"
+
+#: templates/registration/doctor_mini_profile.html:192
+msgid "امتیاز "
+msgstr "Score"
+
+#: templates/registration/doctor_mini_profile.html:202
+#: templates/registration/doctor_profile.html:243
+msgid "مدت زمان ویزیت"
+msgstr "Average Appointment Time Length"
+
+#: templates/registration/doctor_mini_profile.html:209
+msgid "تا"
+msgstr "to"
+
+#: templates/registration/doctor_mini_profile.html:212
+#: templates/registration/doctor_profile.html:253
+msgid "ساعات کاری"
+msgstr "Working Hours"
+
+#: templates/registration/doctor_mini_profile.html:221
+#: templates/registration/doctor_profile.html:262
+msgid "روز‌های کاری"
+msgstr "Work Days"
+
+#: templates/registration/doctor_mini_profile.html:232
+msgid "رزرو وقت"
+msgstr "Make an Appointment"
+
+#: templates/registration/doctor_profile.html:41
+#: templates/registration/patient_profile.html:40
+msgid "اطلاعات شخصی"
+msgstr "Personal Info"
+
+#: templates/registration/doctor_profile.html:54
+#: templates/registration/patient_profile.html:50
+msgid "لینک‌های کاربردی"
+msgstr "Your Links"
+
+#: templates/registration/doctor_profile.html:55
+#: templates/registration/patient_profile.html:51
+msgid "تغییر رمزعبور"
+msgstr "Change Password"
+
+#: templates/registration/doctor_profile.html:56
+msgid "مشاهده برنامه‌ی هفتگی"
+msgstr "Weekly Schedule"
+
+#: templates/registration/doctor_profile.html:57
+msgid "مشاهده لیست بیماران"
+msgstr "Patient List"
+
+#: templates/registration/doctor_profile.html:58
+msgid "مشاهده درآمد"
+msgstr "Check Income"
+
+#: templates/registration/doctor_profile.html:67
+#: templates/registration/patient_profile.html:61
+msgid "خوش آمدید"
+msgstr "Welcome"
+
+#: templates/registration/doctor_profile.html:267
+#: templates/registration/patient_profile.html:246
+msgid "ویرایش پروفایل"
+msgstr "Edit Profile"
+
+#: templates/registration/edit_profile.html:17
+msgid "ثبت"
+msgstr "submit"
+
+#: templates/registration/login.html:16
+msgid "صفحه ورود"
+msgstr "LOGIN"
+
+#: templates/registration/login.html:17
+msgid "لطفا ایمیل و رمز عبور خود را وارد کنید."
+msgstr "Please enter your email and password."
+
+#: templates/registration/login.html:20
+msgid "بازیابی زمز عبور"
+msgstr "Password Reset"
+
+#: templates/registration/login.html:21
+msgid "ورود"
+msgstr "Login"
+
+#: templates/registration/login.html:29
+msgid "خطا"
+msgstr "Error!"
+
+#: templates/registration/password_change_done.html:7
+#: templates/registration/password_reset_complete.html:7
+msgid "تغییر رمز موفق"
+msgstr "Success"
+
+#: templates/registration/password_change_done.html:13
+#: templates/registration/password_reset_complete.html:13
+msgid "رمز شما با موفقیت تغییر یافت."
+msgstr "Your password has successfully changed."
+
+#: templates/registration/password_change_form.html:14
+#: templates/registration/password_change_form.html:18
+msgid "تغییر رمز عبور"
+msgstr "Password Reset"
+
+#: templates/registration/password_change_form.html:15
+msgid "رمز عبور جدید را وارد کنید."
+msgstr "Please enter the new password."
+
+#: templates/registration/password_reset_confirm.html:7
+msgid "رمز جدید را وارد کنید"
+msgstr "Please enter the new password."
+
+#: templates/registration/password_reset_confirm.html:18
+msgid "رمز جدید"
+msgstr "New Password"
+
+#: templates/registration/password_reset_confirm.html:25
+msgid "لینک بازیابی رمز منقضی شده است. لطفا دوباره درخواست بازیابی رمز بدهید."
+msgstr "The link has expired."
+
+#: templates/registration/password_reset_done.html:6
+msgid "ایمیل ارسال شد."
+msgstr "Email has been sent"
+
+#: templates/registration/password_reset_done.html:12
+msgid "inbox خود را چک کنید."
+msgstr "Check your inbox."
+
+#: templates/registration/password_reset_done.html:13
+msgid ""
+"ایمیل بازیابی رمز برای شما ارسال شده است. ایمیل تا دقایقی دیگر به دست شما "
+"میرسد."
+msgstr "An email has been sent to you."
+
+#: templates/registration/password_reset_form.html:14
+msgid "فراموشی رمز"
+msgstr "Password Reset"
+
+#: templates/registration/password_reset_form.html:15
+msgid "ایمیل خود را وارد کنید تا ایمیل تغییر رمز عبور برایتان ارسال شود."
+msgstr ""
+"Please enter your email so we can send you an email to change your password."
+
+#: templates/registration/password_reset_form.html:18
+msgid "ارسال"
+msgstr "Send"
+
+#: templates/registration/patient_mini_profile.html:33
+#: templates/registration/patient_profile.html:35
+msgid "بیمار"
+msgstr "Patient"
+
+#: templates/registration/patient_mini_profile.html:65
+msgid "سال تولد"
+msgstr "Birth year"
+
+#: templates/registration/patient_mini_profile.html:75
+#: templates/registration/patient_mini_profile.html:84
+#: templates/registration/patient_profile.html:105
+#: templates/registration/patient_profile.html:114
+msgid "بیماری‌ها"
+msgstr "Medical Conditions"
+
+#: templates/registration/patient_mini_profile.html:141
+#: templates/registration/patient_mini_profile.html:150
+#: templates/registration/patient_profile.html:191
+#: templates/registration/patient_profile.html:200
+msgid "حساسیت‌ها"
+msgstr "Allergies"
+
+#: templates/registration/patient_mini_profile.html:168
+#: templates/registration/patient_profile.html:218
+msgid "متر"
+msgstr "Meter"
+
+#: templates/registration/patient_mini_profile.html:188
+#: templates/registration/patient_profile.html:238
+msgid "کیلوگرم"
+msgstr "Kilograms"
+
+#: templates/registration/patient_profile.html:52
+msgid "مشاهده ویزیت های قبلی"
+msgstr "Previous Appointments"
+
+#: templates/registration/patient_profile.html:53
+msgid "لیست داروهای شما"
+msgstr "Medicine List"
+
+#: templates/registration/registration.html:16
+msgid "خطا!"
+msgstr "Error!"
+
+#: templates/registration/registration.html:22
+msgid "صفحه ثبت نام"
+msgstr "SIGN UP"
+
+#: templates/registration/registration.html:23
+msgid "لطفا فرم زیر را تکمیل کنید."
+msgstr "Please fill in the form."
+
+#: templates/registration/registration.html:27
+msgid "ثبت نام"
+msgstr "register"
+
+#: templates/visit_history/history.html:11
+msgid "ویزیتی وجود ندارد."
+msgstr "There is no visit."
+
+#: templates/visit_history/history.html:60
+msgid "با تشکر از رأی شما :)"
+msgstr "Thanks for your vote :)"
+
+#~ msgid "آیا از غیرفعال کردن یادآوری اطمینان دارید؟"
+#~ msgstr "Are you sure you want to turn off notifications?"
 
 #~ msgid "لطفا بازه‌ی زمانی‌ای بین دو هفته تا دو ماه را انتخاب کنید."
 #~ msgstr "Please enter a time interval between 2 weeks to 2 months"

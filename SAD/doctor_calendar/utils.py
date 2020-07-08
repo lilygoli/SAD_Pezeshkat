@@ -3,7 +3,7 @@ from calendar import HTMLCalendar
 
 import jdatetime
 from django.urls import reverse
-
+from django.utils.translation import ugettext_lazy as _
 from accounts.models import User, DoctorProfileInfo
 from prescription.models import Prescriptions
 from .models import Event
@@ -22,9 +22,9 @@ class Calendar(HTMLCalendar):
                                                                             self.date.day)
         self.jmonth_range = self.fix_kabise(self.jyear)
         self.week = self.find_current_week()
-        self.day_abr = {0: 'شنبه', 1: 'یکشنبه', 2: 'دوشنبه', 3: 'سه شنبه', 4: 'چهارشنبه', 5: 'پنجشنبه', 6: 'جمعه'}
-        self.month_name = {0: 'فروردین', 1: 'اردیبهشت', 2: 'خرداد', 3: 'تیر', 4: 'مرداد', 5: 'شهریور', 6: 'مهر',
-                           7: 'آبان', 8: 'آذر', 9: 'دی', 10: 'بهمن', 11: 'اسفند'}
+        self.day_abr = {0: _('شنبه'), 1: _('یکشنبه'), 2: _('دوشنبه'), 3: _('سه شنبه'), 4: _('چهارشنبه'), 5: _('پنجشنبه'), 6: _('جمعه')}
+        self.month_name = {0: _('فروردین'), 1: _('اردیبهشت'), 2: _('خرداد'), 3: _('تیر'), 4: _('مرداد'), 5: _('شهریور'), 6: _('مهر'),
+                           7: _('آبان'), 8: _('آذر'), 9: _('دی'), 10: _('بهمن'), 11: _('اسفند')}
         super(Calendar, self).__init__(firstweekday=0)
 
     @staticmethod
@@ -117,22 +117,22 @@ class Calendar(HTMLCalendar):
                             if len(Prescriptions.objects.filter(appointment_id=event_of_hour[0].id,
                                                                 patient_id=event_of_hour[0].patient_user_id,
                                                                 doctor_id=event_of_hour[0].doctor_user_id)):
-                                prescription_text = 'ویرایش نسخه'
+                                prescription_text = _('ویرایش نسخه')
                             else:
-                                prescription_text = 'ایجاد نسخه'
-                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>' \
+                                prescription_text = _('ایجاد نسخه')
+                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">' + str(_("اطلاعات"))+ '</a>' \
                                    f' <a href="{prescription_url}"> {prescription_text}</td>'
                         else:
-                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">اطلاعات</a>'
+                            cal += f'<td><p class = "cal_title">{title}</p><a href="{url}">'+ str(_("اطلاعات")) +'</a>'
                             now = datetime.date(self.year, self.month, self.day)
                             then = datetime.date(gdate.gyear, gdate.gmonth, gdate.gday)
                             if now - then <= datetime.timedelta(7):
                                 if len(Prescriptions.objects.filter(appointment_id=event_of_hour[0].id,
                                                                     patient_id=event_of_hour[0].patient_user_id,
                                                                     doctor_id=event_of_hour[0].doctor_user_id)):
-                                    prescription_text = 'ویرایش نسخه'
+                                    prescription_text = _('ویرایش نسخه')
                                 else:
-                                    prescription_text = 'ایجاد نسخه'
+                                    prescription_text = _('ایجاد نسخه')
                                 cal += f' <a href="{prescription_url}"> {prescription_text}</td>'
                 else:
                     if not (start_hour <= hour <= end_hour and available_days[i] == '1'):
@@ -159,9 +159,9 @@ class Calendar(HTMLCalendar):
         else:
             str_minute = '00'
         if hour >= 13:
-            out = str(int(str_hour % 12)) + ':' + str_minute + ' عصر'
+            out = str(int(str_hour % 12)) + ':' + str_minute + str(_(' عصر'))
         else:
-            out = str(int(str_hour)) + ':' + str_minute + ' صبح'
+            out = str(int(str_hour)) + ':' + str_minute + str(_(' صبح'))
         return '<th>%s</th>' % out
 
     def format_day_header(self, duration):
@@ -171,8 +171,8 @@ class Calendar(HTMLCalendar):
 
     def format_month_name(self, theyear, themonth, date_range, duration):
         s = '%s %s' % (self.month_name[themonth - 1], theyear)
-        out = '<tr><th colspan="30" class="%s">%s <pre> از تاریخ %s تا %s </pre></th></tr>' % (
-            'date-header', s, str(date_range[0]), str(date_range[1]))
+        out = '<tr><th colspan="30" class="%s">%s <pre> %s %s %s %s </pre></th></tr>' % (
+            'date-header', s, str(_('از تاریخ ')), str(date_range[0]), str(_('تا ')), str(date_range[1]))
         return out
 
     def format_month(self):

@@ -78,7 +78,13 @@
                 x: 3,
                 y: -3,
                 formatter: function() {
-                    return Highcharts.localizationNumber(this.value);
+                    l = document.documentElement.lang;
+                    if (l === 'fa') {
+                        return Highcharts.localizationNumber(this.value);
+                    }
+                    else {
+                        return this.value;
+                    }
                 }
             }
         },
@@ -93,7 +99,13 @@
                 y: 10,
                 format: '{value:.,0f}',
                 formatter: function() {
-                    return Highcharts.localizationNumber(this.value);
+                    l = document.documentElement.lang;
+                    if (l === 'fa') {
+                        return Highcharts.localizationNumber(this.value);
+                    }
+                    else {
+                        return this.value;
+                    }
                 }
             },
             showFirstLabel: false

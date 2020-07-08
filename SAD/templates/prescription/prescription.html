@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
 
 {% block body_block %}
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/prescription.css' %}">
-
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+{% language request.session.lang %}
+    {% get_current_language as LANGUAGE_CODE %}
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <form method="post">
         {% csrf_token %}
@@ -20,7 +21,7 @@
 
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                داروها</a>
+                                {% trans 'داروها'%}</a>
                         </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse in">
@@ -55,7 +56,7 @@
                     <h4 class="panel-title">
 
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                            آزمایش‌ها</a>
+                            {% trans 'آزمایش‌ها'%}</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
@@ -88,7 +89,7 @@
 
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                            تزریقات</a>
+                            {% trans 'تزریقات'%}</a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
@@ -118,7 +119,7 @@
 
 
         <div id="submit-button">
-            <input type="submit" value="ذخیره" class="button"/>
+            <input type="submit" value="{% trans 'ذخیره'%}" class="button"/>
         </div>
         </div>
 
@@ -135,8 +136,8 @@
 
     <script>
         $('.medicine-formset').formset({
-            deleteText: 'حذف دارو',
-            addText: 'اضافه کردن دارو جدید',
+            deleteText: "{% trans 'حذف دارو'%}",
+            addText: "{% trans 'اضافه کردن دارو جدید'%}",
             prefix: 'med',
 
             removed: function (row) {
@@ -154,8 +155,8 @@
         });
 
         $('.test-formset').formset({
-            deleteText: 'حذف آزمایش',
-            addText: 'اضافه کردن آزمایش جدید',
+            deleteText: "{% trans 'حذف آزمایش'%}",
+            addText: "{% trans 'اضافه کردن آزمایش جدید'%}",
             prefix: 'test',
             removed: function (row) {
                 var idx = row.children()[0].id;
@@ -174,8 +175,8 @@
         });
 
         $('.injection-formset').formset({
-            deleteText: 'حذف داروی تزریقی',
-            addText: 'اضافه کردن داروی تزریقی جدید',
+            deleteText: "{% trans 'حذف داروی تزریقی'%}",
+            addText: "{% trans 'اضافه کردن داروی تزریقی جدید'%}",
             prefix: 'injection',
 
             removed: function (row) {
@@ -207,5 +208,6 @@
     <script>
 
     </script>
+ {% endlanguage %}
 {% endblock %}
 
