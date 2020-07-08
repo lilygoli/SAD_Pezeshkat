@@ -19,9 +19,10 @@ from doctor_rating.models import Rating
 from django.utils.translation import ugettext_lazy as _
 
 
-
 def index(request):
     user = request.user
+    if 'lang' not in request.session.keys() or not request.session['lang']:
+        request.session['lang'] = 'fa'
     if not user.is_authenticated:
         categories = DoctorProfileInfo.objects.order_by('specialty_bins').values(
             'specialty_bins'

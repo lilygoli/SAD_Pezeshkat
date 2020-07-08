@@ -14,7 +14,9 @@ Inverse = {'ﭼﺸﻢ ﭘﺰﺷﮑﯽ': 'eye', 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ': 'r
                'ﻃﺐ ﻓﯿﺰﯾﮑﯽ': 'fizik', 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ': 'brain', 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ': 'ear', 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ': 'brainsurg',
                'ﭘﺎﺗﻮﻟﻮﮊﯼ': 'path', 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ': 'kidney', 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ': 'rayray',
                'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ': 'general', 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ': 'women', 'ﺭﻭﺍﻧﭙﺰﺷﮑﯽ': 'psych', 'ﺩﺍﺧﻠﯽ': 'in', 'ﻃﺐﮐﺎﺭ': 'work',
-               'ﮐﻮﺩﮐﺎﻥ': 'kids', 'ﺑﯿﻬﻮﺷﯽ': 'faint', 'ﻋﻔﻮﻧﯽ': 'inf', '-': 'other'}
+               'ﮐﻮﺩﮐﺎﻥ': 'kids', 'ﺑﯿﻬﻮﺷﯽ': 'faint', 'ﻋﻔﻮﻧﯽ': 'inf', '-': 'other',
+
+           }
 
 DAY_CHOICES = (
     ("0", _("شنبه")),
@@ -70,6 +72,7 @@ class UserForm(forms.ModelForm):
         except ValidationError as error:
             print(error.error_list)
             errors['password'] += error.error_list
+
         if len(errors['email']) > 0 or len(errors['password']) > 0:
             raise ValidationError(errors)
 

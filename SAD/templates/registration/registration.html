@@ -22,9 +22,8 @@
                             <h1 class="head">{% trans 'صفحه ثبت نام' %} </h1>
                             <p class="text-muted">{% trans 'لطفا فرم زیر را تکمیل کنید.' %}</p>
                             {% csrf_token %}
-
-                                {% trans  user_form.as_p %}
-                                {% trans  profile_form.as_p %}
+                                {{ user_form.as_p}}
+                                {{ profile_form.as_p }}
                             <input type="submit" name="" value={% trans 'ثبت نام'%}>
                         </form>
                     </div>

@@ -58,11 +58,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class DoctorProfileInfo(models.Model):
-    PHD = _('دکتری')
-    BACHELOR = _('کارشناسی')
-    MASTER = _('کارشناسی‌ارشد')
-    SPECIALIST = _('متخصص')
-    SUPER_SPECIALIST = _('فوق تخصص')
+    PHD = 'دکتری'
+    BACHELOR = 'کارشناسی'
+    MASTER = 'کارشناسی‌ارشد'
+    SPECIALIST = 'متخصص'
+    SUPER_SPECIALIST = 'فوق تخصص'
     NORMAL = '-'
     DOCTOR_CHOICES = (
         (PHD, _('دکتری')),
@@ -73,27 +73,27 @@ class DoctorProfileInfo(models.Model):
         (NORMAL, '-')
     )
 
-    EYE = _('ﭼﺸﻢ ﭘﺰﺷﮑﯽ')
-    RADIO = _('ﺭﺍﺩﯾﻮﻟﻮﮊﯼ')
-    SKIN = _('ﭘﻮﺳﺖ ﻭ ﻣﻮ')
-    NUCLEAR = _("ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ")
-    PEDI = _("ﺍﺭﺗﻮﭘﺪﯼ")
-    CARDIO = _('ﻗﻠﺐﻭﻋﺮﻭﻕ')
-    PHYIS = _('ﻃﺐ ﻓﯿﺰﯾﮑﯽ')
-    NEURO = _('ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')
-    EAR = _('ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ')
-    MELENDEZ_HON = _('ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')
-    PATH = _('ﭘﺎﺗﻮﻟﻮﮊﯼ')
-    URO = _('ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ')
-    RAY = _('ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ')
-    BUZARI = _('ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ')
-    WOMEN = _('ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ')
-    PSYCH = _('ﺭﻭﺍﻧﭙﺰﺷﮑﯽ')
-    INTERNAL = _('ﺩﺍﺧﻠﯽ')
-    WORK = _('ﻃﺐﮐﺎﺭ')
-    KIDS = _('ﮐﻮﺩﮐﺎﻥ')
-    ANSTH = _('ﺑﯿﻬﻮﺷﯽ')
-    INFECT = _('ﻋﻔﻮﻧﯽ')
+    EYE = 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
+    RADIO = 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'
+    SKIN = 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'
+    NUCLEAR = "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"
+    PEDI = "ﺍﺭﺗﻮﭘﺪﯼ"
+    CARDIO = 'ﻗﻠﺐﻭﻋﺮﻭﻕ'
+    PHYIS = 'ﻃﺐ ﻓﯿﺰﯾﮑﯽ'
+    NEURO = 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
+    EAR = 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ'
+    MELENDEZ_HON = 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
+    PATH = 'ﭘﺎﺗﻮﻟﻮﮊﯼ'
+    URO = 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'
+    RAY = 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'
+    BUZARI = 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'
+    WOMEN = 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'
+    PSYCH = 'ﺭﻭﺍﻧﭙﺰﺷﮑﯽ'
+    INTERNAL = 'ﺩﺍﺧﻠﯽ'
+    WORK = 'ﻃﺐﮐﺎﺭ'
+    KIDS = 'ﮐﻮﺩﮐﺎﻥ'
+    ANSTH = 'ﺑﯿﻬﻮﺷﯽ'
+    INFECT = 'ﻋﻔﻮﻧﯽ'
     NONE = '-'
     SPCIALTY_CHOICES = (
         (EYE, _('ﭼﺸﻢ ﭘﺰﺷﮑﯽ')),

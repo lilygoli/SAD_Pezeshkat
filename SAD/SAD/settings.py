@@ -145,8 +145,9 @@ AUTH_USER_MODEL = 'accounts.User'
 # LANGUAGE_CODE = 'fa-ir'
 LANGUAGE_CODE = 'fa'
 LANGUAGES = (
-    ('en', 'English'),
-    ('fa', 'Farsi'),)
+
+    ('fa', 'Farsi'),
+('en', 'English'),)
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")

@@ -394,6 +394,7 @@ msgstr "Psychiatry"
 #: .\accounts\models.py:124
 
 
+
 #: .\accounts\models.py:124
 msgid "نیم ساعت"
 msgstr "Half an hour"
@@ -493,7 +494,6 @@ msgid "امتیاز "
 msgstr "Score"
 
 #: .\templates\registration\doctor_mini_profile.html:192
-#, fuzzy
 msgid "یک ساعت"
 msgstr "One hour"
 
