@@ -115,7 +115,6 @@ def disable_self_notif(request, med_id):
 def add_med(request):
     if request.method == 'POST':
         med_form = SelfMedForm(request.POST)
-        print(med_form)
         if med_form.is_valid():
             x = med_form.save(commit=False)
             x.user = request.user
@@ -137,6 +136,8 @@ def add_med(request):
             med_form_list = [StartSelfMedFrom() for i in range(len(all_meds))]
             zipped = zip(all_meds, med_form_list)
             self_zipped = zip(self_meds, self_forms)
+            print(med_form)
+
             return render(request, 'medicine_page/medicine.html',
                           {'meds': zipped, 'self_meds': self_zipped, 'errors': med_form,
                            'empty_self_form': SelfMedForm()})

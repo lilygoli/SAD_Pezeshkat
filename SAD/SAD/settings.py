@@ -145,8 +145,7 @@ AUTH_USER_MODEL = 'accounts.User'
 # LANGUAGE_CODE = 'fa-ir'
 LANGUAGE_CODE = 'fa'
 LANGUAGES = (
-
-    ('fa', 'Farsi'),
+('fa', 'Farsi'),
 ('en', 'English'),)
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 

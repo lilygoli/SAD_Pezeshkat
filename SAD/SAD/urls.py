@@ -31,7 +31,6 @@ urlpatterns = [
     path('', include(u3)),
     path('', include(u4)),
     path('', include(u5)),
-    path('i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:

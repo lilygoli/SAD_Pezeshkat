@@ -3,6 +3,13 @@
 {% load static %}
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
+    {% if request.session.lang == 'en' %}
+    <style>
+        .emp-profile{
+            margin: auto;
+            margin-top: 20%;
+    }</style>
+    {% endif %}
 <div class="container-fluid emp-profile">
 {% language request.session.lang %}
                         {% get_current_language as LANGUAGE_CODE %}

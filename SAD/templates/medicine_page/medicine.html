@@ -3,434 +3,492 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% load static %}
+{% load i18n %}
 {% load widget_tweaks %}
 {{ start_notif_form.media }}
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
-    <link rel="stylesheet" href="{% static "css/medicine_page.css" %}" type="text/css">
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <div class="container" id="med-container">
-        <div class="jumbotron" id="med-header"><h1>داروها</h1></div>
-        <div class="sticky">
-            <h2 id="add-button-header">اضافه کردن دارو</h2>
-            <!-- Trigger the modal with a button -->
-            <button type="button" id="add-button" class="btn btn-info btn-lg" data-toggle="modal"
-                    data-target="#myModal"></button>
-        </div>
-        {% if meds.count == 0 %}
-            <div class="jumbotron border">
-                <p class="text"> دارویی وجود ندارد.</p>
-            </div>
-        {% else %}
-            <div id="self-error">
-                {% for field in errors %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger" id="alert">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-            {% for med, start_notif_form in meds %}
-                <ul>
-                    <li id="med-li">
-                        <div class="jumbotron">
-                            <script>
-                                if ('{{ med.send_notification }}' === 'True') {
-                                    if (Notification.permission !== 'granted')
-                                        Notification.requestPermission();
-                                    else {
-                                        var notification = new Notification('یادآوری !', {
-                                            icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
-                                            bobody: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
-                                        });
-                                    }
-                                }
-                            </script>
-                            <h2>دارو:</h2>
-                            <p>نام دارو: {{ med.name }}</p>
-                            {% if med.description %}
-                                <p>توضیحات پزشک: {{ med.description }}</p>
-                            {% endif %}
-                            <p>بازه زمانی بین دو قرص: {{ med.time_interval }} ساعت </p>
-                            <p>میزان هربار مصرف: {{ med.dosage_every_time }} گرم </p>
-                            {% if med.status %}
-                                <p>وضعیت یادآوری قرص: فعال
-                                    <label for="inactive" style="margin-right: 3vw">غیرفعال کردن یادآوری</label><input
-                                            type="checkbox"
-                                            name="inactive"
-                                            onclick="disable_checkbox('{{ med.id }}')"
-                                            id="inactive-{{ med.id }}"
-                                            value="1"/>
-                                </p>
+    {% language request.session.lang %}
+        {% get_current_language as LANGUAGE_CODE %}
+        <link rel="stylesheet" href="{% static "css/search_result.css" %}" type="text/css">
+        <link rel="stylesheet" href="{% static "css/medicine_page.css" %}" type="text/css">
+        {% if request.session.lang == 'en' %}
+            <style>
+                #add-button-header {
+                    margin-right: -3.5vw;
+                }
 
-                            {% else %}
-                                {% if not med.finished %}
-                                    <div>
-                                        <p>وضعیت یادآوری قرص: غیرفعال
+                div.sticky {
+                    position: -webkit-sticky; /* Safari */
+                    position: sticky;
+                    float: left;
+                    margin-top: 15%;
+                    top: 20%;
+                    margin-left: -4vw;
+                }
+                #add-button-header{
+                    margin-left: -4vw;
+                }
 
-                                            <label for="active" style="margin-right: 3vw">فعال کردن
-                                                یادآوری</label><input
-                                                    type="checkbox"
-                                                    name="active"
-                                                    onclick="checkbox('{{ med.id }}')"
-                                                    id="active-{{ med.id }}"
-                                                    value="1"/>
-                                        </p>
-                                    </div>
+                body {
+                    background-image: url({% static 'images/drugs10.jpg' %}), url({% static 'images/pattern2.jpg' %});
+                    background-repeat: no-repeat, repeat;
 
-                                {% else %}
-                                    <p>دارو تمام شده است.</p>
-                                {% endif %}
-                            {% endif %}
-                            {% if med.status or med.finished %}
-                                <p>تاریخ شروع دارو:<span
-                                        style="float: left; padding-left: 40vw">{{ med.starting_time }}</span></p>
-                            {% else %}
+                    background-position: top;
+                    background-size: 100%, 100%;
 
-                                <div id="q-{{ med.id }}" style="display: none">
-                                    <div class="jumbotron" id="question">
+                }
 
-                                        {% for field in start_notif_form %}
-                                            {% for error in field.errors %}
-                                                <script>
-                                                    if ({{ med.id }}=={{ error_id }}) {
-                                                        var el = document.getElementById('q-{{ med.id }}');
-                                                        el.style.display = 'block';
-
-                                                    }
-                                                </script>
-                                                <div class="alert alert-danger" id="alert-{{ med.id }}">
-                                                    <strong>{{ error|escape }}</strong>
-                                                </div>
-                                            {% endfor %}
-                                        {% endfor %}
-                                        <p style="color: #089b7b">اگر مایلید پزشکات زمان خوردن این دارو را به شما
-                                            یادآوری
-                                            کند، زمان شروع را وارد
-                                            کنید.</p><br>
-                                        <form method="post" action={% url "medicine_page:start_notif" med.id 0 %}>
-                                            {% csrf_token %}
-                                            <label class="required" for="starting_time">تاریخ شروع:</label>
-
-                                            {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
-                                            <br><br>
-                                            <label class="required" for="starting_hour">زمان شروع:</label>
-                                            {% render_field start_notif_form.starting_hour %} <br><br>
-                                            <p style="color: #089b7b; font-size: medium; margin: unset"> **مقادیر زیر بر
-                                                اساس
-                                                نسخه شما , دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن این
-                                                دارو
-                                                در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییر
-                                                دهید.**</p>
-                                            <br><br>
-                                            <label for="total_dosage">مقدار کل باقی مانده (گرم):</label>
-
-                                            {% render_field start_notif_form.dosage_remaining class="form-control form-control-sm" value=med.dosage_remaining id=med.id %}
-
-                                            <button onclick="disablingFunction('{{ med.id }}')">تغییر مقدار</button>
-                                            <br><br>
-                                            <label for="total_dosage">مقدار هربار مصرف (گرم):</label>
-                                            {% render_field start_notif_form.dosage_every_time class="form-control form-control-sm" value=med.dosage_every_time id=med.id %}
-                                            <button onclick="disablingFunction2('{{ med.id }}')">تغییر مقدار</button>
-                                            <br><br>
-
-                                            {{ start_notif_form.media }}
-                                            <div id="submit-button">
-                                                <input type="submit" value="ذخیره" class="button"/>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </li>
-                </ul>
-
-            {% endfor %}
-            {% for med, start_notif_form in self_meds %}
-                <ul>
-                    <li>
-                        <div class="jumbotron">
-                            <script>
-                                if ('{{ med.send_notification }}' === 'True') {
-                                    if (Notification.permission !== 'granted')
-                                        Notification.requestPermission();
-                                    else {
-                                        var notification = new Notification('یادآوری !', {
-                                            icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
-                                            body: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
-                                        });
-                                    }
-                                }
-                            </script>
-                            <h2>دارو: <p>(اضافه شده توسط شما)</p></h2>
-                            <p>نام دارو: {{ med.name }}</p>
-                            {% if med.description %}
-                                <p>توضیحات پزشک: {{ med.description }}</p>
-                            {% endif %}
-                            <p>بازه زمانی بین دو قرص: {{ med.time_interval }} ساعت </p>
-                            <p>میزان هربار مصرف: {{ med.dosage_every_time }} گرم </p>
-                            {% if med.status %}
-                                <p>وضعیت یادآوری قرص: فعال
-                                    <label for="inactive" style="margin-right: 3vw">غیرفعال کردن یادآوری</label><input
-                                            type="checkbox"
-                                            name="inactive"
-                                            onclick="disable_checkbox2('{{ med.id }}')"
-                                            id="inactive-{{ med.id }}"
-                                            value="1"/>
-                                </p>
-
-                            {% else %}
-                                {% if not med.finished %}
-                                    <div>
-                                        <p>وضعیت یادآوری قرص: غیرفعال
-
-                                            <label for="active" style="margin-right: 3vw">فعال کردن
-                                                یادآوری</label><input
-                                                    type="checkbox"
-                                                    name="active"
-                                                    onclick="checkbox('{{ med.id }}')"
-                                                    id="active-{{ med.id }}"
-                                                    value="1"/>
-                                        </p>
-                                    </div>
-                                {% else %}
-                                    <p>دارو تمام شده است.</p>
-                                {% endif %}
-                            {% endif %}
-                            {% if med.status or med.finished %}
-                                <p>تاریخ شروع دارو:<span
-                                        style="float: left; padding-left: 40vw">{{ med.starting_time }}</span></p>
-                            {% else %}
-
-                                <div id="q-{{ med.id }}" style="display: none">
-                                    <div class="jumbotron" id="question">
-
-                                        {% for field in start_notif_form %}
-                                            {% for error in field.errors %}
-                                                <script>
-                                                    if ({{ med.id }}=={{ error_id }}) {
-                                                        var el = document.getElementById('q-{{ med.id }}');
-                                                        el.style.display = 'block';
-
-                                                    }
-
-                                                </script>
-                                                <div class="alert alert-danger" id="alert-{{ med.id }}">
-                                                    <strong>{{ error|escape }}</strong>
-                                                </div>
-                                            {% endfor %}
-                                        {% endfor %}
-                                        <p style="color: #089b7b">اگر مایلید پزشکات زمان خوردن این دارو را به شما
-                                            یادآوری
-                                            کند، زمان شروع را وارد
-                                            کنید.</p><br>
-                                        <form method="post" action={% url "medicine_page:start_notif" med.id 1 %}>
-                                            {% csrf_token %}
-                                            <label class="required" for="starting_time">تاریخ شروع دارو:</label>
-
-                                            {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
-
-                                            <br><br>
-                                            <label class="required" for="starting_hour">زمان شروع:</label>
-                                            {% render_field start_notif_form.starting_hour %} <br><br>
-                                            <p style="color: #089b7b; font-size: medium; margin: unset"> **مقادیر زیر بر
-                                                اساس
-                                                دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن این
-                                                دارو
-                                                در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییر
-                                                دهید.**</p>
-                                            <br><br>
-                                            <label for="total_dosage">مقدار کل باقی مانده (گرم):</label>
-
-                                            {% render_field start_notif_form.dosage_remaining class="form-control form-control-sm" value=med.dosage_remaining id=med.id %}
-
-                                            <button onclick="disablingFunction('{{ med.id }}')">تغییر مقدار</button>
-                                            <br><br>
-                                            <label for="total_dosage">مقدار هربار مصرف (گرم):</label>
-                                            {% render_field start_notif_form.dosage_every_time class="form-control form-control-sm" value=med.dosage_every_time id=med.id %}
-                                            <button onclick="disablingFunction2('{{ med.id }}')">تغییر مقدار</button>
-                                            <br><br>
-
-                                            {{ start_notif_form.media }}
-                                            <div id="submit-button">
-                                                <input type="submit" value="ذخیره" class="button"/>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            <a href="{% url 'medicine_page:delete_med' med.id %}" style="color:red;">حذف</a>
-                        </div>
-                    </li>
-                </ul>
-            {% endfor %}
+            </style>
+            {% else %}
+            <style>
+            #start-date{
+                float: left;
+                padding-left: 40vw
+            }
+            </style>
         {% endif %}
 
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <div class="container" id="med-container">
+            <div class="jumbotron" id="med-header"><h1>{% trans 'داروها' %}</h1></div>
+            <div class="sticky">
+                <h2 id="add-button-header">{% trans 'اضافه کردن دارو' %}</h2>
+                <!-- Trigger the modal with a button -->
+                <button type="button" id="add-button" class="btn btn-info btn-lg" data-toggle="modal"
+                        data-target="#myModal"></button>
+            </div>
+            {% if meds.count == 0 %}
+                <div class="jumbotron border">
+                    <p class="text"> {% trans 'دارویی وجود ندارد.' %}</p>
+                </div>
+            {% else %}
+                <div id="self-error">
+                    {% for field in errors %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger" id="alert">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                {% for med, start_notif_form in meds %}
+                    <ul>
+                        <li id="med-li">
+                            <div class="jumbotron">
+                                <script>
+                                    if ('{{ med.send_notification }}' === 'True') {
+                                        if (Notification.permission !== 'granted')
+                                            Notification.requestPermission();
+                                        else {
+                                            var notification = new Notification('یادآوری !', {
+                                                icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
+                                                bobody: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
+                                            });
+                                        }
+                                    }
+                                </script>
+                                <h2>{% trans 'دارو:' %}</h2>
+                                <p>{% trans 'نام دارو:' %} {{ med.name }}</p>
+                                {% if med.description %}
+                                    <p>{% trans 'توضیحات پزشک:' %} {{ med.description }}</p>
+                                {% endif %}
+                                <p>{% trans 'بازه زمانی بین دو قرص:' %} {{ med.time_interval }} {% trans 'ساعت' %} </p>
+                                <p>{% trans 'میزان هربار مصرف: ' %}{{ med.dosage_every_time }} {% trans 'گرم' %} </p>
+                                {% if med.status %}
+                                    {% if request.session.lang == 'fa' %}
+                                    <p>{% trans 'وضعیت یادآوری قرص: فعال' %}
+                                        <label for="inactive"
+                                               style="margin-right: 3vw">{% trans 'غیرفعال کردن یادآوری' %}</label><input
+                                                type="checkbox"
+                                                name="inactive"
+                                                onclick="disable_checkbox('{{ med.id }}', 'آیا از غیرفعال کردن یادآوری اطمینان دارید؟')"
+                                                id="inactive-{{ med.id }}"
+                                                value="1"/>
+                                    </p>
+                                        {% else %}
+                                        <p>{% trans 'وضعیت یادآوری قرص: فعال' %}
+                                        <label for="inactive"
+                                               style="margin-right: 3vw">{% trans 'غیرفعال کردن یادآوری' %}</label><input
+                                                type="checkbox"
+                                                name="inactive"
+                                                onclick="disable_checkbox('{{ med.id }}', 'Are you sure you want to disable this notification?')"
+                                                id="inactive-{{ med.id }}"
+                                                value="1"/>
+                                    </p>
+                                        {% endif %}
+
+                                {% else %}
+                                    {% if not med.finished %}
+                                        <div>
+                                            <p>{% trans 'وضعیت یادآوری قرص: غیرفعال' %}
+
+                                                <label for="active"
+                                                       style="margin-right: 3vw">{% trans 'فعال کردن یادآوری' %}</label><input
+                                                        type="checkbox"
+                                                        name="active"
+                                                        onclick="checkbox('{{ med.id }}')"
+                                                        id="active-{{ med.id }}"
+                                                        value="1"/>
+                                            </p>
+                                        </div>
+
+                                    {% else %}
+                                        <p>{% trans 'دارو تمام شده است.' %}</p>
+                                    {% endif %}
+                                {% endif %}
+                                {% if med.status or med.finished %}
+                                    <p>{% trans 'تاریخ شروع دارو:' %}<span id="start-date">{{ med.starting_time }}</span></p>
+                                {% else %}
+
+                                    <div id="q-{{ med.id }}" style="display: none">
+                                        <div class="jumbotron" id="question">
+
+                                            {% for field in start_notif_form %}
+                                                {% for error in field.errors %}
+                                                    <script>
+                                                        if ({{ med.id }}=={{ error_id }}) {
+                                                            var el = document.getElementById('q-{{ med.id }}');
+                                                            el.style.display = 'block';
+
+                                                        }
+                                                    </script>
+                                                    <div class="alert alert-danger" id="alert-{{ med.id }}">
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                            <p style="color: #089b7b">{% trans 'اگر مایلید پزشکات زمان خوردن این دارو را به شما یادآوری کند، زمان شروع را وارد کنید.' %}</p>
+                                            <br>
+                                            <form method="post" action={% url "medicine_page:start_notif" med.id 0 %}>
+                                                {% csrf_token %}
+                                                <label class="required"
+                                                       for="starting_time">{% trans 'تاریخ شروع:' %}</label>
+
+                                                {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
+                                                <br><br>
+                                                <label class="required"
+                                                       for="starting_hour">{% trans 'زمان شروع:' %}</label>
+                                                {% render_field start_notif_form.starting_hour %} <br><br>
+                                                <p style="color: #089b7b; font-size: medium; margin: unset">{% trans ' **مقادیر زیر بر اساس نسخه شما , دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییردهید.**' %}</p>
+                                                <br><br>
+                                                <label for="total_dosage">{% trans 'مقدار کل باقی مانده (گرم):' %}</label>
+
+                                                {% render_field start_notif_form.dosage_remaining class="form-control form-control-sm" value=med.dosage_remaining id=med.id %}
+
+                                                <button onclick="disablingFunction('{{ med.id }}')">{% trans 'تغییر مقدار' %}</button>
+                                                <br><br>
+                                                <label for="total_dosage">{% trans 'مقدار هربار مصرف (گرم):' %}</label>
+                                                {% render_field start_notif_form.dosage_every_time class="form-control form-control-sm" value=med.dosage_every_time id=med.id %}
+                                                <button onclick="disablingFunction2('{{ med.id }}')">{% trans 'تغییر مقدار' %}</button>
+                                                <br><br>
+
+                                                {{ start_notif_form.media }}
+                                                <div id="submit-button">
+                                                    <input type="submit" value={% trans 'ذخیره' %} class="button"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+
+                {% endfor %}
+                {% for med, start_notif_form in self_meds %}
+                    <ul>
+                        <li>
+                            <div class="jumbotron">
+                                <script>
+                                    if ('{{ med.send_notification }}' === 'True') {
+                                        if (Notification.permission !== 'granted')
+                                            Notification.requestPermission();
+                                        else {
+                                            var notification = new Notification('یادآوری !', {
+                                                icon: 'https://cdn.iconscout.com/icon/free/png-256/capsule-1502565-1272776.png',
+                                                body: 'داروی ' + '{{ med.name }}' + ' فراموش نشه ! \n',
+                                            });
+                                        }
+                                    }
+                                </script>
+                                <h2>{% trans 'دارو:' %} <p>{% trans '(اضافه شده توسط شما)' %}</p></h2>
+                                <p>{% trans 'نام دارو: ' %}{{ med.name }}</p>
+                                {% if med.description %}
+                                    <p>{% trans 'توضیحات پزشک:' %} {{ med.description }}</p>
+                                {% endif %}
+                                <p>{% trans 'بازه زمانی بین دو قرص:' %} {{ med.time_interval }} {% trans 'ساعت' %} </p>
+                                <p>{% trans 'میزان هربار مصرف: ' %} {{ med.dosage_every_time }} {% trans 'گرم' %} </p>
+                                {% if med.status %}
+                                    {% if request.session.lang == 'fa' %}
+                                    <p>{% trans 'وضعیت یادآوری قرص: فعال' %}
+                                        <label for="inactive"
+                                               style="margin-right: 3vw">{% trans 'غیرفعال کردن یادآوری' %}</label><input
+                                                type="checkbox"
+                                                name="inactive"
+                                                onclick="disable_checkbox2('{{ med.id }}', 'آیا از غیرفعال کردن یادآوری اطمینان دارید؟')"
+                                                id="inactive-{{ med.id }}"
+                                                value="1"/>
+                                    </p>
+                                        {% else %}
+                                        <p>{% trans 'وضعیت یادآوری قرص: فعال' %}
+                                        <label for="inactive"
+                                               style="margin-right: 3vw">{% trans 'غیرفعال کردن یادآوری' %}</label><input
+                                                type="checkbox"
+                                                name="inactive"
+                                                onclick="disable_checkbox2('{{ med.id }}', 'Are you sure you want to disable this notification?')"
+                                                id="inactive-{{ med.id }}"
+                                                value="1"/>
+                                    </p>
+                                        {% endif %}
+
+                                {% else %}
+                                    {% if not med.finished %}
+                                        <div>
+                                            <p>{% trans 'وضعیت یادآوری قرص: غیرفعال' %}
+
+                                                <label for="active"
+                                                       style="margin-right: 3vw">{% trans 'فعال کردن یادآوری' %}</label><input
+                                                        type="checkbox"
+                                                        name="active"
+                                                        onclick="checkbox('{{ med.id }}')"
+                                                        id="active-{{ med.id }}"
+                                                        value="1"/>
+                                            </p>
+                                        </div>
+                                    {% else %}
+                                        <p>{% trans 'دارو تمام شده است.' %}</p>
+                                    {% endif %}
+                                {% endif %}
+                                {% if med.status or med.finished %}
+                                    <p>{% trans 'تاریخ شروع دارو:' %}<span
+                                            style="float: left; padding-left: 40vw">{{ med.starting_time }}</span></p>
+                                {% else %}
+
+                                    <div id="q-{{ med.id }}" style="display: none">
+                                        <div class="jumbotron" id="question">
+
+                                            {% for field in start_notif_form %}
+                                                {% for error in field.errors %}
+                                                    <script>
+                                                        if ({{ med.id }}=={{ error_id }}) {
+                                                            var el = document.getElementById('q-{{ med.id }}');
+                                                            el.style.display = 'block';
+
+                                                        }
+
+                                                    </script>
+                                                    <div class="alert alert-danger" id="alert-{{ med.id }}">
+                                                        <strong>{{ error|escape }}</strong>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                            <p style="color: #089b7b">{% trans 'اگر مایلید پزشکات زمان خوردن این دارو را به شما یادآوری کند، زمان شروع را وارد کنید.' %}</p>
+                                            <br>
+                                            <form method="post" action={% url "medicine_page:start_notif" med.id 1 %}>
+                                                {% csrf_token %}
+                                                <label class="required"
+                                                       for="starting_time">{% trans 'تاریخ شروع دارو:' %}</label>
+
+                                                {% render_field start_notif_form.starting_time class+="form-control form-control-sm" id="" %}
+
+                                                <br><br>
+                                                <label class="required"
+                                                       for="starting_hour">{% trans 'زمان شروع:' %}</label>
+                                                {% render_field start_notif_form.starting_hour %} <br><br>
+                                                <p style="color: #089b7b; font-size: medium; margin: unset">{% trans ' **مقادیر زیر بر اساس دفعات قبلی استفاده ی شما از این دارو (درصورت فعال بودن این دارو در گذشته) نوشته شده است. در صورت تمایل میتوانید هر یک را تغییر دهید.**' %}</p>
+                                                <br><br>
+                                                <label for="total_dosage">{% trans 'مقدار کل باقی مانده (گرم):' %}</label>
+
+                                                {% render_field start_notif_form.dosage_remaining class="form-control form-control-sm" value=med.dosage_remaining id=med.id %}
+
+                                                <button onclick="disablingFunction('{{ med.id }}')">{% trans 'تغییر مقدار' %}</button>
+                                                <br><br>
+                                                <label for="total_dosage">{% trans 'مقدار هربار مصرف (گرم):' %}</label>
+                                                {% render_field start_notif_form.dosage_every_time class="form-control form-control-sm" value=med.dosage_every_time id=med.id %}
+                                                <button onclick="disablingFunction2('{{ med.id }}')">{% trans 'تغییر مقدار' %}</button>
+                                                <br><br>
+
+                                                {{ start_notif_form.media }}
+                                                <div id="submit-button">
+                                                    <input type="submit" value="ذخیره" class="button"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <a href="{% url 'medicine_page:delete_med' med.id %}"
+                                   style="color:red;">{% trans 'حذف' %}</a>
+                            </div>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% endif %}
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" style="color: red"> &times;</button>
-                        <h4 class="modal-title">داروی جدید</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action={% url "medicine_page:add_med" %}>
-                            {% csrf_token %}
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
 
-                            <div id="form_set">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" style="color: red"> &times;
+                            </button>
+                            <h4 class="modal-title">{% trans 'داروی جدید' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action={% url "medicine_page:add_med" %}>
+                                {% csrf_token %}
 
-                                <div style="background-color: rgba(255,255,255,0.55); padding: 2vh">
-                                    {{ empty_self_form.as_p }}
+                                <div id="form_set">
+
+                                    <div style="background-color: rgba(255,255,255,0.55); padding: 2vh">
+                                        {% trans empty_self_form.as_p %}
+                                    </div>
+
+
                                 </div>
+                                <div id="submit-button">
+                                    <input type="submit" value="{% trans 'ذخیره' %}" class="button"/>
 
+                                    <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">{% trans 'بستن' %}</button>
 
-                            </div>
-                            <div id="submit-button">
-                                <input type="submit" value="ذخیره" class="button"/>
+                                </div>
+                            </form>
+                        </div>
 
-                                <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
-
-                            </div>
-                        </form>
                     </div>
 
                 </div>
-
             </div>
+
         </div>
+        <script>
+            window.setInterval('refresh()', 13000 * 60);
 
-    </div>
-    <script>
-        window.setInterval('refresh()', 13000 * 60);
-
-        function refresh() {
-            window.location.reload();
-        }
-
-
-        window.onload = function () {
-            var arrayLength = document.getElementsByName("med-dosage_remaining").length;
-            for (var i = 0; i < arrayLength; i++) {
-                document.getElementsByName("med-dosage_remaining")[i].disabled = true;
-                document.getElementsByName("med-dosage_every_time")[i].disabled = true;
+            function refresh() {
+                window.location.reload();
             }
-            event.preventDefault()
-        };
 
-        function disablingFunction(x) {
-            x = x.toString();
-            var y = document.getElementById(x);
-            if (y.getAttribute("name") == "med-dosage_remaining") {
-                y.disabled = false
+
+            window.onload = function () {
+                var arrayLength = document.getElementsByName("med-dosage_remaining").length;
+                for (var i = 0; i < arrayLength; i++) {
+                    document.getElementsByName("med-dosage_remaining")[i].disabled = true;
+                    document.getElementsByName("med-dosage_every_time")[i].disabled = true;
+                }
+                event.preventDefault()
+            };
+
+            function disablingFunction(x) {
+                x = x.toString();
+                var y = document.getElementById(x);
+                if (y.getAttribute("name") == "med-dosage_remaining") {
+                    y.disabled = false
+                }
+                {#document.getElementById(x).disabled = false;#}
+                event.preventDefault()
             }
-            {#document.getElementById(x).disabled = false;#}
-            event.preventDefault()
-        }
 
-        function disablingFunction2(x) {
-            x = x.toString();
-            var arrayLength = document.getElementsByName("med-dosage_every_time").length;
-            for (var i = 0; i < arrayLength; i++) {
-                y = document.getElementsByName("med-dosage_every_time")[i];
+            function disablingFunction2(x) {
+                x = x.toString();
+                var arrayLength = document.getElementsByName("med-dosage_every_time").length;
+                for (var i = 0; i < arrayLength; i++) {
+                    y = document.getElementsByName("med-dosage_every_time")[i];
 
-                if (y.getAttribute("id") == x) {
-                    y.disabled = false;
+                    if (y.getAttribute("id") == x) {
+                        y.disabled = false;
+                    }
+                }
+
+                event.preventDefault()
+            }
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
+        <script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
+        <link rel="stylesheet" href={% static "css/bootstrap-datepicker.min.css" %}/>
+        <script>
+
+            $(document).ready(function () {
+                $('.datepicker').datepicker(
+                    {
+                        dateFormat: 'yy-mm-dd',
+                        changeMonth: true,
+                        showButtonPanel: true,
+                        minDate: 0
+                    }
+                );
+
+            });
+
+            function checkbox(x) {
+                x = x.toString();
+
+                // call toggleSub when checkbox clicked
+                // toggleSub args: checkbox clicked on (this), id of element to show/hide
+                var el = document.getElementById("active-".concat(x));
+
+                toggleSub(el, 'q-'.concat(x));
+            }
+
+            // called onclick of checkbox
+            function toggleSub(box, id) {
+
+                // get reference to related content to display/hide
+                var el = document.getElementById(id);
+                console.log(box.checked);
+                if (box.checked) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
                 }
             }
 
-            event.preventDefault()
-        }
-    </script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
-    <script src="{% static 'scripts/bootstrap-datepicker.fa.min.js' %}"></script>
-    <link rel="stylesheet" href={% static "css/bootstrap-datepicker.min.css" %}/>
-    <script>
+            function disable_checkbox(med, message) {
+                var r = confirm(message);
+                if (r === true) {
 
-        $(document).ready(function () {
-            $('.datepicker').datepicker(
-                {
-                    dateFormat: 'yy-mm-dd',
-                    changeMonth: true,
-                    showButtonPanel: true,
-                    minDate: 0
+                    $.ajax({
+                        url: "disable-notif/" + med.toString() + "/",
+                        async: false,
+
+                    });
+                    window.location.reload();
+
+
+                } else {
+                    event.preventDefault();
+
                 }
-            );
-
-        });
-
-        function checkbox(x) {
-            x = x.toString();
-
-            // call toggleSub when checkbox clicked
-            // toggleSub args: checkbox clicked on (this), id of element to show/hide
-            var el = document.getElementById("active-".concat(x));
-
-            toggleSub(el, 'q-'.concat(x));
-        }
-
-        // called onclick of checkbox
-        function toggleSub(box, id) {
-
-            // get reference to related content to display/hide
-            var el = document.getElementById(id);
-            console.log(box.checked);
-            if (box.checked) {
-                el.style.display = 'block';
-            } else {
-                el.style.display = 'none';
-            }
-        }
-
-        function disable_checkbox(med) {
-            var r = confirm('آیا از غیرفعال کردن یادآوری اطمینان دارید؟');
-            if (r === true) {
-
-                $.ajax({
-                    url: "disable-notif/" + med.toString() + "/",
-                    async: false,
-
-                });
-                window.location.reload();
-
-
-            } else {
-                event.preventDefault();
 
             }
 
-        }
+            function disable_checkbox2(med, message) {
+                var r = confirm(message);
+                if (r === true) {
 
-        function disable_checkbox2(med) {
-            var r = confirm('آیا از غیرفعال کردن یادآوری اطمینان دارید؟');
-            if (r === true) {
+                    $.ajax({
+                        url: "disable-self-notif/" + med.toString() + "/",
+                        async: false,
 
-                $.ajax({
-                    url: "disable-self-notif/" + med.toString() + "/",
-                    async: false,
-
-                });
-                window.location.reload();
+                    });
+                    window.location.reload();
 
 
-            } else {
-                event.preventDefault();
+                } else {
+                    event.preventDefault();
+
+                }
 
             }
 
-        }
 
+        </script>
 
-    </script>
-
-
+    {% endlanguage %}
 
 {% endblock %}
