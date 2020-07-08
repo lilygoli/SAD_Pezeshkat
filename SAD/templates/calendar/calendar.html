@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+{% language request.session.lang %}
+    {% get_current_language as LANGUAGE_CODE %}
     <script type="text/javascript" src="{% static 'scripts/cancel_appointment.js' %}"></script>
     <script type="text/javascript">
         function tdclick(dateAndTime) {
-            if (confirm("آیا مطمئن هستید که میخواهید این زمان را رزرو کنید؟")) {
+            if (confirm("{% trans 'آیا مطمئن هستید که میخواهید این زمان را رزرو کنید؟' %}")) {
                 var form = $('<form></form>');
                 form.attr("method", "GET");
                 form.attr("action", "{% url 'doctor_calendar:verify' doctor 0%}");
@@ -25,18 +28,18 @@
         }
 
         function myAlert() {
-            alert("از زمان رزرو این ساعت گذشته است!");
+            alert("{% trans 'از زمان رزرو این ساعت گذشته است!' %}");
         }
     </script>
     <div class="jumbotron" id="search-jumbotron">
 
         <div class="clearfix">
-            <a class="btn btn-info left" href="{% url 'doctor_calendar:calendar-next' doctor 2 %} "> هفته قبل </a>
-            <a class="btn btn-info right" href="{% url 'doctor_calendar:calendar-next' doctor 1 %}"> هفته بعد </a>
+            <a class="btn btn-info left" href="{% url 'doctor_calendar:calendar-next' doctor 2 %} "> {% trans 'هفته قبل'%} </a>
+            <a class="btn btn-info right" href="{% url 'doctor_calendar:calendar-next' doctor 1 %}"> {% trans 'هفته بعد' %} </a>
         </div>
         <div id="calendar-div">
         {{ calendar }}
         </div>
     </div>
-
+{% endlanguage %}
 {% endblock %}

@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'css/search_result.css' %}" type="text/css">
+
+{% language request.session.lang %}
+    {% get_current_language as LANGUAGE_CODE %}
     <div class="container" id="search-container">
         <div class="jumbotron" id="search-jumbotron-all">
-    <h1> جستوجوی پزشک </h1>
+            {% if request.session.lang == "fa" %}
+            <h1> جستجوی پزشک </h1>
+            {% else %}
+            <h1> Doctor Search</h1>
+            {% endif %}
             <br>
             <br>
 
-            <label>نام پزشک :</label>
-        <input type="text" name="q1" placeholder="نام" id="nameInput">
-            <label>نام خانوادگی پزشک :</label>
-        <input type="text" name="q2" placeholder="نام خانوادگی" id="familyNameInput">
-            <label>تخصص پزشک :</label>
-        <input type="text" name="q3" placeholder="تخصص مورد نظر" id="specialityInput">
+            <label>{% trans 'نام' %} :</label>
+        <input type="text" name="q1" placeholder="{% trans 'نام' %}" id="nameInput">
+            <label>{% trans 'نام خانوادگی' %} :</label>
+        <input type="text" name="q2" placeholder="{% trans 'نام خانوادگی' %}" id="familyNameInput">
+            <label>{% trans 'تخصص' %} :</label>
+        <input type="text" name="q3" placeholder="{% trans 'تخصص' %}" id="specialityInput">
             <br>
             <br>
             <ul id="myUL">
@@ -42,8 +50,8 @@
                                     {% endif %}
                                     <a href="{% url 'accounts:mini_profile' doctor.user.pk %}"> {{ doctor.user.name }} {{ doctor.user.family_name }}</a>
 
-                                    <p>هزینه ویزیت:{{ doctor.fee }}</p>
-                                    <p>آدرس:{{ doctor.address }}</p>
+                                    <p>{% trans 'حق ویزیت'%}:{{ doctor.fee }}</p>
+                                    <p>{% trans 'آدرس'%}:{{ doctor.address }}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +83,7 @@
         });
     });
 </script>
-
+ {% endlanguage %}
 {% endblock %}
 
 

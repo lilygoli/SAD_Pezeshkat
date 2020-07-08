@@ -1,30 +1,33 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/pre_list.css" %}" type="text/css">
     <link rel="stylesheet" href="{% static "css/popup.css" %}" type="text/css">
+{% language request.session.lang %}
+    {% get_current_language as LANGUAGE_CODE %}
     <div class="container" id="search-container">
         {% if pre.count == 0 %}
             <div class="jumbotron border">
-                <p class="text"> نسخه‌ای وجود ندارد.</p>
+                <p class="text"> {% trans ' نسخه‌ای وجود ندارد.' %}</p>
             </div>
         {% else %}
 
             {% for pr in pre %}
                 <div class="jumbotron" id="search-jumbotron">
-                    <h2> نسخه‌ی ویزیت در
-                        تاریخ {{ pr.appointment.start_time.year }}/{{ pr.appointment.start_time.month }}/{{ pr.appointment.start_time.day }} </h2>
+                    <h2> {% trans 'نسخه‌ی ویزیت در تاریخ' %}
+                         {{ pr.appointment.start_time.year }}/{{ pr.appointment.start_time.month }}/{{ pr.appointment.start_time.day }} </h2>
 
                     {% if pr.comment == "" %}
-                        <a class="button" href="#{{ pr.id }}"> افزودن نظر </a>
+                        <a class="button" href="#{{ pr.id }}"> {% trans 'افزودن نظر' %} </a>
                     {% else %}
-                        <a class="button" href="#{{ pr.id }}"> ویرایش نظر </a>
+                        <a class="button" href="#{{ pr.id }}"> {% trans 'ویرایش نظر' %} </a>
 
                     {% endif %}
                     <br>
                     <div id={{ pr.id }} class="overlay">
                         <div class="popup">
-                            <h2>یادداشت خود را دررابطه با این نسخه بنویسید و یا ویرایش کنید</h2>
+                            <h2>{% trans 'یادداشت خود را دررابطه با این نسخه بنویسید و یا ویرایش کنید' %}</h2>
                             <a class="close" href="#">&times;</a>
                             <div class="content">
                                 <form method="get">
@@ -32,7 +35,7 @@
                                 </textarea>
                                     <br>
                                     <input type="hidden" name="tmp" value="{{ pr.comment }}"/>
-                                    <input type="submit" name="mySubmit" value="افزودن"/>
+                                    <input type="submit" name="mySubmit" value="{% trans 'افزودن'%}"/>
                                 </form>
                             </div>
                         </div>
@@ -42,17 +45,20 @@
                     {% for key, value in medicine.items %}
                         {% if key == pr and value.count != 0 %}
                             <br>
-                            <h4 style="font-size: 1.2vw"> نظرات قبلی : {{ pr.comment }}</h4>
+                            <h4 style="font-size: 1.2vw"> {% trans 'نظرات قبلی' %} : {{ pr.comment }}</h4>
                             <div class="jumbotron border">
 
-                                <h3> داروها :</h3>
+                                <h3>{% trans 'داروها' %} :</h3>
                                 {% for meds in value %}
                                     <li class="list-group-item">
-                                        <p>نام دارو: {{ meds.name }}</p>
-                                        <p> شرح: {{ meds.description }}</p>
-
-                                        <p> هر {{ meds.time_interval }} ساعت یکبار مصرف شود. </p>
-                                        <p> هر بار {{ meds.dosage_every_time }}    گرم مصرف شود </p>
+                                        <p>{% trans 'نام دارو' %}: {{ meds.name }}</p>
+                                        {% if meds.description is None%}
+                                            <p> {% trans 'شرح : وارد نشده است.' %}</p>
+                                        {% else%}
+                                        <p> {% trans 'شرح' %}: {{ meds.description }}</p>
+                                        {% endif %}
+                                        <p> {% trans 'هر' %} {{ meds.time_interval }} {% trans 'ساعت یکبار مصرف شود.' %} </p>
+                                        <p> {% trans 'هر بار'%} {{ meds.dosage_every_time }} {% trans 'گرم مصرف شود' %} </p>
 
                                     </li>
                                 {% endfor %}
@@ -65,14 +71,12 @@
                     {% for key, value in tests.items %}
                         {% if key == pr and value.count != 0 %}
                             <div class="jumbotron border">
-                                <h3> آزمایش‌ها :</h3>
+                                <h3>{% trans 'آزمایش ها'%} :</h3>
                                 {% for tests in value %}
                                     <li class="list-group-item">
-                                        <p>نوع تست: {{ tests.name }}</p>
-                                        <p> شرح: {{ tests.description }}</p>
-                                        <p> حداکثر تا
-                                            تاریخ {{ tests.deadline.year }}/{{ tests.deadline.month }}/{{ tests.deadline.day }}انجام
-                                            شود.</p>
+                                        <p>{% trans 'نوع تست'%}: {{ tests.name }}</p>
+                                        <p> {% trans 'شرح'%}: {{ tests.description }}</p>
+                                        <p>{% trans 'حداکثر تا تاریخ'%} {{ tests.deadline.year }}/{{ tests.deadline.month }}/{{ tests.deadline.day }}{% trans 'انجام شود.'%}
                                     </li>
 
                                 {% endfor %}
@@ -85,14 +89,13 @@
                     {% for key, value in injections.items %}
                         {% if key == pr and value.count != 0 %}
                             <div class="jumbotron border">
-                                <h3> تزریقات :</h3>
+                                <h3>{% trans 'تزریقات'%} :</h3>
                                 {% for inj in value %}
                                     <li class="list-group-item">
-                                        <p>نام آمپول: {{ inj.name }}</p>
-                                        <p> شرح: {{ inj.description }}</p>
-                                        <p>حداکثر تا
-                                            تاریخ {{ inj.deadline.year }}/{{ inj.deadline.month }}/{{ inj.deadline.day }}
-                                            مصرف شود.</p>
+                                        <p>{% trans 'نام آمپول'%}: {{ inj.name }}</p>
+                                        <p> {% trans 'شرح'%}: {{ inj.description }}</p>
+                                        <p>{% trans 'حداکثر تا تاریخ'%} {{ inj.deadline.year }}/{{ inj.deadline.month }}/{{ inj.deadline.day }}
+                                            {% trans 'مصرف شود.'%}</p>
                                     </li>
                                 {% endfor %}
                             </div>
@@ -104,4 +107,5 @@
             {% endfor %}
         {% endif %}
     </div>
+     {% endlanguage %}
 {% endblock %}

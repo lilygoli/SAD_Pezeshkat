@@ -1,30 +1,33 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block body_block %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+{% language request.session.lang %}
+    {% get_current_language as LANGUAGE_CODE %}
     <div class="jumbotron" id="search-jumbotron">
 {#        <div class="clearfix">#}
 {#            {{ calendar }}#}
 {#        </div>#}
         <div class="clearfix">
                 {% if success is True %}
-                    <p> رزرو و پرداخت موفقیت آمیز بود</p>
+                    <p> {% trans 'رزرو و پرداخت موفقیت آمیز بود' %}</p>
                     <br>
-                    <p> نام دکتر : {{ name }} {{ lname }}</p>
+                    <p> {% trans 'نام دکتر'%} : {{ name }} {{ lname }}</p>
                     <br>
-                    <p> تاریخ رزرو شما : {{ day }}/ {{ month }}/ {{ year }}</p>
+                    <p> {% trans 'تاریخ رزرو شما'%} : {{ day }}/ {{ month }}/ {{ year }}</p>
                     <br>
-                    <p> ساعت رزرو : {{ hour }}</p>
+                    <p> {% trans 'ساعت رزرو'%} : {{ hour }}</p>
                     <br>
-                    <p> آدرس مطب : {{ address }}</p>
+                    <p> {% trans 'آدرس مطب'%} : {{ address }}</p>
                 {% else %}
-                    <p> موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید</p>
+                    <p> {% trans 'موجودی کافی نیست.لطفا اقدام به افزایش موجودی خود کنید'%}</p>
 {#                    <p>  {{  address }} </p>#}
                 {% endif %}
 
-            <a class="btn btn-info left" href="{% url 'accounts:index' %} "> بازگشت به صفحه پروفایل </a>
-            <a class="btn btn-info right" href={{request.META.HTTP_REFERER}}> بازگشت به صفحه رزرو </a>
+            <a class="btn btn-info left" href="{% url 'accounts:index' %} "> {% trans 'بازگشت به صفحه پروفایل'%} </a>
+            <a class="btn btn-info right" href={{request.META.HTTP_REFERER}}> {% trans 'بازگشت به صفحه رزرو'%} </a>
         </div>
     </div>
-
+{% endlanguage %}
 {% endblock %}

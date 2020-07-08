@@ -3,7 +3,7 @@ import datetime
 from bootstrap_datepicker_plus import TimePickerInput
 from django import forms
 from django.utils.timezone import localtime, now
-
+from django.utils.translation import ugettext_lazy as _
 from medicine_page.models import SelfAddedMedicine
 from prescription.models import Medicine
 
@@ -62,9 +62,9 @@ def clean_med(self):
         and self.cleaned_data['dosage_remaining'] and self.cleaned_data['dosage_every_time']\
             and self.cleaned_data['dosage_every_time'] > self.cleaned_data['dosage_remaining']:
         if 'dosage_every_time' in self.errors.keys():
-            self.errors['dosage_every_time'] += ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']
+            self.errors['dosage_every_time'] += [_('مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.')]
         else:
-            self.errors['dosage_every_time'] = ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']
+            self.errors['dosage_every_time'] = [_('مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.')]
 
 
 def clean_med_date(self):
@@ -73,19 +73,19 @@ def clean_med_date(self):
         try:
             date = self.cleaned_data['starting_time'].togregorian()
         except:
-            self.errors['starting_time'] = ['لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)']
+            self.errors['starting_time'] = [_('لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)')]
         if date:
             if date.year > 2000:
                 if date < datetime.date.today():
-                    self.errors['starting_time'] = ['تاریخ شروع باید امروز یا بعد از امروز باشد']
+                    self.errors['starting_time'] = [_('تاریخ شروع باید امروز یا بعد از امروز باشد')]
             else:
-                self.errors['starting_time'] = ['لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)']
+                self.errors['starting_time'] = [_('لطفا تاریخ شروع معتبر وارد کنید. (مثال: 1399-12-01)')]
     else:
-        self.errors['starting_time'] = ['لطفا تاریخ شروع معتبر وارد کنید.']
+        self.errors['starting_time'] = [_('لطفا تاریخ شروع معتبر وارد کنید.')]
     if 'starting_hour' in self.errors.keys():
-        self.errors['starting_hour'] = ['لطفا تاریخ معتبر وارد کنید.']
+        self.errors['starting_hour'] = [_('لطفا تاریخ معتبر وارد کنید.')]
     if date and date <= localtime(now()).date() and self.cleaned_data['starting_hour'] < localtime(now()).time():
-        self.errors['starting_hour'] = ['زمان شروع باید از الان به بعد باشد.']
+        self.errors['starting_hour'] = [_('زمان شروع باید از الان به بعد باشد.')]
 
 
 class SelfMedForm(forms.ModelForm):
@@ -99,14 +99,14 @@ class SelfMedForm(forms.ModelForm):
             'starting_hour', 'status'
         )
         labels = {
-            'name': 'نام',
-            'description': 'توضیح',
-            'time_interval': 'بازه زمانی بین دو بار مصرف (به ساعت)',
-            'total_dosage': 'مقدار کل مصرف (گرم)',
-            'dosage_every_time': 'مقدار هربار مصرف (گرم)',
-            'starting_time': 'تاریخ شروع',
-            'starting_hour': 'زمان شروع',
-            'status': 'فعال بود یادآوری'
+            'name': _('نام'),
+            'description': _('توضیح'),
+            'time_interval': _('بازه زمانی بین دو بار مصرف (به ساعت)'),
+            'total_dosage': _('مقدار کل مصرف (گرم)'),
+            'dosage_every_time': _('مقدار کل مصرف (گرم)'),
+            'starting_time': _('تاریخ شروع'),
+            'starting_hour': _('زمان شروع'),
+            'status': _('فعال بود یادآوری')
         }
         widgets = {
             'starting_time': forms.DateInput(attrs={'class': 'datepicker'}),
@@ -120,6 +120,6 @@ class SelfMedForm(forms.ModelForm):
                 and self.cleaned_data['total_dosage'] and self.cleaned_data['dosage_every_time'] \
                 and self.cleaned_data['dosage_every_time'] > self.cleaned_data['total_dosage']:
             if 'dosage_every_time' in self.errors.keys():
-                self.errors['dosage_every_time'] += ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']
+                self.errors['dosage_every_time'] += [_('مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.')]
             else:
-                self.errors['dosage_every_time'] = ['مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.']
+                self.errors['dosage_every_time'] = [_('مقدار مصرف هر بار باید کوچکتر از مقدار مصرف کل باشد.')]
