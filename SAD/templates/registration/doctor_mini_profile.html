@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 {% block body_block %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
+    {% language request.session.lang %}
+            {% get_current_language as LANGUAGE_CODE %}
     <div class="container-fluid emp-profile">
     <form method="post">
         <div class="row">
@@ -22,7 +26,7 @@
                         {{ user.name }} {{ user.family_name }}
                     </h5>
                     <h6>
-                        پزشک
+                        {% trans 'پزشک' %}
                     </h6>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                     </ul>
@@ -39,7 +43,7 @@
                                 <p>{{ user.name }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>نام</label>
+                                <label>{% trans 'نام' %}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -47,17 +51,17 @@
                                 <p>{{ user.family_name }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>نام خانوادگی</label>
+                                <label>{% trans 'نام خانوادگی' %}</label>
                             </div>
                         </div>
 
                         {% if user.doctorprofileinfo.portfolio_site is None %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وارد نشده است.</p>
+                                    <p>{% trans 'وارد نشده است.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>وب سایت</label>
+                                    <label>{% trans 'وب سایت' %}</label>
                                 </div>
                             </div>
                         {% else %}
@@ -66,7 +70,7 @@
                                     <p>{{ user.doctorprofileinfo.portfolio_site }}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>وب سایت</label>
+                                    <label>{%  trans 'وب سایت' %}</label>
                                 </div>
                             </div>
                         {% endif %}
@@ -75,10 +79,10 @@
                         {% if user.doctorprofileinfo.specialty is None %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وارد نشده است.</p>
+                                    <p>{% trans 'وارد نشده است.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>تخصص</label>
+                                    <label>{% trans 'تخصص' %}</label>
                                 </div>
                             </div>
                         {% else %}
@@ -87,7 +91,7 @@
                                     <p> {{ user.doctorprofileinfo.specialty }}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>تخصص</label>
+                                    <label>{% trans 'تخصص' %}</label>
                                 </div>
                             </div>
                         {% endif %}
@@ -97,7 +101,7 @@
                                 <p>{{ user.doctorprofileinfo.degree }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>درجه پزشکی</label>
+                                <label>{%  trans 'درجه پزشکی' %}</label>
                             </div>
                         </div>
 
@@ -106,17 +110,17 @@
                                 <p>{{ user.doctorprofileinfo.address }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>آدرس</label>
+                                <label>{%  trans 'آدرس' %}</label>
                             </div>
                         </div>
 
                         {% if user.doctorprofileinfo.educational_background is None %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وارد نشده است.</p>
+                                    <p>{% trans 'وارد نشده است.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>پیشینه تحصیلی</label>
+                                    <label>{% trans 'پیشینه تحصیلی' %}</label>
                                 </div>
                             </div>
                         {% else %}
@@ -125,7 +129,7 @@
                                     <p> {{ user.doctorprofileinfo.educational_background }}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>پیشینه تحصیلی</label>
+                                    <label>{% trans 'پیشینه تحصیلی' %}</label>
                                 </div>
                             </div>
                         {% endif %}
@@ -134,19 +138,19 @@
                         {% if user.doctorprofileinfo.fee is None %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وارد نشده است.</p>
+                                    <p>{% trans 'وارد نشده است.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>حق ویزیت </label>
+                                    <label>{% trans 'حق ویزیت ' %}</label>
                                 </div>
                             </div>
                         {% else %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p> {{ user.doctorprofileinfo.fee }} تومان</p>
+                                    <p> {{ user.doctorprofileinfo.fee }} {% trans 'تومان' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>حق ویزیت</label>
+                                    <label>{% trans 'حق ویزیت ' %}</label>
                                 </div>
                             </div>
                         {% endif %}
@@ -154,19 +158,19 @@
                         {% if user.doctorprofileinfo.on_site_fee is False %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وجود ندارد.</p>
+                                    <p>{% trans 'وجود ندارد.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>قابلیت پرداخت حق ویزیت در مطب</label>
+                                    <label>{% trans 'قابلیت پرداخت حق ویزیت در مطب' %}</label>
                                 </div>
                             </div>
                         {% else %}
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <p>وجود دارد.</p>
+                                    <p>{% trans 'وجود ندارد.' %}</p>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>قابلیت پرداخت حق ویزیت در مطب</label>
+                                    <label>{% trans 'قابلیت پرداخت حق ویزیت در مطب' %}</label>
                                 </div>
                             </div>
                         {% endif %}
@@ -178,27 +182,27 @@
                                             </div>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <label>امتیاز </label>
+                                    <label>{% trans 'امتیاز ' %}</label>
                                 </div>
                             </div>
 
 
                         <div class="row">
                             <div class="col-md-6 col-xs-6">
-                                <p>{{ user.doctorprofileinfo.visit_duration }} ساعت</p>
+                                <p>{{ user.doctorprofileinfo.visit_duration }} {% trans 'ساعت' %}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>مدت زمان ویزیت</label>
+                                <label>{% trans 'مدت زمان ویزیت' %}</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 col-xs-6">
                                 <p>{{ user.doctorprofileinfo.start_hour }}
-                                    تا {{ user.doctorprofileinfo.end_hour }}</p>
+                                    {%trans 'تا' %} {{ user.doctorprofileinfo.end_hour }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>ساعات کاری</label>
+                                <label>{% trans 'ساعات کاری' %}</label>
                             </div>
                         </div>
 
@@ -207,7 +211,7 @@
                                 <p>{{ days }}</p>
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                <label>روز‌های کاری</label>
+                                <label>{% trans 'روز‌های کاری' %}</label>
                             </div>
                         </div>
                     </div>
@@ -218,7 +222,7 @@
     </form>
      <div class="col-md-2 col-xs-2">
                 {% if not request_user.is_doctor %}
-                    <a class="btn btn-default" href="{% url 'doctor_calendar:calendar' user.pk 0 %}">رزرو وقت</a>
+                    <a class="btn btn-default" href="{% url 'doctor_calendar:calendar' user.pk 0 %}">{% trans 'رزرو وقت' %}</a>
                 {% endif %}
             </div>
 
@@ -240,6 +244,7 @@
                             paddingRight: "2vw"
                         })
                     </script>
+    {% endlanguage %}
 {% endblock %}
 
 

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'monthly_income$', v.monthly_income, name='monthly_income'),
     url(r'^search_page/', v.doctor_search, name='search_page'),
     url(r'^list/', login_required(v.PatientListView.as_view()), name='list'),
-    url(r'^visit_history/', v.DoctorListView.as_view(), name='history')
+    url(r'^visit_history/', v.DoctorListView.as_view(), name='history'),
+    url(r'^lang/(?P<en>\d+)$', v.change_lang, name='change_lang')
 
 ]

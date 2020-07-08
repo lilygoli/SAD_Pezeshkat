@@ -3,6 +3,13 @@
 
 {% block body_block %}
     <link rel="stylesheet" href="{% static "css/index.css" %}" type="text/css">
+    {% if request.session.lang == 'en' %}
+    <style>
+        *{
+            font-family: "Sakkal Majalla", serif;
+        font-size: medium;
+    }</style>
+    {% endif %}
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -14,14 +21,21 @@
             {% if user.is_authenticated %}
                 <div class="container" id="profile">
                     <div class="jumbotron" id="profile-jumbotron">
-                            {% block body_index_block %}
-                            {% endblock %}
+                        {% block body_index_block %}
+                        {% endblock %}
                     </div>
                 </div>
             {% else %}
                 <div class="container" id="logo" data-aos="fade-up">
-                    <img src="{% static "images/logo.png" %}" alt="logo" id="logo-img">
-                    <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
+
+                    {% if request.session.lang == "fa" %}
+                        <img src="{% static "images/logo.png" %}" alt="logo" id="logo-img">
+                        <h2>برای استفاده از وبسایت وارد شوید یا ثبت نام کنید.</h2>
+                    {% else %}
+                        <img src="{% static "images/logo-2.png" %}" style="padding-left: 5vw" alt="logo" id="logo-img">
+                        <h2>Please login or sign up to use the website.</h2>
+
+                    {% endif %}
                 </div>
                 <div class="container"><p></p></div>
                 <div class="container" id="slide" data-aos="fade-up" data-aos-delay="200">
@@ -36,52 +50,111 @@
                         </ol>
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" style=" direction: rtl">
 
                             <div class="item active">
-                                <img src="{% static "images/confused4.png" %}" alt="find">
-                                <div class="carousel-caption">
-                                    <h3>دکترتو پیدا کن!</h3>
-                                    <p>پزشکای خوب رو نمیشناسی؟ اطلاعات کافی درمورد یه پزشک نداری؟ دوستداری چندین تا پزشک
-                                        رو
-                                         بررسی کنی؟ همه ی این کارا تو وبسایت پزشکات خیلی ساده
-                                        انجام
-                                        میشه!</p>
+                                {% if request.session.lang == "fa" %}
+
+                                    <img src="{% static "images/confused4.png" %}" alt="find">
+                                {% else %}
+                                    <img src="{% static "images/confused-5.jpg" %}" alt="find">
+
+                                {% endif %}
+                                <div class="carousel-caption" style="text-align: center;">
+                                    {% if request.session.lang == "fa" %}
+                                        <h3>دکترتو پیدا کن!</h3>
+                                        <p>پزشکای خوب رو نمیشناسی؟ اطلاعات کافی درمورد یه پزشک نداری؟ دوستداری چندین تا
+                                            پزشک
+                                            رو
+                                            بررسی کنی؟ همه ی این کارا تو وبسایت پزشکات خیلی ساده
+                                            انجام
+                                            میشه!</p>
+                                    {% else %}
+                                        <h3>!Find The Doctor</h3>
+                                        <p>You don't know a lot of Doctors? No problem! With Doctors website, finding
+                                            the best doctor for you is a few clicks away</p>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <div class="item">
-                                <img src="{% static "images/bored-telephone0.png" %}" alt="reserve">
-                                <div class="carousel-caption">
-                                    <h3>وقت دکتر بگیر!</h3>
-                                    <p>دوست نداری چندین بار به مطب یه پزشک زنگ بزنی تا یه وقت بتونی بگیری؟ پزشکات برات
-                                        عالیه! میتونی خیلی راحت وقتتو آنلاین رزرو کنی!</p>
+                                {% if request.session.lang == "fa" %}
+
+                                    <img src="{% static "images/bored-telephone0.png" %}" alt="reserve">
+                                {% else %}
+                                    <img src="{% static "images/bored2.jpg" %}" alt="reserve">
+
+                                {% endif %}
+                                <div class="carousel-caption" style="text-align: center">
+                                    {% if request.session.lang == "fa" %}
+                                        <h3>وقت دکتر بگیر!</h3>
+                                        <p>دوست نداری چندین بار به مطب یه پزشک زنگ بزنی تا یه وقت بتونی بگیری؟ پزشکات
+                                            برات
+                                            عالیه! میتونی خیلی راحت وقتتو آنلاین رزرو کنی!</p>
+                                    {% else %}
+                                        <h3>!Make Appointments</h3>
+                                        <p>Does waiting on the line for making appointments bore you? Then Doctors
+                                            website is the best option for you! You can easily make an appointment
+                                            online</p>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <div class="item">
-                                <img src="{% static "images/confused3.png" %}" alt="meds">
-                                <div class="carousel-caption">
-                                    <h3>داروهات یادت نره!</h3>
-                                    <p>حتی اگه تو یادت بره ما همه ی داروهات یادمون میمونه و سر موقع اش خبرت میکنیم!</p>
+                                {% if request.session.lang == "fa" %}
+                                    <img src="{% static "images/confused3.png" %}" alt="meds">
+                                {% else %}
+                                    <img src="{% static "images/confused-4.jpg" %}" alt="meds">
+
+                                {% endif %}
+                                <div class="carousel-caption" style="text-align: center">
+                                    {% if request.session.lang == "fa" %}
+                                        <h3>داروهات یادت نره!</h3>
+                                        <p>حتی اگه تو یادت بره ما همه ی داروهات یادمون میمونه و سر موقع اش خبرت
+                                            میکنیم!</p>
+                                    {% else %}
+                                        <h3>!!Don't forget to take your pills</h3>
+                                        <p>Even if you forget your pills, We will be there to remind you</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="item">
-                                <img src="{% static "images/messy-doctor-1.png" %}" alt="messy doctor">
-                                <div class="carousel-caption">
-                                    <h3>پرونده ی بیمارات رو کامل و به روز نگه دار! </h3>
-                                    <p>با پزشکات میتونی تمام بیماراتو و تمام نسخه هایی که بهشون دادی رو، کامل و مرتب
-                                        اینجا
-                                        نگه داری!</p>
+                                {% if request.session.lang  == 'fa' %}
+                                    <img src="{% static "images/messy-doctor-1.png" %}" alt="messy doctor">
+                                {% else %}
+                                    <img src="{% static "images/messy-doctor-2.jpg" %}" alt="messy doctor">
+
+                                {% endif %}
+                                <div class="carousel-caption" style="text-align: center">
+                                    {% if request.session.lang  == 'fa' %}
+                                        <h3>پرونده ی بیمارات رو کامل و به روز نگه دار! </h3>
+                                        <p>با پزشکات میتونی تمام بیماراتو و تمام نسخه هایی که بهشون دادی رو، کامل و مرتب
+                                            اینجا
+                                            نگه داری!</p>
+                                    {% else %}
+                                        <h3>Doctors! We've got your backs on this</h3>
+                                        <p>With Doctors website you can keep the records of your patients organized and
+                                            complete! We will keep record of all your appointments and
+                                            prescriptions.</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="item">
                                 <img src="{% static "images/calendar.jpg" %}" alt="calendar">
-                                <div class="carousel-caption">
-                                    <h3>زمانبندی منظم! </h3>
-                                    <p>با پزشکات تقویم هفتگی همه ی پزشک ها، واضح و مرتب برای پزشک های عزیز و کسایی که
-                                        میخوان
-                                        وقت رزرو کنن، فراهم میشه!</p>
+                                <div class="carousel-caption" style="text-align: center">
+                                    {% if request.session.lang  == 'fa' %}
+
+                                        <h3>زمانبندی منظم! </h3>
+                                        <p>با پزشکات تقویم هفتگی همه ی پزشک ها، واضح و مرتب برای پزشک های عزیز و کسایی
+                                            که
+                                            میخوان
+                                            وقت رزرو کنن، فراهم میشه!</p>
+                                    {% else %}
+                                        <h3>!Scheduling</h3>
+                                        <p>!We provide a clear weekly schedule for each doctor. You can check your
+                                            appointments anytime you like</p>
+                                    {% endif %}
+
                                 </div>
                             </div>
 
@@ -100,7 +173,7 @@
                 </div>
 
                 {#   TEMPORARY CODE!!! FOR TEST & FUN!   #}
-                <div class="container" ><p> </p></div>
+                <div class="container"><p></p></div>
 
                 <div class="container" style=" background-color: rgba(127,237,223,0.33)" data-aos="fade-up"
                      data-aos-delay="200" id="chart-div">
@@ -108,73 +181,141 @@
                         <div id="container"></div>
                     </figure>
                 </div>
-                <script>
+                {% if request.session.lang  == 'fa' %}
+                    <script>
 
-                    Highcharts.chart('container', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'تعداد پزشکان فعال'
-                        },
 
-                        xAxis: {
-                            categories: [
-                                'ﭼﺸﻢ ﭘﺰﺷﮑ',
-                                'ﺭﺍﺩﯾﻮﻟﻮﮊست',
-                                'ﭘﻮﺳﺖ ﻭ ﻣﻮ',
-                                "متخصص ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ",
-                                "ﺍﺭﺗﻮﭘﺪ",
-                                'ﻗﻠﺐﻭﻋﺮﻭﻕ',
-                                'ﻃﺐ ﻓﯿﺰﯾﮑﯽ',
-                                'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
-                                'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ',
-                                'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
-                                'ﭘﺎﺗﻮﻟﻮﮊﯼ',
-                                'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ',
-                                'ﺭﺍﺩﯾﻮﺗﺮﺍپ',
-                                'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ',
-                                'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ',
-                                'ﺭﻭﺍﻧﭙﺰﺷﮑ',
-                                'ﺩﺍﺧﻠﯽ',
-                                'ﻃﺐﮐﺎﺭ',
-                                'ﮐﻮﺩﮐﺎﻥ',
-                                'متخصص ﺑﯿﻬﻮﺷﯽ',
-                                'متخصص ﻋﻔﻮﻧﯽ',
-                                'سایر'
-                            ],
-                            crosshair: true
-                        },
-                        yAxis: {
-                            min: 0,
+                        Highcharts.chart('container', {
+                            chart: {
+                                type: 'column'
+                            },
                             title: {
-                                text: 'تعداد'
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:1vw">{point.key}</span><table>',
-                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                '<td style="padding:0"><b>{point.y:.1f} نفر</b></td></tr>',
-                            footerFormat: '</table>',
-                            shared: true,
-                            useHTML: true
-                        },
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0
-                            }
-                        },
-                        series: [{
-                            name: 'پزشک',
-                            data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }},
-                    {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}},
-                    {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
+                                text: 'تعداد پزشکان فعال'
+                            },
 
-                        }]
-                    });
-                </script>
-                {#   TEMPORARY CODE!!! FOR TEST & FUN!   #}
+                            xAxis: {
+                                categories: [
+                                    'ﭼﺸﻢ ﭘﺰﺷﮑ',
+                                    'ﺭﺍﺩﯾﻮﻟﻮﮊست',
+                                    'ﭘﻮﺳﺖ ﻭ ﻣﻮ',
+                                    "متخصص ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ",
+                                    "ﺍﺭﺗﻮﭘﺪ",
+                                    'ﻗﻠﺐﻭﻋﺮﻭﻕ',
+                                    'ﻃﺐ ﻓﯿﺰﯾﮑﯽ',
+                                    'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
+                                    'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ',
+                                    'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ',
+                                    'ﭘﺎﺗﻮﻟﻮﮊﯼ',
+                                    'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ',
+                                    'ﺭﺍﺩﯾﻮﺗﺮﺍپ',
+                                    'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ',
+                                    'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ',
+                                    'ﺭﻭﺍﻧﭙﺰﺷﮑ',
+                                    'ﺩﺍﺧﻠﯽ',
+                                    'ﻃﺐﮐﺎﺭ',
+                                    'ﮐﻮﺩﮐﺎﻥ',
+                                    'متخصص ﺑﯿﻬﻮﺷﯽ',
+                                    'متخصص ﻋﻔﻮﻧﯽ',
+                                    'سایر'
+                                ],
+                                crosshair: true
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'تعداد'
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:1vw">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y:.1f} نفر</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                name: 'پزشک',
+                                data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }},
+                                    {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}},
+                                    {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
+
+                            }]
+                        });
+                    </script>
+                {% else %}
+                    <script>
+                        Highcharts.chart('container', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Number of Active Doctors'
+                            },
+
+                            xAxis: {
+                                categories: [
+                                    'Optometrist',
+                                    'Radiologist',
+                                    'Dermatologist',
+                                    "Nuclear Medicine Specialist",
+                                    "Orthopedist",
+                                    'Cardiologist',
+                                    'Physiologist',
+                                    'Neurologist',
+                                    'Otolaryngologist',
+                                    'Neural Surgeon',
+                                    'Pathologist',
+                                    'Urologist',
+                                    'Radiotherapist',
+                                    'General Surgeon',
+                                    'Gynecologist',
+                                    'Psychiatrist',
+                                    'Internist',
+                                    'Hematologist',
+                                    'Pediatrician',
+                                    'Anesthesiologist',
+                                    'Infectious disease specialist',
+                                    'other'
+                                ],
+                                crosshair: true
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Number'
+                                }
+                            },
+                            tooltip: {
+                                headerFormat: '<span style="font-size:1vw">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                    '<td style="padding:0"><b>{point.y:.1f} نفر</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                name: 'Doctor',
+                                data: [{{ eye }}, {{ray}}, {{ hair }}, {{ nuc }}, {{ ort }}, {{ heart }}, {{ fizik }},
+                                    {{ brain }}, {{ ear }}, {{ brainsurg }}, {{ path }}, {{kidney}}, {{ rayray }}, {{general}},
+                                    {{ women }}, {{ psych }}, {{ in }}, {{work}}, {{kids}}, {{faint}}, {{ inf }}, {{ other }}]
+
+                            }]
+                        });
+                    </script>
+                {% endif %}
             {% endif %}
         </div>
     </div>

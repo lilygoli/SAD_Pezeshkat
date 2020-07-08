@@ -1,29 +1,48 @@
 {% extends 'base.html' %}
 {% block body_block %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/forms.css' %}" type="text/css">
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <form class="box" method="post" action="{% url 'accounts:user_login' %}">
-                    {% csrf_token %}
-                    <h1 class="head">صفحه ورود </h1>
-                    <p class="text-muted"> لطفا ایمیل و رمز عبور خود را وارد کنید.</p>
-                    <input type="text" name="email" placeholder="ایمیل">
-                    <input type="password" name="password" placeholder="رمزعبور">
-                    <a class="forgot text-muted" href="{% url 'accounts:password_reset' %}">بازیابی زمز عبور</a>
-                    <input type="submit" value="ورود">
-                </form>
-                {% if error is not None %}
-                <div class="alert alert-danger">
-                    <strong>خطا!</strong> {{ error }}
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}" type="text/css">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    {% language request.session.lang %}
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form class="box" method="post" action="{% url 'accounts:user_login' %}">
+                            {% csrf_token %}
+                            {#                        {% if request.session.lang == "far" %}#}
+
+                            <h1 class="head">{% trans 'صفحه ورود'%} </h1>
+                            <p class="text-muted">{% trans  'لطفا ایمیل و رمز عبور خود را وارد کنید.'%}</p>
+                            <input type="text" name="email" placeholder={% trans "ایمیل"%}>
+                            <input type="password" name="password" placeholder={% trans "رمزعبور"%}>
+                            <a class="forgot text-muted" href="{% url 'accounts:password_reset' %}">{% trans 'بازیابی زمز عبور'%}</a>
+                            <input type="submit" value={% trans "ورود"%}>
+                            {#                        {% else %}#}
+                            {#                            <h1 class="head">LOGIN</h1>#}
+                            {#                            <p class="text-muted">Please Enter your email and password.</p>#}
+                            {#                            <input type="text" name="email" placeholder="Email">#}
+                            {#                            <input type="password" name="password" placeholder="Password">#}
+                            {#                            <a class="forgot text-muted" href="{% url 'accounts:password_reset' %}">Reset Password</a>#}
+                            {#                            <input type="submit" value="login">#}
+                            {#                        {% endif %}#}
+                        </form>
+
+                        {% if error is not None %}
+
+                            <div class="alert alert-danger">
+
+                                <strong>{% trans "خطا" %} {% trans error %}</strong>
+
+                            </div>
+
+                        {% endif %}
+                    {% endlanguage %}
                 </div>
-            {% endif %}
-        </div>
             </div>
+        </div>
     </div>
-</div>
 
 
 {% endblock %}

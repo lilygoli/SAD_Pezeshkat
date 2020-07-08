@@ -7,12 +7,17 @@ from django.db.models import Count
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils import translation
+from django.utils.translation import gettext as xx
+
 from accounts.forms import EditProfileForm, PatientEditProfileInfo, DoctorEditProfileInfo, Inverse, TimeInterval
 from accounts.forms import UserForm, PatientProfileInfoFrom, DoctorProfileInfoForm
 from django.views.generic import ListView
 from accounts.models import User, PatientProfileInfo, DoctorProfileInfo
 from doctor_calendar.models import Event
 from doctor_rating.models import Rating
+from django.utils.translation import ugettext_lazy as _
+
 
 
 def index(request):
@@ -43,7 +48,7 @@ def index(request):
 def get_week_days(user):
     work_days = ""
     doctor_days = user.doctorprofileinfo.available_weekdays
-    week = {0: "شنبه", 1: "یک‌‌شنبه", 2: "دوشنبه", 3: "سه‌شنبه", 4: "چهار‌شنبه", 5: "پنج‌شنبه", 6: "جمعه"}
+    week = {0: xx("شنبه"), 1: xx("یک‌‌شنبه"), 2: xx("دوشنبه"), 3: xx("سه‌شنبه"), 4: xx("چهار‌شنبه"), 5: xx("پنج‌شنبه"), 6: xx("جمعه")}
     for i in range(len(doctor_days)):
         if doctor_days[i] == '1':
             if work_days == "":
@@ -138,12 +143,12 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('accounts:index'))
             else:
-                error = "اکانت شما فعال نیست."
+                error = _("اکانت شما فعال نیست.")
                 return render(request, 'registration/login.html', {"error": error})
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(email, password))
-            error = "ایمیل یا رمز عبور اشتباه میباشد."
+            error = _("ایمیل یا رمز عبور اشتباه میباشد.")
             return render(request, 'registration/login.html', {"error": error})
     else:
         return render(request, 'registration/login.html', {"error": error})
@@ -274,3 +279,17 @@ class DoctorListView(ListView):
         context['doctors'] = self.doctors
         context['ratings'] = Rating.objects.filter(patient=self.request.user.pk).values_list('doctor', flat=True)
         return context
+
+
+def change_lang(request, en):
+    if en == '1':
+        request.session['lang'] = 'en'
+        translation.activate('en')
+        request.LANGUAGE_CODE = 'en'
+
+    else:
+        request.session['lang'] = 'fa'
+        translation.activate('fa')
+        request.LANGUAGE_CODE = 'fa'
+
+    return redirect(request.META['HTTP_REFERER'])

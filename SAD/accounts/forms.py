@@ -5,7 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ValidationError
-
+from django.utils.translation import ugettext_lazy as _
 from accounts.email_domians import DOMAINS
 from accounts.models import User, DoctorProfileInfo, PatientProfileInfo, Income
 
@@ -17,13 +17,13 @@ Inverse = {'ﭼﺸﻢ ﭘﺰﺷﮑﯽ': 'eye', 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ': 'r
                'ﮐﻮﺩﮐﺎﻥ': 'kids', 'ﺑﯿﻬﻮﺷﯽ': 'faint', 'ﻋﻔﻮﻧﯽ': 'inf', '-': 'other'}
 
 DAY_CHOICES = (
-    ("0", "شنبه"),
-    ("1", "یکشنبه"),
-    ("2", "دوشنبه"),
-    ("3", "سه شنبه"),
-    ("4", "چهارشنبه"),
-    ("5", "پنجشنبه"),
-    ("6", "جمعه"),
+    ("0", _("شنبه")),
+    ("1", _("یکشنبه")),
+    ("2", _("دوشنبه")),
+    ("3", _("سه شنبه")),
+    ("4", _("چهارشنبه")),
+    ("5", _("پنجشنبه")),
+    ("6", _("جمعه")),
 )
 
 
@@ -33,7 +33,7 @@ class DateInput(forms.DateInput):
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    password.label = "رمزعبور"
+    password.label = _("رمزعبور")
     error_css_class = 'error'
     required_css_class = 'required'
 
@@ -41,10 +41,10 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('name', 'family_name', 'email', 'password', 'is_doctor')
         labels = {
-            "name": "نام",
-            "family_name": "نام خانوادگی",
-            "password": "رمزعبور",
-            "email": "ایمیل",
+            "name": _("نام"),
+            "family_name": _("نام خانوادگی"),
+            "password": _("رمزعبور"),
+            "email": _("ایمیل"),
         }
 
     def clean(self):
@@ -63,7 +63,7 @@ class UserForm(forms.ModelForm):
                     valid = False
         errors = {'email': [], 'password': []}
         if not valid:
-            errors['email'] += ['ایمیل نامعتبر است.']
+            errors['email'] += [_('ایمیل نامعتبر است.')]
         password = self.cleaned_data['password']
         try:
             password_validation.validate_password(password)
@@ -77,7 +77,7 @@ class UserForm(forms.ModelForm):
 class DoctorProfileInfoForm(forms.ModelForm):
     error_css_class = 'error'
     required_css_class = 'required'
-    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
+    picked = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label=_('روزهای کاری'))
 
     class Meta:
         model = DoctorProfileInfo
@@ -87,20 +87,20 @@ class DoctorProfileInfoForm(forms.ModelForm):
             'on_site_fee',
             'address', 'picked', 'visit_duration', 'score', 'available_weekdays', 'start_hour', 'end_hour')
         labels = {
-            "portfolio_site": "وبسایت شخصی",
-            "profile_pic": "عکس",
-            "specialty_bins": "دسته تخصص",
-            "specialty": "تخصص",
-            "degree": 'درجه پزشکی',
-            "educational_background": "پیشینه تحصیلی",
-            "fee": "حق ویزیت",
-            "on_site_fee": "مشخص شدن حق ویزیت در مطب",
-            "address": "آدرس",
-            "score": "امتیاز",
-            'visit_duration': 'مدت زمان متوسط هر ویزیت',
-            'available_weekdays': 'روزهای کاری ',
-            'start_hour': 'ساعت سروع کار',
-            'end_hour': 'ساعت پایان کار'
+            "portfolio_site":_("وبسایت شخصی"),
+            "profile_pic":_( "عکس"),
+            "specialty_bins":_( "دسته تخصص"),
+            "specialty":_("تخصص"),
+            "degree": _('درجه پزشکی'),
+            "educational_background":_("پیشینه تحصیلی"),
+            "fee": _("حق ویزیت"),
+            "on_site_fee": _("مشخص شدن حق ویزیت در مطب"),
+            "address": _("آدرس"),
+            "score": _("امتیاز"),
+            'visit_duration': _('مدت زمان متوسط هر ویزیت'),
+            'available_weekdays': _('روزهای کاری '),
+            'start_hour': _('ساعت سروع کار'),
+            'end_hour': _('ساعت پایان کار')
         }
 
     def clean_available_weekdays(self):
@@ -116,9 +116,9 @@ class DoctorProfileInfoForm(forms.ModelForm):
     def clean(self):
         errors = {'specialty_bins': [], 'fee': []}
         if self.cleaned_data['specialty_bins'] == "-" and self.cleaned_data['specialty'] is None:
-            errors['specialty_bins'] += ['لطفا دسته‌ی تخصص خود را مشخص کنید یا نام آن را در بخش تخصص بنویسید.']
+            errors['specialty_bins'] += [_('لطفا دسته‌ی تخصص خود را مشخص کنید یا نام آن را در بخش تخصص بنویسید.')]
         if not self.cleaned_data['fee'] and not self.cleaned_data['on_site_fee']:
-            errors['fee'] += ['لطفا حق ویزیت را مشخص کنید یا گزینه "مشخص شدن حق ویزیت در مطب" را انتخاب کنید.']
+            errors['fee'] += [_('لطفا حق ویزیت را مشخص کنید یا گزینه "مشخص شدن حق ویزیت در مطب" را انتخاب کنید.')]
         if len(errors['specialty_bins']) > 0 or len(errors['fee']) > 0:
             raise ValidationError(errors)
 
@@ -136,16 +136,16 @@ class PatientProfileInfoFrom(forms.ModelForm):
             'birthday': DateInput()
         }
         labels = {
-            "profile_pic": "عکس",
-            "birthday": "تاریخ تولد",
-            "medical_condition": "بیماری ها",
-            "medical_emergency_contact": "شماره تلفن موارد پزشکی اضطراری",
-            'credit': 'اعتبار',
-            'blood_type': 'گروه خونی',
-            'blood_plus_minus': 'گروه خونی مثبت/منفی',
-            'allergies': 'حساسیت ها',
-            "height": "قد",
-            "weight": "وزن"
+            "profile_pic": _("عکس"),
+            "birthday": _("تاریخ تولد"),
+            "medical_condition": _("بیماری ها"),
+            "medical_emergency_contact": _("شماره تلفن موارد پزشکی اضطراری"),
+            'credit': _('اعتبار'),
+            'blood_type': _('گروه خونی'),
+            'blood_plus_minus': _('گروه خونی مثبت/منفی'),
+            'allergies': _('حساسیت ها'),
+            "height": _("قد"),
+            "weight": _("وزن")
         }
 
 
@@ -156,9 +156,9 @@ class EditProfileForm(UserChangeForm):
         model = User
         fields = ('name', 'family_name','email')
         labels = {
-            "name": "نام",
-            "email": "ایمیل",
-            "family_name": "نام‌خانوادگی"
+            "name": _("نام"),
+            "email": _("ایمیل"),
+            "family_name": _("نام‌خانوادگی")
         }
 
 
@@ -169,16 +169,16 @@ class PatientEditProfileInfo(UserChangeForm):
             'profile_pic', 'birthday', 'medical_condition', 'medical_emergency_contact', 'credit',
             'blood_type', 'blood_plus_minus', 'allergies', 'height', 'weight')
         labels = {
-            "profile_pic": "عکس",
-            'birthday': "تاریخ تولد",
-            'medical_condition': "بیماری ها",
-            'medical_emergency_contact': "شماره تلفن موارد پزشکی اضطراری",
-            'credit': 'اعتبار',
-            'blood_type': 'گروه خونی',
-            'blood_plus_minus': 'گروه خونی مثبت/منفی',
-            'allergies': 'حساسیت ها',
-            "height": "قد",
-            "weight": "وزن"
+            "profile_pic": _("عکس"),
+            'birthday': _("تاریخ تولد"),
+            'medical_condition':_("بیماری ها"),
+            'medical_emergency_contact': _("شماره تلفن موارد پزشکی اضطراری"),
+            'credit': _('اعتبار'),
+            'blood_type': _('گروه خونی'),
+            'blood_plus_minus': _('گروه خونی مثبت/منفی'),
+            'allergies': _('حساسیت ها'),
+            "height": _("قد"),
+            "weight": _("وزن")
         }
 
     def __init__(self, *args, **kwargs):
@@ -187,7 +187,7 @@ class PatientEditProfileInfo(UserChangeForm):
 
 
 class DoctorEditProfileInfo(forms.ModelForm):
-    available_weekdays = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label='روزهای کاری')
+    available_weekdays = forms.MultipleChoiceField(choices=DAY_CHOICES, widget=forms.CheckboxSelectMultiple(), label=_('روزهای کاری'))
 
     class Meta:
         model = DoctorProfileInfo
@@ -195,18 +195,18 @@ class DoctorEditProfileInfo(forms.ModelForm):
             'portfolio_site', 'profile_pic', 'specialty', 'degree', 'educational_background', 'fee', 'on_site_fee',
             'address','visit_duration', 'start_hour', 'end_hour', 'available_weekdays')
         labels = {
-            "portfolio_site": "وبسایت شخصی",
-            "profile_pic": "عکس",
-            'specialty': "تخصص",
-            'degree': 'درجه پزشکی',
-            'educational_background': "پیشینه تحصیلی",
-            'fee': "حق ویزیت",
-            'on_site_fee': "مشخص شدن و قابلیت پرداخت حق ویزیت در مطب",
-            'address': "آدرس",
-            'visit_duration': 'مدت زمان متوسط هر ویزیت',
-            'available_weekdays': 'روزهای کاری ',
-            'start_hour': 'ساعت شروع کار',
-            'end_hour': 'ساعت پایان کار'
+            "portfolio_site": _("وبسایت شخصی"),
+            "profile_pic": _("عکس"),
+            'specialty': _("تخصص"),
+            'degree': _('درجه پزشکی'),
+            'educational_background': _("پیشینه تحصیلی"),
+            'fee': _("حق ویزیت"),
+            'on_site_fee': _("مشخص شدن و قابلیت پرداخت حق ویزیت در مطب"),
+            'address': _("آدرس"),
+            'visit_duration': _('مدت زمان متوسط هر ویزیت'),
+            'available_weekdays': _('روزهای کاری '),
+            'start_hour': _('ساعت شروع کار'),
+            'end_hour': _('ساعت پایان کار')
         }
 
     def __init__(self, *args, **kwargs):
@@ -229,16 +229,16 @@ class UserSetPassword(SetPasswordForm):
 
     error_messages = {
         **SetPasswordForm.error_messages,
-        'password_mismatch': 'تکرار رمز با رمز جدید یکسان نیست.'
+        'password_mismatch': _('تکرار رمز با رمز جدید یکسان نیست.')
     }
     new_password1 = forms.CharField(
-        label="رمز عبور جدید",
+        label=_("رمز عبور جدید"),
         widget=forms.PasswordInput(attrs={'autocomplete': 'off', 'class': 'form-control', 'autofocus': True}),
         strip=False,
 
     )
     new_password2 = forms.CharField(
-        label="تکرار رمز عبور جدید",
+        label=_("تکرار رمز عبور جدید"),
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'off', 'class': 'form-control'}),
     )
@@ -250,21 +250,21 @@ class UserPasswordChange(PasswordChangeForm):
 
     error_messages = {
         **SetPasswordForm.error_messages,
-        'password_incorrect': "رمز عبور قدیمی نادرست وارد شده است.",
-        'password_mismatch': 'تکرار رمز با رمز جدید یکسان نیست.'
+        'password_incorrect': _("رمز عبور قدیمی نادرست وارد شده است."),
+        'password_mismatch': _('تکرار رمز با رمز جدید یکسان نیست.')
     }
     old_password = forms.CharField(
-        label="رمز عبور قدیمی",
+        label=_("رمز عبور قدیمی"),
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
     )
     new_password1 = forms.CharField(
-        label="رمز عبور جدید",
+        label=_("رمز عبور جدید"),
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
     )
     new_password2 = forms.CharField(
-        label="تکرار رمز عبور جدید",
+        label=_("تکرار رمز عبور جدید"),
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True}),
         help_text=''
@@ -280,8 +280,8 @@ class TimeInterval(forms.ModelForm):
             'start_date', 'end_date'
         )
         labels = {
-            'start_date': 'از تاریخ',
-            'end_date': 'تا تاریخ'
+            'start_date': _('از تاریخ'),
+            'end_date': _('تا تاریخ')
         }
         widgets = {
             'start_date': forms.DateInput(attrs={'class': 'datepicker'}),
@@ -292,14 +292,14 @@ class TimeInterval(forms.ModelForm):
         errors = {'start_date': [], 'end_date': []}
         cln = self.cleaned_data
         if cln['start_date'] is None:
-            errors['start_date'] += ['لطفا تاریخ شروع بازه را وارد کنید.']
+            errors['start_date'] += [_('لطفا تاریخ شروع بازه را وارد کنید.')]
         if cln['end_date'] is None:
-            errors['end_date'] += ['لطفا تاریخ پایان بازه را وارد کنید.']
+            errors['end_date'] += [_('لطفا تاریخ پایان بازه را وارد کنید.')]
         if cln['start_date'] is not None and cln['end_date'] is not None and cln['end_date'] < cln['start_date']:
-            errors['start_date'] += ['بازه انتخاب شده معتبر نمی‌باشد، تاریخ شروع بازه باید قبل از تاریخ پایان آن باشد.']
+            errors['start_date'] += [_('بازه انتخاب شده معتبر نمی‌باشد، تاریخ شروع بازه باید قبل از تاریخ پایان آن باشد.')]
         if cln['start_date'] is not None and cln['end_date'] is not None and \
                 (cln['end_date'] - cln['start_date'] > datetime.timedelta(60) or
                  cln['end_date'] - cln['start_date'] < datetime.timedelta(14)):
-            errors['start_date'] += ['طول بازه معتبر نیست.']
+            errors['start_date'] += [_('طول بازه معتبر نیست.')]
         if len(errors['start_date']) > 0 or len(errors['end_date']) > 0:
             raise ValidationError(errors)

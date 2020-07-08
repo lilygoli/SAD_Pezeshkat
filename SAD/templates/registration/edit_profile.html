@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'css/forms.css' %}" type="text/css">
+    {% language request.session.lang %}
+            {% get_current_language as LANGUAGE_CODE %}
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -11,12 +14,13 @@
         {% csrf_token %}
         {{ edituser_form.as_p }}
         {{ editprofileinfo_form.as_p}}
-        <input type="submit" value="ثبت">
+        <input type="submit" value={% trans 'ثبت'%}>
     </form>
     </div>
     <br>
 </div>
     </div>
+    {% endlanguage %}
 
 {% endblock %}
 

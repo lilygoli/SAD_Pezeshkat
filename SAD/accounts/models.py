@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.db import models
 from django.utils import timezone
 from django_jalali.db import models as jmodels
-
+from django.utils.translation import ugettext_lazy as _
 
 class UserManager(BaseUserManager):
 
@@ -58,70 +58,70 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class DoctorProfileInfo(models.Model):
-    PHD = 'دکتری'
-    BACHELOR = 'کارشناسی'
-    MASTER = 'کارشناسی‌ارشد'
-    SPECIALIST = 'تخصص'
-    SUPER_SPECIALIST = 'فوق‌تخصص'
+    PHD = _('دکتری')
+    BACHELOR = _('کارشناسی')
+    MASTER = _('کارشناسی‌ارشد')
+    SPECIALIST = _('متخصص')
+    SUPER_SPECIALIST = _('فوق تخصص')
     NORMAL = '-'
     DOCTOR_CHOICES = (
-        (PHD, 'دکتری'),
-        (BACHELOR, 'کارشناسی'),
-        (MASTER, 'کارشناسی ارشد'),
-        (SPECIALIST, 'تخصص'),
-        (SUPER_SPECIALIST, 'فوق تخصص'),
+        (PHD, _('دکتری')),
+        (BACHELOR, _('کارشناسی')),
+        (MASTER, _('کارشناسی ارشد')),
+        (SPECIALIST, _('متخصص')),
+        (SUPER_SPECIALIST, _('فوق تخصص')),
         (NORMAL, '-')
     )
 
-    EYE = 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'
-    RADIO = 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'
-    SKIN = 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'
-    NUCLEAR = "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"
-    PEDI = "ﺍﺭﺗﻮﭘﺪﯼ"
-    CARDIO = 'ﻗﻠﺐﻭﻋﺮﻭﻕ'
-    PHYIS = 'ﻃﺐ ﻓﯿﺰﯾﮑﯽ'
-    NEURO = 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
-    EAR = 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ'
-    MELENDEZ_HON = 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'
-    PATH = 'ﭘﺎﺗﻮﻟﻮﮊﯼ'
-    URO = 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'
-    RAY = 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'
-    BUZARI = 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'
-    WOMEN = 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'
-    PSYCH = 'ﺭﻭﺍﻧﭙﺰﺷﮑﯽ'
-    INTERNAL = 'ﺩﺍﺧﻠﯽ'
-    WORK = 'ﻃﺐﮐﺎﺭ'
-    KIDS = 'ﮐﻮﺩﮐﺎﻥ'
-    ANSTH = 'ﺑﯿﻬﻮﺷﯽ'
-    INFECT = 'ﻋﻔﻮﻧﯽ'
+    EYE = _('ﭼﺸﻢ ﭘﺰﺷﮑﯽ')
+    RADIO = _('ﺭﺍﺩﯾﻮﻟﻮﮊﯼ')
+    SKIN = _('ﭘﻮﺳﺖ ﻭ ﻣﻮ')
+    NUCLEAR = _("ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ")
+    PEDI = _("ﺍﺭﺗﻮﭘﺪﯼ")
+    CARDIO = _('ﻗﻠﺐﻭﻋﺮﻭﻕ')
+    PHYIS = _('ﻃﺐ ﻓﯿﺰﯾﮑﯽ')
+    NEURO = _('ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')
+    EAR = _('ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ')
+    MELENDEZ_HON = _('ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')
+    PATH = _('ﭘﺎﺗﻮﻟﻮﮊﯼ')
+    URO = _('ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ')
+    RAY = _('ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ')
+    BUZARI = _('ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ')
+    WOMEN = _('ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ')
+    PSYCH = _('ﺭﻭﺍﻧﭙﺰﺷﮑﯽ')
+    INTERNAL = _('ﺩﺍﺧﻠﯽ')
+    WORK = _('ﻃﺐﮐﺎﺭ')
+    KIDS = _('ﮐﻮﺩﮐﺎﻥ')
+    ANSTH = _('ﺑﯿﻬﻮﺷﯽ')
+    INFECT = _('ﻋﻔﻮﻧﯽ')
     NONE = '-'
     SPCIALTY_CHOICES = (
-        (EYE, 'ﭼﺸﻢ ﭘﺰﺷﮑﯽ'),
-        (RADIO, 'ﺭﺍﺩﯾﻮﻟﻮﮊﯼ'),
-        (SKIN, 'ﭘﻮﺳﺖ ﻭ ﻣﻮ'),
-        (NUCLEAR, "ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ"),
-        (PEDI, "ﺍﺭﺗﻮﭘﺪﯼ"),
-        (CARDIO, 'ﻗﻠﺐﻭﻋﺮﻭﻕ'),
-        (PHYIS, 'ﻃﺐ ﻓﯿﺰﯾﮑﯽ'),
-        (NEURO, 'ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'),
-        (EAR, 'ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ'),
-        (MELENDEZ_HON, 'ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ'),
-        (PATH, 'ﭘﺎﺗﻮﻟﻮﮊﯼ'),
-        (URO, 'ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ'),
-        (RAY, 'ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ'),
-        (BUZARI, 'ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ'),
-        (WOMEN, 'ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ'),
-        (PSYCH, 'روانپزشکی'),
-        (INTERNAL, 'ﺩﺍﺧﻠﯽ'),
-        (WORK, 'ﻃﺐﮐﺎﺭ'),
-        (KIDS, 'ﮐﻮﺩﮐﺎﻥ'),
-        (ANSTH, 'ﺑﯿﻬﻮﺷﯽ'),
-        (INFECT, 'ﻋﻔﻮﻧﯽ'),
+        (EYE, _('ﭼﺸﻢ ﭘﺰﺷﮑﯽ')),
+        (RADIO, _('ﺭﺍﺩﯾﻮﻟﻮﮊﯼ')),
+        (SKIN, _('ﭘﻮﺳﺖ ﻭ ﻣﻮ')),
+        (NUCLEAR, _("ﭘﺰﺷﮑﯽﻫﺴﺘﻪﺍﯼ")),
+        (PEDI, _("ﺍﺭﺗﻮﭘﺪﯼ")),
+        (CARDIO, _('ﻗﻠﺐﻭﻋﺮﻭﻕ')),
+        (PHYIS, _('ﻃﺐ ﻓﯿﺰﯾﮑﯽ')),
+        (NEURO, _('ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')),
+        (EAR, _('ﮔﻮﺵ ﺣﻠﻖ ﺑﯿﻨﯽ')),
+        (MELENDEZ_HON, _('ﺟﺮﺍﺣﯽ ﻣﻐﺰﻭﺍﻋﺼﺎﺏ')),
+        (PATH, _('ﭘﺎﺗﻮﻟﻮﮊﯼ')),
+        (URO, _('ﮐﻠﯿﻪ ﻭ ﻣﺠﺎﺭﯼﺍﺩﺭﺍﺭﯼ')),
+        (RAY, _('ﭘﺮﺗﻮﺩﺭﻣﺎﻧﯽ - ﺭﺍﺩﯾﻮﺗﺮﺍﭘﯽ')),
+        (BUZARI, _('ﺟﺮﺍﺣﯽ ﻋﻤﻮﻣﯽ')),
+        (WOMEN, _('ﺯﻧﺎﻥ ﻭ ﺯﺍﯾﻤﺎﻥ')),
+        (PSYCH, _('روانپزشکی')),
+        (INTERNAL, _('ﺩﺍﺧﻠﯽ')),
+        (WORK, _('ﻃﺐﮐﺎﺭ')),
+        (KIDS, _('ﮐﻮﺩﮐﺎﻥ')),
+        (ANSTH, _('ﺑﯿﻬﻮﺷﯽ')),
+        (INFECT, _('ﻋﻔﻮﻧﯽ')),
         (NONE, '-')
 
     )
     ONE_HOUR, HALF_HOUR, THREE_QUARTER = 1, 0.5, 0.75
-    DURATIONS = ((ONE_HOUR, 'یک ساعت'), (HALF_HOUR, 'نیم ساعت'), (THREE_QUARTER, 'سه ربع'))
+    DURATIONS = ((ONE_HOUR, _('یک ساعت')), (HALF_HOUR, _('نیم ساعت')), (THREE_QUARTER, _('سه ربع')))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     portfolio_site = models.URLField(blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True, default=None)
@@ -171,9 +171,9 @@ class PatientProfileInfo(models.Model):
     blood_plus_minus = models.CharField(max_length=2, null=True, choices=BLOOD_PLUS_MINUS, blank=True)
     allergies = models.CharField(max_length=254, null=True, blank=True)
     medical_emergency_contact = models.CharField(max_length=13, null=False,
-                                                 error_messages={'شماره وارد شده معتبر نیست.': 'incomplete'},
+                                                 error_messages={_('شماره وارد شده معتبر نیست.'): 'incomplete'},
                                                  validators=[RegexValidator(r'^[0]?9[0-9]{9}$',
-                                                                            'شماره موبایل معتبر وارد کنید.')])
+                                                                            _('شماره موبایل معتبر وارد کنید.'))])
 
     def __str__(self):
         return self.user.name + ' ' + self.user.family_name

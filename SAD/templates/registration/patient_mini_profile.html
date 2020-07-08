@@ -1,8 +1,11 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block body_block %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
 <div class="container-fluid emp-profile">
+{% language request.session.lang %}
+                        {% get_current_language as LANGUAGE_CODE %}
     <form method="post">
         <div class="row">
             <div class="col-md-4 col-xs-4">
@@ -20,7 +23,7 @@
                                         {{user.name}} {{user.family_name}}
                                     </h5>
                                     <h6>
-                                        بیمار
+                                        {% trans 'بیمار' %}
                                     </h6>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                             </ul>
@@ -36,7 +39,7 @@
                                                 <p>{{ user.name }}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>نام</label>
+                                                <label>{% trans 'نام' %}</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -44,7 +47,7 @@
                                                 <p>{{ user.family_name }}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>نام خانوادگی</label>
+                                                <label>{% trans 'نام خانوادگی' %}</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -52,17 +55,17 @@
                                                 <p>{{user.patientprofileinfo.birthday.year}}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>سال تولد</label>
+                                                <label>{% trans 'سال تولد' %}</label>
                                             </div>
                                         </div>
 
                                     {% if user.patientprofileinfo.medical_condition is None %}
                                          <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p>وارد نشده است.</p>
+                                                <p>{% trans 'وارد نشده است.' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>بیماری‌ها</label>
+                                                <label>{% trans 'بیماری‌ها' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
@@ -71,7 +74,7 @@
                                                 <p>{{user.patientprofileinfo.medical_condition}}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>بیماری‌ها</label>
+                                                <label>{% trans 'بیماری‌ها' %}</label>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -81,17 +84,17 @@
                                                 <p>{{user.patientprofileinfo.medical_emergency_contact}}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>شماره تلفن موارد پزشکی اضطراری</label>
+                                                <label>{% trans 'شماره تلفن موارد پزشکی اضطراری' %}</label>
                                             </div>
                                         </div>
 
                                     {% if user.patientprofileinfo.blood_type is None %}
                                          <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p>وارد نشده است.</p>
+                                                <p>{% trans 'وارد نشده است.'%}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>گروه خونی</label>
+                                                <label>{% trans 'گروه خونی' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
@@ -101,7 +104,7 @@
                                                 <p> {{user.patientprofileinfo.blood_type}}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>گروه خونی</label>
+                                                <label>{% trans 'گروه خونی' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
@@ -115,7 +118,7 @@
                                                 {% endif%}
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>گروه خونی</label>
+                                                <label>{% trans 'گروه خونی' %}</label>
                                             </div>
                                         </div>
 
@@ -125,10 +128,10 @@
                                 {% if user.patientprofileinfo.allergies is None %}
                                          <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p>وارد نشده است.</p>
+                                                <p>{% trans 'وارد نشده است.' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>حساسیت‌ها</label>
+                                                <label>{% trans 'حساسیت‌ها' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
@@ -137,7 +140,7 @@
                                                 <p> {{user.patientprofileinfo.allergies}}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>حساسیت‌ها</label>
+                                                <label>{% trans 'حساسیت‌ها' %}</label>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -146,19 +149,19 @@
                                 {% if user.patientprofileinfo.height is None %}
                                          <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p>وارد نشده است.</p>
+                                                <p>{% trans 'وارد نشده است.' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>قد</label>
+                                                <label>{% trans 'قد' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
                                         <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p> {{user.patientprofileinfo.height}} متر</p>
+                                                <p> {{user.patientprofileinfo.height}} {% trans 'متر' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>قد</label>
+                                                <label>{% trans 'قد' %}</label>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -166,19 +169,19 @@
                                 {% if user.patientprofileinfo.weight is None %}
                                          <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p>وارد نشده است.</p>
+                                                <p>{% trans 'وارد نشده است.' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>وزن</label>
+                                                <label>{% trans 'وزن' %}</label>
                                             </div>
                                         </div>
                                     {% else %}
                                         <div class="row">
                                             <div class="col-md-6 col-xs-6">
-                                                <p> {{user.patientprofileinfo.weight}} کیلوگرم</p>
+                                                <p> {{user.patientprofileinfo.weight}} {% trans 'کیلوگرم' %}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6">
-                                                <label>وزن</label>
+                                                <label>{% trans 'وزن' %}</label>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -188,6 +191,7 @@
                         </div>
                     </div>
             </form>
+{% endlanguage %}
         </div>
 {% endblock%}
 

@@ -29,6 +29,10 @@ body {
     font-size: 1.5vw;
 
 }
+* {
+    word-spacing: 2px;
+
+}
 a .nav_img{
     width: 1.7vw;
     border-radius: 50%;

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
-
-<html dir="rtl" lang="fa">
+{% if request.session.lang == "fa" %}
+    <html dir="rtl" lang="fa" translate="yes">
+{% else %}
+    <html lang="" translate="yes">
+{% endif %}
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>پزشکات</title>
@@ -16,8 +19,13 @@
     <link rel="stylesheet" href="{% static "admin/css/base.css" %}" type="text/css">
 
     <link rel="stylesheet" href="{% static "css/basics.css" %}" type="text/css">
-
-
+    {% if request.session.lang == 'en' %}
+    <style>
+        *{
+            font-family: "Sakkal Majalla", serif;
+        font-size: medium;
+    }</style>
+    {% endif %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -37,8 +45,10 @@
 
 </head>
 <body>
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{% static 'scripts/toggler.js' %}"></script>
+
 <nav class="navbar navbar-default navbar-fixed-top navbar-static-top" role="navigation">
 
     <div class="container">
@@ -50,50 +60,107 @@
 
         <div class="collapse navbar-collapse " id="navbarCollapse">
 
-
-            <ul class="nav navbar-nav navbar-right ">
-
-                {% if not user.is_authenticated %}
-                    <li class="dropdown show navbar-item ">
+            {% if request.session.lang == "fa" %}
+                <ul class="nav navbar-nav navbar-right ">
+            {% else %}
+                <ul class="nav navbar-nav ">
+            {% endif %}
+            {% if not user.is_authenticated %}
+                {% if request.session.lang == "en" %}
+                    <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">Doctors</a></li>
+                    <li><a class="navbar-link " href="{% url 'accounts:user_login' %}">Login</a></li>
+                {% endif %}
+                <li class="dropdown show navbar-item ">
+                    {% if request.session.lang == "fa" %}
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ثبت نام
                         </a>
+                    {% else %}
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" dir="rtl">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Register
+                        </a>
+                    {% endif %}
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" dir="rtl">
+                        {% if request.session.lang == "fa" %}
                             <ul><a class="dropdown-item" href="/register/?id=1" dir="rtl" lang="fa">به عنوان
                                 پزشک</a>
                             </ul>
                             <ul><a class="dropdown-item" href="/register/?id=2" dir="rtl" lang="fa">به عنوان
                                 بیمار</a>
                             </ul>
+                        {% else %}
+                            <ul><a class="dropdown-item" href="/register/?id=1" dir="rtl" lang="fa">As &nbsp; a &nbsp;
+                                Doctor</a>
+                            </ul>
+                            <ul><a class="dropdown-item" href="/register/?id=2" dir="rtl" lang="fa">As &nbsp; a &nbsp;
+                                Patient</a>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </li>
+                {% if request.session.lang == "fa" %}
 
-                        </div>
-                    </li>
                     <li><a class="navbar-link " href="{% url 'accounts:user_login' %}">ورود</a></li>
-                <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
+                    <li><a class="navbar-link " id="brand" href="{% url 'accounts:index' %}">پزشکات</a></li>
+
                 {% endif %}
-                {% if user.is_authenticated %}
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if request.session.lang == "fa" %}
                     <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>
                     <li><a class="navbar-link" href="{% url 'accounts:search_page' %}">جست‌وجوی
                         پزشک</a></li>
+
                     {% if user.is_doctor %}
-                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a></li>
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img"
+                                                                                          src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a>
+                        </li>
                     {% else %}
-                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img" src="{{ user.patientprofileinfo.profile_pic.url }}"/></a></li>
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img"
+                                                                                          src="{{ user.patientprofileinfo.profile_pic.url }}"/></a>
+                        </li>
                     {% endif %}
+                {% else %}
+                    {% if user.is_doctor %}
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img"
+                                                                                          src="{{ user.doctorprofileinfo.profile_pic.url }}"/></a>
+                        </li>
+                    {% else %}
+                        <li><a class="navbar-link" href="{% url 'accounts:index' %}"><img class="nav_img"
+                                                                                          src="{{ user.patientprofileinfo.profile_pic.url }}"/></a>
+                        </li>
+                    {% endif %}
+                    <li><a class="navbar-link" href="{% url 'accounts:search_page' %}">Search &nbsp; Doctors</a></li>
+                    <li><a class="navbar-link" href="{% url 'accounts:logout' %}">Exit</a></li>
                 {% endif %}
+            {% endif %}
+
 
             </ul>
-<!--            <ul class="nav navbar-nav navbar-left ">-->
-<!--                {% if user.is_authenticated %}-->
-<!--                    <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>-->
-<!--                {% endif %}-->
-<!--            </ul>-->
 
+            <!--                {% if user.is_authenticated %}-->
+                <!--                    <li><a class="navbar-link" href="{% url 'accounts:logout' %}">خروج</a></li>-->
+                <!--                {% endif %}-->
 
+            {% if request.session.lang == "fa" %}
+                <ul class="navbar-nav ml-auto">
+            {% else %}
+                <ul class="navbar-nav ml-auto navbar-right">
+            {% endif %}
+            <li style="margin: 3px; list-style: none"><a style="float: left !important; font-size: small"
+                                                         class="navbar-link"
+                                                         href="{% url 'accounts:change_lang' 1 %}">English</a></li>
+            <li style="margin: 3px; list-style: none"><a style="float: left !important; font-size: small"
+                                                         class="navbar-link"
+                                                         href="{% url 'accounts:change_lang' 0 %}">فارسی</a></li>
+            </ul>
         </div>
     </div>
+
 </nav>
 <div class="container">
     {% block body_block %}
