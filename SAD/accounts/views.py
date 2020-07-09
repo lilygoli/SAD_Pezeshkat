@@ -1,5 +1,6 @@
 import random
 
+import jdatetime
 from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -217,12 +218,14 @@ def monthly_income(request):
             appointments = Event.objects.filter(doctor_user=request.user)
             interval = clean_data['end_date'] - clean_data['start_date']
             income = {i: 0 for i in range(interval.days)}
+            start = jdatetime.date(clean_data['start_date'].year, clean_data['start_date'].month,
+                                   clean_data['start_date'].day).togregorian()
+            end = jdatetime.date(clean_data['end_date'].year, clean_data['end_date'].month,
+                                   clean_data['end_date'].day).togregorian()
             for i in appointments:
-                if clean_data['start_date'].year == i.start_time.year:
-                    if clean_data['start_date'].month <= i.start_time.month <= clean_data['end_date'].month:
-                        if clean_data['start_date'].day <= i.start_time.day <= clean_data['end_date'].day:
-                            day_diff = i.start_time.day - clean_data['start_date'].day
-                            income.update({day_diff: income.get(day_diff) + doctor_fee})
+                if start <= jdatetime.date(i.start_time.year, i.start_time.month, i.start_time.day).togregorian() <= end:
+                    day_diff = i.start_time.day - clean_data['start_date'].day
+                    income.update({day_diff: income.get(day_diff) + doctor_fee})
             ins = [0]
             for i in range(interval.days):
                 ins.append((ins[-1] + income.get(i)))
