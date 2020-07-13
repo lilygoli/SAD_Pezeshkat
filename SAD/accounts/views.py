@@ -224,8 +224,8 @@ def monthly_income(request):
                                    clean_data['end_date'].day).togregorian()
             for i in appointments:
                 if start <= jdatetime.date(i.start_time.year, i.start_time.month, i.start_time.day).togregorian() <= end:
-                    day_diff = i.start_time.day - clean_data['start_date'].day
-                    income.update({day_diff: income.get(day_diff) + doctor_fee})
+                    day_diff = i.start_time - clean_data['start_date']
+                    income.update({day_diff.days: income.get(day_diff.days) + doctor_fee})
             ins = [0]
             for i in range(interval.days):
                 ins.append((ins[-1] + income.get(i)))
